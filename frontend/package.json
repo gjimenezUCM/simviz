@@ -1,0 +1,23 @@
+{
+  "name": "frontend",
+  "version": "0.0.1",
+  "description": "Frontend for VizSim",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.dev.js",
+    "start": "webpack-dev-server --config webpack.dev.js"
+  },
+  "author": "Guillermo Jimenez-Diaz",
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "html-webpack-plugin": "^5.5.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.10.0"
+  },
+  "dependencies": {
+    "plotly.js-dist-min": "^2.27.1"
+  }
+}
