@@ -1,6 +1,6 @@
 import Plotly from 'plotly.js-dist-min';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { anArtworkRow, anArtworkCol, createItemElement } from './item-loader';
+import {  itemLoader } from './item-loader';
 
 import { daoItems } from './mockdata';
 
@@ -16,18 +16,6 @@ for (let i = 0; i<itemSize; i++) {
     }
     mockSimData[i] = row;
 }
-
-let xValues = ['A', 'B', 'C', 'D', 'E'];
-
-let yValues = ['W', 'X', 'Y', 'Z'];
-
-let zValues = [
-    [0.00, 0.00, 0.75, 0.25, 0.00],
-    [0.00, 0.00, 0.75, 0.75, 0.00],
-    [0.75, 0.75, 0.5, 0.75, 0.75],
-    [0.00, 0.00, 0.00, 0.75, 0.00]
-];
-
 
 const colorscaleValue = [
     [0, '#3D9970'],
@@ -69,28 +57,9 @@ window.addEventListener("load", (event) => {
        if (data.points.length === 1){
             let row = data.points[0].x;
             let col = data.points[0].y;
-            changeRowItem(daoItems.getItemById(row));
-            changeColItem(daoItems.getItemById(col));
+            itemLoader.changeRowItem(daoItems.getItemById(row));
+            itemLoader.changeColItem(daoItems.getItemById(col));
+           itemLoader._createHandlebars(daoItems.getItemById(col));
         }
     });
-
-
-    changeItem(anArtworkCol, '#item-col .item-desc-table');
-    changeItem(anArtworkRow, '#item-row .item-desc-table');
-
 })
-
-function changeItem(item, selector) {
-    let itemElement = createItemElement(item);
-    let colElement = document.querySelector(selector);
-    colElement.appendChild(itemElement);
-}
-
-function changeRowItem(item){
-    changeItem(item, '#item-row .item-desc-table');
-}
-
-function changeColItem(item) {
-    changeItem(item, '#item-col .item-desc-table');
-}
-
