@@ -1,4 +1,11 @@
 import Plotly from 'plotly.js-dist-min';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { anArtworkRow, anArtworkCol, createItemElement } from './item-loader';
+
+
+
+
+
 
 let xValues = ['A', 'B', 'C', 'D', 'E'];
 
@@ -45,19 +52,26 @@ let layout = {
 
 
 window.addEventListener("load", (event) => {
-    let tester = document.getElementById('tester');
-    console.log("Está el elem con id?", tester);
-    Plotly.newPlot('tester', data, layout);
+    let heatmap = document.getElementById('heatmap');
+    Plotly.newPlot('heatmap', data, layout);
 
-    tester.on('plotly_click', function (data) {
+    heatmap.on('plotly_click', function (data) {
        if (data.points.length === 1){
            for (var prop in data.points[0]) {
                if (data.points[0].hasOwnProperty(prop)) {
                    console.log(prop,data.points[0][prop]);
                }
            }
-    }
+        }
     });
+
+    let itemElement = createItemElement(anArtworkCol);
+    let colElement = document.getElementById('item-col');
+    colElement.appendChild(itemElement);
+
+    itemElement = createItemElement(anArtworkRow);
+    let rowElement = document.getElementById('item-row');
+    rowElement.appendChild(itemElement);
 
 })
 
