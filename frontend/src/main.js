@@ -2,10 +2,20 @@ import Plotly from 'plotly.js-dist-min';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { anArtworkRow, anArtworkCol, createItemElement } from './item-loader';
 
+import { daoItems } from './mockdata';
 
+let itemIds = daoItems.getIds();
 
+let mockSimData = [];
+let itemSize = itemIds.length;
 
-
+for (let i = 0; i<itemSize; i++) {
+    let row =[];
+    for (let j = 0; j < itemSize; j++) {
+        row[j] = Math.random();
+    }
+    mockSimData[i] = row;
+}
 
 let xValues = ['A', 'B', 'C', 'D', 'E'];
 
@@ -26,9 +36,9 @@ const colorscaleValue = [
 
 
 let data = [{
-    x: xValues,
-    y: yValues,
-    z: zValues,
+    x: itemIds,
+    y: itemIds,
+    z: mockSimData,
     type: 'heatmap',
     colorscale: colorscaleValue,
     showscale: false
@@ -45,7 +55,7 @@ let layout = {
         ticks: '',
         ticksuffix: ' ',
         width: 700,
-        height: 700,
+        height: 1000,
         autosize: false
     }
 };
@@ -57,21 +67,30 @@ window.addEventListener("load", (event) => {
 
     heatmap.on('plotly_click', function (data) {
        if (data.points.length === 1){
-           for (var prop in data.points[0]) {
-               if (data.points[0].hasOwnProperty(prop)) {
-                   console.log(prop,data.points[0][prop]);
-               }
-           }
+            let row = data.points[0].x;
+            let col = data.points[0].y;
+            changeRowItem(daoItems.getItemById(row));
+            changeColItem(daoItems.getItemById(col));
         }
     });
 
-    let itemElement = createItemElement(anArtworkCol);
-    let colElement = document.getElementById('item-col');
-    colElement.appendChild(itemElement);
 
-    itemElement = createItemElement(anArtworkRow);
-    let rowElement = document.getElementById('item-row');
-    rowElement.appendChild(itemElement);
+    changeItem(anArtworkCol, '#item-col .item-desc-table');
+    changeItem(anArtworkRow, '#item-row .item-desc-table');
 
 })
+
+function changeItem(item, selector) {
+    let itemElement = createItemElement(item);
+    let colElement = document.querySelector(selector);
+    colElement.appendChild(itemElement);
+}
+
+function changeRowItem(item){
+    changeItem(item, '#item-row .item-desc-table');
+}
+
+function changeColItem(item) {
+    changeItem(item, '#item-col .item-desc-table');
+}
 
