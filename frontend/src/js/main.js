@@ -18,7 +18,7 @@ let itemSize = itemIds.length;
 
 for (let i = 0; i<itemSize; i++) {
     let row =[];
-    for (let j = 0; j < itemSize; j++) {
+    for (let j = i+1; j < itemSize; j++) {
         row[j] = Math.random();
     }
     mockSimData[i] = row;
@@ -31,12 +31,14 @@ window.addEventListener("load", (event) => {
     initHeatmap(heatmapContainer);
 
     heatmapContainer.on('plotly_click', function (data) {
-       if (data.points.length === 1){
-            let row = data.points[0].x;
-            let col = data.points[0].y;
-            itemLoader.changeRowItem(daoItems.getItemById(row));
-            itemLoader.changeColItem(daoItems.getItemById(col));
-           itemLoader._createHandlebars(daoItems.getItemById(col));
+        if (data.points.length === 1) {
+            if (data.points[0].z){
+                let row = data.points[0].x;
+                let col = data.points[0].y;
+                itemLoader.changeRowItem(daoItems.getItemById(row));
+                itemLoader.changeColItem(daoItems.getItemById(col));
+                itemLoader._createHandlebars(daoItems.getItemById(col));
+            }
         }
     });
 });
@@ -64,8 +66,8 @@ function initHeatmap(containerNode){
         y: itemIds,
         z: mockSimData,
         type: 'heatmap',
-        colorscale: colorscaleValue,
-        showscale: false
+        colorscale: 'YlOrRd',
+        showscale: true
     }];
 
 
@@ -75,7 +77,7 @@ function initHeatmap(containerNode){
             l: 10,
             r: 10,
             b: 10,
-            t: 10,
+            t: 20,
         },
         xaxis: {
             // No tick labels
