@@ -24,43 +24,13 @@ for (let i = 0; i<itemSize; i++) {
     mockSimData[i] = row;
 }
 
-const colorscaleValue = [
-    [0, '#3D9970'],
-    [1, '#001f3f']
-];
-
-
-let data = [{
-    x: itemIds,
-    y: itemIds,
-    z: mockSimData,
-    type: 'heatmap',
-    colorscale: colorscaleValue,
-    showscale: false
-}];
-
-
-let layout = {
-    title: 'Heatmap',
-    xaxis: {
-        ticks: '',
-        side: 'top'
-    },
-    yaxis: {
-        ticks: '',
-        ticksuffix: ' ',
-        width: 700,
-        height: 1000,
-        autosize: false
-    }
-};
 
 
 window.addEventListener("load", (event) => {
-    let heatmap = document.getElementById('heatmap');
-    Plotly.newPlot('heatmap', data, layout);
+    let heatmapContainer = document.getElementById('heatmap');
+    initHeatmap(heatmapContainer);
 
-    heatmap.on('plotly_click', function (data) {
+    heatmapContainer.on('plotly_click', function (data) {
        if (data.points.length === 1){
             let row = data.points[0].x;
             let col = data.points[0].y;
@@ -69,4 +39,61 @@ window.addEventListener("load", (event) => {
            itemLoader._createHandlebars(daoItems.getItemById(col));
         }
     });
-})
+});
+
+window.addEventListener("resize", (event) => {
+    let heatmapContainer = document.getElementById('heatmap');
+    initHeatmap(heatmapContainer);    
+});
+
+
+
+function initHeatmap(containerNode){
+
+    let containerWidth = containerNode.offsetWidth;
+    let containerHeight = containerNode.parentNode.offsetHeight;
+
+    const colorscaleValue = [
+        [0, '#3D9970'],
+        [1, '#001f3f']
+    ];
+
+
+    let data = [{
+        x: itemIds,
+        y: itemIds,
+        z: mockSimData,
+        type: 'heatmap',
+        colorscale: colorscaleValue,
+        showscale: false
+    }];
+
+
+    let layout = {
+        paper_bgcolor: 'transparent',
+        margin: {
+            l: 10,
+            r: 10,
+            b: 10,
+            t: 10,
+        },
+        xaxis: {
+            // No tick labels
+            showticklabels: false,
+            // No ticks
+            tickmode: 'array',
+            tickvals: []
+        },
+        yaxis: {
+            // No tick labels
+            showticklabels: false,
+            // No ticks
+            tickmode: 'array',
+            tickvals: []
+        },
+        height: containerHeight,
+        width: containerWidth
+    };
+
+    Plotly.newPlot(containerNode, data, layout);
+}

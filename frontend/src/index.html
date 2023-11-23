@@ -10,12 +10,12 @@
 <body>
 
     <div class="container-fluid">
-        <section class="row menu">
+        <section id="menu" class="row">
             Menu bar
         </section>
     </div>
     <div class="container-fluid">
-        <section class="row main">
+        <section id="content" class="row">
             <div id="items" class="col-5">
                 <div id="item-col" class="row">
                     <h1>Item (row)</h1>
@@ -24,11 +24,14 @@
                     <h1>Item (col)</h1>
                 </div>
             </div>
-            <div class="col-7">
+            <div id="heatmap-container" class="col-7">
                 <div id="heatmap-header" class="row">
-                    <p>Heatmap header and buttons</p>
+                    <h2>Heatmap header and buttons</h2>
                 </div>
-                <div id="heatmap" class="row"></div>
+                <div id="heatmap-content" class="row align-items-center">
+                    <div id="heatmap"></div>
+                </div>
+                
             </div>
         </section>
     </div>
