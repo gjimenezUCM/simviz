@@ -1,0 +1,7 @@
+#items .row {
+    height: 50vh;
+    overflow: auto
+}
+#items img {
+    max-height: 25vh;
+}

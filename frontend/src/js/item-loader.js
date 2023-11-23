@@ -1,18 +1,18 @@
 import Handlebars from "handlebars";
 const itemTemplate = `
     <div class="item">
-        <h1>{{_id}}</h1>
+        <h1>{{tittle}}</h1>
         <div class="item-desc-table">
-            <table>
+            <table class="table table-striped">
             <tbody>
             <tr>
-                <td class="name">Title</td>
-                <td class="value">{{tittle}}</td>
+                <td class="name">Id</td>
+                <td class="value">{{_id}}</td>
             </tr>
             <tr>
             {{#if image}}
                 <td class="name">image</td>
-                <td class="value"><img src="{{image}}"/></td>
+                <td class="value"><img class="img-fluid" src="{{image}}"/></td>
             {{/if}}
             </tr>
             </tbody>
@@ -22,16 +22,20 @@ const itemTemplate = `
 `;
 
 class ItemLoader {
+
+    constructor() {
+        this.template = Handlebars.compile(itemTemplate);
+    }
     _changeItem(item, selector) {
-        let itemElement = this._createItemElement(item);
+        let itemElement = this._createHandlebars(item);
         let colElement = document.querySelector(selector);
-        colElement.replaceWith(itemElement);
+        colElement.innerHTML = itemElement;
     }
 
     _createHandlebars(anArtWork) {
-        let template = Handlebars.compile(itemTemplate);
-        console.log("Compiled template");
-        console.log(template(anArtWork));
+        let result = this.template(anArtWork);
+        console.log(result);
+        return result;
     }
     _createItemElement(anArtWork) {
         let attribs = ["id", "tittle", "Object", "author", "year", "Materials", "Colour", "ColourRGB", "image", "Object group"];
@@ -87,11 +91,11 @@ class ItemLoader {
     } 
 
     changeRowItem(item) {
-        this._changeItem(item, '#item-row table');
+        this._changeItem(item, '#item-row');
     }
 
     changeColItem(item) {
-        this._changeItem(item, '#item-col table');
+        this._changeItem(item, '#item-col');
     }
 }
 export const itemLoader = new ItemLoader();

@@ -130,7 +130,7 @@ const bbdd = [
         "_updated": null,
         "year": 1970.0,
         "ColourRGB": [],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-017298_wirkkala_ultima_thule-2000x1621.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-017298_wirkkala_ultima_thule-2000x1621.jpg",
         "Object group": "glass"
     },
     {
@@ -174,7 +174,7 @@ const bbdd = [
                 "51"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/10/wsi-imageoptim-b561-2000x1500.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-b561-2000x1500.jpg",
         "Object group": "pots"
     },
     {
@@ -907,7 +907,7 @@ const bbdd = [
                 "255"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/08/wsi-imageoptim-b548-2000x2665.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/08/wsi-imageoptim-b548-2000x2665.jpg",
         "Object group": "pots"
     },
     {
@@ -1033,7 +1033,7 @@ const bbdd = [
                 "128"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-025419-2000x1333.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-025419-2000x1333.jpg",
         "Object group": "glass"
     },
     {
@@ -1077,7 +1077,7 @@ const bbdd = [
                 "238"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-025419-2000x1333.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-025419-2000x1333.jpg",
         "Object group": "glass"
     },
     {
@@ -1109,7 +1109,7 @@ const bbdd = [
         "_updated": null,
         "year": 1968.0,
         "ColourRGB": [],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-017298_wirkkala_ultima_thule-2000x1621.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-017298_wirkkala_ultima_thule-2000x1621.jpg",
         "Object group": "glass"
     },
     {
@@ -1147,7 +1147,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-dmpm_20150103_2785-2000x3000.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-dmpm_20150103_2785-2000x3000.jpg",
         "Object group": "glass"
     },
     {
@@ -1185,7 +1185,7 @@ const bbdd = [
                 "95"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-025608__franck_p-1-1327x1823.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-025608__franck_p-1-1327x1823.jpg",
         "Object group": "glass"
     },
     {
@@ -1229,7 +1229,7 @@ const bbdd = [
                 "128"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-franck-1610-lh-1667x2379.jpeg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-franck-1610-lh-1667x2379.jpeg",
         "Object group": "jugs"
     },
     {
@@ -1267,7 +1267,7 @@ const bbdd = [
                 "255"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/05/kermakko-mk-am1699-320x320.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/05/kermakko-mk-am1699-320x320.jpg",
         "Object group": "pots"
     },
     {
@@ -1317,7 +1317,7 @@ const bbdd = [
                 "255"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/09/wsi-imageoptim-muumi1-2000x2666.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/09/wsi-imageoptim-muumi1-2000x2666.jpg",
         "Object group": "cups"
     },
     {
@@ -1349,7 +1349,7 @@ const bbdd = [
         "_updated": null,
         "year": 1950.0,
         "ColourRGB": [],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-dmpm_20150103_2785-2000x3000.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-dmpm_20150103_2785-2000x3000.jpg",
         "Object group": "jugs"
     },
     {
@@ -1388,7 +1388,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/01/wsi-imageoptim-img656-1667x2181.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/01/wsi-imageoptim-img656-1667x2181.jpg",
         "Object group": "industrial design"
     },
     {
@@ -1434,7 +1434,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-025478_anurmesniemi_pehtoori_rt-1327x1990.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-025478_anurmesniemi_pehtoori_rt-1327x1990.jpg",
         "Object group": "pots"
     },
     {
@@ -1473,7 +1473,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/10/wsi-imageoptim-32712-2000x2667.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-32712-2000x2667.jpg",
         "Object group": "pots"
     },
     {
@@ -1511,7 +1511,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/09/wsi-imageoptim-metro-41816-899x477.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/09/wsi-imageoptim-metro-41816-899x477.jpg",
         "Object group": "industrial design"
     },
     {
@@ -1593,7 +1593,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-img_3604-2000x1958.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-img_3604-2000x1958.jpg",
         "Object group": "vehicles"
     },
     {
@@ -1650,7 +1650,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-1210201010051517_richard_lindh_solifer_export_1960_suomi_017667-compressor-2000x1297.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-1210201010051517_richard_lindh_solifer_export_1960_suomi_017667-compressor-2000x1297.jpg",
         "Object group": "vehicles"
     },
     {
@@ -1688,7 +1688,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/09/wsi-imageoptim-32030-2000x2667.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/09/wsi-imageoptim-32030-2000x2667.jpg",
         "Object group": "industrial design"
     },
     {
@@ -1727,7 +1727,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/03/wsi-imageoptim-img_9261-2000x2896.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/03/wsi-imageoptim-img_9261-2000x2896.jpg",
         "Object group": "devices"
     },
     {
@@ -1766,7 +1766,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/10/wsi-imageoptim-asa-20260-320x415.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-asa-20260-320x415.jpg",
         "Object group": "devices"
     },
     {
@@ -1810,7 +1810,7 @@ const bbdd = [
                 "255"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/11/wsi-imageoptim-mehulinko-320x378.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/11/wsi-imageoptim-mehulinko-320x378.jpg",
         "Object group": "industrial design"
     },
     {
@@ -1848,7 +1848,7 @@ const bbdd = [
                 "192"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/01/wsi-imageoptim-026918_planetaarisetlaaksot_p-2000x1333.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/01/wsi-imageoptim-026918_planetaarisetlaaksot_p-2000x1333.jpg",
         "Object group": "jewelry"
     },
     {
@@ -1893,7 +1893,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/08/wsi-imageoptim-marimekko_laukku-1327x1600.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/08/wsi-imageoptim-marimekko_laukku-1327x1600.jpg",
         "Object group": "clothes and accessories"
     },
     {
@@ -1932,7 +1932,7 @@ const bbdd = [
                 "128"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-puhelin2-320x323.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-puhelin2-320x323.jpg",
         "Object group": "devices"
     },
     {
@@ -1982,7 +1982,7 @@ const bbdd = [
                 "238"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2022/09/wsi-imageoptim-2812011103641rimala_monrepos_p-1327x1958.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2022/09/wsi-imageoptim-2812011103641rimala_monrepos_p-1327x1958.jpg",
         "Object group": "clothes and accessories"
     },
     {
@@ -2020,7 +2020,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/03/wsi-imageoptim-22320118103827303-320x495.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/03/wsi-imageoptim-22320118103827303-320x495.jpg",
         "Object group": "clothes and accessories"
     },
     {
@@ -2070,7 +2070,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/09/wsi-imageoptim-38518-899x1299.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/09/wsi-imageoptim-38518-899x1299.jpg",
         "Object group": "ornamentation"
     },
     {
@@ -2120,7 +2120,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/10/wsi-imageoptim-13081-2000x2667.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-13081-2000x2667.jpg",
         "Object group": "ornamentation"
     },
     {
@@ -2164,7 +2164,7 @@ const bbdd = [
                 "255"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-es41602-2000x1806.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-es41602-2000x1806.jpg",
         "Object group": "clothes and accessories"
     },
     {
@@ -2196,12 +2196,12 @@ const bbdd = [
         "_updated": null,
         "year": 1996.0,
         "ColourRGB": [],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-kk-1667x1075.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-kk-1667x1075.jpg",
         "Object group": "devices"
     },
     {
         "_id": "634f1901e09bfd1d9a04b8ef",
-        "tittle": "Viimeinen ateria (The Last Meal)",
+        "tittle": "Viimeinen ateria (The Last Supper)",
         "Object": "CERAMIC TILE",
         "Special name": "*",
         "id": "35971",
@@ -2235,7 +2235,7 @@ const bbdd = [
                 "255"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-bryk-ehtoollinen-rauno-traskelin-2000x1338.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2023/04/wsi-imageoptim-bryk_-ehtoollinen1950_arabia_kuvart_8-2-1667x1213.jpg",
         "Object group": "ornamentation"
     },
     {
@@ -2273,7 +2273,7 @@ const bbdd = [
                 "99"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-aarikka_passi-harry-kivilinna-1327x746.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-aarikka_passi-harry-kivilinna-1327x746.jpg",
         "Object group": "ornamentation"
     },
     {
@@ -2323,7 +2323,7 @@ const bbdd = [
                 "183"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/04/wsi-imageoptim-b548-2000x2665.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/04/wsi-imageoptim-b548-2000x2665.jpg",
         "Object group": "pots"
     },
     {
@@ -2361,7 +2361,7 @@ const bbdd = [
                 "42"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-am6077-2000x2667.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-am6077-2000x2667.jpg",
         "Object group": "pots"
     },
     {
@@ -2401,7 +2401,7 @@ const bbdd = [
                 "99"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/01/wsi-imageoptim-luku9_025492_nurmesniemi_saunajakkara_kuvart-compressor-2000x2074.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/01/wsi-imageoptim-luku9_025492_nurmesniemi_saunajakkara_kuvart-compressor-2000x2074.jpg",
         "Object group": "furniture"
     },
     {
@@ -2439,7 +2439,7 @@ const bbdd = [
                 "42"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/02/wsi-imageoptim-img_9801-1327x1025.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-img_9801-1327x1025.jpg",
         "Object group": "industrial design"
     },
     {
@@ -2489,7 +2489,7 @@ const bbdd = [
                 "42"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/04/wsi-imageoptim-16101-2000x2667.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/04/wsi-imageoptim-16101-2000x2667.jpg",
         "Object group": "pots"
     },
     {
@@ -2533,7 +2533,7 @@ const bbdd = [
                 "200"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/01/wsi-imageoptim-06391_paimio_rt-2000x1372.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/01/wsi-imageoptim-06391_paimio_rt-2000x1372.jpg",
         "Object group": "furniture"
     },
     {
@@ -2571,7 +2571,7 @@ const bbdd = [
                 "0"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/10/wsi-imageoptim-pastilli-rt-p-2000x1395.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-pastilli-rt-p-2000x1395.jpg",
         "Object group": "furniture"
     },
     {
@@ -2616,7 +2616,7 @@ const bbdd = [
                 "200"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/10/wsi-imageoptim-syottotuoli-320x410.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-syottotuoli-320x410.jpg",
         "Object group": "furniture"
     },
     {
@@ -2654,7 +2654,7 @@ const bbdd = [
                 "200"
             ]
         ],
-        "image": "https://designmuseum.api.digimuseum.co/wp-content/uploads/2017/11/wsi-imageoptim-aalto_jakkara-1327x1998.jpg",
+        "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/11/wsi-imageoptim-aalto_jakkara-1327x1998.jpg",
         "Object group": "furniture"
     },
     {

@@ -1,7 +1,14 @@
-import Plotly from 'plotly.js-dist-min';
+/*
+* CSS imports
+*/
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {  itemLoader } from './item-loader';
+import '../css/simviz.style.css';
 
+/*
+* JS imports
+*/
+import Plotly from 'plotly.js-dist-min';
+import {  itemLoader } from './item-loader';
 import { daoItems } from './mockdata';
 
 let itemIds = daoItems.getIds();
