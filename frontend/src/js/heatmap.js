@@ -1,10 +1,14 @@
 import Plotly from 'plotly.js-dist-min';
 export class Heatmap {
-    constructor(index, data, containerNode){
+    constructor(index, data, containerNode, onClickFunction){
         this.index = index;
         this.data = data;
+        this.currentData = data;
+        this.currentX = index;
+        this.currentY = index;
         this.containerNode = containerNode;
-        this._initHeatmap();
+        this.onClickFunction = onClickFunction;
+        this._initHeatmap(this.index, this.index, this.data);
     }
 
     _initHeatmap() {
@@ -26,9 +30,9 @@ export class Heatmap {
 
 
         let data = [{
-            x: this.index,
-            y: this.index,
-            z: this.data,
+            x: this.currentX,
+            y: this.currentY,
+            z: this.currentData,
             type: 'heatmap',
             colorscale: magmaColorscaleValue,
             showscale: true
@@ -62,10 +66,28 @@ export class Heatmap {
         };
 
         this.heatmapPlot = Plotly.newPlot(this.containerNode, data, layout);
+        this.containerNode.on('plotly_click',this.onClickFunction);
     }
 
-    refreshHeatmap(){
+    refresh(){
         this._initHeatmap();
     }
+
+    filterById(itemId) {
+        let rowId = this.index.indexOf(itemId);
+        if (rowId !== -1){
+            this.currentData = [this.data[rowId]];
+            this.currentY = [itemId];
+            this._initHeatmap();
+        }
+    }
+
+    reset() {
+        this.currentData = this.data;
+        this.currentY = this.index;
+        this._initHeatmap();
+    }
+
+
 
 }

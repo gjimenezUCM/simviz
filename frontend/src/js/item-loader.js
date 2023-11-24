@@ -34,7 +34,6 @@ class ItemLoader {
 
     _createHandlebars(anArtWork) {
         let result = this.template(anArtWork);
-        console.log(result);
         return result;
     }
     _createItemElement(anArtWork) {
