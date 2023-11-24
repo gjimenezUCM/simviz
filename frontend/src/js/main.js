@@ -7,9 +7,9 @@ import '../css/simviz.style.css';
 /*
 * JS imports
 */
-import Plotly from 'plotly.js-dist-min';
 import {  itemLoader } from './item-loader';
 import { daoItems } from './mockdata';
+import { Heatmap } from './heatmap';
 
 let itemIds = daoItems.getIds();
 
@@ -26,10 +26,10 @@ for (let i = 0; i<itemSize; i++) {
 
 
 
-window.addEventListener("load", (event) => {
-    let heatmapContainer = document.getElementById('heatmap');
-    initHeatmap(heatmapContainer);
 
+window.addEventListener("load", (event) => { 
+    let heatmapContainer = document.getElementById('heatmap');
+    let theHeatmap = new Heatmap(itemIds, mockSimData, heatmapContainer);
     heatmapContainer.on('plotly_click', function (data) {
         if (data.points.length === 1) {
             if (data.points[0].z){
@@ -41,61 +41,10 @@ window.addEventListener("load", (event) => {
             }
         }
     });
+
+    window.addEventListener("resize", (event) => {
+        theHeatmap.refreshHeatmap();
+    });
 });
 
-window.addEventListener("resize", (event) => {
-    let heatmapContainer = document.getElementById('heatmap');
-    initHeatmap(heatmapContainer);    
-});
 
-
-
-function initHeatmap(containerNode){
-
-    let containerWidth = containerNode.offsetWidth;
-    let containerHeight = containerNode.parentNode.offsetHeight;
-
-    const colorscaleValue = [
-        [0, '#3D9970'],
-        [1, '#001f3f']
-    ];
-
-
-    let data = [{
-        x: itemIds,
-        y: itemIds,
-        z: mockSimData,
-        type: 'heatmap',
-        colorscale: 'YlOrRd',
-        showscale: true
-    }];
-
-
-    let layout = {
-        paper_bgcolor: 'transparent',
-        margin: {
-            l: 10,
-            r: 10,
-            b: 10,
-            t: 20,
-        },
-        xaxis: {
-            // No tick labels
-            showticklabels: false,
-            // No ticks
-            tickmode: 'array',
-            tickvals: []
-        },
-        yaxis: {
-            // No tick labels
-            showticklabels: false,
-            // No ticks
-            tickmode: 'array',
-            tickvals: []
-        },
-        height: containerHeight,
-        width: containerWidth
-    };
-
-    Plotly.newPlot(containerNode, data, layout);
-}
