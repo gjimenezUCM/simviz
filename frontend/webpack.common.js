@@ -55,6 +55,11 @@ module.exports = {
             // con webpack
             "process.env": JSON.stringify(process.env)
         }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'images', to: 'images' },
+            ],
+        }),
     ],
 
     output: {

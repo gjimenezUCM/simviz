@@ -35,7 +35,8 @@ export class Heatmap {
             z: this.currentData,
             type: 'heatmap',
             colorscale: magmaColorscaleValue,
-            showscale: true
+            showscale: true,
+            hovertemplate: "id: %{y}<br>id: %{x}<br>Similarity: %{z}<extra></extra>"
         }];
 
 
@@ -61,6 +62,13 @@ export class Heatmap {
                 tickmode: 'array',
                 tickvals: []
             },
+            hoverlabel: { 
+                bgcolor: "aliceblue",
+                font:  {
+                    color: "black",
+                    size: 16
+                }
+            },
             height: containerHeight,
             width: containerWidth
         };
@@ -73,11 +81,32 @@ export class Heatmap {
         this._initHeatmap();
     }
 
-    filterById(itemId) {
+    filterById(itemId, sorted) {
         let rowId = this.index.indexOf(itemId);
         if (rowId !== -1){
+            if (sorted) {
+            let sortedRowData = [];
+            let i=0;
+            for (let cell of this.data[rowId]) {
+                sortedRowData[i]= [cell,i];
+                i++;
+            }
+            sortedRowData.sort((a,b)=> a[0]-b[0]);
+            let sortedRowIndex = [];
+            i=0;
+            this.currentData = [[]];
+            for (let elem of sortedRowData) {
+                sortedRowIndex[i] = this.index[elem[1]];
+                this.currentData[0][i] = this.data[rowId][elem[1]];
+                i++;
+            }
+            this.currentY = [itemId];
+            this.currentX = sortedRowIndex;
+        } else {
             this.currentData = [this.data[rowId]];
             this.currentY = [itemId];
+            this.currentX = this.index;
+        }
             this._initHeatmap();
         }
     }

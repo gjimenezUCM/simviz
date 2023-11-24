@@ -17,18 +17,24 @@
     <div class="container-fluid">
         <section id="content" class="row">
             <div id="items" class="col-5">
-                <div id="item-col" class="row">
+                <div id="item-row" class="row">
                     <h1>Item (row)</h1>
                 </div>
-                <div id="item-row" class="row">
+                <div id="item-col" class="row">
                     <h1>Item (col)</h1>
                 </div>
             </div>
             <div id="heatmap-container" class="col-7">
                 <div id="heatmap-header" class="row">
                     <h2>Heatmap header and buttons</h2>
-                    <button type="button" class="btn btn-primary" id="heatmap-filter">Filter</button>
-                    <button type="button" class="btn btn-primary" id="heatmap-reset">Reset</button>
+                    <div>
+                    <select id="heatmap-filter-select" class="form-select" aria-label="Item select">
+                        <option selected>*</option>
+                    </select>
+                    <button type="button" class="btn btn-primary" id="heatmap-filter-btn">Filter</button>
+                    <button type="button" class="btn btn-primary" id="heatmap-sorted-filter-btn">Sorted Filter</button>
+                    <button type="button" class="btn btn-primary" id="heatmap-reset-btn">Reset</button>
+                    </div>
                 </div>
                 <div id="heatmap-content" class="row align-items-center">
                     <div id="heatmap"></div>

@@ -21,6 +21,12 @@ const itemTemplate = `
     </div>
 `;
 
+const mockItem = {
+    _id: "Item Id",
+    tittle: "Item title",
+    image: "./images/placeholder.jpg"
+}
+
 class ItemLoader {
 
     constructor() {
@@ -36,58 +42,58 @@ class ItemLoader {
         let result = this.template(anArtWork);
         return result;
     }
-    _createItemElement(anArtWork) {
-        let attribs = ["id", "tittle", "Object", "author", "year", "Materials", "Colour", "ColourRGB", "image", "Object group"];
-        let bodyNode = document.createElement('tbody');
-        bodyNode.classList.add("artwork");
+    // _createItemElement(anArtWork) {
+    //     let attribs = ["id", "tittle", "Object", "author", "year", "Materials", "Colour", "ColourRGB", "image", "Object group"];
+    //     let bodyNode = document.createElement('tbody');
+    //     bodyNode.classList.add("artwork");
 
-        for (let att of attribs) {
-            if (att === "ColourRGB") {
-                continue;
-            }
-            let rowNode = document.createElement('tr');
-            let nameNode = document.createElement('td');
-            nameNode.classList.add("name");
-            nameNode.innerHTML = att;
-            let valueNode = document.createElement('td');
-            valueNode.classList.add("value");
+    //     for (let att of attribs) {
+    //         if (att === "ColourRGB") {
+    //             continue;
+    //         }
+    //         let rowNode = document.createElement('tr');
+    //         let nameNode = document.createElement('td');
+    //         nameNode.classList.add("name");
+    //         nameNode.innerHTML = att;
+    //         let valueNode = document.createElement('td');
+    //         valueNode.classList.add("value");
 
-            if (att === "Colour") {
-                let i = 0;
-                for (let col of anArtWork[att]) {
-                    let squareColourNode = document.createElement('div');
-                    squareColourNode.classList.add("box");
-                    valueNode.appendChild(squareColourNode);
-                    let colour = `rgb(${anArtWork["ColourRGB"][i]})`;
-                    squareColourNode.style['background-color'] = colour;
-                    valueNode.appendChild(squareColourNode);
-                    let colourText = document.createTextNode(col);
-                    valueNode.appendChild(colourText);
-                    i++;
-                }
-            }
+    //         if (att === "Colour") {
+    //             let i = 0;
+    //             for (let col of anArtWork[att]) {
+    //                 let squareColourNode = document.createElement('div');
+    //                 squareColourNode.classList.add("box");
+    //                 valueNode.appendChild(squareColourNode);
+    //                 let colour = `rgb(${anArtWork["ColourRGB"][i]})`;
+    //                 squareColourNode.style['background-color'] = colour;
+    //                 valueNode.appendChild(squareColourNode);
+    //                 let colourText = document.createTextNode(col);
+    //                 valueNode.appendChild(colourText);
+    //                 i++;
+    //             }
+    //         }
 
-            else if (att === "image") {
-                let imageNode = document.createElement("img");
-                imageNode.setAttribute("src", anArtWork[att]);
-                valueNode.appendChild(imageNode);
-            }
-            else {
-                valueNode.innerHTML = anArtWork[att];
-            }
+    //         else if (att === "image") {
+    //             let imageNode = document.createElement("img");
+    //             imageNode.setAttribute("src", anArtWork[att]);
+    //             valueNode.appendChild(imageNode);
+    //         }
+    //         else {
+    //             valueNode.innerHTML = anArtWork[att];
+    //         }
 
-            rowNode.appendChild(nameNode);
-            rowNode.appendChild(valueNode);
+    //         rowNode.appendChild(nameNode);
+    //         rowNode.appendChild(valueNode);
 
-            bodyNode.appendChild(rowNode);
-        }
+    //         bodyNode.appendChild(rowNode);
+    //     }
 
-        let artworkNode = document.createElement('table');
-        artworkNode.classList.add("table");
-        artworkNode.classList.add("table-striped");
-        artworkNode.appendChild(bodyNode);
-        return artworkNode;
-    } 
+    //     let artworkNode = document.createElement('table');
+    //     artworkNode.classList.add("table");
+    //     artworkNode.classList.add("table-striped");
+    //     artworkNode.appendChild(bodyNode);
+    //     return artworkNode;
+    // } 
 
     changeRowItem(item) {
         this._changeItem(item, '#item-row');
@@ -95,6 +101,19 @@ class ItemLoader {
 
     changeColItem(item) {
         this._changeItem(item, '#item-col');
+    }
+
+    resetItems() {
+        this.changeRowItem(mockItem);
+        this.changeColItem(mockItem);
+    }
+
+    resetColItem() {
+        this.changeColItem(mockItem);
+    }
+
+    resetRowItem() {
+        this.changeRowItem(mockItem);
     }
 }
 export const itemLoader = new ItemLoader();
