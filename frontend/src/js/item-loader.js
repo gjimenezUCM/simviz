@@ -1,4 +1,5 @@
 import Handlebars from "handlebars";
+import { daoItems } from './mockdata';
 const itemTemplate = `
     <div class="item">
         <h1>{{tittle}}</h1>
@@ -101,6 +102,14 @@ class ItemLoader {
 
     changeColItem(item) {
         this._changeItem(item, '#item-col');
+    }
+
+    changeRowItemById(id) {
+        this.changeRowItem(daoItems.getItemById(id));
+    }
+
+    changeColItemById(id) {
+        this.changeColItem(daoItems.getItemById(id));
     }
 
     resetItems() {

@@ -10,6 +10,7 @@ import '../css/simviz.style.css';
 import {  itemLoader } from './item-loader';
 import { daoItems } from './mockdata';
 import { Heatmap } from './heatmap';
+import { Histogram } from "./histogram";
 
 let itemIds = daoItems.getIds();
 
@@ -19,7 +20,7 @@ let itemSize = itemIds.length;
 
 for (let i = 0; i<itemSize; i++) {
     let row =[];
-    for (let j = 0; j < itemSize; j++) {
+    for (let j = i; j < itemSize; j++) {
         row[j] = 1;
     }
     mockSimData[i] = row;
@@ -46,19 +47,12 @@ function populateIdSelect(selectNode, ids) {
 }
 
 window.addEventListener("load", (event) => { 
-    function onClickHeatmap(data) {
-        if (data.points.length === 1) {
-            if (data.points[0].z) {
-                let col = data.points[0].x;
-                let row = data.points[0].y;
-                itemLoader.changeRowItem(daoItems.getItemById(row));
-                itemLoader.changeColItem(daoItems.getItemById(col));
-                heatmapSelect.selectedIndex = itemIds.indexOf(row)+1;
-            }
-        }
-    }
+
+    let histogramContainer = document.getElementById('histogram');
+    let theHistogram = new Histogram(itemIds, mockSimData, histogramContainer);
+
     let heatmapContainer = document.getElementById('heatmap');
-    let theHeatmap = new Heatmap(itemIds, mockSimData, heatmapContainer, onClickHeatmap);
+    let theHeatmap = new Heatmap(itemIds, mockSimData, heatmapContainer);
     let heatmapSelect = document.getElementById('heatmap-filter-select');
     populateIdSelect(heatmapSelect, itemIds);
     itemLoader.resetItems();
@@ -94,6 +88,7 @@ window.addEventListener("load", (event) => {
 
     window.addEventListener("resize", (event) => {
         theHeatmap.refresh();
+        theHistogram.refresh();
     });
 });
 

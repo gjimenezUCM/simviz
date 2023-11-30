@@ -13,13 +13,23 @@
 }
 
 #heatmap-header {
-    height: 20%;
+    height: 10%;
     background-color: violet;
 }
 #heatmap-content {
-    height: 80%;
+    height: 60%;
     background-color:aliceblue;
 }
+
 #heatmap {
+    padding: 0;
+}
+
+#histogram-content {
+    height: 30%;
+    background-color: aliceblue;
+}
+
+#histogram {
     padding: 0;
 }

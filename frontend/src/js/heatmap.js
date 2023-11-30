@@ -1,17 +1,17 @@
 import Plotly from 'plotly.js-dist-min';
+import { itemLoader } from './item-loader';
 export class Heatmap {
-    constructor(index, data, containerNode, onClickFunction){
+    constructor(index, data, containerNode){
         this.index = index;
         this.data = data;
         this.currentData = data;
         this.currentX = index;
         this.currentY = index;
         this.containerNode = containerNode;
-        this.onClickFunction = onClickFunction;
-        this._initHeatmap(this.index, this.index, this.data);
+        this._init(this.index, this.index, this.data);
     }
 
-    _initHeatmap() {
+    _init() {
         let containerWidth = this.containerNode.offsetWidth;
         let containerHeight = this.containerNode.parentNode.offsetHeight;
 
@@ -36,7 +36,16 @@ export class Heatmap {
             type: 'heatmap',
             colorscale: magmaColorscaleValue,
             showscale: true,
-            hovertemplate: "id: %{y}<br>id: %{x}<br>Similarity: %{z}<extra></extra>"
+            hovertemplate: "id: %{y}<br>id: %{x}<br>Similarity: %{z}<extra></extra>",
+            colorbar: {
+                orientation: 'h',
+                x:0.01,
+                y:1,
+                yanchor:'top',
+                xanchor: 'left',
+                xref: 'container',
+                yref: 'container'
+            },
         }];
 
 
@@ -46,7 +55,7 @@ export class Heatmap {
                 l: 10,
                 r: 10,
                 b: 10,
-                t: 20,
+                t: 0,
             },
             xaxis: {
                 // No tick labels
@@ -74,11 +83,11 @@ export class Heatmap {
         };
 
         this.heatmapPlot = Plotly.newPlot(this.containerNode, data, layout);
-        this.containerNode.on('plotly_click',this.onClickFunction);
+        this.containerNode.on('plotly_click', (data) => this.onClickHeatmap(data));
     }
 
     refresh(){
-        this._initHeatmap();
+        this._init();
     }
 
     filterById(itemId, sorted) {
@@ -107,16 +116,26 @@ export class Heatmap {
             this.currentY = [itemId];
             this.currentX = this.index;
         }
-            this._initHeatmap();
+            this._init();
         }
     }
 
     reset() {
         this.currentData = this.data;
         this.currentY = this.index;
-        this._initHeatmap();
+        this._init();
     }
 
-
+    onClickHeatmap(data) {
+        if (data.points.length === 1) {
+            if (data.points[0].z) {
+                let col = data.points[0].x;
+                let row = data.points[0].y;
+                itemLoader.changeRowItemById(row);
+                itemLoader.changeColItemById(col);
+                //heatmapSelect.selectedIndex = itemIds.indexOf(row) + 1;
+            }
+        }
+    }
 
 }
