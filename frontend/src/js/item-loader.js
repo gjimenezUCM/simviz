@@ -2,7 +2,7 @@ import Handlebars from "handlebars";
 import { daoItems } from './mockdata';
 const itemTemplate = `
     <div class="item" data-id="{{_id}}">
-    
+        <button type="button" class="btn btn-primary heatmap-filter-btn">Filter</button>
         <h1>{{tittle}}</h1>
         <div class="item-desc-table">
             <table class="table table-striped">
@@ -34,10 +34,26 @@ class ItemLoader {
     constructor() {
         this.template = Handlebars.compile(itemTemplate);
     }
+
+    setController(aController) {
+        this.controller = aController;
+    }
+
     _changeItem(item, selector) {
         let itemElement = this._createHandlebars(item);
         let colElement = document.querySelector(selector);
         colElement.innerHTML = itemElement;
+        let filterButton = colElement.getElementsByClassName('heatmap-filter-btn');
+        console.log("Item changed: ", filterButton);
+        if (filterButton.length>0){
+            filterButton[0].addEventListener('click', (event) => {
+                let clickdItemId = colElement.children[0].getAttribute("data-id");
+                if (clickdItemId){
+                    this.controller.filterByItemId(clickdItemId);
+                }
+                
+            });
+        }
     }
 
     _createHandlebars(anArtWork) {

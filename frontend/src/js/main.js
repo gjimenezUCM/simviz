@@ -52,11 +52,11 @@ window.addEventListener("load", (event) => {
     let theController = new Controller(itemIds, mockSimData);
 
     let heatmapFilterBtn = document.getElementById('heatmap-filter-btn');
-    console.log(heatmapFilterBtn)
-    heatmapFilterBtn.addEventListener('click', (event) => {
-        console.log("Click filter");
-        theController.filterBySelectedItem();
-    });
+    // console.log(heatmapFilterBtn)
+    // heatmapFilterBtn.addEventListener('click', (event) => {
+    //     console.log("Click filter");
+    //     theController.filterBySelectedItem();
+    // });
     //     if (heatmapSelect.value !== '*') {
     //         theHeatmap.filterById(heatmapSelect.value, false);
     //     } else {

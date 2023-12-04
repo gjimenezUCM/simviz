@@ -22,6 +22,7 @@ export class Controller {
                 this.itemLoader.resetColItem();
             }
         });
+        itemLoader.setController(this);
     }
 
     updateItemInfo(rowItemId, colItemId) {
@@ -58,9 +59,15 @@ export class Controller {
 
     filterBySelectedItem() {
         if (this.heatmapSelect.value !== '*') {
-            this.theHeatmap.filterById(this.heatmapSelect.value, false);
+            this.theHeatmap.filterById(this.heatmapSelect.value, true);
         } else {
             this.theHeatmap.reset();
         }
+    }
+
+    filterByItemId(itemId) {
+        this.theHeatmap.filterById(itemId, true);
+        itemLoader.changeRowItemById(itemId);
+        itemLoader.resetColItem();
     }
 }
