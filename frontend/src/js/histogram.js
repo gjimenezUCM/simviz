@@ -1,9 +1,10 @@
 import Plotly from 'plotly.js-dist-min';
-import { itemLoader } from './item-loader';
+//import { itemLoader } from './item-loader';
 export class Histogram {
-    constructor(index, matrix, containerNode) {
+    constructor(controller, index, matrix, containerNode) {
         this.matrixIndex = [];
         this.data = [];
+        this.controller = controller;
         for (let i=0; i<index.length; i++) {
             for (let j = 0; j <index.length; j++) {
                 let curIndex = j*i + j;
@@ -33,7 +34,7 @@ export class Histogram {
         let trace = {
             x: this.data,
             type: 'histogram',
-            histnorm: 'probability',
+            histnorm: 'percent',
             xbins: {
                 start: 0.0,
                 size: 0.1,
@@ -42,7 +43,7 @@ export class Histogram {
             marker: {
                 color: magmaColorscaleValue
             },
-            hovertemplate: "%{y}<extra></extra>",
+            hovertemplate: "%{y}%<extra></extra>",
         };
         let layout = {
             paper_bgcolor: 'transparent',
@@ -84,8 +85,13 @@ export class Histogram {
     onClickHistogram(data) {
         if (data.points.length === 1) {
             let randomValue = data.points[0].pointIndices[Math.floor((Math.random() * data.points[0].pointIndices.length))];
-            itemLoader.changeRowItemById(this.matrixIndex[randomValue][0]);
-            itemLoader.changeColItemById(this.matrixIndex[randomValue][1]);
+            //itemLoader.changeRowItemById(this.matrixIndex[randomValue][0]);
+            //itemLoader.changeColItemById(this.matrixIndex[randomValue][1]);
+            
+            if (this.controller) {
+                this.controller.updateItemInfo(this.matrixIndex[randomValue][0], this.matrixIndex[randomValue][1]);
+                this.controller.updateSelectedItem(this.matrixIndex[randomValue][0]);
+            }
         }
     }
 

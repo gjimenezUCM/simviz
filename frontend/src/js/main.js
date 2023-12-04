@@ -11,6 +11,7 @@ import {  itemLoader } from './item-loader';
 import { daoItems } from './mockdata';
 import { Heatmap } from './heatmap';
 import { Histogram } from "./histogram";
+import { Controller } from "./controller";
 
 let itemIds = daoItems.getIds();
 
@@ -48,48 +49,40 @@ function populateIdSelect(selectNode, ids) {
 
 window.addEventListener("load", (event) => { 
 
-    let histogramContainer = document.getElementById('histogram');
-    let theHistogram = new Histogram(itemIds, mockSimData, histogramContainer);
+    let theController = new Controller(itemIds, mockSimData);
 
-    let heatmapContainer = document.getElementById('heatmap');
-    let theHeatmap = new Heatmap(itemIds, mockSimData, heatmapContainer);
-    let heatmapSelect = document.getElementById('heatmap-filter-select');
-    populateIdSelect(heatmapSelect, itemIds);
-    itemLoader.resetItems();
     let heatmapFilterBtn = document.getElementById('heatmap-filter-btn');
+    console.log(heatmapFilterBtn)
     heatmapFilterBtn.addEventListener('click', (event) => {
-        if (heatmapSelect.value !== '*') {
-            theHeatmap.filterById(heatmapSelect.value, false);
-        } else {
-            theHeatmap.reset();
-        }
+        console.log("Click filter");
+        theController.filterBySelectedItem();
     });
-    let heatmapSortedFilterBtn = document.getElementById('heatmap-sorted-filter-btn');
-    heatmapSortedFilterBtn.addEventListener('click', (event) => {
-        if (heatmapSelect.value !== '*') {
-            theHeatmap.filterById(heatmapSelect.value, true);
-        } else {
-            theHeatmap.reset();
-        }
-    });
+    //     if (heatmapSelect.value !== '*') {
+    //         theHeatmap.filterById(heatmapSelect.value, false);
+    //     } else {
+    //         theHeatmap.reset();
+    //     }
+    // });
+    // let heatmapSortedFilterBtn = document.getElementById('heatmap-sorted-filter-btn');
+    // heatmapSortedFilterBtn.addEventListener('click', (event) => {
+    //     if (heatmapSelect.value !== '*') {
+    //         theHeatmap.filterById(heatmapSelect.value, true);
+    //     } else {
+    //         theHeatmap.reset();
+    //     }
+    // });
 
-    document.getElementById('heatmap-reset-btn').addEventListener('click', (event) => {
-        theHeatmap.reset();
-        heatmapSelect.selectedIndex = 0;
-        itemLoader.resetItems()
-    });
+    // document.getElementById('heatmap-reset-btn').addEventListener('click', (event) => {
+    //     theHeatmap.reset();
+    //     heatmapSelect.selectedIndex = 0;
+    //     itemLoader.resetItems()
+    // });
 
-    heatmapSelect.addEventListener("change", (event) => { 
-        if (heatmapSelect.value !== '*') {
-            itemLoader.changeRowItem(daoItems.getItemById(heatmapSelect.value));
-            itemLoader.resetColItem();
-        } 
-    });
+
 
     window.addEventListener("resize", (event) => {
-        theHeatmap.refresh();
-        theHistogram.refresh();
+        theController.onResize();
+        //theHeatmap.refresh();
+        //theHistogram.refresh();
     });
 });
-
-

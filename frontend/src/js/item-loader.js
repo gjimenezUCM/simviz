@@ -1,7 +1,8 @@
 import Handlebars from "handlebars";
 import { daoItems } from './mockdata';
 const itemTemplate = `
-    <div class="item">
+    <div class="item" data-id="{{_id}}">
+    
         <h1>{{tittle}}</h1>
         <div class="item-desc-table">
             <table class="table table-striped">

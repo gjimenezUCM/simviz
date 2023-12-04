@@ -1,7 +1,8 @@
 import Plotly from 'plotly.js-dist-min';
-import { itemLoader } from './item-loader';
+//import { itemLoader } from './item-loader';
 export class Heatmap {
-    constructor(index, data, containerNode){
+    constructor(controller, index, data, containerNode){
+        this.controller = controller;
         this.index = index;
         this.data = data;
         this.currentData = data;
@@ -129,11 +130,14 @@ export class Heatmap {
     onClickHeatmap(data) {
         if (data.points.length === 1) {
             if (data.points[0].z) {
-                let col = data.points[0].x;
-                let row = data.points[0].y;
-                itemLoader.changeRowItemById(row);
-                itemLoader.changeColItemById(col);
-                //heatmapSelect.selectedIndex = itemIds.indexOf(row) + 1;
+                let colId = data.points[0].x;
+                let rowId = data.points[0].y;
+                //itemLoader.changeRowItemById(rowId);
+                //itemLoader.changeColItemById(colId);
+                if (this.controller) {
+                    this.controller.updateItemInfo(rowId, colId);
+                    this.controller.updateSelectedItem(rowId);
+                }
             }
         }
     }
