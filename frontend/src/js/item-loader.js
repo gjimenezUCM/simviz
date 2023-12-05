@@ -1,9 +1,11 @@
 import Handlebars from "handlebars";
 import { daoItems } from './mockdata';
+
 const itemTemplate = `
     <div class="item" data-id="{{_id}}">
-        <button type="button" class="btn btn-primary heatmap-filter-btn">Filter</button>
-        <h1>{{tittle}}</h1>
+        <h1>{{tittle}}
+            <button type="button" class="btn btn-primary heatmap-filter-btn">Show on heatmap</button>
+        </h1>
         <div class="item-desc-table">
             <table class="table table-striped">
             <tbody>
@@ -29,6 +31,8 @@ const mockItem = {
     image: "./images/placeholder.jpg"
 }
 
+const itemRowSelectorButton = '#item-row button.heatmap-filter-btn';
+const itemColSelectorButton = '#item-col button.heatmap-filter-btn';
 class ItemLoader {
 
     constructor() {
@@ -44,14 +48,12 @@ class ItemLoader {
         let colElement = document.querySelector(selector);
         colElement.innerHTML = itemElement;
         let filterButton = colElement.getElementsByClassName('heatmap-filter-btn');
-        console.log("Item changed: ", filterButton);
         if (filterButton.length>0){
             filterButton[0].addEventListener('click', (event) => {
                 let clickdItemId = colElement.children[0].getAttribute("data-id");
                 if (clickdItemId){
                     this.controller.filterByItemId(clickdItemId);
-                }
-                
+                }                
             });
         }
     }
@@ -113,33 +115,51 @@ class ItemLoader {
     //     return artworkNode;
     // } 
 
-    changeRowItem(item) {
+    _changeRowItem(item, hideFilterButton) {      
         this._changeItem(item, '#item-row');
+        let filterBtn = document.querySelector(itemRowSelectorButton);
+        // Prevent errors during first initialization
+        if (filterBtn) {
+            if (hideFilterButton) {
+                filterBtn.classList.add("visually-hidden");
+            } else {
+                filterBtn.classList.remove("visually-hidden");
+            }
+        }
     }
 
-    changeColItem(item) {
+    _changeColItem(item, hideFilterButton) {
         this._changeItem(item, '#item-col');
+        let filterBtn = document.querySelector(itemColSelectorButton);
+        // Prevent errors during first initialization
+        if (filterBtn) {
+            if (hideFilterButton) {
+                filterBtn.classList.add("visually-hidden");
+            } else {
+                filterBtn.classList.remove("visually-hidden");
+            }
+        }
     }
 
     changeRowItemById(id) {
-        this.changeRowItem(daoItems.getItemById(id));
+        this._changeRowItem(daoItems.getItemById(id), false);
     }
 
     changeColItemById(id) {
-        this.changeColItem(daoItems.getItemById(id));
+        this._changeColItem(daoItems.getItemById(id), false);
     }
 
     resetItems() {
-        this.changeRowItem(mockItem);
-        this.changeColItem(mockItem);
+        this._changeRowItem(mockItem, true);
+        this._changeColItem(mockItem, true);
     }
 
     resetColItem() {
-        this.changeColItem(mockItem);
+        this._changeColItem(mockItem, true);
     }
 
     resetRowItem() {
-        this.changeRowItem(mockItem);
+        this._changeRowItem(mockItem, true);
     }
 }
 export const itemLoader = new ItemLoader();

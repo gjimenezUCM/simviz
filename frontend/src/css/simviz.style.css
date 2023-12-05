@@ -33,3 +33,14 @@
 #histogram {
     padding: 0;
 }
+
+#reset-filter-btn{
+    position: relative;
+    width: 100px;
+    bottom: 100px;
+    left: 100px;
+}
+
+.heatmap-filter-btn {
+    display: inline;
+}

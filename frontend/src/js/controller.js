@@ -23,6 +23,13 @@ export class Controller {
             }
         });
         itemLoader.setController(this);
+        this.resetButton = document.getElementById('reset-filter-btn');
+        this.resetButton.addEventListener('click', (event) => {
+            this.theHeatmap.reset();
+            this.heatmapSelect.selectedIndex = 0;
+            itemLoader.resetItems();
+            this.resetButton.classList.add("visually-hidden");
+        });
     }
 
     updateItemInfo(rowItemId, colItemId) {
@@ -60,6 +67,7 @@ export class Controller {
     filterBySelectedItem() {
         if (this.heatmapSelect.value !== '*') {
             this.theHeatmap.filterById(this.heatmapSelect.value, true);
+            this.resetButton.classList.remove("visually-hidden");
         } else {
             this.theHeatmap.reset();
         }
@@ -67,6 +75,7 @@ export class Controller {
 
     filterByItemId(itemId) {
         this.theHeatmap.filterById(itemId, true);
+        this.resetButton.classList.remove("visually-hidden");
         itemLoader.changeRowItemById(itemId);
         itemLoader.resetColItem();
     }

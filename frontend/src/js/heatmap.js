@@ -132,8 +132,6 @@ export class Heatmap {
             if (data.points[0].z) {
                 let colId = data.points[0].x;
                 let rowId = data.points[0].y;
-                //itemLoader.changeRowItemById(rowId);
-                //itemLoader.changeColItemById(colId);
                 if (this.controller) {
                     this.controller.updateItemInfo(rowId, colId);
                     this.controller.updateSelectedItem(rowId);
