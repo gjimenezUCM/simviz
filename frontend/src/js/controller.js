@@ -32,7 +32,7 @@ export class Controller {
         });
     }
 
-    updateItemInfo(rowItemId, colItemId) {
+    updateItemsInfo(rowItemId, colItemId, similarityValue, color) {
         if (rowItemId) {
             this.itemLoader.changeRowItemById(rowItemId);
         } else {
@@ -41,9 +41,12 @@ export class Controller {
 
         if (colItemId) {
             this.itemLoader.changeColItemById(colItemId);
+            this.itemLoader.updateSimilarityValue(similarityValue, color);
         } else {
             this.itemLoader.resetColItem();
+            this.itemLoader.updateSimilarityValue(null, null);
         }
+        
     }
 
     updateSelectedItem(itemId) {

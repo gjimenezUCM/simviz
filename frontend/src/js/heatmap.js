@@ -1,5 +1,18 @@
 import Plotly from 'plotly.js-dist-min';
 //import { itemLoader } from './item-loader';
+
+const magmaColorscaleValue = [
+    [0.0, '#000004'],
+    [0.1111111111111111, '#180f3d'],
+    [0.2222222222222222, '#440f76'],
+    [0.3333333333333333, '#721f81'],
+    [0.4444444444444444, '#9e2f7f'],
+    [0.5555555555555556, '#cd4071'],
+    [0.6666666666666666, '#f1605d'],
+    [0.7777777777777777, '#fd9668'],
+    [0.8888888888888888, '#feca8d'],
+    [1.0, '#fcfdbf']
+];
 export class Heatmap {
     constructor(controller, index, data, containerNode){
         this.controller = controller;
@@ -15,20 +28,6 @@ export class Heatmap {
     _init() {
         let containerWidth = this.containerNode.offsetWidth;
         let containerHeight = this.containerNode.parentNode.offsetHeight;
-
-        const magmaColorscaleValue = [
-            [0.0, '#000004'],
-            [0.1111111111111111, '#180f3d'],
-            [0.2222222222222222, '#440f76'],
-            [0.3333333333333333, '#721f81'],
-            [0.4444444444444444, '#9e2f7f'],
-            [0.5555555555555556, '#cd4071'],
-            [0.6666666666666666, '#f1605d'],
-            [0.7777777777777777, '#fd9668'],
-            [0.8888888888888888, '#feca8d'],
-            [1.0, '#fcfdbf']
-        ];
-
 
         let data = [{
             x: this.currentX,
@@ -133,7 +132,8 @@ export class Heatmap {
                 let colId = data.points[0].x;
                 let rowId = data.points[0].y;
                 if (this.controller) {
-                    this.controller.updateItemInfo(rowId, colId);
+                    let color = magmaColorscaleValue[~~(data.points[0].z * 10)][1];
+                    this.controller.updateItemsInfo(rowId, colId, data.points[0].z, color);
                     this.controller.updateSelectedItem(rowId);
                 }
             }

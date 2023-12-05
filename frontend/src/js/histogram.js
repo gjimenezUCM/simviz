@@ -1,5 +1,18 @@
 import Plotly from 'plotly.js-dist-min';
 //import { itemLoader } from './item-loader';
+
+const magmaColorscaleValue = [
+    '#000004',
+    '#180f3d',
+    '#440f76',
+    '#721f81',
+    '#9e2f7f',
+    '#cd4071',
+    '#f1605d',
+    '#fd9668',
+    '#feca8d',
+    '#fcfdbf'
+];
 export class Histogram {
     constructor(controller, index, matrix, containerNode) {
         this.matrixIndex = [];
@@ -17,18 +30,6 @@ export class Histogram {
     }
 
     _init() {
-        const magmaColorscaleValue = [
-            '#000004',
-            '#180f3d',
-            '#440f76',
-            '#721f81',
-            '#9e2f7f',
-            '#cd4071',
-            '#f1605d',
-            '#fd9668',
-            '#feca8d',
-            '#fcfdbf'
-        ];
         let containerWidth = this.containerNode.offsetWidth;
         let containerHeight = this.containerNode.parentNode.offsetHeight;
         let trace = {
@@ -84,12 +85,12 @@ export class Histogram {
 
     onClickHistogram(data) {
         if (data.points.length === 1) {
-            let randomValue = data.points[0].pointIndices[Math.floor((Math.random() * data.points[0].pointIndices.length))];
-            //itemLoader.changeRowItemById(this.matrixIndex[randomValue][0]);
-            //itemLoader.changeColItemById(this.matrixIndex[randomValue][1]);
-            
+            let randomValue = data.points[0].pointIndices[Math.floor((Math.random() * data.points[0].pointIndices.length))];         
             if (this.controller) {
-                this.controller.updateItemInfo(this.matrixIndex[randomValue][0], this.matrixIndex[randomValue][1]);
+                this.controller.updateItemsInfo(this.matrixIndex[randomValue][0],
+                                                this.matrixIndex[randomValue][1],
+                                                this.data[randomValue],
+                                                magmaColorscaleValue[~~(this.data[randomValue] * 10)]);
                 this.controller.updateSelectedItem(this.matrixIndex[randomValue][0]);
             }
         }

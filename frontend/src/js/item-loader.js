@@ -205,14 +205,33 @@ class ItemLoader {
     resetItems() {
         this._changeRowItem(mockItem, true);
         this._changeColItem(mockItem, true);
+        this.updateSimilarityValue(null, null);
     }
 
     resetColItem() {
         this._changeColItem(mockItem, true);
+        this.updateSimilarityValue(null, null);
     }
 
     resetRowItem() {
         this._changeRowItem(mockItem, true);
+        this.updateSimilarityValue(null, null);
+    }
+
+    updateSimilarityValue(newSimValue, color){
+        let simValueElem = document.getElementById("item-sim-value");
+        if (simValueElem){
+            if (newSimValue){
+                simValueElem.innerHTML = parseFloat(newSimValue).toFixed(3);
+            } else {
+                simValueElem.innerHTML = "Similarity";
+            }
+        }
+        if (color) {
+            simValueElem.parentElement.style.backgroundColor = color;
+        } else {
+            simValueElem.parentElement.style.backgroundColor = ""
+        }
     }
 }
 export const itemLoader = new ItemLoader();
