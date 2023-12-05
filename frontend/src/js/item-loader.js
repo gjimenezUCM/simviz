@@ -2,34 +2,6 @@ import Handlebars from "handlebars";
 import { daoItems } from './mockdata';
 
 const itemTemplateRow = `
-    <div class="item d-flex flex-row-reverse align-items-center">
-        {{#if image}}
-        <div class="p-5">
-        <img class="img-fluid" src="{{image}}"/>
-        </div>
-        {{/if}}
-        <div class="item-desc-table flex-grow-1 p-5 align-self-start">
-            <table class="table table-striped">
-            <tbody>
-            <tr>
-                <td class="name">Title</td>
-                <td class="value">{{tittle}}</td>
-            </tr>
-            <tr>
-                <td class="name">Author</td>
-                <td class="value">{{author}}</td>
-            </tr>
-            <tr>
-                <td class="name">Year</td>
-                <td class="value">{{year}}</td>
-            </tr>
-            </tbody>
-            </table>
-        </div>
-    </div>
-`;
-
-const itemTemplateCol = `
     <div class="item d-flex align-items-center">
         {{#if image}}
         <div class="p-5">
@@ -51,6 +23,54 @@ const itemTemplateCol = `
                 <td class="name">Year</td>
                 <td class="value">{{year}}</td>
             </tr>
+            {{#if Colour}}
+            <tr>
+                <td class="name">Colours</td>
+                <td class="value">
+                {{#each Colour}}
+                <div class="box" style="background-color: {{this}};"></div>
+                {{/each}}
+                </td>
+            </tr>
+            {{/if}}
+            </tbody>
+            </table>
+        </div>
+    </div>
+`;
+
+const itemTemplateCol = `
+    <div class="item d-flex align-items-center flex-row-reverse">
+        {{#if image}}
+        <div class="p-5">
+        <img class="img-fluid" src="{{image}}"/>
+        </div>
+        {{/if}}
+        <div class="item-desc-table flex-grow-1 p-5 align-self-start">
+            <table class="table table-striped">
+            <tbody>
+            <tr>
+                <td class="name">Title</td>
+                <td class="value">{{tittle}}</td>
+            </tr>
+            <tr>
+                <td class="name">Author</td>
+                <td class="value">{{author}}</td>
+            </tr>
+            <tr>
+                <td class="name">Year</td>
+                <td class="value">{{year}}</td>
+            </tr>
+            {{#if Colour}}
+            <tr>
+                <td class="name">Colours</td>
+                <td class="value">
+                {{#each Colour}}
+                <div class="box" style="background-color: {{this}};"></div>
+                {{/each}}
+                </td>
+            </tr>
+            {{/if}}
             </tbody>
             </table>
         </div>
@@ -221,13 +241,13 @@ class ItemLoader {
     updateSimilarityValue(newSimValue, color){
         let simValueElem = document.getElementById("item-sim-value");
         if (simValueElem){
-            if (newSimValue){
+            if (newSimValue !== null){
                 simValueElem.innerHTML = parseFloat(newSimValue).toFixed(3);
             } else {
                 simValueElem.innerHTML = "Similarity";
             }
         }
-        if (color) {
+        if (color !== null) {
             simValueElem.parentElement.style.backgroundColor = color;
         } else {
             simValueElem.parentElement.style.backgroundColor = ""

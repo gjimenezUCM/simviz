@@ -18,8 +18,9 @@ export class Controller {
         this._populateItemIdSelect();
         this.heatmapSelect.addEventListener("change", (event) => {
             if (this.heatmapSelect.value !== '*') {
-                this.itemLoader.changeRowItemById(this.heatmapSelect.value);
-                this.itemLoader.resetColItem();
+                this.filterByItemId(this.heatmapSelect.value);
+                //this.itemLoader.changeRowItemById(this.heatmapSelect.value);
+                //this.itemLoader.resetColItem();
             }
         });
         itemLoader.setController(this);

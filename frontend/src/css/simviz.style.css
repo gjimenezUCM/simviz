@@ -64,8 +64,7 @@
 
 
 #heatmap-header {
-    height: 10%;
-    background-color: violet;
+    height: 8%;
 }
 #heatmap-content {
     height: 60%;
@@ -92,6 +91,10 @@
     left: 100px;
 }
 
-.heatmap-filter-btn {
-
+.box {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid black;
 }

@@ -12,28 +12,29 @@ import { daoItems } from './mockdata';
 import { Heatmap } from './heatmap';
 import { Histogram } from "./histogram";
 import { Controller } from "./controller";
+import { mockSimData } from './mockSimMatrix';
 
 let itemIds = daoItems.getIds();
 
-let mockSimData = [];
-let itemSize = itemIds.length;
+// let mockSimData = [];
+// let itemSize = itemIds.length;
 
 
-for (let i = 0; i<itemSize; i++) {
-    let row =[];
-    for (let j = i; j < itemSize; j++) {
-        row[j] = 1;
-    }
-    mockSimData[i] = row;
-}
+// for (let i = 0; i<itemSize; i++) {
+//     let row =[];
+//     for (let j = i; j < itemSize; j++) {
+//         row[j] = 1;
+//     }
+//     mockSimData[i] = row;
+// }
 
-for (let i = 0; i < itemSize; i++) {
-    for (let j = i+1; j < itemSize; j++) {
-        let simValue = Math.random();
-        mockSimData[i][j] = simValue;
-        mockSimData[j][i] = simValue;
-    }
-}
+// for (let i = 0; i < itemSize; i++) {
+//     for (let j = i+1; j < itemSize; j++) {
+//         let simValue = Math.random();
+//         mockSimData[i][j] = simValue;
+//         mockSimData[j][i] = simValue;
+//     }
+// }
 
 
 

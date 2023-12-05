@@ -38,7 +38,7 @@ export class Histogram {
             histnorm: 'percent',
             xbins: {
                 start: 0.0,
-                size: 0.1,
+                size: 0.10000001, // Para que en el último bin entre el 1.0 y no desplace demasiado el resto
                 end: 1.0
             },
             marker: {
