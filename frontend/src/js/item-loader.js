@@ -1,23 +1,55 @@
 import Handlebars from "handlebars";
 import { daoItems } from './mockdata';
 
-const itemTemplate = `
-    <div class="item" data-id="{{_id}}">
-        <h1>{{tittle}}
-            <button type="button" class="btn btn-primary heatmap-filter-btn">Show on heatmap</button>
-        </h1>
-        <div class="item-desc-table">
+const itemTemplateRow = `
+    <div class="item d-flex flex-row-reverse align-items-center">
+        {{#if image}}
+        <div class="p-5">
+        <img class="img-fluid" src="{{image}}"/>
+        </div>
+        {{/if}}
+        <div class="item-desc-table flex-grow-1 p-5 align-self-start">
             <table class="table table-striped">
             <tbody>
             <tr>
-                <td class="name">Id</td>
-                <td class="value">{{_id}}</td>
+                <td class="name">Title</td>
+                <td class="value">{{tittle}}</td>
             </tr>
             <tr>
-            {{#if image}}
-                <td class="name">image</td>
-                <td class="value"><img class="img-fluid" src="{{image}}"/></td>
-            {{/if}}
+                <td class="name">Author</td>
+                <td class="value">{{author}}</td>
+            </tr>
+            <tr>
+                <td class="name">Year</td>
+                <td class="value">{{year}}</td>
+            </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+`;
+
+const itemTemplateCol = `
+    <div class="item d-flex align-items-center">
+        {{#if image}}
+        <div class="p-5">
+        <img class="img-fluid" src="{{image}}"/>
+        </div>
+        {{/if}}
+        <div class="item-desc-table flex-grow-1 p-5 align-self-start">
+            <table class="table table-striped">
+            <tbody>
+            <tr>
+                <td class="name">Title</td>
+                <td class="value">{{tittle}}</td>
+            </tr>
+            <tr>
+                <td class="name">Author</td>
+                <td class="value">{{author}}</td>
+            </tr>
+            <tr>
+                <td class="name">Year</td>
+                <td class="value">{{year}}</td>
             </tr>
             </tbody>
             </table>
@@ -31,12 +63,13 @@ const mockItem = {
     image: "./images/placeholder.jpg"
 }
 
-const itemRowSelectorButton = '#item-row button.heatmap-filter-btn';
-const itemColSelectorButton = '#item-col button.heatmap-filter-btn';
+const itemRowSelectorButton = '#heatmap-filter-btn-row';
+const itemColSelectorButton = '#heatmap-filter-btn-col';
 class ItemLoader {
 
     constructor() {
-        this.template = Handlebars.compile(itemTemplate);
+        this.templateRow = Handlebars.compile(itemTemplateRow);
+        this.templateCol = Handlebars.compile(itemTemplateCol);
     }
 
     setController(aController) {
@@ -44,22 +77,18 @@ class ItemLoader {
     }
 
     _changeItem(item, selector) {
-        let itemElement = this._createHandlebars(item);
+        let itemElement = null;
+        if (selector.search("row")!=-1){
+            itemElement = this.templateRow(item);
+        } else {
+            itemElement = this.templateCol(item);
+        }
         let colElement = document.querySelector(selector);
         colElement.innerHTML = itemElement;
-        let filterButton = colElement.getElementsByClassName('heatmap-filter-btn');
-        if (filterButton.length>0){
-            filterButton[0].addEventListener('click', (event) => {
-                let clickdItemId = colElement.children[0].getAttribute("data-id");
-                if (clickdItemId){
-                    this.controller.filterByItemId(clickdItemId);
-                }                
-            });
-        }
     }
 
     _createHandlebars(anArtWork) {
-        let result = this.template(anArtWork);
+        let result = this.templateRow(anArtWork);
         return result;
     }
     // _createItemElement(anArtWork) {
@@ -115,30 +144,54 @@ class ItemLoader {
     //     return artworkNode;
     // } 
 
-    _changeRowItem(item, hideFilterButton) {      
-        this._changeItem(item, '#item-row');
-        let filterBtn = document.querySelector(itemRowSelectorButton);
-        // Prevent errors during first initialization
-        if (filterBtn) {
-            if (hideFilterButton) {
-                filterBtn.classList.add("visually-hidden");
-            } else {
-                filterBtn.classList.remove("visually-hidden");
-            }
+    _changeRowItem(item, hideFilterButton) {  
+        if (item){
+            this._changeItem(item, '#item-row');
+            let filterBtn = document.querySelector(itemRowSelectorButton);
+            this._updateFilterButton(filterBtn, item._id, item._id, hideFilterButton);
         }
+
+        // Prevent errors during first initialization
+        // if (filterBtn) {
+        //     if (hideFilterButton) {
+        //         filterBtn.classList.add("disabled");
+        //     } else {
+        //         filterBtn.classList.remove("disabled");
+        //     }
+        // }
     }
 
     _changeColItem(item, hideFilterButton) {
-        this._changeItem(item, '#item-col');
-        let filterBtn = document.querySelector(itemColSelectorButton);
-        // Prevent errors during first initialization
-        if (filterBtn) {
-            if (hideFilterButton) {
-                filterBtn.classList.add("visually-hidden");
-            } else {
-                filterBtn.classList.remove("visually-hidden");
-            }
+        if (item){
+            this._changeItem(item, '#item-col');
+            let filterBtn = document.querySelector(itemColSelectorButton);
+            // Prevent errors during first initialization
+            this._updateFilterButton(filterBtn, item._id, item._id, hideFilterButton);
         }
+
+        // if (filterBtn) {
+        //     if (hideFilterButton) {
+        //         filterBtn.classList.add("disabled");
+        //     } else {
+        //         filterBtn.classList.remove("disabled");
+        //     }
+        // }
+    }
+
+    _updateFilterButton(theButton, itemName, itemId, hideIt){
+        theButton.innerHTML = itemName;
+        theButton.setAttribute('data-id', itemId);
+        if (hideIt) {
+            theButton.classList.add("disabled");
+        } else {
+            theButton.classList.remove("disabled");
+        }
+        theButton.addEventListener('click', (event) => {
+            let clickdItemId = theButton.getAttribute("data-id");
+            if (clickdItemId) {
+                this.controller.filterByItemId(clickdItemId);
+            }
+        });
     }
 
     changeRowItemById(id) {

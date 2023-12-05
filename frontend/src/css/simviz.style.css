@@ -4,13 +4,59 @@
 #content {
     height: 95vh;
 }
-#items .row {
-    height: 50%;
-    overflow: auto
+
+#item-row {
+    height: 45%;
+    overflow: auto;
+    margin: auto 2px;
+    border: black 3px solid;
+    border-bottom: none;
 }
+
+#item-col {
+    height: 45%;
+    overflow: auto;
+    margin: auto 2px;
+    border: black 3px solid;
+    border-top: none;
+}
+
 #items img {
     max-height: 25vh;
 }
+
+#item-sim {
+    margin: auto 2px;
+}
+
+#item-sim-row-container {
+    border: black 3px solid;
+    border-top: none;
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+}
+
+#item-sim-col-container {
+    border: black 3px solid;
+    border-bottom: none;
+    padding-top: 12px;
+    margin-top: 25px;
+}
+
+#item-sim-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: black 3px solid;
+    border-left: none;
+    border-right: none;
+}
+
+#item-sim-value{
+    display: block;
+}
+
+
 
 #heatmap-header {
     height: 10%;
@@ -42,5 +88,5 @@
 }
 
 .heatmap-filter-btn {
-    display: inline;
+
 }
