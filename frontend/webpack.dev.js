@@ -61,7 +61,7 @@ module.exports = merge(common, {
         // se mueve a 8081... para evitarlo (y que se enganche en 8080 si no tienes
         // aún tomcat lanzado) lo pongo en el 3000 (que es donde escuchan otros
         // servidores de desarrollo con Node)
-        port: 3000,
+        port: 8080,
 
         // Por defecto, el servidor de Webpack escucha en loopback.
         // Si lanzas node desde un contenedor, necesitas que escuche en
