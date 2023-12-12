@@ -32,31 +32,36 @@ async function initApp() {
     let fileLoader = new FileLoader();
     const simFiles = fileLoader.getFiles();
     let simMenu = document.getElementById("similarity-dropdown-menu");
-    let i=0;
     for (let file of simFiles) { 
         let item = document.createElement('li');
-        item.innerHTML = '<a class="dropdown-item">'+file+'</a>';
+        item.innerHTML = `<a class="dropdown-item" data-sim-name="${file}">${file}</a>`;
+        item.setAttribute("data-sim-name", file);
         simMenu.appendChild(item);
-        let index =i;
-        item.addEventListener("click", ()=>loadSimilarityFunction(fileLoader,index));
-        i++;
+        item.addEventListener("click", ()=>loadSimilarityFunction(fileLoader,file));
     }
 
 
     //let heatmapFilterBtn = document.getElementById('heatmap-filter-btn');
 }
 
-async function loadSimilarityFunction(fileLoader, index){
-    let fileData = await fileLoader.getDataFileByIndex(index);
-    if (fileData !== null){
+async function loadSimilarityFunction(fileLoader, file){
+    let activeItem = document.querySelector("#similarity-dropdown-menu .dropdown-item.active");
+    if (activeItem && activeItem.getAttribute("data-sim-name") === file){
+        return;
+    }
+
+    let fileData = await fileLoader.getDataFileByName(file);
+    if (fileData){
         let theController = new Controller(itemIds, fileData);
         window.addEventListener("resize", (event) => {
             theController.onResize();
         }); 
-        let simMenu = document.querySelectorAll("#similarity-dropdown-menu .dropdown-item")
+        let simMenu = document.querySelectorAll("#similarity-dropdown-menu .dropdown-item");
         for (let elem of simMenu) {
             elem.classList.remove("active");
+            if (elem.getAttribute("data-sim-name")=== file){
+                elem.classList.add("active")
+            }
         } 
-        simMenu[index].classList.add("active")
     }
 }

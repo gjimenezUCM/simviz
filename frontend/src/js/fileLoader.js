@@ -8,26 +8,21 @@ export class FileLoader {
             "simDecades",
             "simMaxColor"
         ];
-        this.fileData = [];
+        this.fileData = {};
     }
     getFiles(){
         return this.fileList;
     }
-    async getDataFileByIndex(index){
-        if (index>=0 && index<this.fileData.length) {
-            return this.fileData[index];
+    async getDataFileByName(name){
+        if (name in this.fileData) {
+            return this.fileData[name];
         }
         else {
-            if (index >= 0 && index < this.fileList.length){
-                const data = await this.loadData(this.fileList[index]);
+                const data = await this.loadData(name);
                 if (data !== null) {
-                    this.fileData[index] = data;
+                    this.fileData[name] = data;
                 }
                 return data;
-
-            } else {
-                return null;
-            }
         }
     }
 
