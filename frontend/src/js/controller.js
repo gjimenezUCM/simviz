@@ -60,12 +60,18 @@ export class Controller {
     }
 
     _populateItemIdSelect() {
+        this.heatmapSelect.replaceChildren();
+        let emptyOption = document.createElement("option");
+        emptyOption.innerHTML = '*';
+        emptyOption.setAttribute("value", '*');
+        this.heatmapSelect.appendChild(emptyOption);       
         for (let id of this.itemIds) {
             let newOption = document.createElement("option");
             newOption.innerHTML = id;
             newOption.setAttribute("value", id);
             this.heatmapSelect.appendChild(newOption);
         }
+        this.heatmapSelect.selectedIndex = 0;
     }
 
     filterBySelectedItem() {
