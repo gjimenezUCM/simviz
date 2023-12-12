@@ -3,6 +3,7 @@
 */
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/simviz.style.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js' 
 
 /*
 * JS imports
@@ -12,32 +13,9 @@ import { daoItems } from './mockdata';
 import { Heatmap } from './heatmap';
 import { Histogram } from "./histogram";
 import { Controller } from "./controller";
-import { mockSimData } from './mockSimMatrix';
+import { FileLoader } from "./fileLoader";
 
 let itemIds = daoItems.getIds();
-
-// let mockSimData = [];
-// let itemSize = itemIds.length;
-
-
-// for (let i = 0; i<itemSize; i++) {
-//     let row =[];
-//     for (let j = i; j < itemSize; j++) {
-//         row[j] = 1;
-//     }
-//     mockSimData[i] = row;
-// }
-
-// for (let i = 0; i < itemSize; i++) {
-//     for (let j = i+1; j < itemSize; j++) {
-//         let simValue = Math.random();
-//         mockSimData[i][j] = simValue;
-//         mockSimData[j][i] = simValue;
-//     }
-// }
-
-
-
 
 function populateIdSelect(selectNode, ids) {
     for (let id of ids) {
@@ -48,42 +26,37 @@ function populateIdSelect(selectNode, ids) {
     }
 }
 
-window.addEventListener("load", (event) => { 
+window.addEventListener("load", initApp);
 
-    let theController = new Controller(itemIds, mockSimData);
-
-    let heatmapFilterBtn = document.getElementById('heatmap-filter-btn');
-    // console.log(heatmapFilterBtn)
-    // heatmapFilterBtn.addEventListener('click', (event) => {
-    //     console.log("Click filter");
-    //     theController.filterBySelectedItem();
-    // });
-    //     if (heatmapSelect.value !== '*') {
-    //         theHeatmap.filterById(heatmapSelect.value, false);
-    //     } else {
-    //         theHeatmap.reset();
-    //     }
-    // });
-    // let heatmapSortedFilterBtn = document.getElementById('heatmap-sorted-filter-btn');
-    // heatmapSortedFilterBtn.addEventListener('click', (event) => {
-    //     if (heatmapSelect.value !== '*') {
-    //         theHeatmap.filterById(heatmapSelect.value, true);
-    //     } else {
-    //         theHeatmap.reset();
-    //     }
-    // });
-
-    // document.getElementById('heatmap-reset-btn').addEventListener('click', (event) => {
-    //     theHeatmap.reset();
-    //     heatmapSelect.selectedIndex = 0;
-    //     itemLoader.resetItems()
-    // });
+async function initApp() {
+    let fileLoader = new FileLoader();
+    const simFiles = fileLoader.getFiles();
+    let simMenu = document.getElementById("similarity-dropdown-menu");
+    let i=0;
+    for (let file of simFiles) { 
+        let item = document.createElement('li');
+        item.innerHTML = '<a class="dropdown-item">'+file+'</a>';
+        simMenu.appendChild(item);
+        let index =i;
+        item.addEventListener("click", ()=>loadSimilarityFunction(fileLoader,index));
+        i++;
+    }
 
 
+    //let heatmapFilterBtn = document.getElementById('heatmap-filter-btn');
+}
 
-    window.addEventListener("resize", (event) => {
-        theController.onResize();
-        //theHeatmap.refresh();
-        //theHistogram.refresh();
-    });
-});
+async function loadSimilarityFunction(fileLoader, index){
+    let fileData = await fileLoader.getDataFileByIndex(index);
+    if (fileData !== null){
+        let theController = new Controller(itemIds, fileData);
+        window.addEventListener("resize", (event) => {
+            theController.onResize();
+        }); 
+        let simMenu = document.querySelectorAll("#similarity-dropdown-menu .dropdown-item")
+        for (let elem of simMenu) {
+            elem.classList.remove("active");
+        } 
+        simMenu[index].classList.add("active")
+    }
+}

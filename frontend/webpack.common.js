@@ -58,6 +58,7 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [
                 { from: 'images', to: 'images' },
+                { from: 'data', to: 'data' }
             ],
         }),
     ],

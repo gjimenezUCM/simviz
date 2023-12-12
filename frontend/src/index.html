@@ -11,7 +11,14 @@
 
     <div class="container-fluid">
         <section id="menu" class="row">
-            Menu bar
+            <ul class="nav nav-pills">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false">Similarity functions</a>
+                    <ul class="dropdown-menu" id="similarity-dropdown-menu">
+                    </ul>
+                </li>
+            </ul>
         </section>
     </div>
     <div class="container-fluid">
@@ -38,12 +45,15 @@
             </div>
             <div id="heatmap-container" class="col-7">
                 <div id="heatmap-header" class="row">
-                    <h2>Select Item By Id</h2>
-                    <div>
+                    <div class="col-2">
+                        <label class="form-label" for="heatmap-filter-select"><h3>Select Item</h3></label>
+                    </div>
+                    <div class="col-10">
                         <select id="heatmap-filter-select" class="form-select" aria-label="Item select">
                             <option selected>*</option>
                         </select>
                     </div>
+                    
                 </div>
                 <div id="histogram-content" class="row align-items-center">
                     <div id="histogram"></div>
