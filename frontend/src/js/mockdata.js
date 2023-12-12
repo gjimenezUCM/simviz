@@ -55,13 +55,23 @@ const bbdd = [
         "year": 1952.0,
         "ColourRGB": [
             [
-                "109",
-                "114",
-                "120"
+                109,
+                114,
+                120
             ]
         ],
         "image": "https://i.postimg.cc/Zqn1M35m/44171.png",
-        "Object group": "cutlery"
+        "Object group": "cutlery",
+        "Color": [
+            {
+                "colorName": "metal",
+                "rgb": [
+                    109,
+                    114,
+                    120
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1908b7693f159a62e2f6",
@@ -93,13 +103,23 @@ const bbdd = [
         "year": 1967.0,
         "ColourRGB": [
             [
-                "109",
-                "114",
-                "120"
+                109,
+                114,
+                120
             ]
         ],
         "image": "https://i.postimg.cc/65NxpyYV/44168.png",
-        "Object group": "cutlery"
+        "Object group": "cutlery",
+        "Color": [
+            {
+                "colorName": "metal",
+                "rgb": [
+                    109,
+                    114,
+                    120
+                ]
+            }
+        ]
     },
     {
         "_id": "636bf322a8e46b2e35302848",
@@ -131,7 +151,8 @@ const bbdd = [
         "year": 1970.0,
         "ColourRGB": [],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-017298_wirkkala_ultima_thule-2000x1621.jpg",
-        "Object group": "glass"
+        "Object group": "glass",
+        "Color": []
     },
     {
         "_id": "634f1907d8af1b50664089d0",
@@ -164,18 +185,36 @@ const bbdd = [
         "year": null,
         "ColourRGB": [
             [
-                "165",
-                "42",
-                "42"
+                165,
+                42,
+                42
             ],
             [
-                "92",
-                "64",
-                "51"
+                92,
+                64,
+                51
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-b561-2000x1500.jpg",
-        "Object group": "pots"
+        "Object group": "pots",
+        "Color": [
+            {
+                "colorName": "light brown",
+                "rgb": [
+                    165,
+                    42,
+                    42
+                ]
+            },
+            {
+                "colorName": "dark brown",
+                "rgb": [
+                    92,
+                    64,
+                    51
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1903a45b33465c10ceb2",
@@ -210,28 +249,62 @@ const bbdd = [
         "year": 1984.0,
         "ColourRGB": [
             [
-                "255",
-                "165",
-                "0"
+                255,
+                165,
+                0
             ],
             [
-                "0",
-                "128",
-                "0"
+                0,
+                128,
+                0
             ],
             [
-                "0",
-                "0",
-                "255"
+                0,
+                0,
+                255
             ],
             [
-                "255",
-                "192",
-                "203"
+                255,
+                192,
+                203
             ]
         ],
         "image": "https://i.postimg.cc/bNHcDpB7/44166.jpg",
-        "Object group": "clothes and accessories"
+        "Object group": "clothes and accessories",
+        "Color": [
+            {
+                "colorName": "orange",
+                "rgb": [
+                    255,
+                    165,
+                    0
+                ]
+            },
+            {
+                "colorName": " green",
+                "rgb": [
+                    0,
+                    128,
+                    0
+                ]
+            },
+            {
+                "colorName": " blue",
+                "rgb": [
+                    0,
+                    0,
+                    255
+                ]
+            },
+            {
+                "colorName": " pink",
+                "rgb": [
+                    255,
+                    192,
+                    203
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1912d8af1b50664089d6",
@@ -265,18 +338,36 @@ const bbdd = [
         "year": 1931.0,
         "ColourRGB": [
             [
-                "238",
-                "130",
-                "238"
+                238,
+                130,
+                238
             ],
             [
-                "255",
-                "255",
-                "0"
+                255,
+                255,
+                0
             ]
         ],
         "image": "https://i.postimg.cc/ZqDhbHM0/16850.jpg",
-        "Object group": "wall textiles"
+        "Object group": "wall textiles",
+        "Color": [
+            {
+                "colorName": "violet",
+                "rgb": [
+                    238,
+                    130,
+                    238
+                ]
+            },
+            {
+                "colorName": " yellowish",
+                "rgb": [
+                    255,
+                    255,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1912e09bfd1d9a04b8f9",
@@ -311,23 +402,49 @@ const bbdd = [
         "year": 1932.0,
         "ColourRGB": [
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ],
             [
-                "255",
-                "0",
-                "0"
+                255,
+                0,
+                0
             ],
             [
-                "165",
-                "42",
-                "42"
+                165,
+                42,
+                42
             ]
         ],
         "image": "https://i.postimg.cc/mgB48t9Z/13906.jpg",
-        "Object group": "wall textiles"
+        "Object group": "wall textiles",
+        "Color": [
+            {
+                "colorName": "white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            },
+            {
+                "colorName": " red",
+                "rgb": [
+                    255,
+                    0,
+                    0
+                ]
+            },
+            {
+                "colorName": " brown",
+                "rgb": [
+                    165,
+                    42,
+                    42
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1912d4227a56290cb6d2",
@@ -358,7 +475,8 @@ const bbdd = [
         "year": 1899.0,
         "ColourRGB": [],
         "image": "https://i.postimg.cc/fWdhsxjT/17876.jpg",
-        "Object group": "wall textiles"
+        "Object group": "wall textiles",
+        "Color": []
     },
     {
         "_id": "634f1911d28967637e31c912",
@@ -388,7 +506,8 @@ const bbdd = [
         "year": 1958.0,
         "ColourRGB": [],
         "image": "https://i.postimg.cc/d3GM9YtT/32628.jpg",
-        "Object group": "wall textiles"
+        "Object group": "wall textiles",
+        "Color": []
     },
     {
         "_id": "634f1911a45b33465c10ceba",
@@ -422,18 +541,36 @@ const bbdd = [
         "year": 1951.0,
         "ColourRGB": [
             [
-                "0",
-                "0",
-                "0"
+                0,
+                0,
+                0
             ],
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ]
         ],
         "image": "https://i.postimg.cc/GmL0v60H/32627.jpg",
-        "Object group": "wall textiles"
+        "Object group": "wall textiles",
+        "Color": [
+            {
+                "colorName": "black",
+                "rgb": [
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "colorName": " white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            }
+        ]
     },
     {
         "_id": "634f19119d480d2bcc4ac7ac",
@@ -467,13 +604,23 @@ const bbdd = [
         "year": 1934.0,
         "ColourRGB": [
             [
-                "165",
-                "42",
-                "42"
+                165,
+                42,
+                42
             ]
         ],
         "image": "https://i.postimg.cc/rppk23gv/16851.jpg",
-        "Object group": "wall textiles"
+        "Object group": "wall textiles",
+        "Color": [
+            {
+                "colorName": "brown",
+                "rgb": [
+                    165,
+                    42,
+                    42
+                ]
+            }
+        ]
     },
     {
         "_id": "634f19106c70ef5cf152f23b",
@@ -506,18 +653,36 @@ const bbdd = [
         "year": 2001.0,
         "ColourRGB": [
             [
-                "0",
-                "0",
-                "255"
+                0,
+                0,
+                255
             ],
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ]
         ],
         "image": "https://i.postimg.cc/HLFPvhN0/44184.png",
-        "Object group": "cups"
+        "Object group": "cups",
+        "Color": [
+            {
+                "colorName": "blue",
+                "rgb": [
+                    0,
+                    0,
+                    255
+                ]
+            },
+            {
+                "colorName": " white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            }
+        ]
     },
     {
         "_id": "634f19105350725cb83093c4",
@@ -549,13 +714,23 @@ const bbdd = [
         "year": 1975.0,
         "ColourRGB": [
             [
-                "165",
-                "42",
-                "42"
+                165,
+                42,
+                42
             ]
         ],
         "image": "https://i.postimg.cc/d0fzP1hy/32361.jpg",
-        "Object group": "wall textiles"
+        "Object group": "wall textiles",
+        "Color": [
+            {
+                "colorName": "different tones of red brown",
+                "rgb": [
+                    165,
+                    42,
+                    42
+                ]
+            }
+        ]
     },
     {
         "_id": "634f191005fdc719f0345aef",
@@ -589,23 +764,49 @@ const bbdd = [
         "year": 1962.0,
         "ColourRGB": [
             [
-                "255",
-                "0",
-                "0"
+                255,
+                0,
+                0
             ],
             [
-                "255",
-                "255",
-                "0"
+                255,
+                255,
+                0
             ],
             [
-                "255",
-                "255",
-                "0"
+                255,
+                255,
+                0
             ]
         ],
         "image": "https://i.postimg.cc/zG0s7p5p/33288.jpg",
-        "Object group": "wall textiles"
+        "Object group": "wall textiles",
+        "Color": [
+            {
+                "colorName": "red",
+                "rgb": [
+                    255,
+                    0,
+                    0
+                ]
+            },
+            {
+                "colorName": " aniline",
+                "rgb": [
+                    255,
+                    255,
+                    0
+                ]
+            },
+            {
+                "colorName": " yellow",
+                "rgb": [
+                    255,
+                    255,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190fe09bfd1d9a04b8f7",
@@ -639,23 +840,49 @@ const bbdd = [
         "year": 1978.0,
         "ColourRGB": [
             [
-                "0",
-                "0",
-                "255"
+                0,
+                0,
+                255
             ],
             [
-                "0",
-                "128",
-                "0"
+                0,
+                128,
+                0
             ],
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ]
         ],
         "image": "https://i.postimg.cc/kgXZ288S/44181.png",
-        "Object group": "cups"
+        "Object group": "cups",
+        "Color": [
+            {
+                "colorName": "blue",
+                "rgb": [
+                    0,
+                    0,
+                    255
+                ]
+            },
+            {
+                "colorName": " green",
+                "rgb": [
+                    0,
+                    128,
+                    0
+                ]
+            },
+            {
+                "colorName": " white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190fd4227a56290cb6d0",
@@ -688,18 +915,36 @@ const bbdd = [
         "year": 1998.0,
         "ColourRGB": [
             [
-                "255",
-                "255",
-                "0"
+                255,
+                255,
+                0
             ],
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ]
         ],
         "image": "https://i.postimg.cc/nhRWBzYP/44182.png",
-        "Object group": "cups"
+        "Object group": "cups",
+        "Color": [
+            {
+                "colorName": "yellow",
+                "rgb": [
+                    255,
+                    255,
+                    0
+                ]
+            },
+            {
+                "colorName": " white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190fb7693f159a62e2fa",
@@ -733,18 +978,36 @@ const bbdd = [
         "year": 1998.0,
         "ColourRGB": [
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ],
             [
-                "186",
-                "140",
-                "99"
+                186,
+                140,
+                99
             ]
         ],
         "image": "https://i.postimg.cc/jjDFXbMd/44183.png",
-        "Object group": "cups"
+        "Object group": "cups",
+        "Color": [
+            {
+                "colorName": "white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            },
+            {
+                "colorName": " wood",
+                "rgb": [
+                    186,
+                    140,
+                    99
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190ea45b33465c10ceb8",
@@ -776,13 +1039,23 @@ const bbdd = [
         "year": 1981.0,
         "ColourRGB": [
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ]
         ],
         "image": "https://i.postimg.cc/XNdtmn4r/44178.png",
-        "Object group": "cups"
+        "Object group": "cups",
+        "Color": [
+            {
+                "colorName": "white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190e9d480d2bcc4ac7aa",
@@ -814,13 +1087,23 @@ const bbdd = [
         "year": 1960.0,
         "ColourRGB": [
             [
-                "165",
-                "42",
-                "42"
+                165,
+                42,
+                42
             ]
         ],
         "image": "https://i.postimg.cc/CL09V9xm/44179.png",
-        "Object group": "cups"
+        "Object group": "cups",
+        "Color": [
+            {
+                "colorName": "brown",
+                "rgb": [
+                    165,
+                    42,
+                    42
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190ed8af1b50664089d4",
@@ -852,13 +1135,23 @@ const bbdd = [
         "year": 1969.0,
         "ColourRGB": [
             [
-                "165",
-                "42",
-                "42"
+                165,
+                42,
+                42
             ]
         ],
         "image": "https://i.postimg.cc/jdhmqvWK/44180.png",
-        "Object group": "cups"
+        "Object group": "cups",
+        "Color": [
+            {
+                "colorName": "brown",
+                "rgb": [
+                    165,
+                    42,
+                    42
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190d5350725cb83093c2",
@@ -892,23 +1185,49 @@ const bbdd = [
         "year": 1900.0,
         "ColourRGB": [
             [
-                "165",
-                "42",
-                "42"
+                165,
+                42,
+                42
             ],
             [
-                "0",
-                "0",
-                "255"
+                0,
+                0,
+                255
             ],
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/08/wsi-imageoptim-b548-2000x2665.jpg",
-        "Object group": "pots"
+        "Object group": "pots",
+        "Color": [
+            {
+                "colorName": "brown",
+                "rgb": [
+                    165,
+                    42,
+                    42
+                ]
+            },
+            {
+                "colorName": " blue",
+                "rgb": [
+                    0,
+                    0,
+                    255
+                ]
+            },
+            {
+                "colorName": " white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190d05fdc719f0345aed",
@@ -942,23 +1261,49 @@ const bbdd = [
         "year": 1937.0,
         "ColourRGB": [
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ],
             [
-                "165",
-                "42",
-                "42"
+                165,
+                42,
+                42
             ],
             [
-                "255",
-                "215",
-                "0"
+                255,
+                215,
+                0
             ]
         ],
         "image": "https://i.postimg.cc/2yQJZ72Q/44176.png",
-        "Object group": "cups"
+        "Object group": "cups",
+        "Color": [
+            {
+                "colorName": "white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            },
+            {
+                "colorName": " brown",
+                "rgb": [
+                    165,
+                    42,
+                    42
+                ]
+            },
+            {
+                "colorName": " gold",
+                "rgb": [
+                    255,
+                    215,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190dd28967637e31c910",
@@ -990,13 +1335,23 @@ const bbdd = [
         "year": 1945.0,
         "ColourRGB": [
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ]
         ],
         "image": "https://i.postimg.cc/J0Vv02c7/44177.png",
-        "Object group": "cups"
+        "Object group": "cups",
+        "Color": [
+            {
+                "colorName": "white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190cd4227a56290cb6ce",
@@ -1028,13 +1383,23 @@ const bbdd = [
         "year": 1956.0,
         "ColourRGB": [
             [
-                "128",
-                "128",
-                "128"
+                114,
+                131,
+                112
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-025419-2000x1333.jpg",
-        "Object group": "glass"
+        "Object group": "glass",
+        "Color": [
+            {
+                "colorName": "green gray",
+                "rgb": [
+                    114,
+                    131,
+                    112
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190cb7693f159a62e2f8",
@@ -1067,18 +1432,36 @@ const bbdd = [
         "year": 1956.0,
         "ColourRGB": [
             [
-                "0",
-                "0",
-                "255"
+                0,
+                0,
+                255
             ],
             [
-                "238",
-                "130",
-                "238"
+                238,
+                130,
+                238
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-025419-2000x1333.jpg",
-        "Object group": "glass"
+        "Object group": "glass",
+        "Color": [
+            {
+                "colorName": "blue",
+                "rgb": [
+                    0,
+                    0,
+                    255
+                ]
+            },
+            {
+                "colorName": " violet",
+                "rgb": [
+                    238,
+                    130,
+                    238
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190c6c70ef5cf152f239",
@@ -1110,7 +1493,8 @@ const bbdd = [
         "year": 1968.0,
         "ColourRGB": [],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-017298_wirkkala_ultima_thule-2000x1621.jpg",
-        "Object group": "glass"
+        "Object group": "glass",
+        "Color": []
     },
     {
         "_id": "634f190b9d480d2bcc4ac7a8",
@@ -1142,13 +1526,23 @@ const bbdd = [
         "year": 1954.0,
         "ColourRGB": [
             [
-                "255",
-                "0",
-                "0"
+                255,
+                0,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-dmpm_20150103_2785-2000x3000.jpg",
-        "Object group": "glass"
+        "Object group": "glass",
+        "Color": [
+            {
+                "colorName": "red",
+                "rgb": [
+                    255,
+                    0,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190bd8af1b50664089d2",
@@ -1180,13 +1574,23 @@ const bbdd = [
         "year": 1953.0,
         "ColourRGB": [
             [
-                "224",
-                "17",
-                "95"
+                224,
+                17,
+                95
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-025608__franck_p-1-1327x1823.jpg",
-        "Object group": "glass"
+        "Object group": "glass",
+        "Color": [
+            {
+                "colorName": "rubin red",
+                "rgb": [
+                    224,
+                    17,
+                    95
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190be09bfd1d9a04b8f5",
@@ -1219,18 +1623,36 @@ const bbdd = [
         "year": 1954.0,
         "ColourRGB": [
             [
-                "255",
-                "0",
-                "0"
+                255,
+                0,
+                0
             ],
             [
-                "128",
-                "0",
-                "128"
+                128,
+                0,
+                128
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-franck-1610-lh-1667x2379.jpeg",
-        "Object group": "jugs"
+        "Object group": "jugs",
+        "Color": [
+            {
+                "colorName": "red",
+                "rgb": [
+                    255,
+                    0,
+                    0
+                ]
+            },
+            {
+                "colorName": " purple",
+                "rgb": [
+                    128,
+                    0,
+                    128
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190905fdc719f0345aeb",
@@ -1262,13 +1684,23 @@ const bbdd = [
         "year": 1948.0,
         "ColourRGB": [
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/05/kermakko-mk-am1699-320x320.jpg",
-        "Object group": "pots"
+        "Object group": "pots",
+        "Color": [
+            {
+                "colorName": "white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190ad28967637e31c90e",
@@ -1302,23 +1734,49 @@ const bbdd = [
         "year": 1984.0,
         "ColourRGB": [
             [
-                "128",
-                "128",
-                "128"
+                128,
+                128,
+                128
             ],
             [
-                "0",
-                "0",
-                "0"
+                0,
+                0,
+                0
             ],
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/09/wsi-imageoptim-muumi1-2000x2666.jpg",
-        "Object group": "cups"
+        "Object group": "cups",
+        "Color": [
+            {
+                "colorName": "gray",
+                "rgb": [
+                    128,
+                    128,
+                    128
+                ]
+            },
+            {
+                "colorName": " black",
+                "rgb": [
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "colorName": " white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190aa45b33465c10ceb6",
@@ -1350,7 +1808,8 @@ const bbdd = [
         "year": 1950.0,
         "ColourRGB": [],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-dmpm_20150103_2785-2000x3000.jpg",
-        "Object group": "jugs"
+        "Object group": "jugs",
+        "Color": []
     },
     {
         "_id": "634f19095350725cb83093c0",
@@ -1383,13 +1842,23 @@ const bbdd = [
         "year": 1967.0,
         "ColourRGB": [
             [
-                "255",
-                "165",
-                "0"
+                255,
+                165,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/01/wsi-imageoptim-img656-1667x2181.jpg",
-        "Object group": "industrial design"
+        "Object group": "industrial design",
+        "Color": [
+            {
+                "colorName": "orange",
+                "rgb": [
+                    255,
+                    165,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1908e09bfd1d9a04b8f3",
@@ -1424,18 +1893,36 @@ const bbdd = [
         "year": 1957.0,
         "ColourRGB": [
             [
-                "255",
-                "0",
-                "0"
+                255,
+                0,
+                0
             ],
             [
-                "0",
-                "0",
-                "0"
+                0,
+                0,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-025478_anurmesniemi_pehtoori_rt-1327x1990.jpg",
-        "Object group": "pots"
+        "Object group": "pots",
+        "Color": [
+            {
+                "colorName": "red",
+                "rgb": [
+                    255,
+                    0,
+                    0
+                ]
+            },
+            {
+                "colorName": " black",
+                "rgb": [
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1908d4227a56290cb6cc",
@@ -1468,13 +1955,23 @@ const bbdd = [
         "year": 1960.0,
         "ColourRGB": [
             [
-                "0",
-                "0",
-                "0"
+                0,
+                0,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-32712-2000x2667.jpg",
-        "Object group": "pots"
+        "Object group": "pots",
+        "Color": [
+            {
+                "colorName": "black",
+                "rgb": [
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1907a45b33465c10ceb4",
@@ -1506,13 +2003,23 @@ const bbdd = [
         "year": 1979.0,
         "ColourRGB": [
             [
-                "255",
-                "165",
-                "0"
+                255,
+                165,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/09/wsi-imageoptim-metro-41816-899x477.jpg",
-        "Object group": "industrial design"
+        "Object group": "industrial design",
+        "Color": [
+            {
+                "colorName": "orange",
+                "rgb": [
+                    255,
+                    165,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f19079d480d2bcc4ac7a6",
@@ -1544,13 +2051,23 @@ const bbdd = [
         "year": 1989.0,
         "ColourRGB": [
             [
-                "109",
-                "114",
-                "120"
+                109,
+                114,
+                120
             ]
         ],
         "image": "",
-        "Object group": "industrial design"
+        "Object group": "industrial design",
+        "Color": [
+            {
+                "colorName": "metal",
+                "rgb": [
+                    109,
+                    114,
+                    120
+                ]
+            }
+        ]
     },
     {
         "_id": "634f19065350725cb83093be",
@@ -1583,18 +2100,36 @@ const bbdd = [
         "year": 1972.0,
         "ColourRGB": [
             [
-                "0",
-                "128",
-                "0"
+                0,
+                128,
+                0
             ],
             [
-                "0",
-                "0",
-                "0"
+                0,
+                0,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-img_3604-2000x1958.jpg",
-        "Object group": "vehicles"
+        "Object group": "vehicles",
+        "Color": [
+            {
+                "colorName": "green",
+                "rgb": [
+                    0,
+                    128,
+                    0
+                ]
+            },
+            {
+                "colorName": " black",
+                "rgb": [
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190605fdc719f0345ae9",
@@ -1630,28 +2165,62 @@ const bbdd = [
         "year": 1960.0,
         "ColourRGB": [
             [
-                "0",
-                "0",
-                "255"
+                0,
+                0,
+                255
             ],
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ],
             [
-                "255",
-                "0",
-                "0"
+                255,
+                0,
+                0
             ],
             [
-                "0",
-                "0",
-                "0"
+                0,
+                0,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-1210201010051517_richard_lindh_solifer_export_1960_suomi_017667-compressor-2000x1297.jpg",
-        "Object group": "vehicles"
+        "Object group": "vehicles",
+        "Color": [
+            {
+                "colorName": "blue",
+                "rgb": [
+                    0,
+                    0,
+                    255
+                ]
+            },
+            {
+                "colorName": " white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            },
+            {
+                "colorName": " red",
+                "rgb": [
+                    255,
+                    0,
+                    0
+                ]
+            },
+            {
+                "colorName": " black",
+                "rgb": [
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1906d28967637e31c90c",
@@ -1683,13 +2252,23 @@ const bbdd = [
         "year": 1971.0,
         "ColourRGB": [
             [
-                "255",
-                "0",
-                "0"
+                255,
+                0,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/09/wsi-imageoptim-32030-2000x2667.jpg",
-        "Object group": "industrial design"
+        "Object group": "industrial design",
+        "Color": [
+            {
+                "colorName": "red",
+                "rgb": [
+                    255,
+                    0,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1905d4227a56290cb6ca",
@@ -1722,13 +2301,23 @@ const bbdd = [
         "year": 1985.0,
         "ColourRGB": [
             [
-                "0",
-                "0",
-                "0"
+                0,
+                0,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/03/wsi-imageoptim-img_9261-2000x2896.jpg",
-        "Object group": "devices"
+        "Object group": "devices",
+        "Color": [
+            {
+                "colorName": "black",
+                "rgb": [
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1905b7693f159a62e2f4",
@@ -1761,13 +2350,23 @@ const bbdd = [
         "year": 1969.0,
         "ColourRGB": [
             [
-                "255",
-                "0",
-                "0"
+                255,
+                0,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-asa-20260-320x415.jpg",
-        "Object group": "devices"
+        "Object group": "devices",
+        "Color": [
+            {
+                "colorName": "red",
+                "rgb": [
+                    255,
+                    0,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f19056c70ef5cf152f235",
@@ -1800,18 +2399,36 @@ const bbdd = [
         "year": 1965.0,
         "ColourRGB": [
             [
-                "255",
-                "165",
-                "0"
+                255,
+                165,
+                0
             ],
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/11/wsi-imageoptim-mehulinko-320x378.jpg",
-        "Object group": "industrial design"
+        "Object group": "industrial design",
+        "Color": [
+            {
+                "colorName": "orange",
+                "rgb": [
+                    255,
+                    165,
+                    0
+                ]
+            },
+            {
+                "colorName": " white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            }
+        ]
     },
     {
         "_id": "634f19049d480d2bcc4ac7a4",
@@ -1843,13 +2460,23 @@ const bbdd = [
         "year": 1969.0,
         "ColourRGB": [
             [
-                "192",
-                "192",
-                "192"
+                192,
+                192,
+                192
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/01/wsi-imageoptim-026918_planetaarisetlaaksot_p-2000x1333.jpg",
-        "Object group": "jewelry"
+        "Object group": "jewelry",
+        "Color": [
+            {
+                "colorName": "silver",
+                "rgb": [
+                    192,
+                    192,
+                    192
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1904d8af1b50664089ce",
@@ -1883,18 +2510,36 @@ const bbdd = [
         "year": 1975.0,
         "ColourRGB": [
             [
-                "255",
-                "255",
-                "0"
+                255,
+                255,
+                0
             ],
             [
-                "0",
-                "128",
-                "0"
+                0,
+                128,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/08/wsi-imageoptim-marimekko_laukku-1327x1600.jpg",
-        "Object group": "clothes and accessories"
+        "Object group": "clothes and accessories",
+        "Color": [
+            {
+                "colorName": "yellow",
+                "rgb": [
+                    255,
+                    255,
+                    0
+                ]
+            },
+            {
+                "colorName": " green",
+                "rgb": [
+                    0,
+                    128,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1904e09bfd1d9a04b8f1",
@@ -1927,13 +2572,23 @@ const bbdd = [
         "year": 1998.0,
         "ColourRGB": [
             [
-                "128",
-                "128",
-                "128"
+                128,
+                128,
+                128
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-puhelin2-320x323.jpg",
-        "Object group": "devices"
+        "Object group": "devices",
+        "Color": [
+            {
+                "colorName": "gray",
+                "rgb": [
+                    128,
+                    128,
+                    128
+                ]
+            }
+        ]
     },
     {
         "_id": "634f190305fdc719f0345ae7",
@@ -1967,23 +2622,49 @@ const bbdd = [
         "year": 1967.0,
         "ColourRGB": [
             [
-                "0",
-                "128",
-                "0"
+                0,
+                128,
+                0
             ],
             [
-                "255",
-                "165",
-                "0"
+                255,
+                165,
+                0
             ],
             [
-                "238",
-                "130",
-                "238"
+                238,
+                130,
+                238
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2022/09/wsi-imageoptim-2812011103641rimala_monrepos_p-1327x1958.jpg",
-        "Object group": "clothes and accessories"
+        "Object group": "clothes and accessories",
+        "Color": [
+            {
+                "colorName": "green",
+                "rgb": [
+                    0,
+                    128,
+                    0
+                ]
+            },
+            {
+                "colorName": " orange",
+                "rgb": [
+                    255,
+                    165,
+                    0
+                ]
+            },
+            {
+                "colorName": " violet",
+                "rgb": [
+                    238,
+                    130,
+                    238
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1903d28967637e31c90a",
@@ -2015,13 +2696,23 @@ const bbdd = [
         "year": 1967.0,
         "ColourRGB": [
             [
-                "255",
-                "255",
-                "0"
+                255,
+                255,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/03/wsi-imageoptim-22320118103827303-320x495.jpg",
-        "Object group": "clothes and accessories"
+        "Object group": "clothes and accessories",
+        "Color": [
+            {
+                "colorName": "yellow",
+                "rgb": [
+                    255,
+                    255,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1902b7693f159a62e2f2",
@@ -2055,23 +2746,49 @@ const bbdd = [
         "year": 1945.0,
         "ColourRGB": [
             [
-                "186",
-                "140",
-                "99"
+                186,
+                140,
+                99
             ],
             [
-                "0",
-                "0",
-                "255"
+                0,
+                0,
+                255
             ],
             [
-                "255",
-                "0",
-                "0"
+                255,
+                0,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/09/wsi-imageoptim-38518-899x1299.jpg",
-        "Object group": "ornamentation"
+        "Object group": "ornamentation",
+        "Color": [
+            {
+                "colorName": "wood",
+                "rgb": [
+                    186,
+                    140,
+                    99
+                ]
+            },
+            {
+                "colorName": " blue",
+                "rgb": [
+                    0,
+                    0,
+                    255
+                ]
+            },
+            {
+                "colorName": " red",
+                "rgb": [
+                    255,
+                    0,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f19026c70ef5cf152f231",
@@ -2105,23 +2822,49 @@ const bbdd = [
         "year": 1980.0,
         "ColourRGB": [
             [
-                "192",
-                "192",
-                "192"
+                192,
+                192,
+                192
             ],
             [
-                "255",
-                "0",
-                "0"
+                255,
+                0,
+                0
             ],
             [
-                "0",
-                "128",
-                "0"
+                0,
+                128,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-13081-2000x2667.jpg",
-        "Object group": "ornamentation"
+        "Object group": "ornamentation",
+        "Color": [
+            {
+                "colorName": "silver",
+                "rgb": [
+                    192,
+                    192,
+                    192
+                ]
+            },
+            {
+                "colorName": " red",
+                "rgb": [
+                    255,
+                    0,
+                    0
+                ]
+            },
+            {
+                "colorName": " green",
+                "rgb": [
+                    0,
+                    128,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f19025350725cb83093bc",
@@ -2154,18 +2897,36 @@ const bbdd = [
         "year": 1954.0,
         "ColourRGB": [
             [
-                "0",
-                "0",
-                "0"
+                0,
+                0,
+                0
             ],
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-es41602-2000x1806.jpg",
-        "Object group": "clothes and accessories"
+        "Object group": "clothes and accessories",
+        "Color": [
+            {
+                "colorName": "black",
+                "rgb": [
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "colorName": " white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1901d8af1b50664089cc",
@@ -2197,7 +2958,8 @@ const bbdd = [
         "year": 1996.0,
         "ColourRGB": [],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-kk-1667x1075.jpg",
-        "Object group": "devices"
+        "Object group": "devices",
+        "Color": []
     },
     {
         "_id": "634f1901e09bfd1d9a04b8ef",
@@ -2230,13 +2992,23 @@ const bbdd = [
         "year": 1950.0,
         "ColourRGB": [
             [
-                "0",
-                "0",
-                "255"
+                0,
+                0,
+                255
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2023/04/wsi-imageoptim-bryk_-ehtoollinen1950_arabia_kuvart_8-2-1667x1213.jpg",
-        "Object group": "ornamentation"
+        "Object group": "ornamentation",
+        "Color": [
+            {
+                "colorName": "blue tones",
+                "rgb": [
+                    0,
+                    0,
+                    255
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1901d4227a56290cb6c8",
@@ -2268,13 +3040,23 @@ const bbdd = [
         "year": 1973.0,
         "ColourRGB": [
             [
-                "186",
-                "140",
-                "99"
+                186,
+                140,
+                99
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-aarikka_passi-harry-kivilinna-1327x746.jpg",
-        "Object group": "ornamentation"
+        "Object group": "ornamentation",
+        "Color": [
+            {
+                "colorName": "wood",
+                "rgb": [
+                    186,
+                    140,
+                    99
+                ]
+            }
+        ]
     },
     {
         "_id": "634f1900a45b33465c10ceaf",
@@ -2308,23 +3090,49 @@ const bbdd = [
         "year": 1900.0,
         "ColourRGB": [
             [
-                "165",
-                "42",
-                "42"
+                165,
+                42,
+                42
             ],
             [
-                "0",
-                "128",
-                "0"
+                0,
+                128,
+                0
             ],
             [
-                "33",
-                "165",
-                "183"
+                33,
+                165,
+                183
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/04/wsi-imageoptim-b548-2000x2665.jpg",
-        "Object group": "pots"
+        "Object group": "pots",
+        "Color": [
+            {
+                "colorName": "brown",
+                "rgb": [
+                    165,
+                    42,
+                    42
+                ]
+            },
+            {
+                "colorName": " green",
+                "rgb": [
+                    0,
+                    128,
+                    0
+                ]
+            },
+            {
+                "colorName": " blue-green",
+                "rgb": [
+                    33,
+                    165,
+                    183
+                ]
+            }
+        ]
     },
     {
         "_id": "634f19009d480d2bcc4ac7a2",
@@ -2356,13 +3164,23 @@ const bbdd = [
         "year": 1957.0,
         "ColourRGB": [
             [
-                "165",
-                "42",
-                "42"
+                165,
+                42,
+                42
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-am6077-2000x2667.jpg",
-        "Object group": "pots"
+        "Object group": "pots",
+        "Color": [
+            {
+                "colorName": "brown",
+                "rgb": [
+                    165,
+                    42,
+                    42
+                ]
+            }
+        ]
     },
     {
         "_id": "634f18ff5350725cb83093b9",
@@ -2396,13 +3214,23 @@ const bbdd = [
         "year": 1952.0,
         "ColourRGB": [
             [
-                "186",
-                "140",
-                "99"
+                186,
+                140,
+                99
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/01/wsi-imageoptim-luku9_025492_nurmesniemi_saunajakkara_kuvart-compressor-2000x2074.jpg",
-        "Object group": "furniture"
+        "Object group": "furniture",
+        "Color": [
+            {
+                "colorName": "wood",
+                "rgb": [
+                    186,
+                    140,
+                    99
+                ]
+            }
+        ]
     },
     {
         "_id": "634f18ff05fdc719f0345ae4",
@@ -2434,13 +3262,23 @@ const bbdd = [
         "year": 1936.0,
         "ColourRGB": [
             [
-                "165",
-                "42",
-                "42"
+                181,
+                153,
+                142
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-img_9801-1327x1025.jpg",
-        "Object group": "industrial design"
+        "Object group": "industrial design",
+        "Color": [
+            {
+                "colorName": "rio brown",
+                "rgb": [
+                    181,
+                    153,
+                    142
+                ]
+            }
+        ]
     },
     {
         "_id": "634f18ffd28967637e31c907",
@@ -2474,23 +3312,49 @@ const bbdd = [
         "year": 1900.0,
         "ColourRGB": [
             [
-                "0",
-                "0",
-                "255"
+                0,
+                0,
+                255
             ],
             [
-                "255",
-                "255",
-                "255"
+                255,
+                255,
+                255
             ],
             [
-                "165",
-                "42",
-                "42"
+                165,
+                42,
+                42
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/04/wsi-imageoptim-16101-2000x2667.jpg",
-        "Object group": "pots"
+        "Object group": "pots",
+        "Color": [
+            {
+                "colorName": "blue",
+                "rgb": [
+                    0,
+                    0,
+                    255
+                ]
+            },
+            {
+                "colorName": " white",
+                "rgb": [
+                    255,
+                    255,
+                    255
+                ]
+            },
+            {
+                "colorName": " brown",
+                "rgb": [
+                    165,
+                    42,
+                    42
+                ]
+            }
+        ]
     },
     {
         "_id": "634f18fee09bfd1d9a04b8ec",
@@ -2523,18 +3387,36 @@ const bbdd = [
         "year": 1932.0,
         "ColourRGB": [
             [
-                "0",
-                "0",
-                "0"
+                0,
+                0,
+                0
             ],
             [
-                "223",
-                "215",
-                "200"
+                223,
+                215,
+                200
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/01/wsi-imageoptim-06391_paimio_rt-2000x1372.jpg",
-        "Object group": "furniture"
+        "Object group": "furniture",
+        "Color": [
+            {
+                "colorName": "black",
+                "rgb": [
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "colorName": " birch",
+                "rgb": [
+                    223,
+                    215,
+                    200
+                ]
+            }
+        ]
     },
     {
         "_id": "634f18fed4227a56290cb6c5",
@@ -2566,13 +3448,23 @@ const bbdd = [
         "year": 1968.0,
         "ColourRGB": [
             [
-                "255",
-                "255",
-                "0"
+                255,
+                255,
+                0
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-pastilli-rt-p-2000x1395.jpg",
-        "Object group": "furniture"
+        "Object group": "furniture",
+        "Color": [
+            {
+                "colorName": "yellow",
+                "rgb": [
+                    255,
+                    255,
+                    0
+                ]
+            }
+        ]
     },
     {
         "_id": "634f18feb7693f159a62e2ef",
@@ -2606,18 +3498,36 @@ const bbdd = [
         "year": 1965.0,
         "ColourRGB": [
             [
-                "255",
-                "0",
-                "0"
+                255,
+                0,
+                0
             ],
             [
-                "223",
-                "215",
-                "200"
+                223,
+                215,
+                200
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-syottotuoli-320x410.jpg",
-        "Object group": "furniture"
+        "Object group": "furniture",
+        "Color": [
+            {
+                "colorName": "red",
+                "rgb": [
+                    255,
+                    0,
+                    0
+                ]
+            },
+            {
+                "colorName": " birch",
+                "rgb": [
+                    223,
+                    215,
+                    200
+                ]
+            }
+        ]
     },
     {
         "_id": "634f18fd9d480d2bcc4ac79f",
@@ -2649,13 +3559,23 @@ const bbdd = [
         "year": 1933.0,
         "ColourRGB": [
             [
-                "223",
-                "215",
-                "200"
+                223,
+                215,
+                200
             ]
         ],
         "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/11/wsi-imageoptim-aalto_jakkara-1327x1998.jpg",
-        "Object group": "furniture"
+        "Object group": "furniture",
+        "Color": [
+            {
+                "colorName": "birch",
+                "rgb": [
+                    223,
+                    215,
+                    200
+                ]
+            }
+        ]
     },
     {
         "_id": "634f18fdd8af1b50664089c9",
@@ -2688,18 +3608,36 @@ const bbdd = [
         "year": 1955.0,
         "ColourRGB": [
             [
-                "238",
-                "213",
-                "174"
+                238,
+                213,
+                174
             ],
             [
-                "0",
-                "0",
-                "0"
+                0,
+                0,
+                0
             ]
         ],
         "image": "https://i.postimg.cc/76F876Dk/44164.png",
-        "Object group": "furniture"
+        "Object group": "furniture",
+        "Color": [
+            {
+                "colorName": "pine",
+                "rgb": [
+                    238,
+                    213,
+                    174
+                ]
+            },
+            {
+                "colorName": "black",
+                "rgb": [
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ]
     }
 ]
 

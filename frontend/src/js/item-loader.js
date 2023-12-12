@@ -27,8 +27,11 @@ const itemTemplateRow = `
             <tr>
                 <td class="name">Colours</td>
                 <td class="value">
-                {{#each Colour}}
-                <div class="box" style="background-color: {{this}};"></div>
+                {{#each Color}}
+                {{#with this}}
+                <div class="box" aria-labelledby="color-label" style="background-color: rgb({{rgb}});"></div>
+                <div role="tooltip" id="color-label">{{colorName}}</div>
+                {{/with}}
                 {{/each}}
                 </td>
             </tr>
@@ -65,8 +68,11 @@ const itemTemplateCol = `
             <tr>
                 <td class="name">Colours</td>
                 <td class="value">
-                {{#each Colour}}
-                <div class="box" style="background-color: {{this}};"></div>
+                {{#each Color}}
+                {{#with this}}
+                <div class="box" aria-labelledby="color-label" style="background-color: rgb({{rgb}});"></div>
+                <div role="tooltip" id="color-label">{{colorName}}</div>
+                {{/with}}
                 {{/each}}
                 </td>
             </tr>
