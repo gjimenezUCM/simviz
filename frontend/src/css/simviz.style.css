@@ -66,6 +66,10 @@
 #heatmap-header {
     height: 8%;
 }
+
+#heatmap-header .form-label{
+    font-size: 1.4rem;
+}
 #heatmap-content {
     height: 60%;
     background-color:aliceblue;
