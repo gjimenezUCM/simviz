@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case comparison</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="compare.css">
+</head>
+<body>
+    <div class="container text-center">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th id="item-row" class="col-5">
+                        634f19056c70ef5cf152f235
+                    </th>
+                    <th id="item-sim" class="col-2">
+                        0.835
+                    </th>
+                    <th id="item-col" class="col-5">
+                        634f190ea45b33465c10ceb8
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-5">
+                        <div class="box" aria-labelledby="color-label" style="background-color: rgb(255,165,0);"></div>
+                        <div role="tooltip" id="color-label">orange</div>
+                        <div class="box" aria-labelledby="color-label" style="background-color: rgb(255,255,255);"></div>
+                        <div role="tooltip" id="color-label"> white</div>
+                    </td>
+                    <td class="col-2">
+                        <div class="d-grid">
+                            <div class="att-header d-flex flex-row justify-content-between">
+                                <div class="att-name">Colour</div>
+                                <div class="att-weight" data-weight="0.9"></div>
+                            </div>
+                            <div class="att-value">0.835</div>
+                        </div>
+                    </td>
+                    <td class="col-5">
+                        <div class="box" aria-labelledby="color-label" style="background-color: rgb(255,255,255);"></div>
+                        <div role="tooltip" id="color-label">white</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-5">
+                        C 1810 B
+                    </td>
+                    <td class="col-2">
+                        <div class="d-grid">
+                            <div class="att-header d-flex flex-row justify-content-between">
+                                <div class="att-name">Title</div>
+                                <div class="att-weight" data-weight="0.1"></div>
+                            </div>
+                            <div class="att-value"> - </div>
+                        </div>
+                    </td>
+                    <td class="col-5">
+                        TEEMA (model BAU)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-5">
+                        Karjalainen, Heikki, J\u00c3\u00a4ntti, Mikko
+                    </td>
+                    <td class="col-2">
+                        <div class="d-grid">
+                            <div class="att-header d-flex flex-row justify-content-between">
+                                <div class="att-name">Author</div>
+                                <div class="att-weight" data-weight="0"></div>
+                            </div>
+                            <div class="att-value"> - </div>
+                        </div>
+                    </td>
+                    <td class="col-5">
+                        Franck, Kaj
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-5">
+                        1965
+                    </td>
+                    <td class="col-2">
+                        <div class="d-grid">
+                            <div class="att-header d-flex flex-row justify-content-between">
+                                <div class="att-name">
+                                    Year
+                                </div>
+                                <div class="att-weight" data-weight="0"></div>
+                            </div>
+                            <div class="att-value"> - </div>
+                        </div>
+                    </td>
+                    <td class="col-5">
+                        1981
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-5">
+                        <img class="img-fluid"
+                            src="https://apicollection.designmuseum.fi/wp-content/uploads/2017/11/wsi-imageoptim-mehulinko-320x378.jpg">
+                    </td>
+                    <td class="col-2">
+                        <div class="d-grid">
+                            <div class="att-header d-flex flex-row justify-content-between">
+                                <div class="att-name">Color</div>
+                                <div class="att-weight" data-weight="0"></div>
+                            </div>
+                            <div class="att-value"> - </div>
+                        </div>
+                    </td>
+                    <td class="col-5">
+                        <img class="img-fluid"
+                            src="https://i.postimg.cc/XNdtmn4r/44178.png">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="./js/compare.js"></script>
+
+</body>
+</html>
