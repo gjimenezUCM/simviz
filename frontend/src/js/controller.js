@@ -35,16 +35,16 @@ export class Controller {
 
     updateItemsInfo(rowItemId, colItemId, similarityValue, color) {
         if (rowItemId) {
-            this.itemLoader.changeRowItemById(rowItemId);
+            //this.itemLoader.changeRowItemById(rowItemId);
         } else {
-            this.itemLoader.resetRowItem();
+            //this.itemLoader.resetRowItem();
         }
 
         if (colItemId) {
-            this.itemLoader.changeColItemById(colItemId);
+            //this.itemLoader.changeColItemById(colItemId);
             this.itemLoader.updateSimilarityValue(similarityValue, color);
         } else {
-            this.itemLoader.resetColItem();
+            //this.itemLoader.resetColItem();
             this.itemLoader.updateSimilarityValue(null, null);
         }
         

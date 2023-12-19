@@ -48,6 +48,7 @@ export class Histogram {
         };
         let layout = {
             paper_bgcolor: 'transparent',
+            plot_bgcolor: "transparent",
             margin: {
                 l: 0,
                 r: 10,

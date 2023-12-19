@@ -88,3 +88,12 @@ img {
 .att-weight-bar {
     background-color: #dda8f8;
 }
+
+#item-sim-value {
+    display: block;
+    background-color: whitesmoke;
+    color: black;
+    font-size: 1.2rem;
+    margin: 0.6em;
+    padding: 0.1em;
+}
