@@ -4,7 +4,7 @@ import { Histogram } from "./histogram";
 export class Controller {
     constructor(itemIds, simData) {
         this.itemLoader = itemLoader;
-        this.itemLoader.resetItems();
+        //this.itemLoader.resetItems();
 
         this.histogramContainer = document.getElementById('histogram');
         this.theHistogram = new Histogram(this, itemIds, simData, this.histogramContainer);

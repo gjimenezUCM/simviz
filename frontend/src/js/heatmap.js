@@ -37,15 +37,15 @@ export class Heatmap {
             colorscale: magmaColorscaleValue,
             showscale: true,
             hovertemplate: "id: %{y}<br>id: %{x}<br>Similarity: %{z}<extra></extra>",
-            colorbar: {
-                orientation: 'h',
-                x:0.01,
-                y:1,
-                yanchor:'top',
-                xanchor: 'left',
-                xref: 'container',
-                yref: 'container'
-            },
+            // colorbar: {
+            //     orientation: 'v',
+            //     x:0.99,
+            //     y:0,
+            //     yanchor:'bottom',
+            //     xanchor: 'right',
+            //     xref: 'container',
+            //     yref: 'container'
+            // },
         }];
 
 
@@ -55,7 +55,7 @@ export class Heatmap {
                 l: 10,
                 r: 10,
                 b: 10,
-                t: 0,
+                t: 10,
             },
             xaxis: {
                 // No tick labels

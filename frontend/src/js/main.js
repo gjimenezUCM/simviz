@@ -15,6 +15,8 @@ import { Histogram } from "./histogram";
 import { Controller } from "./controller";
 import { FileLoader } from "./fileLoader";
 
+import { populateWeights } from './compare';
+
 let itemIds = daoItems.getIds();
 
 function populateIdSelect(selectNode, ids) {
@@ -29,6 +31,7 @@ function populateIdSelect(selectNode, ids) {
 window.addEventListener("load", initApp);
 
 async function initApp() {
+    populateWeights();
     let fileLoader = new FileLoader();
     const simFiles = fileLoader.getFiles();
     let simMenu = document.getElementById("similarity-dropdown-menu");

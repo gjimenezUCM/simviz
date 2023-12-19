@@ -33,10 +33,10 @@ export class Histogram {
         let containerWidth = this.containerNode.offsetWidth;
         let containerHeight = this.containerNode.parentNode.offsetHeight;
         let trace = {
-            x: this.data,
+            y: this.data,
             type: 'histogram',
             histnorm: 'percent',
-            xbins: {
+            ybins: {
                 start: 0.0,
                 size: 0.10000001, // Para que en el último bin entre el 1.0 y no desplace demasiado el resto
                 end: 1.0
@@ -44,15 +44,15 @@ export class Histogram {
             marker: {
                 color: magmaColorscaleValue
             },
-            hovertemplate: "%{y}%<extra></extra>",
+            hovertemplate: "%{x}%<extra></extra>",
         };
         let layout = {
             paper_bgcolor: 'transparent',
             margin: {
-                l: 10,
+                l: 0,
                 r: 10,
-                b: 0,
-                t: 20,
+                b: 10,
+                t: 10,
             },
             xaxis: {
                 // No tick labels

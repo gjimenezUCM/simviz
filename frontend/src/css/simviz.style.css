@@ -2,76 +2,28 @@
     height: 5vh;
     font-size: 1.3rem;
 }
-#content {
-    height: 95vh;
+
+#heatmap-container {
+    height: 35vh;
 }
 
-#item-row {
-    height: 45%;
-    overflow: auto;
-    margin: auto 2px;
-    border: black 3px solid;
-    border-bottom: none;
+#item-comparer {
+    height: 60vh;
+    margin-top: 2vh;
 }
-
-#item-col {
-    height: 45%;
-    overflow: auto;
-    margin: auto 2px;
-    border: black 3px solid;
-    border-top: none;
-}
-
-#items img {
-    max-height: 25vh;
-}
-
-#item-sim {
-    margin: auto 2px;
-}
-
-#item-sim-row-container {
-    border: black 3px solid;
-    border-top: none;
-    padding-bottom: 12px;
-    margin-bottom: 25px;
-}
-
-#item-sim-col-container {
-    border: black 3px solid;
-    border-bottom: none;
-    padding-top: 12px;
-    margin-top: 25px;
-}
-
-#item-sim-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: black 3px solid;
-    border-left: none;
-    border-right: none;
-}
-
-#item-sim-value{
-    display: block;
-    background-color: whitesmoke;
-    color: black;
-    font-size: 1.2rem;
-    margin: 0.6em;
-    padding: 0.1em;
-}
-
 
 #heatmap-header {
     height: 8%;
+}
+#plot-container {
+    height: 92%; 
 }
 
 #heatmap-header .form-label{
     font-size: 1.4rem;
 }
 #heatmap-content {
-    height: 60%;
+    height: 100%;
     background-color:aliceblue;
 }
 
@@ -80,7 +32,7 @@
 }
 
 #histogram-content {
-    height: 30%;
+    height: 100%;
     background-color: aliceblue;
 }
 
@@ -110,4 +62,29 @@
 .box:hover+[role="tooltip"],
 .box:focus+[role="tooltip"] {
     display: inline-block;
+}
+
+img {
+    max-height: 15vh;
+}
+
+.att-header {
+    margin-bottom: 0.4em;
+}
+
+.att-name {
+    font-weight: 700;
+}
+
+.att-value {
+    margin-left: 1em;
+}
+
+.att-weight {
+    font-size: 12px;
+    line-height: 1.3em;
+}
+
+.att-weight-bar {
+    background-color: #dda8f8;
 }

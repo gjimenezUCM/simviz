@@ -1,0 +1,113 @@
+#menu {
+    height: 5vh;
+    font-size: 1.3rem;
+}
+#content {
+    height: 95vh;
+}
+
+#item-row {
+    height: 45%;
+    overflow: auto;
+    margin: auto 2px;
+    border: black 3px solid;
+    border-bottom: none;
+}
+
+#item-col {
+    height: 45%;
+    overflow: auto;
+    margin: auto 2px;
+    border: black 3px solid;
+    border-top: none;
+}
+
+#items img {
+    max-height: 25vh;
+}
+
+#item-sim {
+    margin: auto 2px;
+}
+
+#item-sim-row-container {
+    border: black 3px solid;
+    border-top: none;
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+}
+
+#item-sim-col-container {
+    border: black 3px solid;
+    border-bottom: none;
+    padding-top: 12px;
+    margin-top: 25px;
+}
+
+#item-sim-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: black 3px solid;
+    border-left: none;
+    border-right: none;
+}
+
+#item-sim-value{
+    display: block;
+    background-color: whitesmoke;
+    color: black;
+    font-size: 1.2rem;
+    margin: 0.6em;
+    padding: 0.1em;
+}
+
+
+#heatmap-header {
+    height: 8%;
+}
+
+#heatmap-header .form-label{
+    font-size: 1.4rem;
+}
+#heatmap-content {
+    height: 60%;
+    background-color:aliceblue;
+}
+
+#heatmap {
+    padding: 0;
+}
+
+#histogram-content {
+    height: 30%;
+    background-color: aliceblue;
+}
+
+#histogram {
+    padding: 0;
+}
+
+#reset-filter-btn{
+    position: relative;
+    width: 100px;
+    bottom: 100px;
+    left: 100px;
+}
+
+.box {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid black;
+}
+
+[role="tooltip"] {
+    display: none;
+}
+
+.box:hover+[role="tooltip"],
+.box:focus+[role="tooltip"] {
+    display: inline-block;
+}
