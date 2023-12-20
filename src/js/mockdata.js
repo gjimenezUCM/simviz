@@ -27,7 +27,7 @@ class DAOItems {
 const bbdd = [
     {
         "_id": "634f19096c70ef5cf152f237",
-        "title": "Scandia",
+        "tittle": "Scandia",
         "Object": "CUTLERY",
         "Special name": "*",
         "id": "44171",
@@ -75,7 +75,7 @@ const bbdd = [
     },
     {
         "_id": "634f1908b7693f159a62e2f6",
-        "title": "Savonia",
+        "tittle": "Savonia",
         "Object": "CUTLERY",
         "Special name": "*",
         "id": "44168",
@@ -123,7 +123,7 @@ const bbdd = [
     },
     {
         "_id": "636bf322a8e46b2e35302848",
-        "title": "Ultima Thule 2332",
+        "tittle": "Ultima Thule 2332",
         "Object": "BOWL",
         "Special name": "fruit or dessert bowl",
         "id": "14219",
@@ -156,7 +156,7 @@ const bbdd = [
     },
     {
         "_id": "634f1907d8af1b50664089d0",
-        "title": "Japanese teapot",
+        "tittle": "Japanese teapot",
         "Object": "JUG",
         "Special name": "teapot",
         "id": "B561",
@@ -218,7 +218,7 @@ const bbdd = [
     },
     {
         "_id": "634f1903a45b33465c10ceb2",
-        "title": "Windbreaker",
+        "tittle": "Windbreaker",
         "Object": "JACKET",
         "Special name": "Jacket",
         "id": "44166",
@@ -308,7 +308,7 @@ const bbdd = [
     },
     {
         "_id": "634f1912d8af1b50664089d6",
-        "title": "Rautaristi (Iron Cross)",
+        "tittle": "Rautaristi (Iron Cross)",
         "Object": "WALL TEXTILE",
         "Special name": "ryijy rug",
         "id": "16850",
@@ -371,7 +371,7 @@ const bbdd = [
     },
     {
         "_id": "634f1912e09bfd1d9a04b8f9",
-        "title": "Valkoiset hevoset (White Horses)",
+        "tittle": "Valkoiset hevoset (White Horses)",
         "Object": "WALL TEXTILE",
         "Special name": "ryijy rug",
         "id": "13906",
@@ -448,7 +448,7 @@ const bbdd = [
     },
     {
         "_id": "634f1912d4227a56290cb6d2",
-        "title": "Liekki (Flame)",
+        "tittle": "Liekki (Flame)",
         "Object": "WALL TEXTILE, ART TEXTILE",
         "Special name": "ryijy rug",
         "id": "17876",
@@ -480,7 +480,7 @@ const bbdd = [
     },
     {
         "_id": "634f1911d28967637e31c912",
-        "title": "Nelj\u00e4 v\u00e4ri\u00e4 (Four Colours)",
+        "tittle": "Nelj\u00e4 v\u00e4ri\u00e4 (Four Colours)",
         "Object": "WALL TEXTILE",
         "Special name": "ryijy rug",
         "id": "32628",
@@ -511,7 +511,7 @@ const bbdd = [
     },
     {
         "_id": "634f1911a45b33465c10ceba",
-        "title": "Seebra (Zebra)",
+        "tittle": "Seebra (Zebra)",
         "Object": "WALL TEXTILE",
         "Special name": "ryijy rug",
         "id": "32627",
@@ -574,7 +574,7 @@ const bbdd = [
     },
     {
         "_id": "634f19119d480d2bcc4ac7ac",
-        "title": "Suopursuja (Marsh Tea)",
+        "tittle": "Suopursuja (Marsh Tea)",
         "Object": "WALL TEXTILE",
         "Special name": "ryijy rug",
         "id": "16851",
@@ -624,7 +624,7 @@ const bbdd = [
     },
     {
         "_id": "634f19106c70ef5cf152f23b",
-        "title": "Raitakaita",
+        "tittle": "Raitakaita",
         "Object": "COFFEE CUP",
         "Special name": "*",
         "id": "44184",
@@ -686,7 +686,7 @@ const bbdd = [
     },
     {
         "_id": "634f19105350725cb83093c4",
-        "title": "Suo (Marsh)",
+        "tittle": "Suo (Marsh)",
         "Object": "WALL TEXTILE",
         "Special name": "ryijy rug",
         "id": "32361",
@@ -734,7 +734,7 @@ const bbdd = [
     },
     {
         "_id": "634f191005fdc719f0345aef",
-        "title": "Simpukka (Sea Shell)",
+        "tittle": "Simpukka (Sea Shell)",
         "Object": "RUG",
         "Special name": "rug",
         "id": "33288",
@@ -810,7 +810,7 @@ const bbdd = [
     },
     {
         "_id": "634f190fe09bfd1d9a04b8f7",
-        "title": "Flora (model S)",
+        "tittle": "Flora (model S)",
         "Object": "COFFEE CUP",
         "Special name": "*",
         "id": "44181",
@@ -886,7 +886,7 @@ const bbdd = [
     },
     {
         "_id": "634f190fd4227a56290cb6d0",
-        "title": "Think and drink",
+        "tittle": "Think and drink",
         "Object": "COFFEE CUP",
         "Special name": "*",
         "id": "44182",
@@ -948,7 +948,7 @@ const bbdd = [
     },
     {
         "_id": "634f190fb7693f159a62e2fa",
-        "title": "Warm",
+        "tittle": "Warm",
         "Object": "COFFEE CUP",
         "Special name": "*",
         "id": "44183",
@@ -1011,7 +1011,7 @@ const bbdd = [
     },
     {
         "_id": "634f190ea45b33465c10ceb8",
-        "title": "Teema (model BAU)",
+        "tittle": "Teema (model BAU)",
         "Object": "MUG",
         "Special name": "*",
         "id": "44178",
@@ -1059,7 +1059,7 @@ const bbdd = [
     },
     {
         "_id": "634f190e9d480d2bcc4ac7aa",
-        "title": "Ruska (model S)",
+        "tittle": "Ruska (model S)",
         "Object": "COFFEE CUP",
         "Special name": "*",
         "id": "44179",
@@ -1107,7 +1107,7 @@ const bbdd = [
     },
     {
         "_id": "634f190ed8af1b50664089d4",
-        "title": "Katrilli",
+        "tittle": "Katrilli",
         "Object": "MUG",
         "Special name": "*",
         "id": "44180",
@@ -1155,7 +1155,7 @@ const bbdd = [
     },
     {
         "_id": "634f190d5350725cb83093c2",
-        "title": "Iris (model U2)",
+        "tittle": "Iris (model U2)",
         "Object": "MUG",
         "Special name": "*",
         "id": "44175",
@@ -1231,7 +1231,7 @@ const bbdd = [
     },
     {
         "_id": "634f190d05fdc719f0345aed",
-        "title": "Myrna (malli AX)",
+        "tittle": "Myrna (malli AX)",
         "Object": "COFFEE CUP",
         "Special name": "*",
         "id": "44176",
@@ -1307,7 +1307,7 @@ const bbdd = [
     },
     {
         "_id": "634f190dd28967637e31c910",
-        "title": "Rice porcelain cup (model FK/VA)",
+        "tittle": "Rice porcelain cup (model FK/VA)",
         "Object": "COFFEE CUP",
         "Special name": "*",
         "id": "44177",
@@ -1355,7 +1355,7 @@ const bbdd = [
     },
     {
         "_id": "634f190cd4227a56290cb6ce",
-        "title": "i-102 (Aroma 2002)",
+        "tittle": "i-102 (Aroma 2002)",
         "Object": "DRINKING GLASS",
         "Special name": "aroma glass",
         "id": "7762",
@@ -1403,7 +1403,7 @@ const bbdd = [
     },
     {
         "_id": "634f190cb7693f159a62e2f8",
-        "title": "I-lasi 2004",
+        "tittle": "I-lasi 2004",
         "Object": "DRINKING GLASS",
         "Special name": "*",
         "id": "ILM7606",
@@ -1465,7 +1465,7 @@ const bbdd = [
     },
     {
         "_id": "634f190c6c70ef5cf152f239",
-        "title": "Ultima Thule (18 cl)",
+        "tittle": "Ultima Thule (18 cl)",
         "Object": "DRINKING GLASS",
         "Special name": "cocktail glass",
         "id": "14218",
@@ -1498,7 +1498,7 @@ const bbdd = [
     },
     {
         "_id": "634f190b9d480d2bcc4ac7a8",
-        "title": "1718",
+        "tittle": "1718",
         "Object": "GLASS",
         "Special name": "stackable drinking glass",
         "id": "10026",
@@ -1546,7 +1546,7 @@ const bbdd = [
     },
     {
         "_id": "634f190bd8af1b50664089d2",
-        "title": "2744 cocktail glass",
+        "tittle": "2744 cocktail glass",
         "Object": "GLASS",
         "Special name": "drinking glass",
         "id": "12595",
@@ -1594,7 +1594,7 @@ const bbdd = [
     },
     {
         "_id": "634f190be09bfd1d9a04b8f5",
-        "title": "1610",
+        "tittle": "1610",
         "Object": "JUG",
         "Special name": "cocktail mixer",
         "id": "22769",
@@ -1656,7 +1656,7 @@ const bbdd = [
     },
     {
         "_id": "634f190905fdc719f0345aeb",
-        "title": "MK",
+        "tittle": "MK",
         "Object": "CREAMER",
         "Special name": "cream bottle",
         "id": "AM1699",
@@ -1704,7 +1704,7 @@ const bbdd = [
     },
     {
         "_id": "634f190ad28967637e31c90e",
-        "title": "BAU, Muumi",
+        "tittle": "BAU, Muumi",
         "Object": "MUG",
         "Special name": "mug",
         "id": "44185",
@@ -1780,7 +1780,7 @@ const bbdd = [
     },
     {
         "_id": "634f190aa45b33465c10ceb6",
-        "title": "1618",
+        "tittle": "1618",
         "Object": "JUG",
         "Special name": "jug of a stackable glass set",
         "id": "A652",
@@ -1813,7 +1813,7 @@ const bbdd = [
     },
     {
         "_id": "634f19095350725cb83093c0",
-        "title": "Fiskars scissors",
+        "tittle": "Fiskars scissors",
         "Object": "SCISSORS",
         "Special name": "*",
         "id": "44174",
@@ -1862,7 +1862,7 @@ const bbdd = [
     },
     {
         "_id": "634f1908e09bfd1d9a04b8f3",
-        "title": "Pehtoori 2615",
+        "tittle": "Pehtoori 2615",
         "Object": "POT",
         "Special name": "coffee pot",
         "id": "8182",
@@ -1926,7 +1926,7 @@ const bbdd = [
     },
     {
         "_id": "634f1908d4227a56290cb6cc",
-        "title": "Cast Iron Pot",
+        "tittle": "Cast Iron Pot",
         "Object": "CASSEROLE",
         "Special name": "cast iron casserole with a lid",
         "id": "C370",
@@ -1975,7 +1975,7 @@ const bbdd = [
     },
     {
         "_id": "634f1907a45b33465c10ceb4",
-        "title": "Subway bench",
+        "tittle": "Subway bench",
         "Object": "SEAT",
         "Special name": "bench",
         "id": "41816",
@@ -2023,7 +2023,7 @@ const bbdd = [
     },
     {
         "_id": "634f19079d480d2bcc4ac7a6",
-        "title": "Garbage Bin",
+        "tittle": "Garbage Bin",
         "Object": "GARBAGE BIN",
         "Special name": "*",
         "id": "44167",
@@ -2071,7 +2071,7 @@ const bbdd = [
     },
     {
         "_id": "634f19065350725cb83093be",
-        "title": "Jopo",
+        "tittle": "Jopo",
         "Object": "BICYCLE",
         "Special name": "*",
         "id": "11780",
@@ -2133,7 +2133,7 @@ const bbdd = [
     },
     {
         "_id": "634f190605fdc719f0345ae9",
-        "title": "Solifer Export",
+        "tittle": "Solifer Export",
         "Object": "LIGHT MOTORCYCLE",
         "Special name": "moped",
         "id": "32271",
@@ -2224,7 +2224,7 @@ const bbdd = [
     },
     {
         "_id": "634f1906d28967637e31c90c",
-        "title": "Jerry",
+        "tittle": "Jerry",
         "Object": "CANISTER, CONTAINER",
         "Special name": "petrol canister",
         "id": "32030",
@@ -2272,7 +2272,7 @@ const bbdd = [
     },
     {
         "_id": "634f1905d4227a56290cb6ca",
-        "title": "Mobira Talkman 450",
+        "tittle": "Mobira Talkman 450",
         "Object": "TELEPHONE",
         "Special name": "portable phone",
         "id": "41379",
@@ -2321,7 +2321,7 @@ const bbdd = [
     },
     {
         "_id": "634f1905b7693f159a62e2f4",
-        "title": "Asa Futura",
+        "tittle": "Asa Futura",
         "Object": "TELEVISION",
         "Special name": "*",
         "id": "20260",
@@ -2370,7 +2370,7 @@ const bbdd = [
     },
     {
         "_id": "634f19056c70ef5cf152f235",
-        "title": "C 1810 B",
+        "tittle": "C 1810 B",
         "Object": "JUICER",
         "Special name": "*",
         "id": "13154",
@@ -2432,7 +2432,7 @@ const bbdd = [
     },
     {
         "_id": "634f19049d480d2bcc4ac7a4",
-        "title": "Planetaariset Laaksot (Planetary Valleys)",
+        "tittle": "Planetaariset Laaksot (Planetary Valleys)",
         "Object": "PIECE OF JEWELRY",
         "Special name": "necklace",
         "id": "38267",
@@ -2480,7 +2480,7 @@ const bbdd = [
     },
     {
         "_id": "634f1904d8af1b50664089ce",
-        "title": "Bo boo",
+        "tittle": "Bo boo",
         "Object": "BAG",
         "Special name": "shoulder bag",
         "id": "41581",
@@ -2543,7 +2543,7 @@ const bbdd = [
     },
     {
         "_id": "634f1904e09bfd1d9a04b8f1",
-        "title": "Nokia 9210 Communicator",
+        "tittle": "Nokia 9210 Communicator",
         "Object": "TELEPHONE",
         "Special name": "Communicator, smart phone",
         "id": "41377",
@@ -2592,7 +2592,7 @@ const bbdd = [
     },
     {
         "_id": "634f190305fdc719f0345ae7",
-        "title": "Monrepos, fabric: Keidas",
+        "tittle": "Monrepos, fabric: Keidas",
         "Object": "DRESS",
         "Special name": "long dress",
         "id": "30074",
@@ -2668,7 +2668,7 @@ const bbdd = [
     },
     {
         "_id": "634f1903d28967637e31c90a",
-        "title": "Model 4, fabric: Sormus",
+        "tittle": "Model 4, fabric: Sormus",
         "Object": "DRESS",
         "Special name": "dress",
         "id": "27303",
@@ -2716,7 +2716,7 @@ const bbdd = [
     },
     {
         "_id": "634f1902b7693f159a62e2f2",
-        "title": "Lappkojs",
+        "tittle": "Lappkojs",
         "Object": "PLAYTHING",
         "Special name": "doll",
         "id": "38518",
@@ -2792,7 +2792,7 @@ const bbdd = [
     },
     {
         "_id": "634f19026c70ef5cf152f231",
-        "title": "Fasaani 939.015.91 (Pheasant)",
+        "tittle": "Fasaani 939.015.91 (Pheasant)",
         "Object": "GLASS SCULPTURE",
         "Special name": "bird",
         "id": "13081",
@@ -2868,7 +2868,7 @@ const bbdd = [
     },
     {
         "_id": "634f19025350725cb83093bc",
-        "title": "Jokapoika, fabric: Piccolo",
+        "tittle": "Jokapoika, fabric: Piccolo",
         "Object": "BLOUSE",
         "Special name": "shirt",
         "id": "41821",
@@ -2930,7 +2930,7 @@ const bbdd = [
     },
     {
         "_id": "634f1901d8af1b50664089cc",
-        "title": "Block",
+        "tittle": "Block",
         "Object": "LIGHT",
         "Special name": "desk lamp",
         "id": "38467",
@@ -2963,7 +2963,7 @@ const bbdd = [
     },
     {
         "_id": "634f1901e09bfd1d9a04b8ef",
-        "title": "Viimeinen ateria (The Last Supper)",
+        "tittle": "Viimeinen ateria (The Last Supper)",
         "Object": "CERAMIC TILE",
         "Special name": "*",
         "id": "35971",
@@ -3012,7 +3012,7 @@ const bbdd = [
     },
     {
         "_id": "634f1901d4227a56290cb6c8",
-        "title": "P\u00e4ssi (Ram)",
+        "tittle": "P\u00e4ssi (Ram)",
         "Object": "DECORATIVE OBJECT",
         "Special name": "table decoration",
         "id": "41768",
@@ -3060,7 +3060,7 @@ const bbdd = [
     },
     {
         "_id": "634f1900a45b33465c10ceaf",
-        "title": "W19",
+        "tittle": "W19",
         "Object": "VASE",
         "Special name": "*",
         "id": "B548",
@@ -3136,7 +3136,7 @@ const bbdd = [
     },
     {
         "_id": "634f19009d480d2bcc4ac7a2",
-        "title": "Salmenhaara vase",
+        "tittle": "Salmenhaara vase",
         "Object": "VASE",
         "Special name": "*",
         "id": "17248",
@@ -3184,7 +3184,7 @@ const bbdd = [
     },
     {
         "_id": "634f18ff5350725cb83093b9",
-        "title": "Sauna stool",
+        "tittle": "Sauna stool",
         "Object": "SEAT",
         "Special name": "stool",
         "id": "9321",
@@ -3234,7 +3234,7 @@ const bbdd = [
     },
     {
         "_id": "634f18ff05fdc719f0345ae4",
-        "title": "Savoy vase",
+        "tittle": "Savoy vase",
         "Object": "VASE",
         "Special name": "*",
         "id": "41793",
@@ -3282,7 +3282,7 @@ const bbdd = [
     },
     {
         "_id": "634f18ffd28967637e31c907",
-        "title": "Finch vase",
+        "tittle": "Finch vase",
         "Object": "VASE",
         "Special name": "*",
         "id": "16101",
@@ -3358,7 +3358,7 @@ const bbdd = [
     },
     {
         "_id": "634f18fee09bfd1d9a04b8ec",
-        "title": "Paimio / Armchair 41",
+        "tittle": "Paimio / Armchair 41",
         "Object": "CHAIR",
         "Special name": "armchair",
         "id": "9249",
@@ -3420,7 +3420,7 @@ const bbdd = [
     },
     {
         "_id": "634f18fed4227a56290cb6c5",
-        "title": "Pastille",
+        "tittle": "Pastille",
         "Object": "CHAIR",
         "Special name": "armchair",
         "id": "44165",
@@ -3468,7 +3468,7 @@ const bbdd = [
     },
     {
         "_id": "634f18feb7693f159a62e2ef",
-        "title": "High chair 616",
+        "tittle": "High chair 616",
         "Object": "CHAIR",
         "Special name": "high chair",
         "id": "9226",
@@ -3531,7 +3531,7 @@ const bbdd = [
     },
     {
         "_id": "634f18fd9d480d2bcc4ac79f",
-        "title": "Stool 60",
+        "tittle": "Stool 60",
         "Object": "CHAIR",
         "Special name": "stool",
         "id": "44163",
@@ -3579,7 +3579,7 @@ const bbdd = [
     },
     {
         "_id": "634f18fdd8af1b50664089c9",
-        "title": "Pirkka",
+        "tittle": "Pirkka",
         "Object": "CHAIR",
         "Special name": "Small chair",
         "id": "44164",

@@ -4,52 +4,50 @@ import { Histogram } from "./histogram";
 export class Controller {
     constructor(itemIds, simData) {
         this.itemLoader = itemLoader;
-        this.itemLoader.resetItems();
-        if (simData){
-            this.histogramContainer = document.getElementById('histogram');
-            this.theHistogram = new Histogram(this, itemIds, simData, this.histogramContainer);
+        //this.itemLoader.resetItems();
 
-            this.heatmapContainer = document.getElementById('heatmap');
-            this.theHeatmap = new Heatmap(this, itemIds, simData, this.heatmapContainer);
+        this.histogramContainer = document.getElementById('histogram');
+        this.theHistogram = new Histogram(this, itemIds, simData, this.histogramContainer);
 
-            this.itemIds = itemIds;
-            this.simData = simData;
-            this.heatmapSelect = document.getElementById('heatmap-filter-select');
-            this._populateItemIdSelect();
-            this.heatmapSelect.addEventListener("change", (event) => {
-                if (this.heatmapSelect.value !== '*') {
-                    this.filterByItemId(this.heatmapSelect.value);
-                    this.itemLoader.changeRowItemById(this.heatmapSelect.value);
-                    this.itemLoader.resetColItem();
-                }
-            });
-            itemLoader.setController(this);
-            this.resetButton = document.getElementById('reset-filter-btn');
-            this.resetButton.addEventListener('click', (event) => {
-                this.theHeatmap.reset();
-                this.heatmapSelect.selectedIndex = 0;
-                itemLoader.resetItems();
-                this.resetButton.classList.add("visually-hidden");
-            });
-        }
+        this.heatmapContainer = document.getElementById('heatmap');
+        this.theHeatmap = new Heatmap(this, itemIds, simData, this.heatmapContainer);
 
-        
+        this.itemIds = itemIds;
+        this.simData = simData;
+        this.heatmapSelect = document.getElementById('heatmap-filter-select');
+        this._populateItemIdSelect();
+        this.heatmapSelect.addEventListener("change", (event) => {
+            if (this.heatmapSelect.value !== '*') {
+                this.filterByItemId(this.heatmapSelect.value);
+                //this.itemLoader.changeRowItemById(this.heatmapSelect.value);
+                //this.itemLoader.resetColItem();
+            }
+        });
+        itemLoader.setController(this);
+        this.resetButton = document.getElementById('reset-filter-btn');
+        this.resetButton.addEventListener('click', (event) => {
+            this.theHeatmap.reset();
+            this.heatmapSelect.selectedIndex = 0;
+            itemLoader.resetItems();
+            this.resetButton.classList.add("visually-hidden");
+        });
     }
 
     updateItemsInfo(rowItemId, colItemId, similarityValue, color) {
         if (rowItemId) {
-            this.itemLoader.changeRowItemById(rowItemId);
+            //this.itemLoader.changeRowItemById(rowItemId);
         } else {
-            this.itemLoader.resetRowItem();
+            //this.itemLoader.resetRowItem();
         }
 
         if (colItemId) {
-            this.itemLoader.changeColItemById(colItemId);
+            //this.itemLoader.changeColItemById(colItemId);
             this.itemLoader.updateSimilarityValue(similarityValue, color);
         } else {
-            this.itemLoader.resetColItem();
+            //this.itemLoader.resetColItem();
             this.itemLoader.updateSimilarityValue(null, null);
         }
+        
     }
 
     updateSelectedItem(itemId) {
