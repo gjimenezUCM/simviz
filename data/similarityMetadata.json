@@ -1,0 +1,26 @@
+{
+    "similarityDescription": {
+        "Color": {
+            "simFunction": "equals",
+            "simWeight": 0.5
+        },
+        "title": {
+            "simFunction": "equals",
+            "simWeight": 0.5           
+        }
+
+    },
+    "similarityData": [
+        {
+            "id1": "fkdlsjflñs",
+            "id2": "fkjdslfjdslkfjd",
+            "value": {
+                "global": 0.835,
+                "local": {
+                    "Color": 0.800,
+                    "title": 0.035
+                }
+            }
+        }
+    ]
+}
