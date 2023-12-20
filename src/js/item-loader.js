@@ -1,180 +1,96 @@
 import Handlebars from "handlebars";
 import { daoItems } from './mockdata';
 
-const itemTemplateRow = `
-    <div class="item d-flex align-items-center">
-        {{#if image}}
-        <div class="p-5">
-        <img class="img-fluid" src="{{image}}"/>
-        </div>
-        {{/if}}
-        <div class="item-desc-table flex-grow-1 p-5 align-self-start">
-            <table class="table table-striped">
-            <tbody>
-            <tr>
-                <td class="name">Title</td>
-                <td class="value">{{tittle}}</td>
-            </tr>
-            <tr>
-                <td class="name">Author</td>
-                <td class="value">{{author}}</td>
-            </tr>
-            <tr>
-                <td class="name">Year</td>
-                <td class="value">{{year}}</td>
-            </tr>
-            {{#if Colour}}
-            <tr>
-                <td class="name">Colours</td>
-                <td class="value">
-                {{#each Color}}
-                {{#with this}}
-                <div class="box" aria-labelledby="color-label" style="background-color: rgb({{rgb}});"></div>
-                <div role="tooltip" id="color-label">{{colorName}}</div>
-                {{/with}}
-                {{/each}}
-                </td>
-            </tr>
-            {{/if}}
-            </tbody>
-            </table>
-        </div>
-    </div>
+const basicAtributeTemplate = `
+    <td class="col-5">
+        {{aString}}
+    </td>
 `;
 
-const itemTemplateCol = `
-    <div class="item d-flex align-items-center flex-row-reverse">
-        {{#if image}}
-        <div class="p-5">
+const colorAttributeTemplate = `
+    <td class="col-5">
+        {{#each Color}}
+        {{#with this}}
+        <div class="box" aria-labelledby="color-label" style="background-color: rgb({{rgb}});"></div>
+        <div role="tooltip" id="color-label">{{colorName}}</div>
+        {{/with}}
+        {{/each}}
+    </td>
+`;
+
+const imageAttributeTemplate = `
+    <td class="col-5">
         <img class="img-fluid" src="{{image}}"/>
-        </div>
-        {{/if}}
-        <div class="item-desc-table flex-grow-1 p-5 align-self-start">
-            <table class="table table-striped">
-            <tbody>
-            <tr>
-                <td class="name">Title</td>
-                <td class="value">{{tittle}}</td>
-            </tr>
-            <tr>
-                <td class="name">Author</td>
-                <td class="value">{{author}}</td>
-            </tr>
-            <tr>
-                <td class="name">Year</td>
-                <td class="value">{{year}}</td>
-            </tr>
-            {{#if Colour}}
-            <tr>
-                <td class="name">Colours</td>
-                <td class="value">
-                {{#each Color}}
-                {{#with this}}
-                <div class="box" aria-labelledby="color-label" style="background-color: rgb({{rgb}});"></div>
-                <div role="tooltip" id="color-label">{{colorName}}</div>
-                {{/with}}
-                {{/each}}
-                </td>
-            </tr>
-            {{/if}}
-            </tbody>
-            </table>
-        </div>
-    </div>
+    </td>
 `;
 
 const mockItem = {
     _id: "Item Id",
-    tittle: "Item title",
+    title: "Item title",
+    author: "Item author",
+    year: "Item year",
+    color: [],
     image: "./images/placeholder.jpg"
 }
 
 const itemRowSelectorButton = '#heatmap-filter-btn-row';
 const itemColSelectorButton = '#heatmap-filter-btn-col';
+const itemRowPrefix  = "item-row";
+const itemColPrefix = "item-col"
+const idName = "-id";
+
+const basicAtts = ["title", "author", "year", "Color", "image"];
 class ItemLoader {
 
     constructor() {
-        this.templateRow = Handlebars.compile(itemTemplateRow);
-        this.templateCol = Handlebars.compile(itemTemplateCol);
+        this.basicTemplate = Handlebars.compile(basicAtributeTemplate);
+        this.colorTemplate = Handlebars.compile(colorAttributeTemplate);
+        this.imageTemplate = Handlebars.compile(imageAttributeTemplate);
     }
 
     setController(aController) {
         this.controller = aController;
     }
 
-    _changeItem(item, selector) {
-        let itemElement = null;
-        if (selector.search("row")!=-1){
-            itemElement = this.templateRow(item);
-        } else {
-            itemElement = this.templateCol(item);
+    _changeItemId (newId, selector) {
+        let idContainer = document.querySelector(selector);
+        if (idContainer){
+            idContainer.innerHTML = newId
         }
-        let colElement = document.querySelector(selector);
-        colElement.innerHTML = itemElement;
+    }
+    _changeItem(item, selector) {
+        this._changeItemId(item._id, selector + idName);
+
+        for (let att of basicAtts) {
+            let comparatorRow = document.querySelectorAll(`tr[data-att-name=${att}] td`);
+            let itemElement = this.basicTemplate({ aString: item[att] });
+            if (att==="Color") {
+                itemElement = this.colorTemplate({ Color: item[att] })
+            }
+            if (att==="image") {
+                itemElement = this.imageTemplate({ image: item[att] })
+            }
+
+            if (selector.search("row") != -1) {
+                comparatorRow[0].innerHTML = itemElement;
+            } else {
+                comparatorRow[2].innerHTML = itemElement;
+            }
+        }
     }
 
     _createHandlebars(anArtWork) {
         let result = this.templateRow(anArtWork);
         return result;
     }
-    // _createItemElement(anArtWork) {
-    //     let attribs = ["id", "tittle", "Object", "author", "year", "Materials", "Colour", "ColourRGB", "image", "Object group"];
-    //     let bodyNode = document.createElement('tbody');
-    //     bodyNode.classList.add("artwork");
-
-    //     for (let att of attribs) {
-    //         if (att === "ColourRGB") {
-    //             continue;
-    //         }
-    //         let rowNode = document.createElement('tr');
-    //         let nameNode = document.createElement('td');
-    //         nameNode.classList.add("name");
-    //         nameNode.innerHTML = att;
-    //         let valueNode = document.createElement('td');
-    //         valueNode.classList.add("value");
-
-    //         if (att === "Colour") {
-    //             let i = 0;
-    //             for (let col of anArtWork[att]) {
-    //                 let squareColourNode = document.createElement('div');
-    //                 squareColourNode.classList.add("box");
-    //                 valueNode.appendChild(squareColourNode);
-    //                 let colour = `rgb(${anArtWork["ColourRGB"][i]})`;
-    //                 squareColourNode.style['background-color'] = colour;
-    //                 valueNode.appendChild(squareColourNode);
-    //                 let colourText = document.createTextNode(col);
-    //                 valueNode.appendChild(colourText);
-    //                 i++;
-    //             }
-    //         }
-
-    //         else if (att === "image") {
-    //             let imageNode = document.createElement("img");
-    //             imageNode.setAttribute("src", anArtWork[att]);
-    //             valueNode.appendChild(imageNode);
-    //         }
-    //         else {
-    //             valueNode.innerHTML = anArtWork[att];
-    //         }
-
-    //         rowNode.appendChild(nameNode);
-    //         rowNode.appendChild(valueNode);
-
-    //         bodyNode.appendChild(rowNode);
-    //     }
-
-    //     let artworkNode = document.createElement('table');
-    //     artworkNode.classList.add("table");
-    //     artworkNode.classList.add("table-striped");
-    //     artworkNode.appendChild(bodyNode);
-    //     return artworkNode;
-    // } 
 
     _changeRowItem(item, hideFilterButton) {  
         if (item){
-            this._changeItem(item, '#item-row');
-            let filterBtn = document.querySelector(itemRowSelectorButton);
-            this._updateFilterButton(filterBtn, item._id, item._id, hideFilterButton);
+            let selector = '#' + itemRowPrefix;
+            this._changeItem(item, selector);
+            // this._changeItem(item, '#item-row');
+            // let filterBtn = document.querySelector(itemRowSelectorButton);
+            // this._updateFilterButton(filterBtn, item._id, item._id, hideFilterButton);
         }
 
         // Prevent errors during first initialization
@@ -189,10 +105,10 @@ class ItemLoader {
 
     _changeColItem(item, hideFilterButton) {
         if (item){
-            this._changeItem(item, '#item-col');
-            let filterBtn = document.querySelector(itemColSelectorButton);
-            // Prevent errors during first initialization
-            this._updateFilterButton(filterBtn, item._id, item._id, hideFilterButton);
+            this._changeItem(item, '#'+itemColPrefix);
+            // let filterBtn = document.querySelector(itemColSelectorButton);
+            // // Prevent errors during first initialization
+            // this._updateFilterButton(filterBtn, item._id, item._id, hideFilterButton);
         }
 
         // if (filterBtn) {

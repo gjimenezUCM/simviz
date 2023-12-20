@@ -42,6 +42,7 @@ async function initApp() {
         simMenu.appendChild(item);
         item.addEventListener("click", ()=>loadSimilarityFunction(fileLoader,file));
     }
+    let theController = new Controller(null, null);
 
 
     //let heatmapFilterBtn = document.getElementById('heatmap-filter-btn');
