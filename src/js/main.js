@@ -13,11 +13,14 @@ import { daoItems } from './mockdata';
 import { Heatmap } from './heatmap';
 import { Histogram } from "./histogram";
 import { Controller } from "./controller";
-import { FileLoader } from "./fileLoader";
+import SimilarityDAO from './DAO/similarityDAO';
+import createMatrix from './mockSimMatrix';
+import { loadJSONData } from "./fileLoader";
 
 import { populateWeights } from './compare';
 
 let itemIds = daoItems.getIds();
+
 
 function populateIdSelect(selectNode, ids) {
     for (let id of ids) {
@@ -28,19 +31,23 @@ function populateIdSelect(selectNode, ids) {
     }
 }
 
-window.addEventListener("load", initApp);
+window.addEventListener("load", (event)=>  { initApp() });
 
 async function initApp() {
+    console.log("on Load!!")
+    //let sampleData = await loadJSONData("data/newSimData.json");
+    //const matrix = createMatrix(sampleData.similarityData, daoItems);
+
     populateWeights();
-    let fileLoader = new FileLoader();
-    const simFiles = fileLoader.getFiles();
+    let simDAO = new SimilarityDAO(itemIds);
+    const simFiles = simDAO.getFiles();
     let simMenu = document.getElementById("similarity-dropdown-menu");
     for (let file of simFiles) { 
         let item = document.createElement('li');
         item.innerHTML = `<a class="dropdown-item" data-sim-name="${file}">${file}</a>`;
         item.setAttribute("data-sim-name", file);
         simMenu.appendChild(item);
-        item.addEventListener("click", ()=>loadSimilarityFunction(fileLoader,file));
+        item.addEventListener("click", ()=>loadSimilarityFunction(simDAO,file));
     }
     let theController = new Controller(null, null);
 
@@ -48,15 +55,15 @@ async function initApp() {
     //let heatmapFilterBtn = document.getElementById('heatmap-filter-btn');
 }
 
-async function loadSimilarityFunction(fileLoader, file){
+async function loadSimilarityFunction(simDAO, file){
     let activeItem = document.querySelector("#similarity-dropdown-menu .dropdown-item.active");
     if (activeItem && activeItem.getAttribute("data-sim-name") === file){
         return;
     }
 
-    let fileData = await fileLoader.getDataFileByName(file);
-    if (fileData){
-        let theController = new Controller(itemIds, fileData);
+    let simMatrix = await simDAO.getSimilarityMatrixByName(file);
+    if (simMatrix){
+        let theController = new Controller(itemIds, simMatrix);
         window.addEventListener("resize", (event) => {
             theController.onResize();
         }); 
@@ -69,3 +76,5 @@ async function loadSimilarityFunction(fileLoader, file){
         } 
     }
 }
+
+//initApp();  
