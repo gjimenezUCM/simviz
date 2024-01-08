@@ -14,8 +14,8 @@ import { Heatmap } from './heatmap';
 import { Histogram } from "./histogram";
 import { Controller } from "./controller";
 import SimilarityDAO from './DAO/similarityDAO';
-import createMatrix from './mockSimMatrix';
 import { loadJSONData } from "./fileLoader";
+import { ItemDAO } from './DAO/itemDAO';
 
 import { populateWeights } from './compare';
 
@@ -34,12 +34,10 @@ function populateIdSelect(selectNode, ids) {
 window.addEventListener("load", (event)=>  { initApp() });
 
 async function initApp() {
-    console.log("on Load!!")
-    //let sampleData = await loadJSONData("data/newSimData.json");
-    //const matrix = createMatrix(sampleData.similarityData, daoItems);
-
+    let itemData = await loadJSONData("data/items.json");
+    let itemDAO = new ItemDAO(itemData)
+    let simDAO = new SimilarityDAO(itemDAO.getIds());
     populateWeights();
-    let simDAO = new SimilarityDAO(itemIds);
     const simFiles = simDAO.getFiles();
     let simMenu = document.getElementById("similarity-dropdown-menu");
     for (let file of simFiles) { 
@@ -47,15 +45,15 @@ async function initApp() {
         item.innerHTML = `<a class="dropdown-item" data-sim-name="${file}">${file}</a>`;
         item.setAttribute("data-sim-name", file);
         simMenu.appendChild(item);
-        item.addEventListener("click", ()=>loadSimilarityFunction(simDAO,file));
+        item.addEventListener("click", () => loadSimilarityFunction(simDAO, itemDAO, file));
     }
-    let theController = new Controller(null, null);
+    let theController = new Controller(itemDAO, itemDAO.getAttributes(), null, null);
 
 
     //let heatmapFilterBtn = document.getElementById('heatmap-filter-btn');
 }
 
-async function loadSimilarityFunction(simDAO, file){
+async function loadSimilarityFunction(simDAO, itemDAO, file){
     let activeItem = document.querySelector("#similarity-dropdown-menu .dropdown-item.active");
     if (activeItem && activeItem.getAttribute("data-sim-name") === file){
         return;
@@ -63,7 +61,9 @@ async function loadSimilarityFunction(simDAO, file){
 
     let simMatrix = await simDAO.getSimilarityMatrixByName(file);
     if (simMatrix){
-        let theController = new Controller(itemIds, simMatrix);
+        let allAttributes = itemDAO.getAttributes()
+        let simAttributes = simDAO.getListSimilarityAtts(file);
+        let theController = new Controller(itemDAO, allAttributes, simMatrix, simAttributes);
         window.addEventListener("resize", (event) => {
             theController.onResize();
         }); 

@@ -1,34 +1,37 @@
-import { itemLoader } from './item-loader';
+
 import { Heatmap } from './heatmap';
 import { Histogram } from "./histogram";
+import { TableComparator } from './Components/tableComparator';
 export class Controller {
-    constructor(itemIds, simData) {
-        this.itemLoader = itemLoader;
-        this.itemLoader.resetItems();
+    constructor(itemDAO, allAttributes, simData, simAttributes) {
+        this.tableComponent = new TableComparator(allAttributes, simAttributes);
+        this.tableComponent.resetItems();
+        this.itemDAO = itemDAO;
+        this.itemIds = itemDAO.getIds();
         if (simData){
             this.histogramContainer = document.getElementById('histogram');
-            this.theHistogram = new Histogram(this, itemIds, simData, this.histogramContainer);
+            this.theHistogram = new Histogram(this, this.itemIds, simData, this.histogramContainer);
 
             this.heatmapContainer = document.getElementById('heatmap');
-            this.theHeatmap = new Heatmap(this, itemIds, simData, this.heatmapContainer);
+            this.theHeatmap = new Heatmap(this, this.itemIds, simData, this.heatmapContainer);
 
-            this.itemIds = itemIds;
+            
             this.simData = simData;
             this.heatmapSelect = document.getElementById('heatmap-filter-select');
             this._populateItemIdSelect();
             this.heatmapSelect.addEventListener("change", (event) => {
                 if (this.heatmapSelect.value !== '*') {
                     this.filterByItemId(this.heatmapSelect.value);
-                    this.itemLoader.changeRowItemById(this.heatmapSelect.value);
-                    this.itemLoader.resetColItem();
+                    this.tableComponent.changeRowItem(this.heatmapSelect.value, this.itemDAO.getItemById(this.heatmapSelect.value));
+                    this.tableComponent.resetColItem();
                 }
             });
-            itemLoader.setController(this);
+            this.tableComponent.setController(this);
             this.resetButton = document.getElementById('reset-filter-btn');
             this.resetButton.addEventListener('click', (event) => {
                 this.theHeatmap.reset();
                 this.heatmapSelect.selectedIndex = 0;
-                itemLoader.resetItems();
+                this.tableComponent.resetItems();
                 this.resetButton.classList.add("visually-hidden");
             });
         }
@@ -38,17 +41,17 @@ export class Controller {
 
     updateItemsInfo(rowItemId, colItemId, similarityValue, color) {
         if (rowItemId) {
-            this.itemLoader.changeRowItemById(rowItemId);
+            this.tableComponent.changeRowItem(rowItemId, this.itemDAO.getItemById(rowItemId));
         } else {
-            this.itemLoader.resetRowItem();
+            this.tableComponent.resetRowItem();
         }
 
         if (colItemId) {
-            this.itemLoader.changeColItemById(colItemId);
-            this.itemLoader.updateSimilarityValue(similarityValue, color);
+            this.tableComponent.changeColItem(colItemId, this.itemDAO.getItemById(colItemId));
+            this.tableComponent.updateSimilarityValue(similarityValue, color);
         } else {
-            this.itemLoader.resetColItem();
-            this.itemLoader.updateSimilarityValue(null, null);
+            this.tableComponent.resetColItem();
+            this.tableComponent.updateSimilarityValue(null, null);
         }
     }
 
@@ -88,7 +91,7 @@ export class Controller {
     filterByItemId(itemId) {
         this.theHeatmap.filterById(itemId, true);
         this.resetButton.classList.remove("visually-hidden");
-        itemLoader.changeRowItemById(itemId);
-        itemLoader.resetColItem();
+        this.tableComponent.changeRowItem(itemId, this.itemDAO.getItemById(itemId));
+        this.tableComponent.resetColItem();
     }
 }

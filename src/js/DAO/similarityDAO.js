@@ -12,6 +12,7 @@ export default class SimilarityDAO {
             "simDecades"
         ];
         this.similarityMatrix = {};
+        this.similarityAtts = {};
         this.itemIds = itemIds;
     }
     getFiles() {
@@ -26,9 +27,18 @@ export default class SimilarityDAO {
             const data = await loadJSONData(FILEPATH + name + FILEEXTENSION);
             if (data !== null) {
                 this.similarityMatrix[name] = this.createMatrix(data.similarityData); 
+                this.similarityAtts = data.similarityDescription;
             }
             return this.similarityMatrix[name];
         }
+    }
+
+    getListSimilarityAtts(name) {
+        if (name in this.similarityAtts) {
+            return Object.keys(this.similarityAtts[name]);
+        }
+        else 
+            return null;
     }
 
     createMatrix(similarityData) {
