@@ -21,47 +21,28 @@
             </ul>
         </section>
     </div>
-            <!-- <div id="items" class="col-5">
-                <div id="item-row" class="row">
-                </div>
-                <div id="item-sim" class="row">
-                    <div id="item-sim-row-container" class="col-5 d-grid">
-                        <button id="heatmap-filter-btn-row" type="button" class="btn btn-primary" data-id="*">Item (row)</button>
-                    </div>
-                    <div id="item-sim-container" class="col-2">
 
-                        <div class="badge rounded-pill">
-                            <span id="item-sim-value">Similarity</span>
-                        </div>
-                    </div>
-                    <div id="item-sim-col-container" class="col-5 d-grid">
-                        <button id="heatmap-filter-btn-col"  type="button" class="btn btn-primary heatmap-filter-btn" data-id="*">Item (col)</button>
-                    </div>
-                </div>
-                <div id="item-col" class="row">
-                </div>
-            </div> -->
-        <section id="heatmap-container" class="container-fluid">
-            <div id="heatmap-header" class="row">
-                <div class="col-2">
-                    <label class="form-label" for="heatmap-filter-select">Select Item</label>
-                </div>
-                <div class="col-10">
-                    <select id="heatmap-filter-select" class="form-select" aria-label="Item select">
-                        <option selected>*</option>
-                    </select>
-                </div>                    
+    <section id="heatmap-container" class="container-fluid">
+        <div id="heatmap-header" class="row">
+            <div class="col-2">
+                <label class="form-label" for="heatmap-filter-select">Select Item</label>
             </div>
-            <div id="plot-container" class="row">
-                <div id="heatmap-content" class="col-8">
-                    <div id="heatmap"></div>
-                    <button type="button" class="btn btn-primary visually-hidden" id="reset-filter-btn">Reset</button>
-                </div>
-                <div id="histogram-content" class="col-4">
-                    <div id="histogram"></div>
-                </div>
+            <div class="col-10">
+                <select id="heatmap-filter-select" class="form-select" aria-label="Item select">
+                    <option selected>*</option>
+                </select>
+            </div>                    
+        </div>
+        <div id="plot-container" class="row">
+            <div id="heatmap-content" class="col-8">
+                <div id="heatmap"></div>
+                <button type="button" class="btn btn-primary visually-hidden" id="reset-filter-btn">Reset</button>
             </div>
-        </section>
+            <div id="histogram-content" class="col-4">
+                <div id="histogram"></div>
+            </div>
+        </div>
+    </section>
     <section id="item-comparer" class="container text-center">
             <table class="table table-striped">
                 <thead>
