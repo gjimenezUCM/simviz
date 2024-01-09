@@ -2,21 +2,23 @@
 import { Heatmap } from './heatmap';
 import { Histogram } from "./histogram";
 import { TableComparator } from './Components/tableComparator';
+import { getSimilarityInData } from './DAO/similarityDAO'
 export class Controller {
-    constructor(itemDAO, allAttributes, simData, simAttributes) {
-        this.tableComponent = new TableComparator(allAttributes, simAttributes, itemDAO.getAttId());
+    constructor(itemDAO, simData) {
+        let allAttributes = itemDAO.getAttributes();
+        let simDescription = simData ? simData.similarityDescription : null;
+        this.tableComponent = new TableComparator(allAttributes, simDescription, itemDAO.getAttId());
         this.tableComponent.resetItems();
         this.itemDAO = itemDAO;
         this.itemIds = itemDAO.getIds();
         if (simData){
+            this.simData = simData;
             this.histogramContainer = document.getElementById('histogram');
-            this.theHistogram = new Histogram(this, this.itemIds, simData, this.histogramContainer);
+            this.theHistogram = new Histogram(this, this.itemIds, this.simData.similarityMatrix, this.histogramContainer);
 
             this.heatmapContainer = document.getElementById('heatmap');
-            this.theHeatmap = new Heatmap(this, this.itemIds, simData, this.heatmapContainer);
+            this.theHeatmap = new Heatmap(this, this.itemIds, this.simData.similarityMatrix, this.heatmapContainer);
 
-            
-            this.simData = simData;
             this.heatmapSelect = document.getElementById('heatmap-filter-select');
             this._populateItemIdSelect();
             this.heatmapSelect.addEventListener("change", (event) => {
@@ -35,8 +37,6 @@ export class Controller {
                 this.resetButton.classList.add("visually-hidden");
             });
         }
-
-        
     }
 
     updateItemsInfo(rowItemId, colItemId, similarityValue, color) {
@@ -48,6 +48,9 @@ export class Controller {
 
         if (colItemId) {
             this.tableComponent.changeColItem(colItemId, this.itemDAO.getItemById(colItemId));
+            if (this.simData) {
+                similarityValue = getSimilarityInData(this.simData, rowItemId, colItemId);
+            }
             this.tableComponent.updateSimilarityValue(similarityValue, color);
         } else {
             this.tableComponent.resetColItem();

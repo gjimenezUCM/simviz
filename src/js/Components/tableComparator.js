@@ -35,13 +35,16 @@ const templates = {
     "ColorList": colorAttributeTemplate
 }
 
+const maxSize = 50;
 
 
 
 export class TableComparator {
-    constructor(allAtts, listAttsInSim, attId) {
+    constructor(allAtts, simDescription, attId) {
         this.simAtts = {};
         this.remainingAtts = {};
+        this.simDescription = simDescription;
+        let listAttsInSim = simDescription? Object.keys(simDescription) : null;
         this.attId = attId;
         let table = document.querySelector("#item-comparer tbody");
         let tableContent = document.createElement("tbody");
@@ -50,6 +53,7 @@ export class TableComparator {
         for (let attName of Object.keys(allAtts)) {
             if (attName === attId)
                 continue;
+            let weight = simDescription && (attName in simDescription) ? this.simDescription[attName].simWeight : "";
             const rowTemplate = `
                 <tr data-att-name="${attName}">
                     <td class="col-5">
@@ -60,7 +64,7 @@ export class TableComparator {
                                 <div class="att-name">${attName}</div>
                                 <div class="att-value"></div>
                             </div>
-                            <div class="att-weight align-self-center" data-weight="0"></div>
+                            <div class="att-weight align-self-center" data-weight="${weight}"></div>
                         </div>
                     </td>
                     <td class="col-5">
@@ -73,6 +77,7 @@ export class TableComparator {
                 this.simAtts[attName] = allAtts[attName];
                 result.classList.add("table-primary");
                 tableContent.insertBefore(result, tableContent.children[0])
+                
             }
             else {
                 this.remainingAtts[attName] = allAtts[attName];
@@ -89,6 +94,7 @@ export class TableComparator {
             this.attTemplates[attName] = Handlebars.compile(templates[attType]);
             this.mockItem[attName] = this._createPlaceholderForType(attType, attName);
         }
+        this._populateWeights();
     }
 
     _createPlaceholderForType(attType, attName) {
@@ -212,7 +218,10 @@ export class TableComparator {
         let simValueElem = document.getElementById("item-sim-value");
         if (simValueElem) {
             if (newSimValue !== null) {
-                simValueElem.innerHTML = parseFloat(newSimValue).toFixed(3);
+                simValueElem.innerHTML = parseFloat(newSimValue.global).toFixed(3);
+                for (let [localAtt, localValue] of Object.entries(newSimValue.local)) {
+                    this._updateLocalSimilarity(localAtt, localValue);
+                }
             } else {
                 simValueElem.innerHTML = "Similarity";
             }
@@ -221,6 +230,29 @@ export class TableComparator {
             simValueElem.parentElement.style.backgroundColor = color;
         } else {
             simValueElem.parentElement.style.backgroundColor = ""
+        }
+    }
+
+    _updateLocalSimilarity (attName, value) {
+        let valueElem = document.querySelector(`tr[data-att-name=${attName}] .att-value`);
+        if (valueElem) {
+            valueElem.innerHTML = value.toFixed(3);
+        }
+    }
+
+    _populateWeights() {
+        let weights = document.querySelectorAll(".att-weight");
+        for (let w of weights) {
+            let wValue = w.getAttribute("data-weight");
+            let frameBar = document.createElement("div");
+            frameBar.style.width = `${maxSize + 2}px`;
+            frameBar.style.border = "1px solid black"
+            w.appendChild(frameBar);
+            let weightBar = document.createElement("div");
+            weightBar.classList.add("att-weight-bar");
+            weightBar.innerHTML = `${wValue * 100}%`
+            weightBar.style.width = `${maxSize * wValue}px`;
+            frameBar.appendChild(weightBar);
         }
     }
 }

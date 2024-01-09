@@ -47,7 +47,7 @@ async function initApp() {
         simMenu.appendChild(item);
         item.addEventListener("click", () => loadSimilarityFunction(simDAO, itemDAO, file));
     }
-    let theController = new Controller(itemDAO, itemDAO.getAttributes(), null, null);
+    let theController = new Controller(itemDAO, null);
 
 
     //let heatmapFilterBtn = document.getElementById('heatmap-filter-btn');
@@ -59,11 +59,9 @@ async function loadSimilarityFunction(simDAO, itemDAO, file){
         return;
     }
 
-    let simMatrix = await simDAO.getSimilarityMatrixByName(file);
-    if (simMatrix){
-        let allAttributes = itemDAO.getAttributes()
-        let simAttributes = simDAO.getListSimilarityAtts(file);
-        let theController = new Controller(itemDAO, allAttributes, simMatrix, simAttributes);
+    let simData = await simDAO.getSimilarityDataByName(file);
+    if (simData){
+        let theController = new Controller(itemDAO, simData);
         window.addEventListener("resize", (event) => {
             theController.onResize();
         }); 

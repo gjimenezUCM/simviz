@@ -11,8 +11,11 @@ export default class SimilarityDAO {
             "simAvgColor",
             "simDecades"
         ];
-        this.similarityMatrix = {};
-        this.similarityAtts = {};
+
+        this.similarityDB = {}
+        // this.similarityMatrix = {};
+        // this.similarityAtts = {};
+        // this.similarityValues = {};
         this.itemIds = itemIds;
     }
     getFiles() {
@@ -20,28 +23,31 @@ export default class SimilarityDAO {
     }
 
     async getSimilarityMatrixByName(name) {
-        if (name in this.similarityMatrix) {
-            return this.similarityMatrix[name];
+        if (name in this.similarityDB) {
+            return this.similarityDB[name].similarityMatrix;
         }
         else {
             const data = await loadJSONData(FILEPATH + name + FILEEXTENSION);
             if (data !== null) {
-                this.similarityMatrix[name] = this.createMatrix(data.similarityData); 
-                this.similarityAtts[name] = data.similarityDescription;
+                let simData = {};
+                simData["similarityMatrix"] = this._createMatrix(data.similarityData);
+                simData["similarityDescription"] = data.similarityDescription;
+                simData["similarityValues"] = data.similarityData;
+                this.similarityDB[name] = simData;
             }
-            return this.similarityMatrix[name];
+            return this.similarityDB[name].similarityMatrix;
         }
     }
 
-    getListSimilarityAtts(name) {
-        if (name in this.similarityAtts) {
-            return Object.keys(this.similarityAtts[name]);
+    getListSimilarityAttsByName(name) {
+        if (name in this.similarityDB) {
+            return Object.keys(this.similarityDB[name].similarityDescription);
         }
         else 
             return null;
     }
 
-    createMatrix(similarityData) {
+    _createMatrix(similarityData) {
         let matrix = [];
         for (let i = 0; i < this.itemIds.length; i++) {
             matrix[i] = [];
@@ -57,5 +63,65 @@ export default class SimilarityDAO {
         }
 
         return matrix;
+    }
+
+    getSimilarityByName(name, id1, id2) {
+        if (name in this.similarityDB) {
+            let simObject = this.similarityDB[name].similarityValues.find(
+                (elem) => (elem.id1 === id1) && (elem.id2 === id2)
+            )
+            if (simObject) {
+                return simObject.value;
+            }
+            else {
+                simObject = this.similarityDB[name].similarityValues.find(
+                    (elem) => (elem.id1 === id2) && (elem.id2 === id1)
+                ) 
+                if (simObject) {
+                    return simObject.value;
+                } else {
+                    return null;
+                }
+            }
+
+        } else {
+            return null;
+        }
+    }
+
+    async getSimilarityDataByName(name) {
+        if (name in this.similarityDB) {
+            return this.similarityDB[name];
+        }
+        else {
+            const data = await loadJSONData(FILEPATH + name + FILEEXTENSION);
+            if (data !== null) {
+                let simData = {};
+                simData["similarityMatrix"] = this._createMatrix(data.similarityData);
+                simData["similarityDescription"] = data.similarityDescription;
+                simData["similarityValues"] = data.similarityData;
+                this.similarityDB[name] = simData;
+            }
+            return this.similarityDB[name];
+        }
+    }
+}
+
+export function getSimilarityInData(simData, id1, id2) {
+    let simObject = simData.similarityValues.find(
+        (elem) => (elem.id1 === id1) && (elem.id2 === id2)
+    )
+    if (simObject) {
+        return simObject.value;
+    }
+    else {
+        simObject = simData.similarityValues.find(
+            (elem) => (elem.id1 === id2) && (elem.id2 === id1)
+        )
+        if (simObject) {
+            return simObject.value;
+        } else {
+            return null;
+        }
     }
 }
