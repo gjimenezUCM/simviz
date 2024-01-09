@@ -27,7 +27,7 @@ export default class SimilarityDAO {
             const data = await loadJSONData(FILEPATH + name + FILEEXTENSION);
             if (data !== null) {
                 this.similarityMatrix[name] = this.createMatrix(data.similarityData); 
-                this.similarityAtts = data.similarityDescription;
+                this.similarityAtts[name] = data.similarityDescription;
             }
             return this.similarityMatrix[name];
         }

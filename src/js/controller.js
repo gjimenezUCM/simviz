@@ -4,7 +4,7 @@ import { Histogram } from "./histogram";
 import { TableComparator } from './Components/tableComparator';
 export class Controller {
     constructor(itemDAO, allAttributes, simData, simAttributes) {
-        this.tableComponent = new TableComparator(allAttributes, simAttributes);
+        this.tableComponent = new TableComparator(allAttributes, simAttributes, itemDAO.getAttId());
         this.tableComponent.resetItems();
         this.itemDAO = itemDAO;
         this.itemIds = itemDAO.getIds();

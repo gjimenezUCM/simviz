@@ -20,6 +20,10 @@ export class ItemDAO {
         return this.ids;
     }
 
+    getAttId() {
+        return this.dataId;
+    }
+
     getAttributes() {
         return this.attributes;
     }

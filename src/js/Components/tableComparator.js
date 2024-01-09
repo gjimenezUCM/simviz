@@ -39,19 +39,17 @@ const templates = {
 
 
 export class TableComparator {
-    constructor(allAtts, listAttsInSim) {
+    constructor(allAtts, listAttsInSim, attId) {
         this.simAtts = {};
         this.remainingAtts = {};
+        this.attId = attId;
         let table = document.querySelector("#item-comparer tbody");
         let tableContent = document.createElement("tbody");
+        tableContent.classList.add("table-group-divider");
 
         for (let attName of Object.keys(allAtts)) {
-            if (listAttsInSim && listAttsInSim.includes(attName)){
-                this.simAtts[attName] = allAtts[attName];
-            }
-            else {
-                this.remainingAtts[attName] = allAtts[attName];
-            }
+            if (attName === attId)
+                continue;
             const rowTemplate = `
                 <tr data-att-name="${attName}">
                     <td class="col-5">
@@ -60,7 +58,7 @@ export class TableComparator {
                         <div class="att-cell d-flex flex-column">
                             <div class="att-header d-flex flex-row justify-content-center">
                                 <div class="att-name">${attName}</div>
-                                <div class="att-value"> - </div>
+                                <div class="att-value"></div>
                             </div>
                             <div class="att-weight align-self-center" data-weight="0"></div>
                         </div>
@@ -70,14 +68,24 @@ export class TableComparator {
                 </tr>`
             const node =  document.createElement('template');
             node.innerHTML = rowTemplate;
-            const result = node.content.children;
-            result.length === 1 ? tableContent.appendChild(result[0]) : tableContent.appendChild(result);
+            const result = node.content.children[0];
+            if (listAttsInSim && listAttsInSim.includes(attName)) {
+                this.simAtts[attName] = allAtts[attName];
+                result.classList.add("table-primary");
+                tableContent.insertBefore(result, tableContent.children[0])
+            }
+            else {
+                this.remainingAtts[attName] = allAtts[attName];
+                tableContent.appendChild(result);
+            }
         } 
         table.replaceWith(tableContent);
 
         this.attTemplates = {};
         this.mockItem = {};
         for (const [attName, attType] of Object.entries(allAtts)) {
+            if (attName === this.attId)
+                continue;
             this.attTemplates[attName] = Handlebars.compile(templates[attType]);
             this.mockItem[attName] = this._createPlaceholderForType(attType, attName);
         }
@@ -102,7 +110,7 @@ export class TableComparator {
         this._changeItemId(id, selector + idName);
         for (let att of Object.keys(this.simAtts)) {
             let comparatorRow = document.querySelectorAll(`tr[data-att-name=${att}] td`);
-            let itemElement = _createItemElement(att, item[att]);
+            let itemElement = this._createItemElement(att, item[att]);
             if (selector.search("row") != -1) {
                 comparatorRow[0].innerHTML = itemElement;
             } else {
