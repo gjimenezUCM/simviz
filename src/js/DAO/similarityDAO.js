@@ -13,9 +13,6 @@ export default class SimilarityDAO {
         ];
 
         this.similarityDB = {}
-        // this.similarityMatrix = {};
-        // this.similarityAtts = {};
-        // this.similarityValues = {};
         this.itemIds = itemIds;
     }
     getFiles() {

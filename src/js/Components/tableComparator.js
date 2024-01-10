@@ -44,16 +44,16 @@ export class TableComparator {
         this.simAtts = {};
         this.remainingAtts = {};
         this.simDescription = simDescription;
-        let listAttsInSim = simDescription? Object.keys(simDescription) : null;
+        let listAttsInSim = simDescription? Object.keys(simDescription.localSim) : null;
         this.attId = attId;
-        let table = document.querySelector("#item-comparer tbody");
+        let table = document.querySelector("#item-comparator tbody");
         let tableContent = document.createElement("tbody");
         tableContent.classList.add("table-group-divider");
 
         for (let attName of Object.keys(allAtts)) {
             if (attName === attId)
                 continue;
-            let weight = simDescription && (attName in simDescription) ? this.simDescription[attName].simWeight : "";
+            let weight = simDescription && (attName in simDescription.localSim) ? this.simDescription.localSim[attName].weight : "";
             const rowTemplate = `
                 <tr data-att-name="${attName}">
                     <td class="col-5">

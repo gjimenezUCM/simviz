@@ -39,39 +39,27 @@ async function initApp() {
     let simDAO = new SimilarityDAO(itemDAO.getIds());
     populateWeights();
     const simFiles = simDAO.getFiles();
-    let simMenu = document.getElementById("similarity-dropdown-menu");
+    let simMenu = document.getElementById("similarity-select");
     for (let file of simFiles) { 
-        let item = document.createElement('li');
-        item.innerHTML = `<a class="dropdown-item" data-sim-name="${file}">${file}</a>`;
-        item.setAttribute("data-sim-name", file);
-        simMenu.appendChild(item);
-        item.addEventListener("click", () => loadSimilarityFunction(simDAO, itemDAO, file));
+        let item = document.createElement('template');
+        item.innerHTML = `<option class="dropdown-item" data-sim-name="${file}">${file}</option>`;
+        simMenu.appendChild(item.content.children[0]);
     }
+    simMenu.addEventListener("change", () =>  {
+        if (simMenu.selectedIndex!==0) {
+            loadSimilarityFunction(simDAO, itemDAO, simMenu.value);
+        }        
+    });
     let theController = new Controller(itemDAO, null);
-
-
-    //let heatmapFilterBtn = document.getElementById('heatmap-filter-btn');
 }
 
 async function loadSimilarityFunction(simDAO, itemDAO, file){
-    let activeItem = document.querySelector("#similarity-dropdown-menu .dropdown-item.active");
-    if (activeItem && activeItem.getAttribute("data-sim-name") === file){
-        return;
-    }
-
-    let simData = await simDAO.getSimilarityDataByName(file);
+     let simData = await simDAO.getSimilarityDataByName(file);
     if (simData){
         let theController = new Controller(itemDAO, simData);
         window.addEventListener("resize", (event) => {
             theController.onResize();
         }); 
-        let simMenu = document.querySelectorAll("#similarity-dropdown-menu .dropdown-item");
-        for (let elem of simMenu) {
-            elem.classList.remove("active");
-            if (elem.getAttribute("data-sim-name")=== file){
-                elem.classList.add("active")
-            }
-        } 
     }
 }
 

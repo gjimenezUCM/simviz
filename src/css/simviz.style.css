@@ -1,50 +1,58 @@
+/* Layout */
 #menu {
-    height: 5vh;
+    height: 0vh;
     font-size: 1.3rem;
 }
 
-#heatmap-container {
-    height: 35vh;
+#similarity-container {
+    height: 40vh;
 }
 
-#item-comparer {
+#item-comparator {
     height: 60vh;
     margin-top: 2vh;
 }
 
-#heatmap-header {
-    height: 8%;
-}
-#plot-container {
-    height: 92%; 
+/* similarity-container */
+
+#sim-desc{ 
+    padding: 0.8rem;
+    margin-top: 1rem;
 }
 
-#heatmap-header .form-label{
-    font-size: 1.4rem;
-}
 #heatmap-content {
     height: 100%;
     background-color:aliceblue;
+    
+    #heatmap {
+            padding: 0;
+    }
 }
 
-#heatmap {
-    padding: 0;
-}
+
 
 #histogram-content {
     height: 100%;
     background-color: aliceblue;
+
+    #histogram {
+        padding: 0;
+    }
 }
 
-#histogram {
-    padding: 0;
-}
+
 
 #reset-filter-btn{
     position: relative;
     width: 100px;
     bottom: 100px;
     left: 100px;
+}
+
+/* Item-comparator */
+
+#selection-header .form-label {
+    font-size: 1.4rem;
 }
 
 .box {

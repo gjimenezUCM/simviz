@@ -1,5 +1,4 @@
 import Plotly from 'plotly.js-dist-min';
-//import { itemLoader } from './item-loader';
 
 const magmaColorscaleValue = [
     [0.0, '#000004'],
@@ -37,15 +36,6 @@ export class Heatmap {
             colorscale: magmaColorscaleValue,
             showscale: true,
             hovertemplate: "id: %{y}<br>id: %{x}<br>Similarity: %{z}<extra></extra>",
-            // colorbar: {
-            //     orientation: 'v',
-            //     x:0.99,
-            //     y:0,
-            //     yanchor:'bottom',
-            //     xanchor: 'right',
-            //     xref: 'container',
-            //     yref: 'container'
-            // },
         }];
 
 

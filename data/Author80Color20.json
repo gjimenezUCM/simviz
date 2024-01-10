@@ -1,12 +1,17 @@
 {
   "similarityDescription": {
-    "Color": {
-      "simFunction": "delta_e_cie2000",
-      "simWeight": 0.8
+    "globalSim": {
+      "simFunction": "Weighted average"
     },
-    "author": {
-      "simFunction": "equals",
-      "simWeight": 0.2
+    "localSim": {
+      "Color": {
+        "simFunction": "max(delta_e_cie2000)",
+        "weight": 0.8
+      },
+      "author": {
+        "simFunction": "equals",
+        "weight": 0.2
+      }
     }
   },
   "similarityData": [
