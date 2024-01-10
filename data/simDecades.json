@@ -1,8 +1,13 @@
 {
   "similarityDescription": {
-    "year": {
-      "simFunction": "decades",
-      "simWeight": 1.0
+    "globalSim": {
+      "simFunction": "Weighted average"
+    },
+    "localSim": {
+      "year": {
+        "simFunction": "Range(Decades)",
+        "weight": 1.0
+      }
     }
   },
   "similarityData": [
