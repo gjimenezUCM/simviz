@@ -5,6 +5,10 @@
 }
 
 #similarity-container {
+    height: 100vh;
+}
+
+#plot-container {
     height: 40vh;
 }
 

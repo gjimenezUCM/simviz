@@ -5,11 +5,12 @@ import { loadJSONData } from "../fileLoader";
 export default class SimilarityDAO {
     constructor(itemIds) {
         this.fileList = [
-            "Author50Color50",
-            "Author80Color20",
-            "simMaxColor",
-            "simAvgColor",
-            "simDecades"
+            "blood"
+            // "Author50Color50",
+            // "Author80Color20",
+            // "simMaxColor",
+            // "simAvgColor",
+            // "simDecades"
         ];
 
         this.similarityDB = {}

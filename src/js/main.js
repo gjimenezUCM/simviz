@@ -34,7 +34,7 @@ function populateIdSelect(selectNode, ids) {
 window.addEventListener("load", (event)=>  { initApp() });
 
 async function initApp() {
-    let itemData = await loadJSONData("data/items.json");
+    let itemData = await loadJSONData("data/blood-alcohol-domain.json");//"data/items.json");
     let itemDAO = new ItemDAO(itemData)
     let simDAO = new SimilarityDAO(itemDAO.getIds());
     populateWeights();
