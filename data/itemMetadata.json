@@ -1,4 +1,5 @@
 {
+    "description": "A dataset description in Markdown (multilines are not allowed)",
     "attributes": {
         "_id": "string",
         "title": "string",

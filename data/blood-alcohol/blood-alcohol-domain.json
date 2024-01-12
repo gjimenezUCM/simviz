@@ -1,4 +1,5 @@
 {
+  "description": "Blood Alcohol Domain with additional files about processing and background information.",
   "attributes": {
     "casename": "string",
     "Gender": "string",

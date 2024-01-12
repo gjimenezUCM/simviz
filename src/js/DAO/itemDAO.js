@@ -1,6 +1,7 @@
 export class ItemDAO {
     constructor(jsonContent) {
         this.data = jsonContent.data;
+        this.description = jsonContent.description;
         this.attributes = jsonContent.attributes;
         this.dataId = jsonContent.id;
         this.ids = this.generateIds(this.data);
@@ -18,6 +19,10 @@ export class ItemDAO {
 
     getIds() {
         return this.ids;
+    }
+
+    getNumInstances(){
+        return this.ids.length;
     }
 
     getAttId() {

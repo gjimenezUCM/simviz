@@ -3,7 +3,8 @@
 */
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/simviz.style.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js' 
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import nanoMarkdown from 'nano-markdown';
 
 /*
 * JS imports
@@ -41,16 +42,23 @@ async function initApp() {
         }
         datasetMenu.addEventListener("change", () => {
             if (datasetMenu.selectedIndex !== 0) {
-                populateSimilarityFunctions(datasetLoader, datasetMenu.value);
-                updateSimilarityDescription("");
+                updateWithSelectedDataset(datasetLoader, datasetMenu.value);                
             }
         });
 
     };   
 }
 
-async function populateSimilarityFunctions(datasetLoader, datasetName){
+async function updateWithSelectedDataset(datasetLoader, datasetName){
     let itemDAO = await datasetLoader.getItemDAO(datasetName);
+
+    let datasetDescription = document.getElementById("dataset-desc");
+    datasetDescription.innerHTML = `<h4>Description</h4>
+        ${nanoMarkdown(itemDAO.description)}
+        <h4>Number of instances</h4>
+        <p>${itemDAO.getNumInstances()}</p>`;
+
+
     let simDAO = new SimilarityDAO(datasetLoader.getSimilarityFunctionsForDataset(datasetName), itemDAO.getIds());
     populateWeights();
     const simFiles = simDAO.getFiles();
@@ -67,6 +75,7 @@ async function populateSimilarityFunctions(datasetLoader, datasetName){
         }
     });
     let theController = new Controller(itemDAO, null);
+    updateSimilarityDescription("");
 }
 
 async function loadSimilarityFunction(simDAO, itemDAO, file){

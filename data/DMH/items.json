@@ -1,4 +1,5 @@
 {
+    "description": "A dataset contain artworks from [DMH museum](https://www.designmuseum.fi/en/).This dataset has been created in the context of the [SPICE project](https://spice-h2020.eu/)",
     "attributes": {
         "_id": "string",
         "title": "string",
