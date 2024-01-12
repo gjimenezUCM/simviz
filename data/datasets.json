@@ -1,0 +1,42 @@
+[
+    {
+        "dataset": {
+            "name": "Blood alcohol domain",
+            "uri": "data/blood-alcohol-domain.json"
+        },
+        "similarityDatasets": [
+            {
+                "name": "Gender, Consumed, Meal, Duration",
+                "uri": "data/blood.json"
+            }
+        ]
+    },
+    {
+        "dataset": {
+            "name": "DMH artworks",
+            "uri": "data/items.json"
+        },
+        "similarityDatasets": [
+            {
+                "name": "Author50Color50",
+                "uri": "./data/Author50Color50.json"
+            },
+            {
+                "name": "Author80Color20",
+                "uri": "./data/Author80Color20.json"
+            },
+            {
+                "name": "simMaxColor",
+                "uri": "./data/simMaxColor.json"
+            },
+            {
+                "name": "simAvgColor",
+                "uri": "./data/simAvgColor.json"
+            },
+            {
+                "name": "simDecades",
+                "uri": "./data/simDecades.json"
+            }
+        ]
+    }  
+]
