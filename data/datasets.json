@@ -2,40 +2,48 @@
     {
         "dataset": {
             "name": "Blood alcohol domain",
-            "uri": "data/blood-alcohol-domain.json"
+            "uri": "data/blood-alcohol/blood-alcohol-domain.json"
         },
         "similarityDatasets": [
             {
-                "name": "Gender, Consumed, Meal, Duration",
-                "uri": "data/blood.json"
+                "name": "Gender, Amount Consumed, Meal, Duration",
+                "uri": "data/blood-alcohol/GenderAmountMealDuration.json"
+            },
+            {
+                "name": "Gender, Amount Consumed, Meal, FrameSize",
+                "uri": "data/blood-alcohol/GenderAmountMealFrameSize.json"
+            },
+            {
+                "name": "Amount Consumed, Meal, FrameSize",
+                "uri": "data/blood-alcohol/AmountMealFrameSize.json"
             }
         ]
     },
     {
         "dataset": {
             "name": "DMH artworks",
-            "uri": "data/items.json"
+            "uri": "data/DMH/items.json"
         },
         "similarityDatasets": [
             {
                 "name": "Author50Color50",
-                "uri": "./data/Author50Color50.json"
+                "uri": "data/DMH/Author50Color50.json"
             },
             {
                 "name": "Author80Color20",
-                "uri": "./data/Author80Color20.json"
+                "uri": "data/DMH/Author80Color20.json"
             },
             {
                 "name": "simMaxColor",
-                "uri": "./data/simMaxColor.json"
+                "uri": "data/DMH/simMaxColor.json"
             },
             {
                 "name": "simAvgColor",
-                "uri": "./data/simAvgColor.json"
+                "uri": "data/DMH/simAvgColor.json"
             },
             {
                 "name": "simDecades",
-                "uri": "./data/simDecades.json"
+                "uri": "data/DMH/simDecades.json"
             }
         ]
     }  
