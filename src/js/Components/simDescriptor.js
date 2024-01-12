@@ -1,6 +1,10 @@
 export function updateSimilarityDescription(simDescription) {
     let parent = document.getElementById("sim-desc");
     if (parent) {
+        if (simDescription === "") {
+            parent.innerHTML = "";
+            return;
+        }
         let trows = "";
         for (let [ attName, localDesc ] of Object.entries(simDescription.localSim)){
             trows += `<tr>

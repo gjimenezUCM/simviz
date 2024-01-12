@@ -3,21 +3,17 @@ const FILEEXTENSION = ".json";
 
 import { loadJSONData } from "../fileLoader";
 export default class SimilarityDAO {
-    constructor(itemIds) {
-        this.fileList = [
-            "blood"
-            // "Author50Color50",
-            // "Author80Color20",
-            // "simMaxColor",
-            // "simAvgColor",
-            // "simDecades"
-        ];
-
+    constructor(similarityFunctions, itemIds) {
+        this.similarityFunctions = {};
+        for (let aSimFunction of similarityFunctions) {
+            this.similarityFunctions[aSimFunction.name] = aSimFunction.uri;
+        }
+        
         this.similarityDB = {}
         this.itemIds = itemIds;
     }
     getFiles() {
-        return this.fileList;
+        return Object.keys(this.similarityFunctions);
     }
 
     async getSimilarityMatrixByName(name) {
@@ -25,15 +21,20 @@ export default class SimilarityDAO {
             return this.similarityDB[name].similarityMatrix;
         }
         else {
-            const data = await loadJSONData(FILEPATH + name + FILEEXTENSION);
-            if (data !== null) {
-                let simData = {};
-                simData["similarityMatrix"] = this._createMatrix(data.similarityData);
-                simData["similarityDescription"] = data.similarityDescription;
-                simData["similarityValues"] = data.similarityData;
-                this.similarityDB[name] = simData;
+            if (name in this.similarityFunctions){
+                let filename = this.similarityFunctions[name];
+                const data = await loadJSONData(filename);
+                if (data !== null) {
+                    let simData = {};
+                    simData["similarityMatrix"] = this._createMatrix(data.similarityData);
+                    simData["similarityDescription"] = data.similarityDescription;
+                    simData["similarityValues"] = data.similarityData;
+                    this.similarityDB[name] = simData;
+                }
+                return this.similarityDB[name].similarityMatrix;
+            } else {
+                return null;
             }
-            return this.similarityDB[name].similarityMatrix;
         }
     }
 
@@ -92,16 +93,24 @@ export default class SimilarityDAO {
             return this.similarityDB[name];
         }
         else {
-            const data = await loadJSONData(FILEPATH + name + FILEEXTENSION);
-            if (data !== null) {
-                let simData = {};
-                simData["similarityMatrix"] = this._createMatrix(data.similarityData);
-                simData["similarityDescription"] = data.similarityDescription;
-                simData["similarityValues"] = data.similarityData;
-                this.similarityDB[name] = simData;
+            if (name in this.similarityFunctions) {
+                let filename = this.similarityFunctions[name];
+                const data = await loadJSONData(filename);
+                if (data !== null) {
+                    let simData = {};
+                    simData["similarityMatrix"] = this._createMatrix(data.similarityData);
+                    simData["similarityDescription"] = data.similarityDescription;
+                    simData["similarityValues"] = data.similarityData;
+                    this.similarityDB[name] = simData;
+                }
+                return this.similarityDB[name];
+            } else {
+                return null;
             }
-            return this.similarityDB[name];
         }
+
+
+
     }
 }
 
