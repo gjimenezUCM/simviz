@@ -1,3 +1,6 @@
+:root {
+    font-size: 15px;
+}
 /* Layout */
 #menu {
     height: 0vh;
@@ -6,6 +9,29 @@
 
 #similarity-container {
     height: 100vh;
+    overflow: auto;
+    padding: 1rem;
+    
+    .form-select{
+        font-size: 1.1rem;
+    }
+
+    #dataset-desc {
+        margin-top: 1.3rem;
+        h3 {
+            font-size: 1.4rem;
+        }
+    }
+
+    #similarity-descriptor {
+        margin-top: 1.5rem;
+        #sim-desc {
+            margin-top: 1.3rem;
+        }
+        h3 {
+            font-size: 1.4rem;
+        }
+    }
 }
 
 #plot-container {
@@ -19,10 +45,7 @@
 
 /* similarity-container */
 
-#sim-desc{ 
-    padding: 0.8rem;
-    margin-top: 1rem;
-}
+
 
 #heatmap-content {
     height: 100%;
@@ -93,12 +116,15 @@ img {
 }
 
 .att-weight {
-    font-size: 12px;
+    font-size: smaller;
+    font-weight: 500;
     line-height: 1.3em;
 }
 
 .att-weight-bar {
     background-color: #dda8f8;
+    overflow: visible;
+    overflow-wrap: normal;
 }
 
 #item-sim-value {

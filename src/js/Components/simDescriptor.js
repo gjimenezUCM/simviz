@@ -19,7 +19,8 @@ export function updateSimilarityDescription(simDescription) {
         parent.innerHTML = `<h3>Global function</h3>
         <p id="global-sim-desc">${simDescription.globalSim.simFunction}</p>
         <h3>Local functions</h3>
-        <table id="local-sim-desc"class="table table-striped">
+        <div class="table-responsive">
+        <table id="local-sim-desc"class="table table-sm table-striped">
             <thead>
                 <tr>
                     <th>Attribute</th>
@@ -31,6 +32,7 @@ export function updateSimilarityDescription(simDescription) {
             ${trows}
             </tbody>
         </table>
+        </div>
         `
     }
 }

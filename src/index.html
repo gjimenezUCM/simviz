@@ -17,22 +17,28 @@
     <div class="container-fluid">
         <div class="row">
             <section id="similarity-container" class="col-3">
-                <div id="similarity-descriptor" class="row">
-                    <h2>Choose dataset</h2>
-                    <div class="row">
-                        <select id="dataset-select" class="form-select" aria-label="Dataset select">
-                            <option selected>Choose dataset...</option>
-                        </select>
+                <div id="dataset-descriptor" class="card">
+                        <h2 class="card-header text-bg-dark">Dataset</h2>
+                    <div class="card-body">
+                        <div class="form">
+                            <select id="dataset-select" class="form-control form-select " aria-label="Dataset select">
+                                <option selected>Choose dataset...</option>
+                            </select>
+                        </div>
+                        <div id="dataset-desc">
+                        </div>
                     </div>
-                    <div class="row" id="dataset-desc">
-                    </div>
-                    <h2>Similarity function</h2>
-                    <div class="row">
-                        <select id="similarity-select" class="form-select" aria-label="Similarity select">
-                            <option selected>Choose similarity function...</option>
-                        </select>
-                    </div>
-                    <div class="row" id="sim-desc">
+                </div>
+                <div id="similarity-descriptor" class="card">
+                    <h2 class="card-header text-bg-dark">Similarity function</h2>
+                    <div class="card-body">
+                        <div class="form">
+                            <select id="similarity-select" class="form-select" aria-label="Similarity select">
+                                <option selected>Choose similarity function...</option>
+                            </select>
+                        </div>
+                        <div id="sim-desc">
+                        </div>
                     </div>
                 </div>
             </section>
@@ -57,25 +63,27 @@
                             </select>
                         </div>
                     </div>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th id="item-row-id" class="col-5">
-                                    Item Id
-                                </th>
-                                <th class="col-2">
-                                    <div class="badge rounded-pill">
-                                        <span id="item-sim-value">Similarity</span>
-                                    </div>
-                                </th>
-                                <th id="item-col-id" class="col-5">
-                                    Item Id
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th id="item-row-id" class="col-5">
+                                        Item Id
+                                    </th>
+                                    <th class="col-2">
+                                        <div class="badge rounded-pill">
+                                            <span id="item-sim-value">Similarity</span>
+                                        </div>
+                                    </th>
+                                    <th id="item-col-id" class="col-5">
+                                        Item Id
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
             </div>
         </div>

@@ -53,9 +53,9 @@ async function updateWithSelectedDataset(datasetLoader, datasetName){
     let itemDAO = await datasetLoader.getItemDAO(datasetName);
 
     let datasetDescription = document.getElementById("dataset-desc");
-    datasetDescription.innerHTML = `<h4>Description</h4>
+    datasetDescription.innerHTML = `<h3>Description</h3>
         ${nanoMarkdown(itemDAO.description)}
-        <h4>Number of instances</h4>
+        <h3>Number of instances</h3>
         <p>${itemDAO.getNumInstances()}</p>`;
 
 
