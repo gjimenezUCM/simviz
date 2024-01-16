@@ -1,12 +1,18 @@
 {
-    "similarityDescription": {
-        "Color": {
-            "simFunction": "equals",
-            "simWeight": 0.5
+    "similarityDescription":{
+        "globalSim": {
+            "simFunction": "Weighted average"
         },
-        "title": {
-            "simFunction": "equals",
-            "simWeight": 0.5           
+    
+        "localSim": {
+            "Color": {
+                "simFunction": "equals",
+                "weight": 0.5
+            },
+            "title": {
+                "simFunction": "equals",
+                "weight": 0.5           
+            }
         }
     },
     "similarityData": [
