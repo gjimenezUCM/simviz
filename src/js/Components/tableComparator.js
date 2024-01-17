@@ -241,7 +241,7 @@ export class TableComparator {
     }
 
     _populateWeights() {
-        let weights = document.querySelectorAll(".att-weight");
+        let weights = document.querySelectorAll("#item-comparator .att-weight");
         for (let w of weights) {
             let wValue = w.getAttribute("data-weight");
             let frameBar = document.createElement("div");

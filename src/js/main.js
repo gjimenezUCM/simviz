@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/simviz.style.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import nanoMarkdown from 'nano-markdown';
+import { SimConfigurator } from './Components/simConfigurator';
 
 /*
 * JS imports
@@ -14,7 +15,7 @@ import { Controller } from "./controller";
 import SimilarityDAO from './DAO/similarityDAO';
 import { DatasetLoader } from './datasetLoader';
 import { populateWeights } from './compare';
-import { updateSimilarityDescription } from './Components/simDescriptor';
+import { similarityPanel } from './Components/simDescriptor';
 
 let itemIds = daoItems.getIds();
 
@@ -31,6 +32,8 @@ function populateIdSelect(selectNode, ids) {
 window.addEventListener("load", (event)=>  { initApp() });
 
 async function initApp() {
+    const myModal = document.getElementById('similarity-configuration');  
+
     let datasetLoader = new DatasetLoader();
     if (await datasetLoader.init("data/datasets.json")){
         let datasetMenu = document.getElementById("dataset-select");
@@ -60,22 +63,23 @@ async function updateWithSelectedDataset(datasetLoader, datasetName){
 
 
     let simDAO = new SimilarityDAO(datasetLoader.getSimilarityFunctionsForDataset(datasetName), itemDAO.getIds());
-    populateWeights();
-    const simFiles = simDAO.getFiles();
-    let simMenu = document.getElementById("similarity-select");
-    simMenu.innerHTML = "<option selected>Choose similarity function...</option>";
-    for (let file of simFiles) {
-        let item = document.createElement('template');
-        item.innerHTML = `<option class="dropdown-item" data-sim-name="${file}">${file}</option>`;
-        simMenu.appendChild(item.content.children[0]);
-    }
-    simMenu.addEventListener("change", () => {
-        if (simMenu.selectedIndex !== 0) {
-            loadSimilarityFunction(simDAO, itemDAO, simMenu.value);
-        }
-    });
+    similarityPanel.init(simDAO, itemDAO);
+    // const simFiles = simDAO.getFiles();
+    // let simMenu = document.getElementById("similarity-select");
+    // simMenu.innerHTML = "<option selected>Choose similarity function...</option>";
+    // for (let file of simFiles) {
+    //     let item = document.createElement('template');
+    //     item.innerHTML = `<option class="dropdown-item" data-sim-name="${file}">${file}</option>`;
+    //     simMenu.appendChild(item.content.children[0]);
+    // }
+    // simMenu.addEventListener("change", () => {
+    //     if (simMenu.selectedIndex !== 0) {
+    //         loadSimilarityFunction(simDAO, itemDAO, simMenu.value);
+    //     }
+    // });
+    //populateWeights();
     let theController = new Controller(itemDAO, null);
-    updateSimilarityDescription("");
+    // updateSimilarityDescription("");
 }
 
 async function loadSimilarityFunction(simDAO, itemDAO, file){
@@ -85,6 +89,26 @@ async function loadSimilarityFunction(simDAO, itemDAO, file){
         window.addEventListener("resize", (event) => {
             theController.onResize();
         }); 
+
+        let newDescription = Object.assign({}, simData.similarityDescription);
+        newDescription.localSim = {
+            "Color": {
+                "simFunction": "equals",
+                "weight": 1.0
+            },
+            "title": {
+                "simFunction": "equals",
+                "weight": 0.0
+            },
+            "title2": {
+                "simFunction": "equals",
+                "weight": 0.0
+            }
+        }
+
+        let simConf = new SimConfigurator();
+        simConf.init(simDAO, simData);
+
     }
 }
 

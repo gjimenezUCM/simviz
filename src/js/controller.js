@@ -3,14 +3,10 @@ import { Heatmap } from './heatmap';
 import { Histogram } from "./histogram";
 import { TableComparator } from './Components/tableComparator';
 import { getSimilarityInData } from './DAO/similarityDAO'
-import { updateSimilarityDescription } from './Components/simDescriptor';
 export class Controller {
     constructor(itemDAO, simData) {
         let allAttributes = itemDAO.getAttributes();
         let simDescription = simData ? simData.similarityDescription : null;
-        if (simDescription) {
-            updateSimilarityDescription(simDescription);
-        }
         this.tableComponent = new TableComparator(allAttributes, simDescription, itemDAO.getAttId());
         this.tableComponent.resetItems();
         this.itemDAO = itemDAO;

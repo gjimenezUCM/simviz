@@ -16,27 +16,6 @@ export default class SimilarityDAO {
         return Object.keys(this.similarityFunctions);
     }
 
-    async getSimilarityMatrixByName(name) {
-        if (name in this.similarityDB) {
-            return this.similarityDB[name].similarityMatrix;
-        }
-        else {
-            if (name in this.similarityFunctions){
-                let filename = this.similarityFunctions[name];
-                const data = await loadJSONData(filename);
-                if (data !== null) {
-                    let simData = {};
-                    simData["similarityMatrix"] = this._createMatrix(data.similarityData);
-                    simData["similarityDescription"] = data.similarityDescription;
-                    simData["similarityValues"] = data.similarityData;
-                    this.similarityDB[name] = simData;
-                }
-                return this.similarityDB[name].similarityMatrix;
-            } else {
-                return null;
-            }
-        }
-    }
 
     getListSimilarityAttsByName(name) {
         if (name in this.similarityDB) {
@@ -96,21 +75,28 @@ export default class SimilarityDAO {
             if (name in this.similarityFunctions) {
                 let filename = this.similarityFunctions[name];
                 const data = await loadJSONData(filename);
-                if (data !== null) {
-                    let simData = {};
-                    simData["similarityMatrix"] = this._createMatrix(data.similarityData);
-                    simData["similarityDescription"] = data.similarityDescription;
-                    simData["similarityValues"] = data.similarityData;
-                    this.similarityDB[name] = simData;
+                if (this.addSimilarityData(name,data)){
+                    return this.similarityDB[name];
+                } else {
+                    return null;
                 }
-                return this.similarityDB[name];
             } else {
                 return null;
             }
         }
+    }
 
-
-
+    addSimilarityData(name, data){
+        if (data !== null) {
+            let simData = {};
+            simData["similarityMatrix"] = this._createMatrix(data.similarityData);
+            simData["similarityDescription"] = data.similarityDescription;
+            simData["similarityValues"] = data.similarityData;
+            this.similarityDB[name] = simData;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

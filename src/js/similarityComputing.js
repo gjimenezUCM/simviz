@@ -8,7 +8,7 @@ export class SimilarityComputing {
         let oldSimilarityData = this.oldSimilarity.similarityValues;
         this.newSimilarityData = [];
         for (let simPair of oldSimilarityData) {
-            let newSimPair = Object.assign({}, simPair);
+            let newSimPair = JSON.parse(JSON.stringify(simPair));
             let newSimValue = 0.0;
             let totalWeight = 0.0;
             for (let [att,localFunc] of Object.entries(this.newSimilarityDescription.localSim)) {

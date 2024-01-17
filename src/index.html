@@ -12,9 +12,6 @@
     <div class="container-fluid">
         <section id="menu" class="row">
         </section>
-    </div>
-
-    <div class="container-fluid">
         <div class="row">
             <section id="similarity-container" class="col-3">
                 <div id="dataset-descriptor" class="card">
@@ -39,6 +36,7 @@
                         </div>
                         <div id="sim-desc">
                         </div>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#similarity-configuration">Launch modal</button>
                     </div>
                 </div>
             </section>
@@ -87,12 +85,27 @@
                 </section>
             </div>
         </div>
-
-
-    <div class="row">
-
     </div>
+    <div id="similarity-configuration" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Similarity configuration</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="similarity-configuration-form">
+                   </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="recalculate-btn" class="btn btn-primary" data-bs-dismiss="modal">Recalculate and save</button>
+                </div>
+            </div>
+
+        </div>
     </div>
+
 
 </body>
 </html>
