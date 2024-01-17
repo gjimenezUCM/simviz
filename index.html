@@ -36,7 +36,7 @@
                         </div>
                         <div id="sim-desc">
                         </div>
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#similarity-configuration">Launch modal</button>
+                        <button type="button" id="btn-show-configurator" class="btn btn-primary visually-hidden" data-bs-toggle="modal" data-bs-target="#similarity-configuration">Reconfigure Weights</button>
                     </div>
                 </div>
             </section>
@@ -87,18 +87,17 @@
         </div>
     </div>
     <div id="similarity-configuration" class="modal fade" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header text-bg-dark">
                     <h2 class="modal-title">Similarity configuration</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="similarity-configuration-form">
                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" id="recalculate-btn" class="btn btn-primary" data-bs-dismiss="modal">Recalculate and save</button>
                 </div>
             </div>
