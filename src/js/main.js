@@ -3,19 +3,20 @@
 */
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/simviz.style.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import nanoMarkdown from 'nano-markdown';
-import { SimConfigurator } from './Components/simConfigurator';
+
 
 /*
 * JS imports
 */
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import nanoMarkdown from 'nano-markdown';
+
 import { daoItems } from './mockdata';
 import { Controller } from "./controller";
 import SimilarityDAO from './DAO/similarityDAO';
 import { DatasetLoader } from './datasetLoader';
-import { populateWeights } from './compare';
-import { similarityPanel } from './Components/simDescriptor';
+import { similarityPanel } from './Components/similarityPanel';
+import { SimConfigurator } from './Components/simConfigurator';
 
 let itemIds = daoItems.getIds();
 
@@ -89,22 +90,6 @@ async function loadSimilarityFunction(simDAO, itemDAO, file){
         window.addEventListener("resize", (event) => {
             theController.onResize();
         }); 
-
-        let newDescription = Object.assign({}, simData.similarityDescription);
-        newDescription.localSim = {
-            "Color": {
-                "simFunction": "equals",
-                "weight": 1.0
-            },
-            "title": {
-                "simFunction": "equals",
-                "weight": 0.0
-            },
-            "title2": {
-                "simFunction": "equals",
-                "weight": 0.0
-            }
-        }
 
         let simConf = new SimConfigurator();
         simConf.init(simDAO, simData);

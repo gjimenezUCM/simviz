@@ -1,11 +1,11 @@
 import { SimConfigurator } from "./simConfigurator";
 import { Controller } from "../controller";
-import { populateWeights } from '../compare';
 
 const maxSize = 50;
 class SimilarityPanel {
     constructor() {
         this.simConf = new SimConfigurator(this);
+        this.configButton = document.getElementById("btn-show-configurator");
     }
     init(simDAO, itemDAO){
         this.simDAO = simDAO;
@@ -22,6 +22,8 @@ class SimilarityPanel {
             }
         });
         this.updateSimilarityDescription("");
+        this.configButton.classList.add("visually-hidden");
+        
     }
 
     async loadSimilarityFunction(simDAO, itemDAO, similarityFunctionName) {
@@ -34,6 +36,7 @@ class SimilarityPanel {
 
             this.updateSimilarityDescription(simData.similarityDescription);
             this.simConf.init(simDAO, simData);
+            this.configButton.classList.remove("visually-hidden");
         }
     }
 

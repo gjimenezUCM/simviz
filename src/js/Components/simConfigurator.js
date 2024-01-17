@@ -2,9 +2,9 @@ import Handlebars from "handlebars";
 import { SimilarityComputing } from '../similarityComputing';
 
 const formAttributeRow = `
-        <div class="col-1"><label for="input-att-{{attName}}" class="form-label">{{attName}}</label></div>
-        <div class="col-auto"><input class="form-control" id="input-att-{{attName}}" value={{weightValue}} aria-describedby="att-{{attName}}-weight"></div>
-        <div class="col-auto"><input type="range" class="form-range" min="0" max="1" step="0.1" value={{weightValue}} id="range-att-{{attName}}"></div>`;
+        <div class="col-4 text-end"><label for="input-att-{{attName}}" class="form-label">{{attName}}</label></div>
+        <div class="col-3"><input class="form-control" id="input-att-{{attName}}" value={{weightValue}} aria-describedby="att-{{attName}}-weight"></div>
+        <div class="col-3"><input type="range" class="form-range" min="0" max="1" step="0.05" value={{weightValue}} id="range-att-{{attName}}"></div>`;
 
 export class SimConfigurator {
     constructor(parentSimilarityPanel) {
