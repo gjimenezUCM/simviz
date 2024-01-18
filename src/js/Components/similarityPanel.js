@@ -98,7 +98,7 @@ class SimilarityPanel {
             w.appendChild(frameBar);
             let weightBar = document.createElement("div");
             weightBar.classList.add("att-weight-bar");
-            weightBar.innerHTML = `${wValue * 100}%`
+            weightBar.innerHTML = `${(wValue * 100).toFixed(2)}%`
             weightBar.style.width = `${maxSize * wValue}px`;
             frameBar.appendChild(weightBar);
         }
