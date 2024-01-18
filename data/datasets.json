@@ -21,6 +21,18 @@
     },
     {
         "dataset": {
+            "name": "BCWD",
+            "uri": "data/BCWD/bcwd.json"
+        },
+        "similarityDatasets": [
+            {
+                "name": "All attributes",
+                "uri": "data/BCWD/AllAttributes.json"
+            }
+        ]
+    },
+    {
+        "dataset": {
             "name": "DMH artworks",
             "uri": "data/DMH/items.json"
         },
