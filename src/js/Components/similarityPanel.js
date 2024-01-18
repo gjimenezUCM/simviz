@@ -1,5 +1,5 @@
 import { SimConfigurator } from "./simConfigurator";
-import { Controller } from "../controller";
+import { Controller, hideLoadingOverlay, showLoadingOverlay } from "../controller";
 
 const maxSize = 50;
 class SimilarityPanel {
@@ -27,6 +27,7 @@ class SimilarityPanel {
     }
 
     async loadSimilarityFunction(simDAO, itemDAO, similarityFunctionName) {
+        showLoadingOverlay();
         let simData = await this.simDAO.getSimilarityDataByName(similarityFunctionName);
         if (simData) {
             let theController = new Controller(this.itemDAO, simData);
@@ -38,6 +39,7 @@ class SimilarityPanel {
             this.simConf.init(simDAO, simData);
             this.configButton.classList.remove("visually-hidden");
         }
+        hideLoadingOverlay()
     }
 
     addSimilarityFunctionToDropdown(simFunctionName, andChange){

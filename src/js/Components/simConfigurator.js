@@ -1,5 +1,6 @@
 import Handlebars from "handlebars";
 import { SimilarityComputing } from '../similarityComputing';
+import { showLoadingOverlay, hideLoadingOverlay } from "../controller";
 
 const formAttributeRow = `
         <div class="col-4 text-end"><label for="input-att-{{attName}}" class="form-label">{{attName}}</label></div>
@@ -14,9 +15,9 @@ export class SimConfigurator {
         this.attWeights = [];
         this.attRangeElements = [];
         this.totalWeights = 0.0;
-        let recalculateBtn = document.getElementById("recalculate-btn");
+        let recalculateBtn = document.getElementById("similarity-configuration");
         if (recalculateBtn) {
-            recalculateBtn.addEventListener("click", ()=> this.recalculateSimilarity());
+            recalculateBtn.addEventListener("hidden.bs.modal", () => this.recalculateSimilarity());
         }
         this.started = false;
     };
@@ -58,8 +59,8 @@ export class SimConfigurator {
     }
 
     recalculateSimilarity(){
-        console.log("Recalculating")
         if (this.started){
+            showLoadingOverlay();
             let newSimilarityName = "";
             let newDescription = JSON.parse(JSON.stringify(this.oldSimDescription));
             let modified = false;
@@ -86,6 +87,7 @@ export class SimConfigurator {
                 this.simDao.addSimilarityData(newSimilarityName, newSimFunctionDataObject);
                 this.similarityPanel.addSimilarityFunctionToDropdown(newSimilarityName, true);
             }
+            hideLoadingOverlay();
         }
 
     }

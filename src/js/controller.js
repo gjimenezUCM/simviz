@@ -37,6 +37,7 @@ export class Controller {
                 this.resetButton.classList.add("visually-hidden");
             });
         }
+        this.loadingOverlay = document.getElementById("loading-overlay");
     }
 
     updateItemsInfo(rowItemId, colItemId, similarityValue, color) {
@@ -97,4 +98,12 @@ export class Controller {
         this.tableComponent.changeRowItem(itemId, this.itemDAO.getItemById(itemId));
         this.tableComponent.resetColItem();
     }
+
+}
+
+export function showLoadingOverlay(){
+    document.getElementById("loading-overlay").classList.remove("visually-hidden");
+}
+export function hideLoadingOverlay() {
+    document.getElementById("loading-overlay").classList.add("visually-hidden");
 }
