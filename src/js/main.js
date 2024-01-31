@@ -12,7 +12,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import nanoMarkdown from 'nano-markdown';
 
 import { daoItems } from './mockdata';
-import { Controller } from "./controller";
+import { theController } from "./controller";
 import SimilarityDAO from './DAO/similarityDAO';
 import { DatasetLoader } from './datasetLoader';
 import { similarityPanel } from './Components/similarityPanel';
@@ -36,6 +36,7 @@ async function initApp() {
     const myModal = document.getElementById('similarity-configuration');  
 
     let datasetLoader = new DatasetLoader();
+
     if (await datasetLoader.init("data/datasets.json")){
         let datasetMenu = document.getElementById("dataset-select");
         datasetMenu.innerHTML = "<option selected>Choose dataset...</option>";
@@ -65,35 +66,19 @@ async function updateWithSelectedDataset(datasetLoader, datasetName){
 
     let simDAO = new SimilarityDAO(datasetLoader.getSimilarityFunctionsForDataset(datasetName), itemDAO.getIds());
     similarityPanel.init(simDAO, itemDAO);
-    // const simFiles = simDAO.getFiles();
-    // let simMenu = document.getElementById("similarity-select");
-    // simMenu.innerHTML = "<option selected>Choose similarity function...</option>";
-    // for (let file of simFiles) {
-    //     let item = document.createElement('template');
-    //     item.innerHTML = `<option class="dropdown-item" data-sim-name="${file}">${file}</option>`;
-    //     simMenu.appendChild(item.content.children[0]);
-    // }
-    // simMenu.addEventListener("change", () => {
-    //     if (simMenu.selectedIndex !== 0) {
-    //         loadSimilarityFunction(simDAO, itemDAO, simMenu.value);
-    //     }
-    // });
-    //populateWeights();
-    let theController = new Controller(itemDAO, null);
-    // updateSimilarityDescription("");
+    theController.init(itemDAO, null);
 }
 
 async function loadSimilarityFunction(simDAO, itemDAO, file){
     let simData = await simDAO.getSimilarityDataByName(file);
     if (simData){
-        let theController = new Controller(itemDAO, simData);
+        theController.init(itemDAO, simData);
         window.addEventListener("resize", (event) => {
             theController.onResize();
         }); 
 
         let simConf = new SimConfigurator();
         simConf.init(simDAO, simData);
-
     }
 }
 

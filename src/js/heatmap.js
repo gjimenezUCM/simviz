@@ -1,4 +1,5 @@
 import Plotly from 'plotly.js-dist-min';
+import { theController } from './controller';
 
 const magmaColorscaleValue = [
     [0.0, '#000004'],
@@ -13,8 +14,7 @@ const magmaColorscaleValue = [
     [1.0, '#fcfdbf']
 ];
 export class Heatmap {
-    constructor(controller, index, data, containerNode){
-        this.controller = controller;
+    constructor(index, data, containerNode){
         this.index = index;
         this.data = data;
         this.currentData = data;
@@ -119,15 +119,13 @@ export class Heatmap {
     onClickHeatmap(data) {
         if (data.points.length === 1) {
             if (data.points[0].z !== null) {
-                let colId = data.points[0].x;
-                let rowId = data.points[0].y;
-                if (this.controller) {
-                    let colorPos = Math.trunc(data.points[0].z * 10);
-                    colorPos = (colorPos==10 ? 9 : colorPos);
-                    let color = magmaColorscaleValue[colorPos][1];
-                    this.controller.updateItemsInfo(rowId, colId, data.points[0].z, color);
-                    this.controller.updateSelectedItem(rowId);
-                }
+                let colId = String(data.points[0].x);
+                let rowId = String(data.points[0].y);
+                let colorPos = Math.trunc(data.points[0].z * 10);
+                colorPos = (colorPos==10 ? 9 : colorPos);
+                let color = magmaColorscaleValue[colorPos][1];
+                theController.updateItemsInfo(rowId, colId, data.points[0].z, color);
+                theController.updateSelectedItem(rowId);
             }
         }
     }

@@ -3,8 +3,11 @@ import { Heatmap } from './heatmap';
 import { Histogram } from "./histogram";
 import { TableComparator } from './Components/tableComparator';
 import { getSimilarityInData } from './DAO/similarityDAO'
-export class Controller {
-    constructor(itemDAO, simData) {
+class Controller {
+    constructor(){
+        this.loadingOverlay = document.getElementById("loading-overlay");
+    }
+    init(itemDAO, simData) {
         let allAttributes = itemDAO.getAttributes();
         let simDescription = simData ? simData.similarityDescription : null;
         this.tableComponent = new TableComparator(allAttributes, simDescription, itemDAO.getAttId());
@@ -14,18 +17,16 @@ export class Controller {
         if (simData){
             this.simData = simData;
             this.histogramContainer = document.getElementById('histogram');
-            this.theHistogram = new Histogram(this, this.itemIds, this.simData.similarityMatrix, this.histogramContainer);
+            this.theHistogram = new Histogram(this.itemIds, this.simData.similarityMatrix, this.histogramContainer);
 
             this.heatmapContainer = document.getElementById('heatmap');
-            this.theHeatmap = new Heatmap(this, this.itemIds, this.simData.similarityMatrix, this.heatmapContainer);
+            this.theHeatmap = new Heatmap(this.itemIds, this.simData.similarityMatrix, this.heatmapContainer);
 
             this.heatmapSelect = document.getElementById('heatmap-filter-select');
             this._populateItemIdSelect();
             this.heatmapSelect.addEventListener("change", (event) => {
                 if (this.heatmapSelect.value !== '*') {
                     this.filterByItemId(this.heatmapSelect.value);
-                    this.tableComponent.changeRowItem(this.heatmapSelect.value, this.itemDAO.getItemById(this.heatmapSelect.value));
-                    this.tableComponent.resetColItem();
                 }
             });
             this.tableComponent.setController(this);
@@ -37,7 +38,7 @@ export class Controller {
                 this.resetButton.classList.add("visually-hidden");
             });
         }
-        this.loadingOverlay = document.getElementById("loading-overlay");
+        
     }
 
     updateItemsInfo(rowItemId, colItemId, similarityValue, color) {
@@ -98,12 +99,22 @@ export class Controller {
         this.tableComponent.changeRowItem(itemId, this.itemDAO.getItemById(itemId));
         this.tableComponent.resetColItem();
     }
+    showLoadingOverlay() {
+        this.loadingOverlay.classList.remove("visually-hidden");
+    }
+
+    hideLoadingOverlay() {
+        this.loadingOverlay.classList.add("visually-hidden");
+    }
 
 }
 
-export function showLoadingOverlay(){
-    document.getElementById("loading-overlay").classList.remove("visually-hidden");
-}
-export function hideLoadingOverlay() {
-    document.getElementById("loading-overlay").classList.add("visually-hidden");
-}
+// export function showLoadingOverlay(){
+//     document.getElementById("loading-overlay").classList.remove("visually-hidden");
+// }
+// export function hideLoadingOverlay() {
+//     document.getElementById("loading-overlay").classList.add("visually-hidden");
+// }
+
+const theController = new Controller();
+export { theController };

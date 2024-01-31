@@ -17,7 +17,11 @@ export class SimConfigurator {
         this.totalWeights = 0.0;
         let recalculateBtn = document.getElementById("similarity-configuration");
         if (recalculateBtn) {
-            recalculateBtn.addEventListener("hidden.bs.modal", () => this.recalculateSimilarity());
+            recalculateBtn.addEventListener("hidden.bs.modal", () => {
+                document.querySelector("#similarity-configuration .spinner-border").classList.remove("visually-hidden");
+                this.recalculateSimilarity();
+                document.querySelector("#similarity-configuration .spinner-border").classList.add("visually-hidden");
+            });
         }
         this.started = false;
     };
@@ -60,7 +64,6 @@ export class SimConfigurator {
 
     recalculateSimilarity(){
         if (this.started){
-            showLoadingOverlay();
             let newSimilarityName = "";
             let newDescription = JSON.parse(JSON.stringify(this.oldSimDescription));
             let modified = false;
@@ -87,7 +90,6 @@ export class SimConfigurator {
                 this.simDao.addSimilarityData(newSimilarityName, newSimFunctionDataObject);
                 this.similarityPanel.addSimilarityFunctionToDropdown(newSimilarityName, true);
             }
-            hideLoadingOverlay();
         }
 
     }

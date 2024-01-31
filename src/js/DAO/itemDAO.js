@@ -11,7 +11,7 @@ export class ItemDAO {
         let idList = [];
         let i = 0;
         for (const item of data) {
-            idList[i] = item[this.dataId];
+            idList[i] = item[this.dataId].toString();
             i++;
         }
         return idList;

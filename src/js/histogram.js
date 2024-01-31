@@ -1,5 +1,5 @@
 import Plotly from 'plotly.js-dist-min';
-//import { itemLoader } from './item-loader';
+import { theController } from './controller';
 
 const magmaColorscaleValue = [
     '#000004',
@@ -14,10 +14,9 @@ const magmaColorscaleValue = [
     '#fcfdbf'
 ];
 export class Histogram {
-    constructor(controller, index, matrix, containerNode) {
+    constructor(index, matrix, containerNode) {
         this.matrixIndex = [];
         this.data = [];
-        this.controller = controller;
         for (let i=0; i<index.length; i++) {
             for (let j = 0; j <index.length; j++) {
                 let curIndex = j*i + j;
@@ -88,11 +87,11 @@ export class Histogram {
         if (data.points.length === 1) {
             let randomValue = data.points[0].pointIndices[Math.floor((Math.random() * data.points[0].pointIndices.length))];         
             if (this.controller) {
-                this.controller.updateItemsInfo(this.matrixIndex[randomValue][0],
+                theController.updateItemsInfo(this.matrixIndex[randomValue][0],
                                                 this.matrixIndex[randomValue][1],
                                                 this.data[randomValue],
                                                 magmaColorscaleValue[~~(this.data[randomValue] * 10)]);
-                this.controller.updateSelectedItem(this.matrixIndex[randomValue][0]);
+                theController.updateSelectedItem(this.matrixIndex[randomValue][0]);
             }
         }
     }
