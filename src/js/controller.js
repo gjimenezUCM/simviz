@@ -98,6 +98,7 @@ class Controller {
         this.resetButton.classList.remove("visually-hidden");
         this.tableComponent.changeRowItem(itemId, this.itemDAO.getItemById(itemId));
         this.tableComponent.resetColItem();
+        this.updateSelectedItem(itemId);
     }
     showLoadingOverlay() {
         this.loadingOverlay.classList.remove("visually-hidden");

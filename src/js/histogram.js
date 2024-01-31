@@ -86,13 +86,11 @@ export class Histogram {
     onClickHistogram(data) {
         if (data.points.length === 1) {
             let randomValue = data.points[0].pointIndices[Math.floor((Math.random() * data.points[0].pointIndices.length))];         
-            if (this.controller) {
-                theController.updateItemsInfo(this.matrixIndex[randomValue][0],
-                                                this.matrixIndex[randomValue][1],
-                                                this.data[randomValue],
-                                                magmaColorscaleValue[~~(this.data[randomValue] * 10)]);
-                theController.updateSelectedItem(this.matrixIndex[randomValue][0]);
-            }
+            theController.updateItemsInfo(this.matrixIndex[randomValue][0],
+                                            this.matrixIndex[randomValue][1],
+                                            this.data[randomValue],
+                                            magmaColorscaleValue[~~(this.data[randomValue] * 10)]);
+            theController.updateSelectedItem(this.matrixIndex[randomValue][0]);
         }
     }
 

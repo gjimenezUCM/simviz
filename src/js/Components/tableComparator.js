@@ -144,9 +144,14 @@ export class TableComparator {
     }
 
     _changeItemId(newId, selector) {
-        let idContainer = document.querySelector(selector);
+        let idContainer = document.querySelector(selector +" .item-id-value");
         if (idContainer) {
-            idContainer.innerHTML = newId
+            idContainer.innerHTML = newId;
+        }
+        let idButton = document.querySelector(selector + " button");
+        if (idButton){
+            newId = newId=='id'?"":newId;
+            idButton.setAttribute("data-item-id",newId);
         }
     }
 

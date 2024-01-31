@@ -3,6 +3,7 @@
 */
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/simviz.style.css';
+import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
 
 /*
@@ -50,8 +51,17 @@ async function initApp() {
                 updateWithSelectedDataset(datasetLoader, datasetMenu.value);                
             }
         });
-
     };   
+    let pinButtons = document.querySelectorAll("#item-comparator button[data-item-id]");
+    for (let btn of pinButtons){
+        btn.addEventListener("click", (event) => {
+            let itemId = event.currentTarget.getAttribute("data-item-id");
+            if (itemId) {
+                theController.filterByItemId(itemId);
+            }
+
+        })
+    }
 }
 
 async function updateWithSelectedDataset(datasetLoader, datasetName){

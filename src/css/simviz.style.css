@@ -82,6 +82,10 @@
     font-size: 1.4rem;
 }
 
+#item-comparator button[data-item-id=""]{
+    display: none;
+}
+
 .box {
     width: 25px;
     height: 25px;
