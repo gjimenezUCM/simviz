@@ -6,7 +6,8 @@
     "localSim": {
       "Color": {
         "simFunction": "max(delta_e_cie2000)",
-        "weight": 0.5
+        "weight": 0.5,
+        "description": "Maximum similarity value between the sets of colors"
       },
       "author": {
         "simFunction": "equals",
