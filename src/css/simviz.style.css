@@ -93,10 +93,10 @@
     margin-right: 5px;
     border: 1px solid black;
 }
-
+/* 
 [role="tooltip"] {
     display: none;
-}
+} */
 
 .box:hover+[role="tooltip"],
 .box:focus+[role="tooltip"] {

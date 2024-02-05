@@ -17,7 +17,6 @@ const colorAttributeTemplate = `
         {{#each theValue}}
         {{#with this}}
         <div class="box" aria-labelledby="color-label" style="background-color: rgb({{rgb}});"></div>
-        <div role="tooltip" id="color-label">{{colorName}}</div>
         {{/with}}
         {{/each}}
     </td>

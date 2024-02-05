@@ -1,5 +1,6 @@
 import { SimConfigurator } from "./simConfigurator";
 import { theController } from "../controller";
+import { Popover } from "bootstrap";
 
 const maxSize = 50;
 class SimilarityPanel {
@@ -59,16 +60,16 @@ class SimilarityPanel {
                 parent.innerHTML = "";
                 return;
             }
-            let trows = "";
+/*             let trows = "";
             for (let [attName, localDesc] of Object.entries(simDescription.localSim)) {
                 trows += `<tr>
                     <td>${attName}</td>
-                    <td>${localDesc.simFunction}</td>
+                    <td class="sim-function-name">${localDesc.simFunction}</td>
                     <td>
                         <div class="att-weight align-self-center" data-weight="${localDesc.weight}"></div>
                     </td>
                 </tr>`;
-            }
+            } */
 
             parent.innerHTML = `<h3>Global function</h3>
             <p id="global-sim-desc">${simDescription.globalSim.simFunction}</p>
@@ -83,10 +84,32 @@ class SimilarityPanel {
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                ${trows}
                 </tbody>
             </table>
             </div>`
+
+            let tableParent = parent.querySelector("tbody.table-group-divider");
+            for (let [attName, localDesc] of Object.entries(simDescription.localSim)) {
+                let aRow = document.createElement("tr");
+                aRow.innerHTML = `<td>${attName}</td>
+                    <td class="sim-function-name">${localDesc.description ? '<i class="bi bi-question-circle-fill"></i>' : ''}${localDesc.simFunction}</td>
+                    <td>
+                        <div class="att-weight align-self-center" data-weight="${localDesc.weight}"></div>
+                    </td>`;
+                tableParent.appendChild(aRow);
+                if (localDesc.description){
+                    let helpIcon = aRow.querySelector("i.bi");
+                    if (helpIcon){
+                        const popover = new Popover(helpIcon,{
+                            content: localDesc.description,
+                            placement: "bottom",
+                            html: true,
+                            trigger: 'hover focus'
+                        })
+                    }
+                }
+            }
+
         }
         this._populateWeights();
     }
