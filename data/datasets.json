@@ -46,16 +46,16 @@
                 "uri": "data/DMH/Author80Color20.json"
             },
             {
-                "name": "simMaxColor",
-                "uri": "data/DMH/simMaxColor.json"
+                "name": "MaxColor",
+                "uri": "data/DMH/MaxColor.json"
             },
             {
-                "name": "simAvgColor",
-                "uri": "data/DMH/simAvgColor.json"
+                "name": "AvgColor",
+                "uri": "data/DMH/AvgColor.json"
             },
             {
-                "name": "simDecades",
-                "uri": "data/DMH/simDecades.json"
+                "name": "Decades",
+                "uri": "data/DMH/Decades.json"
             }
         ]
     }  
