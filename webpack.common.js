@@ -37,7 +37,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        main: './src/js/main.js',
+        app: './src/js/main.js',
+        help: './src/js/help.js'
     },
 
     plugins: [
@@ -46,6 +47,15 @@ module.exports = {
             title: 'SimViz',
             // Plantilla que usamos
             template: "src/index.html",
+            chunks: ['app']
+        }),
+        new HtmlWebpackPlugin({
+            // Título de la página index.html que nos genera como base.
+            title: 'SimViz Tutorial',
+            // Plantilla que usamos
+            template: "src/help.html",
+            chunks: ['help'],
+            filename: 'help.html'
         }),
         new webpack.DefinePlugin({
             // Si añades alguna, defínelas para TypeScript en types/definePlugin.d.ts
