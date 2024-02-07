@@ -6,7 +6,8 @@
     "localSim": {
       "year": {
         "simFunction": "Range(Decades)",
-        "weight": 1.0
+        "weight": 1.0,
+        "description": "Similarity computed using the Decade value in the range of decades for the dataset"
       }
     }
   },

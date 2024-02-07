@@ -14,7 +14,8 @@
       },
       "Meal": {
         "simFunction": "NominalRangeSimilarity",
-        "weight": 0.25
+        "weight": 0.25,
+        "description": "Similarity in an ordered cualitative range (none, snack, full)"
       },
       "FrameSize": {
         "simFunction": "RangeSimilarity",
