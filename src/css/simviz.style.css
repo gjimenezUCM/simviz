@@ -31,6 +31,10 @@
         h3 {
             font-size: 1.4rem;
         }
+        .btn-outline-dark{
+            --bs-btn-border-width: 0;
+            margin-right: 3px;
+        }
     }
 }
 

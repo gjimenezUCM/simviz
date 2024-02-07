@@ -1,6 +1,7 @@
 import { SimConfigurator } from "./simConfigurator";
 import { theController } from "../controller";
 import { Popover } from "bootstrap";
+import nanoMarkdown from 'nano-markdown';
 
 const maxSize = 50;
 class SimilarityPanel {
@@ -60,16 +61,6 @@ class SimilarityPanel {
                 parent.innerHTML = "";
                 return;
             }
-/*             let trows = "";
-            for (let [attName, localDesc] of Object.entries(simDescription.localSim)) {
-                trows += `<tr>
-                    <td>${attName}</td>
-                    <td class="sim-function-name">${localDesc.simFunction}</td>
-                    <td>
-                        <div class="att-weight align-self-center" data-weight="${localDesc.weight}"></div>
-                    </td>
-                </tr>`;
-            } */
 
             parent.innerHTML = `<h3>Global function</h3>
             <p id="global-sim-desc">${simDescription.globalSim.simFunction}</p>
@@ -92,7 +83,7 @@ class SimilarityPanel {
             for (let [attName, localDesc] of Object.entries(simDescription.localSim)) {
                 let aRow = document.createElement("tr");
                 aRow.innerHTML = `<td>${attName}</td>
-                    <td class="sim-function-name">${localDesc.description ? '<i class="bi bi-question-circle-fill"></i>' : ''}${localDesc.simFunction}</td>
+                    <td class="sim-function-name">${localDesc.description ? '<button class="btn btn-outline-dark btn-sm"><i class="bi bi-question-circle-fill"></i></button>' : ''}${localDesc.simFunction}</td>
                     <td>
                         <div class="att-weight align-self-center" data-weight="${localDesc.weight}"></div>
                     </td>`;
@@ -101,14 +92,23 @@ class SimilarityPanel {
                     let helpIcon = aRow.querySelector("i.bi");
                     if (helpIcon){
                         const popover = new Popover(helpIcon,{
-                            content: localDesc.description,
+                            content: nanoMarkdown(localDesc.description),
                             placement: "bottom",
                             html: true,
-                            trigger: 'hover focus'
+                            trigger: 'click'
                         })
+                        helpIcon.addEventListener('inserted.bs.popover', ()=>{
+                            let links = document.querySelectorAll(".popover-body a");
+                            if (links) {
+                                for (let aLink of links) {
+                                    aLink.setAttribute("target", "_blank");
+                                }
+                            }
+                        });
                     }
                 }
             }
+
 
         }
         this._populateWeights();
