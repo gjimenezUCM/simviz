@@ -89,7 +89,7 @@ class SimilarityPanel {
                     </td>`;
                 tableParent.appendChild(aRow);
                 if (localDesc.description){
-                    let helpIcon = aRow.querySelector("i.bi");
+                    let helpIcon = aRow.querySelector("button");
                     if (helpIcon){
                         const popover = new Popover(helpIcon,{
                             content: nanoMarkdown(localDesc.description),

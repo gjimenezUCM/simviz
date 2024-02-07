@@ -5,12 +5,14 @@
     },
     "localSim": {
       "Color": {
-        "simFunction": "max(delta_e_cie2000)",
-        "weight": 0.8
+        "simFunction": "max(delta_e2000)",
+        "weight": 0.8,
+        "description": "Maximum similarity value between two sets of colors. Similarity between a pair of colors is computed using [Delta E 2000 color difference function](http://www.colorwiki.com/wiki/Delta_E:_The_Color_Difference#dE2000)"
       },
       "author": {
         "simFunction": "equals",
-        "weight": 0.2
+        "weight": 0.2,
+        "description": "String equality"
       }
     }
   },

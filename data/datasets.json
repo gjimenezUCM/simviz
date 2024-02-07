@@ -58,5 +58,25 @@
                 "uri": "data/DMH/Decades.json"
             }
         ]
-    }  
+    },
+    {
+        "dataset": {
+            "name": "Travel Agent",
+            "uri": "data/travel/travel.json"
+        },
+        "similarityDatasets": [
+            {
+                "name": "All attributes",
+                "uri": "data/travel/allAttributes.json"
+            },
+            {
+                "name": "Season (1)",
+                "uri": "data/travel/season1.json"
+            },
+            {
+                "name": "Season (2)",
+                "uri": "data/travel/season2.json"
+            }
+        ]
+    }
 ]

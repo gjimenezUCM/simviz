@@ -34,7 +34,7 @@ const templates = {
     "ColorList": colorAttributeTemplate
 }
 
-const maxSize = 50;
+const maxSize = 60;
 
 
 
