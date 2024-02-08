@@ -10,58 +10,83 @@
     <h1>SimViz</h1>
     <p>SimViz is a visualization tool for exploring case bases and similarity functions.</p>
 
-    <div class="row">
-        <h4>Use the dropdown lists on the left to select a dataset and a similarity function</h4>
-        <div class="col-9 offset-2">
-        <div class="ratio ratio-16x9">
-            <video autoplay muted loop>
-                <source src="images/step1.mp4" type="video/mp4">
-            </video>
+
+    <div id="carouselTutorial" class="carousel slide" data-bs-interval="false">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselTutorial" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselTutorial" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselTutorial" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselTutorial" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselTutorial" data-bs-slide-to="4" aria-label="Slide 5"></button>
         </div>
-        </div>
-    </div>
-    <div class="row">
-        <h4>Click on the heatmap for more details on the similarity between two cases</h4>
-        <div class="col-9 offset-2">
-            <div class="ratio ratio-16x9">
-                <video autoplay muted loop>
-                    <source src="images/step2.mp4" type="video/mp4">
-                </video>
+        <div class="carousel-inner">
+            <div class="carousel-item active" >
+                <div class="ratio ratio-16x9">
+                    <video autoplay muted loop>
+                        <source src="images/step1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Use the dropdown lists on the left to select a dataset and a similarity function.</h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="ratio ratio-16x9">
+                    <video autoplay muted loop>
+                        <source src="images/step2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="carousel-caption ">
+                    <h5>Click on the heatmap for more details on the similarity between two cases</h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="ratio ratio-16x9">
+                    <video autoplay muted loop>
+                        <source src="images/step3.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Click on the histogram to randomly select a pair of cases according to their similarity value</h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="ratio ratio-16x9">
+                    <video autoplay muted loop>
+                        <source src="images/step4.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Click on the pin icon <button class="btn btn-primary btn-sm"><i class="bi bi-pin"></i></button> next to the case id to review the similarity of this case with the rest of the case base</h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="ratio ratio-16x9">
+                    <video autoplay muted loop>
+                        <source src="images/step5.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Click on <button class="btn btn-primary btn-sm">Reconfigure weights</button> button to recompute a similarity function
+                    modifying the Local similarity weights</h5>
+                </div>
             </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTutorial" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselTutorial" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    <div class="row">
-        <h4>Click on the histogram to randomly select a pair of cases according to their similarity value</h4>
-        <div class="col-9 offset-2">
-            <div class="ratio ratio-16x9">
-                <video autoplay muted loop>
-                    <source src="images/step3.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <h4>Click on the pin icon next to the case id to review the similarity of this case with the rest of the case base</h4>
-        <div class="col-9 offset-2">
-            <div class="ratio ratio-16x9">
-                <video autoplay muted loop>
-                    <source src="images/step4.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <h4>Click on <button class="btn btn-primary">Reconfigure weights</button> button to recompute a similarity function
-        modifying the Local similarity weights</h4>
-        <div class="col-9 offset-2">
-            <div class="ratio ratio-16x9">
-                <video autoplay muted loop>
-                    <source src="images/step5.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </div>
-    <div class="row">
+
+   
+    <div class="row mt-5">
         <a class="btn btn-primary" href="index.html" role="button">Back to SimViz</a>
     </div>
     </div>
