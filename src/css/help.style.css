@@ -1,0 +1,13 @@
+#carouselTutorial {
+    .carousel-caption{
+        background-color: #000000aa;
+        left: 2%;
+        right: 2%
+    }
+    .carousel-control-next,
+    .carousel-control-prev{
+        bottom: 1.25rem;
+        align-items: flex-end;
+        padding-bottom: 1.25rem;
+    }
+}
