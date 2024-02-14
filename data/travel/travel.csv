@@ -1,4 +1,4 @@
-caseId,HolidayType,Price,NumberOfPersons,Region,Transportation,Duration,Season,Accomodation,Hotel
+caseId,HolidayType,Price,NumberOfPersons,Region,Transportation,Duration,Month,Accomodation,Hotel
 "Journey1","Bathing",2498,2,"Egypt","Plane",14,"April","TwoStars","Hotel White House, Egypt"
 "Journey2","Bathing",3066,3,"Egypt","Plane",21,"May","TwoStars","Hotel White House, Egypt"
 "Journey3","Active",2778,2,"Egypt","Plane",14,"June","TwoStars","Hotel Geisum, Egypt"

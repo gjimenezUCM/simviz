@@ -6,11 +6,13 @@
     "localSim": {
       "Gender": {
         "simFunction": "equals",
-        "weight": 0.25
+        "weight": 0.25,
+        "description": "String equality"
       },
       "AmountConsumed": {
         "simFunction": "RangeSimilarity",
-        "weight": 0.25
+        "weight": 0.25,
+        "description": "Similarity normalized in range (1,14)"
       },
       "Meal": {
         "simFunction": "NominalRangeSimilarity",
@@ -19,7 +21,8 @@
       },
       "Duration": {
         "simFunction": "RangeSimilarity",
-        "weight": 0.25
+        "weight": 0.25,
+        "description": "Similarity normalized in range (30,240)"
       }
     }
   },

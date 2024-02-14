@@ -7,7 +7,7 @@
       "Color": {
         "simFunction": "max(delta_e2000)",
         "weight": 0.5,
-        "description": "Maximum similarity value between two sets of colors. Similarity between a pair of colors is computed using [Delta E 2000 color difference function](http://www.colorwiki.com/wiki/Delta_E:_The_Color_Difference#dE2000)"
+        "description": "Maximum similarity value when comparing two sets of colors. Similarity between every pair of colors is computed using [Delta E 2000 color difference function](http://www.colorwiki.com/wiki/Delta_E:_The_Color_Difference#dE2000), which is a standard measurement that quantifies the difference between two colors that appear on a screen"
       },
       "author": {
         "simFunction": "equals",
