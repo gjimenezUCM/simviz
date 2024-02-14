@@ -70,12 +70,12 @@
                 "uri": "data/travel/allAttributes.json"
             },
             {
-                "name": "Season (1)",
-                "uri": "data/travel/season1.json"
+                "name": "Months (1)",
+                "uri": "data/travel/month1.json"
             },
             {
-                "name": "Season (2)",
-                "uri": "data/travel/season2.json"
+                "name": "Months (2)",
+                "uri": "data/travel/month2.json"
             }
         ]
     }

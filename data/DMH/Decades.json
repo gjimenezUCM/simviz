@@ -7,7 +7,7 @@
       "year": {
         "simFunction": "Range(Decades)",
         "weight": 1.0,
-        "description": "Similarity computed using the Decade value in the range of decades for the dataset"
+        "description": "Similarity based on the _Decade_ and normalized in the range of decades for the dataset.\n The _Decade_ is computed using the year. A decade starts in \"1\" and finishes  in \"0\" (e.g 1950 belongs to the 40s)"
       }
     }
   },
