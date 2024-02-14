@@ -55,18 +55,18 @@ export class TableComparator {
             let weight = simDescription && (attName in simDescription.localSim) ? this.simDescription.localSim[attName].weight : "";
             const rowTemplate = `
                 <tr data-att-name="${attName}">
-                    <td class="col-5">
-                    </td>
                     <td class="col-2">
-                        <div class="att-cell d-flex flex-column">
-                            <div class="att-header d-flex flex-row justify-content-center">
-                                <div class="att-name">${attName}</div>
-                                <div class="att-value"></div>
-                            </div>
-                            <div class="att-weight align-self-center" data-weight="${weight}"></div>
+                        <div class="d-flex justify-content-between">
+                            <span class="att-name">${attName}</span>
+                            <span class="att-weight" data-weight="${weight}"></span>
                         </div>
                     </td>
-                    <td class="col-5">
+                    <td class="col-4 item-row-cell">
+                    </td>
+                    <td class="col-1">
+                        <div class="att-value"></div>
+                    </td>
+                    <td class="col-4 item-col-cell">
                     </td>
                 </tr>`
             const node =  document.createElement('template');
@@ -117,18 +117,18 @@ export class TableComparator {
             let comparatorRow = document.querySelectorAll(`tr[data-att-name=${att}] td`);
             let itemElement = this._createItemElement(att, item[att]);
             if (selector.search("row") != -1) {
-                comparatorRow[0].innerHTML = itemElement;
+                comparatorRow[1].innerHTML = itemElement;
             } else {
-                comparatorRow[2].innerHTML = itemElement;
+                comparatorRow[3].innerHTML = itemElement;
             }
         }
         for (let att of Object.keys(this.remainingAtts)) {
             let comparatorRow = document.querySelectorAll(`tr[data-att-name=${att}] td`);
             let itemElement = this._createItemElement(att, item[att]);
             if (selector.search("row") != -1) {
-                comparatorRow[0].innerHTML = itemElement;
+                comparatorRow[1].innerHTML = itemElement;
             } else {
-                comparatorRow[2].innerHTML = itemElement;
+                comparatorRow[3].innerHTML = itemElement;
             }
         }
     }
