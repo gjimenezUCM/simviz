@@ -7,23 +7,31 @@ const itemColPrefix = "item-col"
 const idName = "-id";
 
 const basicAtributeTemplate = `
-    <td class="col-5">
+    <td class="col-4">
+        {{#if theValue}}
         {{theValue}}
+        {{else}}
+        <i class="bi bi-ban"></i>
+        {{/if}}
     </td>
 `;
 
 const colorAttributeTemplate = `
-    <td class="col-5">
-        {{#each theValue}}
-        {{#with this}}
-        <div class="box" aria-labelledby="color-label" style="background-color: rgb({{rgb}});"></div>
-        {{/with}}
-        {{/each}}
+    <td class="col-4">
+        {{#if theValue}}
+            {{#each theValue}}
+                {{#with this}}
+                <div class="box" aria-labelledby="color-label" style="background-color: rgb({{rgb}});"></div>
+                {{/with}}
+            {{/each}}
+        {{else}}
+        <i class="bi bi-ban"></i>
+        {{/if}}
     </td>
 `;
 
 const imageAttributeTemplate = `
-    <td class="col-5">
+    <td class="col-4">
         <img class="img-fluid" src="{{theValue}}"/>
     </td>
 `;
@@ -158,40 +166,13 @@ export class TableComparator {
         if (item) {
             let selector = '#' + itemRowPrefix;
             this._changeItem(id, item, selector);
-            // this._changeItem(item, '#item-row');
-            // let filterBtn = document.querySelector(itemRowSelectorButton);
-            // this._updateFilterButton(filterBtn, item._id, item._id, hideFilterButton);
         }
-
-        // Prevent errors during first initialization
-        // if (filterBtn) {
-        //     if (hideFilterButton) {
-        //         filterBtn.classList.add("disabled");
-        //     } else {
-        //         filterBtn.classList.remove("disabled");
-        //     }
-        // }
     }
 
     _changeColItem(id, item, hideFilterButton) {
         if (item) {
             this._changeItem(id, item, '#' + itemColPrefix);
-            // let filterBtn = document.querySelector(itemColSelectorButton);
-            // // Prevent errors during first initialization
-            // this._updateFilterButton(filterBtn, item._id, item._id, hideFilterButton);
         }
-
-        // if (filterBtn) {
-        //     if (hideFilterButton) {
-        //         filterBtn.classList.add("disabled");
-        //     } else {
-        //         filterBtn.classList.remove("disabled");
-        //     }
-        // }
-    }
-
-    setController(aController) {
-        this.controller = aController;
     }
 
     changeRowItem(id, item) {

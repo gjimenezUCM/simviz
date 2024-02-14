@@ -126,6 +126,9 @@ img {
 .att-name {
     font-weight: 700;
 }
+.att-value{
+    font-weight: 700;
+}
 
 .att-weight {
     font-size: smaller;
