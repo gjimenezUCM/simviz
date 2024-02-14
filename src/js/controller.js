@@ -6,6 +6,10 @@ import { getSimilarityInData } from './DAO/similarityDAO'
 class Controller {
     constructor(){
         this.loadingOverlay = document.getElementById("loading-overlay");
+        this.resetButton = document.getElementById('reset-filter-btn');
+        this.heatmapSelect = document.getElementById('heatmap-filter-select');
+        this.histogramContainer = document.getElementById('histogram');
+        this.heatmapContainer = document.getElementById('heatmap');
     }
     init(itemDAO, simData) {
         let allAttributes = itemDAO.getAttributes();
@@ -16,29 +20,38 @@ class Controller {
         this.itemIds = itemDAO.getIds();
         if (simData){
             this.simData = simData;
-            this.histogramContainer = document.getElementById('histogram');
+            
             this.theHistogram = new Histogram(this.itemIds, this.simData.similarityMatrix, this.histogramContainer);
 
-            this.heatmapContainer = document.getElementById('heatmap');
+            
             this.theHeatmap = new Heatmap(this.itemIds, this.simData.similarityMatrix, this.heatmapContainer);
 
-            this.heatmapSelect = document.getElementById('heatmap-filter-select');
+            
             this._populateItemIdSelect();
             this.heatmapSelect.addEventListener("change", (event) => {
                 if (this.heatmapSelect.value !== '*') {
                     this.filterByItemId(this.heatmapSelect.value);
                 }
             });
-            this.tableComponent.setController(this);
-            this.resetButton = document.getElementById('reset-filter-btn');
+            
+            
             this.resetButton.addEventListener('click', (event) => {
                 this.theHeatmap.reset();
                 this.heatmapSelect.selectedIndex = 0;
                 this.tableComponent.resetItems();
                 this.resetButton.classList.add("visually-hidden");
             });
+        }        
+    }
+
+    onDatasetSelected() {
+        this.histogramContainer.innerHTML = "";
+        this.heatmapContainer.innerHTML = "";
+        this.heatmapSelect.selectedIndex = 0;
+        if (this.tableComponent){
+            this.tableComponent.resetItems();
         }
-        
+        this.resetButton.classList.add("visually-hidden");
     }
 
     updateItemsInfo(rowItemId, colItemId, similarityValue, color) {
@@ -100,6 +113,7 @@ class Controller {
         this.tableComponent.resetColItem();
         this.updateSelectedItem(itemId);
     }
+
     showLoadingOverlay() {
         this.loadingOverlay.classList.remove("visually-hidden");
     }

@@ -95,7 +95,7 @@ class SimilarityPanel {
                             content: nanoMarkdown(localDesc.description),
                             placement: "bottom",
                             html: true,
-                            trigger: 'click'
+                            trigger: 'focus'
                         })
                         helpIcon.addEventListener('inserted.bs.popover', ()=>{
                             let links = document.querySelectorAll(".popover-body a");

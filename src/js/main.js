@@ -76,6 +76,7 @@ async function updateWithSelectedDataset(datasetLoader, datasetName){
 
     let simDAO = new SimilarityDAO(datasetLoader.getSimilarityFunctionsForDataset(datasetName), itemDAO.getIds());
     similarityPanel.init(simDAO, itemDAO);
+    theController.onDatasetSelected();
     theController.init(itemDAO, null);
 }
 
