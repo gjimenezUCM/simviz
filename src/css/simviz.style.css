@@ -6,34 +6,29 @@
     height: 5vh;
 }
 
+/* similarity-container */
 #similarity-container {
     height: 95vh;
     overflow: auto;
     padding: 1rem;
-    
-    .form-select{
-        font-size: 1.1rem;
-    }
 
-    #dataset-desc {
+    h2 {
+        font-size: 1.4rem;
+    }
+    h3 {
+        font-size: 1.2rem;
         margin-top: 1.3rem;
-        h3 {
-            font-size: 1.4rem;
-        }
     }
-
     #similarity-descriptor {
         margin-top: 1.5rem;
-        #sim-desc {
-            margin-top: 1.3rem;
-        }
-        h3 {
-            font-size: 1.4rem;
-        }
+
         .btn-outline-dark{
             --bs-btn-border-width: 0;
             margin-right: 3px;
         }
+    }
+    table{
+        font-size: 0.9rem;
     }
 }
 
@@ -48,29 +43,34 @@
     }
 }
 
-/* similarity-container */
+/* plot-container */
 
 
-
-#heatmap-content {
-    height: 100%;
-    background-color:aliceblue;
-    
-    #heatmap {
+#heatmap {
+    height: 80vh;
+    #heatmap-content {
+        height: 100%;
+        background-color:aliceblue;
+        
+        #heatmap {
             padding: 0;
+        }
     }
 }
 
 
-
-#histogram-content {
-    height: 100%;
-    background-color: aliceblue;
-
-    #histogram {
-        padding: 0;
+#histogram{
+    height: 20vh;
+    #histogram-content {
+        height: 100%;
+        background-color: aliceblue;
+        
+        #histogram {
+            padding: 0;
+        }
     }
 }
+
 
 
 
@@ -111,30 +111,30 @@
 img {
     max-height: 15vh;
 }
+.att-cell{
+    display: flex;
+    flex-direction: column;
+    .att-name {
+        font-weight: 700;
+    }   
+    .att-weight{
+        align-self: center;
+        margin-top: 2px;
+    }
+    
+}
 
-.item-row-cell{
-    text-align: end;
-}
-.item-col-cell {
-    text-align: start;
-}
 
-.att-header {
-    margin-bottom: 0.4em;
-}
 
-.att-name {
-    font-weight: 700;
-}
-.att-value{
-    font-weight: 700;
-}
 
 .att-weight {
     font-size: smaller;
     font-weight: 500;
-    display: inline-block;
-    /* line-height: 1.3em; */
+    line-height: 1.3em;
+}
+
+.att-weight[data-weight=""]{
+    display: none;
 }
 
 .att-weight-bar {

@@ -25,7 +25,7 @@
             
         </section>
         <div class="row">
-            <section id="similarity-container" class="col-4">
+            <section id="similarity-container" class="col-3">
                 <div id="dataset-descriptor" class="card">
                         <h2 class="card-header text-bg-dark">Dataset</h2>
                     <div class="card-body">
@@ -52,60 +52,57 @@
                     </div>
                 </div>
             </section>
-            <div class="col-8">
-                <section id="plot-container" class="row">
-                    <div id="heatmap-content" class="col-8">
-                        <div id="heatmap"></div>
-                        <button type="button" class="btn btn-primary visually-hidden" id="reset-filter-btn">Reset</button>
+
+            <section id="plot-container" class="col-4">
+                <div id="histogram-content" class="row">
+                    <div id="histogram"></div>
+                </div>
+                <div id="heatmap-content" class="row">
+                    <div id="heatmap"></div>
+                    <button type="button" class="btn btn-primary visually-hidden" id="reset-filter-btn">Reset</button>
+                </div>
+            </section>
+
+            <section id="item-comparator" class="col-5 text-center">
+                <div id="selection-header" class="row">
+                    <div class="col-2">
+                        <label class="form-label" for="heatmap-filter-select">Select Item</label>
                     </div>
-                    <div id="histogram-content" class="col-4">
-                        <div id="histogram"></div>
+                    <div class="col-10">
+                        <select id="heatmap-filter-select" class="form-select" aria-label="Item select">
+                            <option selected>*</option>
+                        </select>
                     </div>
-                </section>
-                <section id="item-comparator" class="text-center">
-                    <div id="selection-header" class="row">
-                        <div class="col-2">
-                            <label class="form-label" for="heatmap-filter-select">Select Item</label>
-                        </div>
-                        <div class="col-10">
-                            <select id="heatmap-filter-select" class="form-select" aria-label="Item select">
-                                <option selected>*</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="col-2">
-                                        <!-- Dummy -->
-                                    </th>
-                                    <th id="item-row-id" class="col-4 item-row-cell">
-                                        <button class="btn btn-sm btn-primary" data-item-id="">
-                                            <i class="bi-pin"></i>
-                                        </button>
-                                        <span class="item-id-value">ItemId</span>
-                                    </th>
-                                    <th class="col-1">
-                                        <div class="badge rounded-pill">
-                                            <span id="item-sim-value">Similarity</span>
-                                        </div>
-                                    </th>
-                                    <th id="item-col-id" class="col-4 item-col-cell">
-                                        <span class="item-id-value">ItemId</span>
-                                        <button class="btn btn-sm btn-primary" data-item-id="">
-                                            <i class="bi-pin"></i>
-                                        </button>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            </div>
-        </div>
+                </div>
+                <div class="row">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th id="item-row-id" class="col-5 item-row-cell">
+                                    <button class="btn btn-sm btn-primary" data-item-id="">
+                                        <i class="bi-pin"></i>
+                                    </button>
+                                    <span class="item-id-value">ItemId</span>
+                                </th>
+                                <th class="col-2">
+                                    <div class="badge rounded-pill">
+                                        <span id="item-sim-value">Similarity</span>
+                                    </div>
+                                </th>
+                                <th id="item-col-id" class="col-5 item-col-cell">
+                                    <span class="item-id-value">ItemId</span>
+                                    <button class="btn btn-sm btn-primary" data-item-id="">
+                                        <i class="bi-pin"></i>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
     </div>
     <div id="similarity-configuration" class="modal fade" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">

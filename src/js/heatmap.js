@@ -33,6 +33,9 @@ export class Heatmap {
             y: this.currentY,
             z: this.currentData,
             type: 'heatmap',
+            colorbar: {
+                orientation: "h"
+            },
             colorscale: magmaColorscaleValue,
             showscale: true,
             hovertemplate: "id: %{y}<br>id: %{x}<br>Similarity: %{z}<extra></extra>",
@@ -43,7 +46,7 @@ export class Heatmap {
             paper_bgcolor: 'transparent',
             margin: {
                 l: 10,
-                r: 10,
+                r: 20,
                 b: 10,
                 t: 10,
             },
@@ -68,7 +71,7 @@ export class Heatmap {
                     size: 16
                 }
             },
-            height: containerHeight,
+            height: containerWidth,
             width: containerWidth
         };
 

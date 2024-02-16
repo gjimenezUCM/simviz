@@ -48,49 +48,107 @@ const maxSize = 60;
 
 export class TableComparator {
     constructor(allAtts, simDescription, attId) {
-        this.simAtts = {};
+
         this.remainingAtts = {};
         this.simDescription = simDescription;
         let listAttsInSim = simDescription? Object.keys(simDescription.localSim) : null;
+        this.simAtts = {};
         this.attId = attId;
         let table = document.querySelector("#item-comparator tbody");
         let tableContent = document.createElement("tbody");
         tableContent.classList.add("table-group-divider");
 
+        if (listAttsInSim){
+            for (let attName of listAttsInSim) {
+                if (attName === attId)
+                    continue;
+                this.simAtts[attName] = allAtts[attName]; 
+                let weight = simDescription.localSim[attName].weight;
+                const rowTemplate = `
+                    <tr data-att-name="${attName}">
+                        <td class="col-5 item-row-cell">
+                        </td>
+                        <td class="col-2">
+                            <div class="att-cell">
+                                <div class="att-name">${attName}</div>
+                                <div class="att-value"></div> 
+                                <div class="att-weight" data-weight="${weight}"></div> 
+                            </div>                            
+                        </td>
+                        <td class="col-5 item-col-cell">
+                        </td>
+                    </tr>`
+                const node = document.createElement('template');
+                node.innerHTML = rowTemplate;
+                const result = node.content.children[0];
+                result.classList.add("table-primary");
+                tableContent.appendChild(result);
+            }
+        }
+
         for (let attName of Object.keys(allAtts)) {
             if (attName === attId)
                 continue;
-            let weight = simDescription && (attName in simDescription.localSim) ? this.simDescription.localSim[attName].weight : "";
+            if (this.simAtts && attName in this.simAtts)
+                continue;
+            this.remainingAtts[attName] = allAtts[attName];
             const rowTemplate = `
                 <tr data-att-name="${attName}">
-                    <td class="col-2">
-                        <div class="d-flex justify-content-between">
-                            <span class="att-name">${attName}</span>
-                            <span class="att-weight" data-weight="${weight}"></span>
-                        </div>
-                    </td>
-                    <td class="col-4 item-row-cell">
-                    </td>
-                    <td class="col-1">
-                        <div class="att-value"></div>
-                    </td>
-                    <td class="col-4 item-col-cell">
-                    </td>
+                        <td class="col-5 item-row-cell">
+                        </td>
+                        <td class="col-2">
+                            <div class="att-cell d-flex flex column">
+                                <div class="att-name">${attName}</div>
+                                <div class="att-value"></div>
+                            </div>
+                            
+                        </td>
+                        <td class="col-5 item-col-cell">
+                        </td>
                 </tr>`
-            const node =  document.createElement('template');
+            const node = document.createElement('template');
             node.innerHTML = rowTemplate;
             const result = node.content.children[0];
-            if (listAttsInSim && listAttsInSim.includes(attName)) {
-                this.simAtts[attName] = allAtts[attName];
-                result.classList.add("table-primary");
-                tableContent.insertBefore(result, tableContent.children[0])
+            tableContent.appendChild(result);
+        }
+
+
+
+
+        // for (let attName of Object.keys(allAtts)) {
+        //     if (attName === attId)
+        //         continue;
+        //     let weight = simDescription && (attName in simDescription.localSim) ? this.simDescription.localSim[attName].weight : "";
+        //     const rowTemplate = `
+        //         <tr data-att-name="${attName}">
+        //             <td class="col-2">
+        //                 <div class="d-flex justify-content-between">
+        //                     <span class="att-name">${attName}</span>
+        //                     <span class="att-weight" data-weight="${weight}"></span>
+        //                 </div>
+        //             </td>
+        //             <td class="col-4 item-row-cell">
+        //             </td>
+        //             <td class="col-1">
+        //                 <div class="att-value"></div>
+        //             </td>
+        //             <td class="col-4 item-col-cell">
+        //             </td>
+        //         </tr>`
+        //     const node =  document.createElement('template');
+        //     node.innerHTML = rowTemplate;
+        //     const result = node.content.children[0];
+        //     if (listAttsInSim && listAttsInSim.includes(attName)) {
+        //         this.simAtts[attName] = allAtts[attName];
+        //         result.classList.add("table-primary");
+        //         tableContent.insertBefore(result, tableContent.children[0])
                 
-            }
-            else {
-                this.remainingAtts[attName] = allAtts[attName];
-                tableContent.appendChild(result);
-            }
-        } 
+        //     }
+        //     else {
+        //         this.remainingAtts[attName] = allAtts[attName];
+        //         tableContent.appendChild(result);
+        //     }
+        // } 
         table.replaceWith(tableContent);
 
         this.attTemplates = {};
@@ -125,18 +183,18 @@ export class TableComparator {
             let comparatorRow = document.querySelectorAll(`tr[data-att-name=${att}] td`);
             let itemElement = this._createItemElement(att, item[att]);
             if (selector.search("row") != -1) {
-                comparatorRow[1].innerHTML = itemElement;
+                comparatorRow[0].innerHTML = itemElement;
             } else {
-                comparatorRow[3].innerHTML = itemElement;
+                comparatorRow[2].innerHTML = itemElement;
             }
         }
         for (let att of Object.keys(this.remainingAtts)) {
             let comparatorRow = document.querySelectorAll(`tr[data-att-name=${att}] td`);
             let itemElement = this._createItemElement(att, item[att]);
             if (selector.search("row") != -1) {
-                comparatorRow[1].innerHTML = itemElement;
+                comparatorRow[0].innerHTML = itemElement;
             } else {
-                comparatorRow[3].innerHTML = itemElement;
+                comparatorRow[2].innerHTML = itemElement;
             }
         }
     }
