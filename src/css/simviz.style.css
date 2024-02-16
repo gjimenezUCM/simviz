@@ -1,5 +1,5 @@
 :root {
-    font-size: 15px;
+    font-size: 14px;
 }
 /* Layout */
 #menu {
@@ -28,7 +28,7 @@
         }
     }
     table{
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -87,9 +87,15 @@
     font-size: 1.4rem;
 }
 
-#item-comparator button[data-item-id=""]{
-    display: none;
-}
+#item-comparator{
+    tbody {
+        font-size: 0.9rem;
+    }
+    button[data-item-id=""] {
+            display: none;
+        }
+
+} 
 
 .box {
     width: 25px;
@@ -136,6 +142,8 @@ img {
 .att-weight[data-weight=""]{
     display: none;
 }
+
+
 
 .att-weight-bar {
     background-color: #dda8f8;
