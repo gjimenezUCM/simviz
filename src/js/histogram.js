@@ -49,7 +49,7 @@ export class Histogram {
             paper_bgcolor: 'transparent',
             plot_bgcolor: "transparent",
             margin: {
-                l: 10,
+                l: 0,
                 r: 20,
                 b: 0,
                 t: 10,

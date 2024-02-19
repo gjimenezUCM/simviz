@@ -11,7 +11,7 @@ const basicAtributeTemplate = `
         {{#if theValue}}
         {{theValue}}
         {{else}}
-        <i class="bi bi-ban"></i>
+        <span class="badge text-bg-secondary">NULL</span>
         {{/if}}
     </td>
 `;
@@ -25,7 +25,7 @@ const colorAttributeTemplate = `
                 {{/with}}
             {{/each}}
         {{else}}
-        <i class="bi bi-ban"></i>
+        <span class="badge text-bg-secondary">NULL</span>
         {{/if}}
     </td>
 `;
@@ -111,44 +111,6 @@ export class TableComparator {
             const result = node.content.children[0];
             tableContent.appendChild(result);
         }
-
-
-
-
-        // for (let attName of Object.keys(allAtts)) {
-        //     if (attName === attId)
-        //         continue;
-        //     let weight = simDescription && (attName in simDescription.localSim) ? this.simDescription.localSim[attName].weight : "";
-        //     const rowTemplate = `
-        //         <tr data-att-name="${attName}">
-        //             <td class="col-2">
-        //                 <div class="d-flex justify-content-between">
-        //                     <span class="att-name">${attName}</span>
-        //                     <span class="att-weight" data-weight="${weight}"></span>
-        //                 </div>
-        //             </td>
-        //             <td class="col-4 item-row-cell">
-        //             </td>
-        //             <td class="col-1">
-        //                 <div class="att-value"></div>
-        //             </td>
-        //             <td class="col-4 item-col-cell">
-        //             </td>
-        //         </tr>`
-        //     const node =  document.createElement('template');
-        //     node.innerHTML = rowTemplate;
-        //     const result = node.content.children[0];
-        //     if (listAttsInSim && listAttsInSim.includes(attName)) {
-        //         this.simAtts[attName] = allAtts[attName];
-        //         result.classList.add("table-primary");
-        //         tableContent.insertBefore(result, tableContent.children[0])
-                
-        //     }
-        //     else {
-        //         this.remainingAtts[attName] = allAtts[attName];
-        //         tableContent.appendChild(result);
-        //     }
-        // } 
         table.replaceWith(tableContent);
 
         this.attTemplates = {};
@@ -169,10 +131,10 @@ export class TableComparator {
                 placeholder= "./images/placeholder.jpg";
                 break;
             case("Color"):
-                placeholder = [];
+                placeholder = '';
                 break;
             default:
-                placeholder = "Item "+attName
+                placeholder = ''
         }
         return placeholder;
     } 

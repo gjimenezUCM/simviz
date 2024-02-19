@@ -48,7 +48,7 @@ export class Heatmap {
                 l: 10,
                 r: 20,
                 b: 10,
-                t: 10,
+                t: 0,
             },
             xaxis: {
                 // No tick labels

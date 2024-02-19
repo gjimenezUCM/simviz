@@ -16,7 +16,7 @@ h2.panel-header{
 
 /* similarity-container */
 #similarity-container {
-    height: 95vh;
+    height: 97vh;
     overflow: auto;
     padding: 1rem;
 
@@ -41,7 +41,7 @@ h2.panel-header{
 }
 
 #plot-container {
-    height: 40vh;
+    height: 97vh;
 }
 
 #item-comparator {
