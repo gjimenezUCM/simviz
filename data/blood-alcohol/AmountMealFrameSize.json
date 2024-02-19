@@ -24,6 +24,18 @@
   "similarityData": [
     {
       "id1": "n1",
+      "id2": "n1",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n1",
       "id2": "n2",
       "value": {
         "global": 0.7344322344322345,
@@ -1032,6 +1044,18 @@
     },
     {
       "id1": "n2",
+      "id2": "n2",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n2",
       "id2": "n3",
       "value": {
         "global": 0.5457875457875458,
@@ -2028,6 +2052,18 @@
     },
     {
       "id1": "n3",
+      "id2": "n3",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n3",
       "id2": "n4",
       "value": {
         "global": 0.6153846153846154,
@@ -3012,6 +3048,18 @@
     },
     {
       "id1": "n4",
+      "id2": "n4",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n4",
       "id2": "n5",
       "value": {
         "global": 0.9230769230769232,
@@ -3984,6 +4032,18 @@
     },
     {
       "id1": "n5",
+      "id2": "n5",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n5",
       "id2": "n6",
       "value": {
         "global": 0.9267399267399268,
@@ -4944,6 +5004,18 @@
     },
     {
       "id1": "n6",
+      "id2": "n6",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n6",
       "id2": "n7",
       "value": {
         "global": 0.9230769230769232,
@@ -5892,6 +5964,18 @@
     },
     {
       "id1": "n7",
+      "id2": "n7",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n7",
       "id2": "n8",
       "value": {
         "global": 0.9230769230769232,
@@ -6828,6 +6912,18 @@
     },
     {
       "id1": "n8",
+      "id2": "n8",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n8",
       "id2": "n9",
       "value": {
         "global": 0.8974358974358974,
@@ -7752,6 +7848,18 @@
     },
     {
       "id1": "n9",
+      "id2": "n9",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n9",
       "id2": "n10",
       "value": {
         "global": 0.2893772893772894,
@@ -8664,6 +8772,18 @@
     },
     {
       "id1": "n10",
+      "id2": "n10",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n10",
       "id2": "n11",
       "value": {
         "global": 0.8974358974358974,
@@ -9564,6 +9684,18 @@
     },
     {
       "id1": "n11",
+      "id2": "n11",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n11",
       "id2": "n12",
       "value": {
         "global": 0.8974358974358974,
@@ -10452,6 +10584,18 @@
     },
     {
       "id1": "n12",
+      "id2": "n12",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n12",
       "id2": "n13",
       "value": {
         "global": 0.4633699633699634,
@@ -11328,6 +11472,18 @@
     },
     {
       "id1": "n13",
+      "id2": "n13",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n13",
       "id2": "n14",
       "value": {
         "global": 0.9487179487179488,
@@ -12192,6 +12348,18 @@
     },
     {
       "id1": "n14",
+      "id2": "n14",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n14",
       "id2": "n15",
       "value": {
         "global": 0.5915750915750916,
@@ -13044,6 +13212,18 @@
     },
     {
       "id1": "n15",
+      "id2": "n15",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n15",
       "id2": "n16",
       "value": {
         "global": 0.5201465201465202,
@@ -13884,6 +14064,18 @@
     },
     {
       "id1": "n16",
+      "id2": "n16",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n16",
       "id2": "n17",
       "value": {
         "global": 0.9230769230769232,
@@ -14712,6 +14904,18 @@
     },
     {
       "id1": "n17",
+      "id2": "n17",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n17",
       "id2": "n18",
       "value": {
         "global": 0.9487179487179488,
@@ -15528,6 +15732,18 @@
     },
     {
       "id1": "n18",
+      "id2": "n18",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n18",
       "id2": "n19",
       "value": {
         "global": 0.8241758241758242,
@@ -16332,6 +16548,18 @@
     },
     {
       "id1": "n19",
+      "id2": "n19",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n19",
       "id2": "n20",
       "value": {
         "global": 0.8571428571428571,
@@ -17124,6 +17352,18 @@
     },
     {
       "id1": "n20",
+      "id2": "n20",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n20",
       "id2": "n21",
       "value": {
         "global": 0.9487179487179488,
@@ -17904,6 +18144,18 @@
     },
     {
       "id1": "n21",
+      "id2": "n21",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n21",
       "id2": "n22",
       "value": {
         "global": 0.641025641025641,
@@ -18672,6 +18924,18 @@
     },
     {
       "id1": "n22",
+      "id2": "n22",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n22",
       "id2": "n23",
       "value": {
         "global": 0.40293040293040294,
@@ -19428,6 +19692,18 @@
     },
     {
       "id1": "n23",
+      "id2": "n23",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n23",
       "id2": "n24",
       "value": {
         "global": 0.3736263736263737,
@@ -20172,6 +20448,18 @@
     },
     {
       "id1": "n24",
+      "id2": "n24",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n24",
       "id2": "n25",
       "value": {
         "global": 0.2710622710622711,
@@ -20904,6 +21192,18 @@
     },
     {
       "id1": "n25",
+      "id2": "n25",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n25",
       "id2": "n26",
       "value": {
         "global": 0.772893772893773,
@@ -21624,6 +21924,18 @@
     },
     {
       "id1": "n26",
+      "id2": "n26",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n26",
       "id2": "n27",
       "value": {
         "global": 0.9743589743589745,
@@ -22332,6 +22644,18 @@
     },
     {
       "id1": "n27",
+      "id2": "n27",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n27",
       "id2": "n28",
       "value": {
         "global": 0.6153846153846154,
@@ -23028,6 +23352,18 @@
     },
     {
       "id1": "n28",
+      "id2": "n28",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n28",
       "id2": "n29",
       "value": {
         "global": 0.4725274725274725,
@@ -23712,6 +24048,18 @@
     },
     {
       "id1": "n29",
+      "id2": "n29",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n29",
       "id2": "n30",
       "value": {
         "global": 0.9487179487179488,
@@ -24384,6 +24732,18 @@
     },
     {
       "id1": "n30",
+      "id2": "n30",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n30",
       "id2": "n31",
       "value": {
         "global": 0.9487179487179488,
@@ -25044,6 +25404,18 @@
     },
     {
       "id1": "n31",
+      "id2": "n31",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n31",
       "id2": "n32",
       "value": {
         "global": 0.8974358974358974,
@@ -25692,6 +26064,18 @@
     },
     {
       "id1": "n32",
+      "id2": "n32",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n32",
       "id2": "n33",
       "value": {
         "global": 0.34065934065934067,
@@ -26328,6 +26712,18 @@
     },
     {
       "id1": "n33",
+      "id2": "n33",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n33",
       "id2": "n34",
       "value": {
         "global": 0.9487179487179488,
@@ -26952,6 +27348,18 @@
     },
     {
       "id1": "n34",
+      "id2": "n34",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n34",
       "id2": "n35",
       "value": {
         "global": 0.9487179487179488,
@@ -27564,6 +27972,18 @@
     },
     {
       "id1": "n35",
+      "id2": "n35",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n35",
       "id2": "n36",
       "value": {
         "global": 0.6648351648351648,
@@ -28164,6 +28584,18 @@
     },
     {
       "id1": "n36",
+      "id2": "n36",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n36",
       "id2": "n37",
       "value": {
         "global": 0.7564102564102565,
@@ -28752,6 +29184,18 @@
     },
     {
       "id1": "n37",
+      "id2": "n37",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n37",
       "id2": "n38",
       "value": {
         "global": 0.9487179487179488,
@@ -29328,6 +29772,18 @@
     },
     {
       "id1": "n38",
+      "id2": "n38",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n38",
       "id2": "n39",
       "value": {
         "global": 0.9267399267399268,
@@ -29892,6 +30348,18 @@
     },
     {
       "id1": "n39",
+      "id2": "n39",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n39",
       "id2": "n40",
       "value": {
         "global": 0.6153846153846154,
@@ -30444,6 +30912,18 @@
     },
     {
       "id1": "n40",
+      "id2": "n40",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n40",
       "id2": "n41",
       "value": {
         "global": 0.9010989010989012,
@@ -30984,6 +31464,18 @@
     },
     {
       "id1": "n41",
+      "id2": "n41",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n41",
       "id2": "n42",
       "value": {
         "global": 0.5164835164835165,
@@ -31512,6 +32004,18 @@
     },
     {
       "id1": "n42",
+      "id2": "n42",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n42",
       "id2": "n43",
       "value": {
         "global": 0.6153846153846154,
@@ -32028,6 +32532,18 @@
     },
     {
       "id1": "n43",
+      "id2": "n43",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n43",
       "id2": "n44",
       "value": {
         "global": 0.8974358974358974,
@@ -32532,6 +33048,18 @@
     },
     {
       "id1": "n44",
+      "id2": "n44",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n44",
       "id2": "n45",
       "value": {
         "global": 0.5677655677655677,
@@ -33024,6 +33552,18 @@
     },
     {
       "id1": "n45",
+      "id2": "n45",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n45",
       "id2": "n46",
       "value": {
         "global": 0.5366300366300366,
@@ -33504,6 +34044,18 @@
     },
     {
       "id1": "n46",
+      "id2": "n46",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n46",
       "id2": "n47",
       "value": {
         "global": 0.9267399267399268,
@@ -33972,6 +34524,18 @@
     },
     {
       "id1": "n47",
+      "id2": "n47",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n47",
       "id2": "n48",
       "value": {
         "global": 0.9047619047619049,
@@ -34428,6 +34992,18 @@
     },
     {
       "id1": "n48",
+      "id2": "n48",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n48",
       "id2": "n49",
       "value": {
         "global": 0.5183150183150184,
@@ -34872,6 +35448,18 @@
     },
     {
       "id1": "n49",
+      "id2": "n49",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n49",
       "id2": "n50",
       "value": {
         "global": 0.6666666666666667,
@@ -35304,6 +35892,18 @@
     },
     {
       "id1": "n50",
+      "id2": "n50",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n50",
       "id2": "n51",
       "value": {
         "global": 0.3736263736263737,
@@ -35724,6 +36324,18 @@
     },
     {
       "id1": "n51",
+      "id2": "n51",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n51",
       "id2": "n52",
       "value": {
         "global": 0.7582417582417583,
@@ -36132,6 +36744,18 @@
     },
     {
       "id1": "n52",
+      "id2": "n52",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n52",
       "id2": "n53",
       "value": {
         "global": 0.5457875457875457,
@@ -36528,6 +37152,18 @@
     },
     {
       "id1": "n53",
+      "id2": "n53",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n53",
       "id2": "n54",
       "value": {
         "global": 0.7344322344322345,
@@ -36912,6 +37548,18 @@
     },
     {
       "id1": "n54",
+      "id2": "n54",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n54",
       "id2": "n55",
       "value": {
         "global": 0.8021978021978022,
@@ -37284,6 +37932,18 @@
     },
     {
       "id1": "n55",
+      "id2": "n55",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n55",
       "id2": "n56",
       "value": {
         "global": 0.8315018315018315,
@@ -37644,6 +38304,18 @@
     },
     {
       "id1": "n56",
+      "id2": "n56",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n56",
       "id2": "n57",
       "value": {
         "global": 0.8754578754578756,
@@ -37992,6 +38664,18 @@
     },
     {
       "id1": "n57",
+      "id2": "n57",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n57",
       "id2": "n58",
       "value": {
         "global": 0.7124542124542126,
@@ -38328,6 +39012,18 @@
     },
     {
       "id1": "n58",
+      "id2": "n58",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n58",
       "id2": "n59",
       "value": {
         "global": 0.5677655677655677,
@@ -38652,6 +39348,18 @@
     },
     {
       "id1": "n59",
+      "id2": "n59",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n59",
       "id2": "n60",
       "value": {
         "global": 0.8571428571428571,
@@ -38964,6 +39672,18 @@
     },
     {
       "id1": "n60",
+      "id2": "n60",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n60",
       "id2": "n61",
       "value": {
         "global": 0.8534798534798536,
@@ -39264,6 +39984,18 @@
     },
     {
       "id1": "n61",
+      "id2": "n61",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n61",
       "id2": "n62",
       "value": {
         "global": 0.7820512820512822,
@@ -39552,6 +40284,18 @@
     },
     {
       "id1": "n62",
+      "id2": "n62",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n62",
       "id2": "n63",
       "value": {
         "global": 0.6831501831501832,
@@ -39828,6 +40572,18 @@
     },
     {
       "id1": "n63",
+      "id2": "n63",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n63",
       "id2": "n64",
       "value": {
         "global": 0.7820512820512822,
@@ -40092,6 +40848,18 @@
     },
     {
       "id1": "n64",
+      "id2": "n64",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n64",
       "id2": "n65",
       "value": {
         "global": 0.8498168498168498,
@@ -40344,6 +41112,18 @@
     },
     {
       "id1": "n65",
+      "id2": "n65",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n65",
       "id2": "n66",
       "value": {
         "global": 0.9047619047619049,
@@ -40584,6 +41364,18 @@
     },
     {
       "id1": "n66",
+      "id2": "n66",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n66",
       "id2": "n67",
       "value": {
         "global": 0.7600732600732601,
@@ -40812,6 +41604,18 @@
     },
     {
       "id1": "n67",
+      "id2": "n67",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n67",
       "id2": "n68",
       "value": {
         "global": 0.8791208791208791,
@@ -41028,6 +41832,18 @@
     },
     {
       "id1": "n68",
+      "id2": "n68",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n68",
       "id2": "n69",
       "value": {
         "global": 0.5201465201465202,
@@ -41232,6 +42048,18 @@
     },
     {
       "id1": "n69",
+      "id2": "n69",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n69",
       "id2": "n70",
       "value": {
         "global": 0.42857142857142855,
@@ -41424,6 +42252,18 @@
     },
     {
       "id1": "n70",
+      "id2": "n70",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n70",
       "id2": "n71",
       "value": {
         "global": 0.7820512820512822,
@@ -41604,6 +42444,18 @@
     },
     {
       "id1": "n71",
+      "id2": "n71",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n71",
       "id2": "n72",
       "value": {
         "global": 0.8076923076923077,
@@ -41772,6 +42624,18 @@
     },
     {
       "id1": "n72",
+      "id2": "n72",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n72",
       "id2": "n73",
       "value": {
         "global": 0.5934065934065935,
@@ -41928,6 +42792,18 @@
     },
     {
       "id1": "n73",
+      "id2": "n73",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n73",
       "id2": "n74",
       "value": {
         "global": 0.9523809523809524,
@@ -42072,6 +42948,18 @@
     },
     {
       "id1": "n74",
+      "id2": "n74",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n74",
       "id2": "n75",
       "value": {
         "global": 0.8534798534798536,
@@ -42204,6 +43092,18 @@
     },
     {
       "id1": "n75",
+      "id2": "n75",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n75",
       "id2": "n76",
       "value": {
         "global": 0.9523809523809523,
@@ -42324,6 +43224,18 @@
     },
     {
       "id1": "n76",
+      "id2": "n76",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n76",
       "id2": "n77",
       "value": {
         "global": 0.9523809523809524,
@@ -42432,6 +43344,18 @@
     },
     {
       "id1": "n77",
+      "id2": "n77",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n77",
       "id2": "n78",
       "value": {
         "global": 0.9523809523809523,
@@ -42528,6 +43452,18 @@
     },
     {
       "id1": "n78",
+      "id2": "n78",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n78",
       "id2": "n79",
       "value": {
         "global": 0.9487179487179488,
@@ -42612,6 +43548,18 @@
     },
     {
       "id1": "n79",
+      "id2": "n79",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n79",
       "id2": "n80",
       "value": {
         "global": 0.6849816849816851,
@@ -42684,6 +43632,18 @@
     },
     {
       "id1": "n80",
+      "id2": "n80",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n80",
       "id2": "n81",
       "value": {
         "global": 0.9523809523809524,
@@ -42744,6 +43704,18 @@
     },
     {
       "id1": "n81",
+      "id2": "n81",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n81",
       "id2": "n82",
       "value": {
         "global": 0.9523809523809524,
@@ -42792,6 +43764,18 @@
     },
     {
       "id1": "n82",
+      "id2": "n82",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n82",
       "id2": "n83",
       "value": {
         "global": 0.9523809523809523,
@@ -42828,6 +43812,18 @@
     },
     {
       "id1": "n83",
+      "id2": "n83",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n83",
       "id2": "n84",
       "value": {
         "global": 0.7857142857142858,
@@ -42852,12 +43848,36 @@
     },
     {
       "id1": "n84",
+      "id2": "n84",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n84",
       "id2": "n85",
       "value": {
         "global": 0.8333333333333333,
         "local": {
           "AmountConsumed": 1.0,
           "Meal": 0.5,
+          "FrameSize": 1.0
+        }
+      }
+    },
+    {
+      "id1": "n85",
+      "id2": "n85",
+      "value": {
+        "global": 1.0,
+        "local": {
+          "AmountConsumed": 1.0,
+          "Meal": 1.0,
           "FrameSize": 1.0
         }
       }
