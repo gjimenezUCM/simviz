@@ -32,10 +32,10 @@ export class Histogram {
         let containerWidth = this.containerNode.offsetWidth;
         let containerHeight = this.containerNode.parentNode.offsetHeight;
         let trace = {
-            y: this.data,
+            x: this.data,
             type: 'histogram',
             histnorm: 'percent',
-            ybins: {
+            xbins: {
                 start: 0.0,
                 size: 0.10000001, // Para que en el último bin entre el 1.0 y no desplace demasiado el resto
                 end: 1.0
@@ -49,9 +49,9 @@ export class Histogram {
             paper_bgcolor: 'transparent',
             plot_bgcolor: "transparent",
             margin: {
-                l: 0,
-                r: 10,
-                b: 10,
+                l: 10,
+                r: 20,
+                b: 0,
                 t: 10,
             },
             xaxis: {

@@ -18,22 +18,20 @@ export class SimConfigurator {
         let configPanel = document.getElementById("similarity-configuration");
         this.recalculated = false;
         if (configPanel) {
-            configPanel.addEventListener("hidden.bs.modal", () => {
-                configPanel.addEventListener("hidden.bs.modal", (e) => {
-                    theController.showLoadingOverlay();
-                    // HACK: Bootstrap fires hide.bs.modal twice
-                    // This way we avoid to recalculate everything twice
-                    if (!this.recalculated) {
-                        this.recalculateSimilarity().then(() => {
-                            theController.hideLoadingOverlay();
-                            this.recalculated = true;
-                        });
-                    }
-
-                });
-                configPanel.addEventListener("show.bs.modal", (e) => {
-                    this.recalculated = false;
-                });
+            configPanel.addEventListener("hidden.bs.modal", (e) => {
+                theController.showLoadingOverlay();
+                // HACK: Bootstrap fires hide.bs.modal twice
+                // This way we avoid to recalculate everything twice
+                if (!this.recalculated){
+                    this.recalculateSimilarity().then(() => {
+                        theController.hideLoadingOverlay();
+                        this.recalculated = true;
+                    });     
+                }
+           
+            });
+            configPanel.addEventListener("show.bs.modal", (e) => {
+                this.recalculated = false;
             });
         }
         this.started = false;
