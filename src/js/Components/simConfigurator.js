@@ -1,6 +1,6 @@
 import Handlebars from "handlebars";
 import { SimilarityComputing } from '../similarityComputing';
-import { showLoadingOverlay, hideLoadingOverlay } from "../controller";
+import { theController } from "../controller";
 
 const formAttributeRow = `
         <div class="col-4 text-end"><label for="input-att-{{attName}}" class="form-label">{{attName}}</label></div>
@@ -15,12 +15,25 @@ export class SimConfigurator {
         this.attWeights = [];
         this.attRangeElements = [];
         this.totalWeights = 0.0;
-        let recalculateBtn = document.getElementById("similarity-configuration");
-        if (recalculateBtn) {
-            recalculateBtn.addEventListener("hidden.bs.modal", () => {
-                document.querySelector("#similarity-configuration .spinner-border").classList.remove("visually-hidden");
-                this.recalculateSimilarity();
-                document.querySelector("#similarity-configuration .spinner-border").classList.add("visually-hidden");
+        let configPanel = document.getElementById("similarity-configuration");
+        this.recalculated = false;
+        if (configPanel) {
+            configPanel.addEventListener("hidden.bs.modal", () => {
+                configPanel.addEventListener("hidden.bs.modal", (e) => {
+                    theController.showLoadingOverlay();
+                    // HACK: Bootstrap fires hide.bs.modal twice
+                    // This way we avoid to recalculate everything twice
+                    if (!this.recalculated) {
+                        this.recalculateSimilarity().then(() => {
+                            theController.hideLoadingOverlay();
+                            this.recalculated = true;
+                        });
+                    }
+
+                });
+                configPanel.addEventListener("show.bs.modal", (e) => {
+                    this.recalculated = false;
+                });
             });
         }
         this.started = false;
@@ -62,7 +75,7 @@ export class SimConfigurator {
         this.started = true;
     }
 
-    recalculateSimilarity(){
+    async recalculateSimilarity(){
         if (this.started){
             let newSimilarityName = "";
             let newDescription = JSON.parse(JSON.stringify(this.oldSimDescription));
@@ -82,13 +95,15 @@ export class SimConfigurator {
             }
             if (newSimilarityName !== "" && modified){
                 let simComputing = new SimilarityComputing(this.simData, newDescription)
-                simComputing.run();
-                let newSimFunctionDataObject = {
-                    similarityDescription: newDescription,
-                    similarityData: simComputing.newSimilarityData
-                };
-                this.simDao.addSimilarityData(newSimilarityName, newSimFunctionDataObject);
-                this.similarityPanel.addSimilarityFunctionToDropdown(newSimilarityName, true);
+                setTimeout(() => {
+                    simComputing.run();
+                    let newSimFunctionDataObject = {
+                        similarityDescription: newDescription,
+                        similarityData: simComputing.newSimilarityData
+                    };
+                    this.simDao.addSimilarityData(newSimilarityName, newSimFunctionDataObject);
+                    this.similarityPanel.addSimilarityFunctionToDropdown(newSimilarityName, true);
+                }, 100);
             }
         }
 
