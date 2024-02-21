@@ -32,16 +32,20 @@ class SimilarityPanel {
         theController.showLoadingOverlay();
         let simData = await this.simDAO.getSimilarityDataByName(similarityFunctionName);
         if (simData) {
-            theController.init(this.itemDAO, simData);
-            window.addEventListener("resize", (event) => {
-                theController.onResize();
-            });
+            setTimeout(() => {
+                theController.init(this.itemDAO, simData);
+                window.addEventListener("resize", (event) => {
+                    theController.onResize();
+                });
 
-            this.updateSimilarityDescription(simData.similarityDescription);
-            this.simConf.init(simDAO, simData);
-            this.configButton.classList.remove("visually-hidden");
+                this.updateSimilarityDescription(simData.similarityDescription);
+                this.simConf.init(simDAO, simData);
+                this.configButton.classList.remove("visually-hidden");    
+                theController.hideLoadingOverlay();            
+            }, 0);
+
         }
-        theController.hideLoadingOverlay()
+
     }
 
     addSimilarityFunctionToDropdown(simFunctionName, andChange){

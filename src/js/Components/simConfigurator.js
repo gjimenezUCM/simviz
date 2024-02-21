@@ -23,10 +23,8 @@ export class SimConfigurator {
                 // HACK: Bootstrap fires hide.bs.modal twice
                 // This way we avoid to recalculate everything twice
                 if (!this.recalculated){
-                    this.recalculateSimilarity().then(() => {
-                        theController.hideLoadingOverlay();
-                        this.recalculated = true;
-                    });     
+                    this.recalculateSimilarity(); 
+                    this.recalculated = true;    
                 }
            
             });
@@ -73,7 +71,7 @@ export class SimConfigurator {
         this.started = true;
     }
 
-    async recalculateSimilarity(){
+    recalculateSimilarity(){
         if (this.started){
             let newSimilarityName = "";
             let newDescription = JSON.parse(JSON.stringify(this.oldSimDescription));
@@ -101,6 +99,7 @@ export class SimConfigurator {
                     };
                     this.simDao.addSimilarityData(newSimilarityName, newSimFunctionDataObject);
                     this.similarityPanel.addSimilarityFunctionToDropdown(newSimilarityName, true);
+                    theController.hideLoadingOverlay();
                 }, 100);
             }
         }
