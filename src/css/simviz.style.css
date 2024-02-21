@@ -117,10 +117,7 @@ h2.panel-header{
     margin-right: 5px;
     border: 1px solid black;
 }
-/* 
-[role="tooltip"] {
-    display: none;
-} */
+
 
 .box:hover+[role="tooltip"],
 .box:focus+[role="tooltip"] {
@@ -133,7 +130,8 @@ img {
 .att-cell{
     display: flex;
     flex-direction: column;
-    .att-name {
+    .att-name,
+    .att-value {
         font-weight: 700;
     }   
     .att-weight{
