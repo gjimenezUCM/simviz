@@ -19,7 +19,6 @@ export class SimConfigurator {
         this.recalculated = false;
         if (configPanel) {
             configPanel.addEventListener("hidden.bs.modal", (e) => {
-                theController.showLoadingOverlay();
                 // HACK: Bootstrap fires hide.bs.modal twice
                 // This way we avoid to recalculate everything twice
                 if (!this.recalculated){
@@ -91,6 +90,7 @@ export class SimConfigurator {
             }
             if (newSimilarityName !== "" && modified){
                 let simComputing = new SimilarityComputing(this.simData, newDescription)
+                theController.showLoadingOverlay();
                 setTimeout(() => {
                     simComputing.run();
                     let newSimFunctionDataObject = {

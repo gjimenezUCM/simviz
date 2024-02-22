@@ -11,7 +11,7 @@ const basicAtributeTemplate = `
         {{#if theValue}}
         {{theValue}}
         {{else}}
-        <span class="badge text-bg-secondary">NULL</span>
+        <span class="badge text-bg-danger">NULL</span>
         {{/if}}
     </td>
 `;
@@ -25,7 +25,7 @@ const colorAttributeTemplate = `
                 {{/with}}
             {{/each}}
         {{else}}
-        <span class="badge text-bg-secondary">NULL</span>
+        <span class="badge text-bg-danger">NULL</span>
         {{/if}}
     </td>
 `;

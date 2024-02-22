@@ -17,9 +17,9 @@ export class Heatmap {
     constructor(index, data, containerNode){
         this.index = index;
         this.data = data;
-        this.currentData = data;
-        this.currentX = index;
-        this.currentY = index;
+        this.currentData = JSON.parse(JSON.stringify(this.data));
+        this.currentX = [...index];
+        this.currentY = [...index];
         this.containerNode = containerNode;
         this._init(this.index, this.index, this.data);
     }
@@ -90,7 +90,7 @@ export class Heatmap {
             let sortedRowData = [];
             let i=0;
             for (let cell of this.data[rowId]) {
-                sortedRowData[i]= [cell,i];
+                sortedRowData[i] = [JSON.parse(JSON.stringify(cell)),i];
                 i++;
             }
             sortedRowData.sort((a,b)=> a[0]-b[0]);
@@ -115,6 +115,7 @@ export class Heatmap {
 
     reset() {
         this.currentData = this.data;
+        this.currentX = this.index;
         this.currentY = this.index;
         this._init();
     }
