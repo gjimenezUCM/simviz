@@ -13,7 +13,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+[![APACHE License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
@@ -75,7 +75,7 @@ rectifying errors in both data and similarity measures
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][./images/mainUI.png]](https://github.com/gjimenezUCM/simviz)
+[![Product Name Screen Shot][/assets/images/mainUI.png]](https://github.com/gjimenezUCM/simviz)
 
 <!-- Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description` -->
 
@@ -206,7 +206,7 @@ Project Link: [https://github.com/gjimenezUCM/simviz](https://github.com/gjimene
 [issues-shield]: https://img.shields.io/github/issues/gjimenezUCM/simviz.svg?style=for-the-badge
 [issues-url]: https://github.com/gjimenezUCM/simviz/issues
 [license-shield]: https://img.shields.io/github/license/gjimenezUCM/simviz.svg?style=for-the-badge
-[license-url]: https://github.com/gjimenezUCM/simviz/blob/master/LICENSE.txt
+[license-url]: https://github.com/gjimenezUCM/simviz/blob/master/LICENSE-2.0.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png
