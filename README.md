@@ -76,6 +76,8 @@ rectifying errors in both data and similarity measures
 
 [![SimViz ScreenShot](/images/mainUI.png)](https://github.com/gjimenezUCM/simviz)
 
+SimViz (**Sim**ilarity **Vi**suali**Z**ation) is a tool focused on the interactive visualization of similarity functions and how they are computed over different case bases.
+
 <!-- Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description` -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -84,8 +86,11 @@ rectifying errors in both data and similarity measures
 
 ### Built With
 
+* [![Plotly](https://img.shields.io/badge/Plotly-%233F4F75.svg?style=for-the-badge&logo=plotly&logoColor=white)](https://plotly.com/javascript/)
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
+* [Webpack](https://webpack.js.org/)
+* [Handlebars](https://handlebarsjs.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -99,10 +104,11 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+Install the prerrequisites with:
+
 * npm
   ```sh
-  npm install npm@latest -g
+  npm install
   ```
 
 ### Installation
@@ -115,6 +121,14 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm install
    ```
+3. The application is built using Webpack. To do it:
+   ```sh
+   npm run build
+   ```
+4. During development, run a development server with:
+   ```sh
+   npm run start
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -123,9 +137,28 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+The main interface of SimViz is organized in three columns or panels:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+– _Similarity selection and description panel_ (left): Users employ this panel to select a case base to visualize and to choose a similarity function over this case base.
+– _Similarity value distribution panel (middle)_: a heatmap and a histogram shows information about the distribution of the similarity values over the case base. Both are interactive and will help to explore the cases and similarity values.
+– _Case comparator panel (right)_: a table that displays side by side two cases selected using the similarity value distribution panel. The global similarity value is shown on the header while the local similarity values and the attributes involved in the similarity calculation are displayed in rows, with a bar displaying the attribute weight on the first cell of each row.
+
+### Datasets/Case bases
+
+Right now, with SimViz we can explore four different datasets:
+- [Blood Alcohol Domain](https://github.com/gateslm/Blood-Alcohol-Domain)
+- [Breast Cancer Wisconsin](https://doi.org/10.1016/j.artmed.2019.01.001)
+- [Travel Agent](https://ai-cbr.cs.auckland.ac.nz/cases.html)
+- DMH Dataset
+
+The first ones use some basic local similarity metrics for numbers and nominal attribute values. The DMH dataset contains 64 artwork descriptions from the Design Museum Helsinki, which imposed the definition of new similarity functions [for color perception and emotions](https://doi.org/10.1007/978-3-030-86957-1_4).
+
+### Similarity data
+
+Similarity data is computed offline using a weighted average as global similarity function, and predefined local similarity functions over the attributes of the cases contained in a case base. The case base and the similarity data are enriched with information about attribute datatypes, local similarity functions, weights for global similarity functions and user explanations.
+
+The [`data`](/data/) folder in this repository repository contains a notebook with some examples about how the current data was created to be visualized in the tool
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
