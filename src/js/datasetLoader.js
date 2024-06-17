@@ -1,6 +1,6 @@
 import { loadJSONData } from "./fileLoader";
-import { ItemDAO } from "./DAO/itemDAO";
-export class DatasetLoader{
+import { CasebaseDAO } from "./DAO/casebaseDAO";
+export class DatasetLoader{    
     constructor(){
         this.datasets ={};     
     }
@@ -35,7 +35,7 @@ export class DatasetLoader{
                 // cargar DAO
                 let itemData = await loadJSONData(datasetInfo["filename"]);
                 if (itemData) {
-                    this.datasets[datasetName]['dao'] = new ItemDAO(itemData);
+                    this.datasets[datasetName]['dao'] = new CasebaseDAO(itemData);
                     return this.datasets[datasetName]['dao'];
                 }
                 else {

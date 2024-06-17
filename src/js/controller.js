@@ -56,13 +56,13 @@ class Controller {
 
     updateItemsInfo(rowItemId, colItemId, similarityValue, color) {
         if (rowItemId) {
-            this.tableComponent.changeRowItem(rowItemId, this.itemDAO.getItemById(rowItemId));
+            this.tableComponent.changeRowItem(rowItemId, this.itemDAO.getCaseById(rowItemId));
         } else {
             this.tableComponent.resetRowItem();
         }
 
         if (colItemId) {
-            this.tableComponent.changeColItem(colItemId, this.itemDAO.getItemById(colItemId));
+            this.tableComponent.changeColItem(colItemId, this.itemDAO.getCaseById(colItemId));
             if (this.simData) {
                 similarityValue = getSimilarityInData(this.simData, rowItemId, colItemId);
             }
@@ -109,7 +109,7 @@ class Controller {
     filterByItemId(itemId) {
         this.theHeatmap.filterById(itemId, true);
         this.resetButton.classList.remove("visually-hidden");
-        this.tableComponent.changeRowItem(itemId, this.itemDAO.getItemById(itemId));
+        this.tableComponent.changeRowItem(itemId, this.itemDAO.getCaseById(itemId));
         this.tableComponent.resetColItem();
         this.updateSelectedItem(itemId);
     }

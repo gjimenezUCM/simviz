@@ -69,9 +69,9 @@ async function updateWithSelectedDataset(datasetLoader, datasetName){
 
     let datasetDescription = document.getElementById("dataset-desc");
     datasetDescription.innerHTML = `<h3>Description</h3>
-        ${nanoMarkdown(itemDAO.description)}
+        ${nanoMarkdown(itemDAO.getDescription())}
         <h3>Number of instances</h3>
-        <p>${itemDAO.getNumInstances()}</p>`;
+        <p>${itemDAO.getNumCases()}</p>`;
 
 
     let simDAO = new SimilarityDAO(datasetLoader.getSimilarityFunctionsForDataset(datasetName), itemDAO.getIds());
