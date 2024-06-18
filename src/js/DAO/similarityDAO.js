@@ -1,7 +1,7 @@
 const FILEPATH = "./data/";
 const FILEEXTENSION = ".json";
 
-import { loadJSONData } from "../fileLoader";
+import { loadJSONData } from "../utils/fileLoader";
 export default class SimilarityDAO {
     constructor(similarityFunctions, itemIds) {
         this.similarityFunctions = {};

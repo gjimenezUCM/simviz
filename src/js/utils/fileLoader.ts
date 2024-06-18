@@ -4,13 +4,13 @@
  * @param {string} fileName JSON filename
  * @returns A object or null (if file does not exist)
  */
-export async function loadJSONData(fileName){
+export async function loadJSONData(fileName: string): Promise<Object | null> {
     const response = await fetch(fileName);
     if (response.ok) {
         const json = await response.json();
         return json;
     } else {
-        window.alert("Unable to load file:", fileName);
+        window.alert("Unable to load file:"+ fileName);
         return null;
     }
 }

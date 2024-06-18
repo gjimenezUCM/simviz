@@ -22,3 +22,23 @@ export type CasebaseDescription = {
      */
     data: Array<Object>
 }
+
+
+/**
+ * A generic type for storing data providers:
+ * - a name that describes the data provider
+ * - a URI that contains the data
+ */
+export type DataProvider = {
+    "name": string,
+    "uri": string
+}
+
+/**
+ * A container for the information about the datasets
+ * and their corresponding similarity functions
+ */
+export interface DatasetInfo { 
+    "dataset": DataProvider
+    "similarityDatasets": Array<DataProvider>
+}

@@ -1,4 +1,4 @@
-import { CasebaseDescription } from "../types/casebaseTypes";
+import { CasebaseDescription } from "../types/simvizTypes";
 /**
  * Data Access Object that stores a casebase. It contains not only the cases
  * but also the metadata about the case description and the attribute employed

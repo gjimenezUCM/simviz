@@ -65,7 +65,7 @@ async function initApp() {
 }
 
 async function updateWithSelectedDataset(datasetLoader, datasetName){
-    let itemDAO = await datasetLoader.getItemDAO(datasetName);
+    let itemDAO = await datasetLoader.getCasebaseDAO(datasetName);
 
     let datasetDescription = document.getElementById("dataset-desc");
     datasetDescription.innerHTML = `<h3>Description</h3>
