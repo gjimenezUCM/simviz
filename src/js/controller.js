@@ -2,6 +2,7 @@
 import { Heatmap } from './heatmap';
 import { Histogram } from "./histogram";
 import { TableComparator } from './Components/tableComparator';
+import { PlotEventData, PlotEventNotifier } from './plotObserver';
 class Controller {
     constructor(){
         this.loadingOverlay = document.getElementById("loading-overlay");
@@ -19,9 +20,12 @@ class Controller {
         this.itemIds = itemDAO.getIds();
         if (simData){
             this.simData = simData;
-            
             this.theHistogram = new Histogram(this.itemIds, this.simData.similarityMatrix, this.histogramContainer);
-
+            this.theHistogram.on((source, data)=>{
+                console.log("notified")
+                this.updateItemsInfo(data.id1, data.id2, data.similarityValue, data.color);
+                this.updateSelectedItem(data.id1);
+            });
             
             this.theHeatmap = new Heatmap(this.itemIds, this.simData.similarityMatrix, this.heatmapContainer);
 
