@@ -1,7 +1,7 @@
-import Plotly from 'plotly.js-dist-min';
-import { theController } from './controller';
+import Plotly, { PlotlyHTMLElement } from 'plotly.js-dist-min';
+import { PlotEventNotifier } from './plotObserver';
 
-const magmaColorscaleValue = [
+const magmaColorscaleValue: Array<[number, string]> = [
     [0.0, '#000004'],
     [0.1111111111111111, '#180f3d'],
     [0.2222222222222222, '#440f76'],
@@ -13,22 +13,34 @@ const magmaColorscaleValue = [
     [0.8888888888888888, '#feca8d'],
     [1.0, '#fcfdbf']
 ];
-export class Heatmap {
-    constructor(index, data, containerNode){
+export class Heatmap extends PlotEventNotifier {
+
+    private index: Array<string>;
+    private data: Array<Array<number>>;
+    private currentData: Array<Array<number>>;
+    private currentX: Array<string>;
+    private currentY: Array<string>;
+    /**
+    * HTML element where the histogram is drawn
+    */
+    private containerNode: HTMLElement;
+
+    constructor(index: Array<string>, data: Array<Array<number>>, containerNode: HTMLElement){
+        super();
         this.index = index;
         this.data = data;
         this.currentData = JSON.parse(JSON.stringify(this.data));
         this.currentX = [...index];
         this.currentY = [...index];
         this.containerNode = containerNode;
-        this._init(this.index, this.index, this.data);
+        this._init();
     }
 
     _init() {
         let containerWidth = this.containerNode.offsetWidth;
-        let containerHeight = this.containerNode.parentNode.offsetHeight;
+        let containerHeight = this.containerNode.parentNode ? (<HTMLElement>this.containerNode.parentNode).offsetHeight : 0;
 
-        let data = [{
+        let data: Plotly.Data = {
             x: this.currentX,
             y: this.currentY,
             z: this.currentData,
@@ -39,10 +51,10 @@ export class Heatmap {
             colorscale: magmaColorscaleValue,
             showscale: true,
             hovertemplate: "id: %{y}<br>id: %{x}<br>Similarity: %{z}<extra></extra>",
-        }];
+        };
 
 
-        let layout = {
+        let layout: Partial<Plotly.Layout> = {
             paper_bgcolor: 'transparent',
             margin: {
                 l: 10,
@@ -75,15 +87,15 @@ export class Heatmap {
             width: containerWidth
         };
 
-        this.heatmapPlot = Plotly.newPlot(this.containerNode, data, layout);
-        this.containerNode.on('plotly_click', (data) => this.onClickHeatmap(data));
+        Plotly.newPlot(this.containerNode, [data], layout);
+        (<PlotlyHTMLElement>this.containerNode).on('plotly_click', (data) => this.onClickHeatmap(data));
     }
 
     refresh(){
         this._init();
     }
 
-    filterById(itemId, sorted) {
+    filterById(itemId:string, sorted:boolean) {
         let rowId = this.index.indexOf(itemId);
         if (rowId !== -1){
             if (sorted) {
@@ -120,7 +132,7 @@ export class Heatmap {
         this._init();
     }
 
-    onClickHeatmap(data) {
+    onClickHeatmap(data:any) {
         if (data.points.length === 1) {
             if (data.points[0].z !== null) {
                 let colId = String(data.points[0].x);
@@ -128,8 +140,12 @@ export class Heatmap {
                 let colorPos = Math.trunc(data.points[0].z * 10);
                 colorPos = (colorPos==10 ? 9 : colorPos);
                 let color = magmaColorscaleValue[colorPos][1];
-                theController.updateItemsInfo(rowId, colId, data.points[0].z, color);
-                theController.updateSelectedItem(rowId);
+                this.notify({
+                    id1: rowId,
+                    id2: colId,
+                    similarityValue: data.points[0].z,
+                    color: color
+                });
             }
         }
     }

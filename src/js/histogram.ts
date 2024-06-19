@@ -38,7 +38,7 @@ export class Histogram extends PlotEventNotifier {
      * An index for simValues. Each position k contains a pair [id1, id2]
      * so simValues[k] contains the similarity value between id1 and id2
      */
-    private simValueIndex: Array<Array<string>>;
+    private simValueIndex: Array<[string, string]>;
 
     /**
      * Constructor
