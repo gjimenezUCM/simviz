@@ -2,7 +2,6 @@
 import { Heatmap } from './heatmap';
 import { Histogram } from "./histogram";
 import { TableComparator } from './Components/tableComparator';
-import { getSimilarityInData } from './DAO/similarityDAO'
 class Controller {
     constructor(){
         this.loadingOverlay = document.getElementById("loading-overlay");
@@ -64,7 +63,7 @@ class Controller {
         if (colItemId) {
             this.tableComponent.changeColItem(colItemId, this.itemDAO.getCaseById(colItemId));
             if (this.simData) {
-                similarityValue = getSimilarityInData(this.simData, rowItemId, colItemId);
+                similarityValue = this.simData.getSimilarity(rowItemId, colItemId).value;
             }
             this.tableComponent.updateSimilarityValue(similarityValue, color);
         } else {

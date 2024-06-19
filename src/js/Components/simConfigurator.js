@@ -95,7 +95,7 @@ export class SimConfigurator {
                     simComputing.run();
                     let newSimFunctionDataObject = {
                         similarityDescription: newDescription,
-                        similarityData: simComputing.newSimilarityData
+                        similarityValues: simComputing.newSimilarityData
                     };
                     this.simDao.addSimilarityData(newSimilarityName, newSimFunctionDataObject);
                     this.similarityPanel.addSimilarityFunctionToDropdown(newSimilarityName, true);

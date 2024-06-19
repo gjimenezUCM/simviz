@@ -24,6 +24,37 @@ export type CasebaseDescription = {
 }
 
 
+
+
+export type LocalSimilarityDescription = {
+    simFunction: string;
+    weight: number,
+    description: string
+};
+
+export type SimilarityDescription =  {
+    globalSim: {
+        simFunction: string
+    },
+    localSim: {
+        [key:string]: LocalSimilarityDescription
+    }
+}
+
+export type SimilarityValue = {
+    id1: string,
+    id2: string,
+    value: {
+        global: number,
+        local: {
+            [key: string]: number
+        }
+    }
+}
+
+
+
+
 /**
  * A generic type for storing data providers:
  * - a name that describes the data provider
