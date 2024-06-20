@@ -1,8 +1,7 @@
 
-import { Heatmap } from './heatmap';
-import { Histogram } from "./histogram";
+import { Heatmap } from './Components/heatmap';
+import { Histogram } from "./Components/histogram";
 import { TableComparator } from './Components/tableComparator';
-import { PlotEventData, PlotEventNotifier } from './plotObserver';
 class Controller {
     constructor(){
         this.loadingOverlay = document.getElementById("loading-overlay");

@@ -1,6 +1,9 @@
 import Plotly, { PlotlyHTMLElement } from 'plotly.js-dist-min';
-import { PlotEventNotifier } from './plotObserver';
+import { PlotEventNotifier } from '../plotObserver';
 
+/**
+ * Histogram colors
+ */
 const magmaColorscaleValue:Array<string> = [
     '#000004',
     '#180f3d',
