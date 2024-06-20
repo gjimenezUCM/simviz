@@ -10,7 +10,7 @@ export type CasebaseDescription = {
     /**
      * The attributes stored on a case
      */
-    attributes: Object;
+    attributes: { [k: string]: string };
 
     /**
      * Name of the case attribute that represents the unique case id
@@ -110,3 +110,5 @@ export interface DatasetInfo {
     "dataset": DataProvider
     "similarityDatasets": Array<DataProvider>
 }
+
+export type StringStringObject = { [k: string]: string };

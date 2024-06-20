@@ -68,7 +68,7 @@ class Controller {
         if (colItemId) {
             this.tableComponent.changeColItem(colItemId, this.itemDAO.getCaseById(colItemId));
             if (this.simData) {
-                similarityValue = this.simData.getSimilarity(rowItemId, colItemId).value;
+                similarityValue = this.simData.getSimilarity(rowItemId, colItemId);
             }
             this.tableComponent.updateSimilarityValue(similarityValue, color);
         } else {
