@@ -14,7 +14,7 @@ class Controller {
         let allAttributes = itemDAO.getAttributes();
         let simDescription = simData ? simData.similarityDescription : null;
         this.tableComponent = new TableComparator(allAttributes, simDescription, itemDAO.getAttId());
-        this.tableComponent.resetItems();
+        this.tableComponent.resetTable();
         this.itemDAO = itemDAO;
         this.itemIds = itemDAO.getIds();
         if (simData){
@@ -42,7 +42,7 @@ class Controller {
             this.resetButton.addEventListener('click', (event) => {
                 this.theHeatmap.reset();
                 this.heatmapSelect.selectedIndex = 0;
-                this.tableComponent.resetItems();
+                this.tableComponent.resetTable();
                 this.resetButton.classList.add("visually-hidden");
             });
         }        
@@ -53,20 +53,20 @@ class Controller {
         this.heatmapContainer.innerHTML = "";
         this.heatmapSelect.selectedIndex = 0;
         if (this.tableComponent){
-            this.tableComponent.resetItems();
+            this.tableComponent.resetTable();
         }
         this.resetButton.classList.add("visually-hidden");
     }
 
     updateItemsInfo(rowItemId, colItemId, similarityValue, color) {
         if (rowItemId) {
-            this.tableComponent.changeRowItem(rowItemId, this.itemDAO.getCaseById(rowItemId));
+            this.tableComponent.updateRowCase(rowItemId, this.itemDAO.getCaseById(rowItemId));
         } else {
             this.tableComponent.resetRowItem();
         }
 
         if (colItemId) {
-            this.tableComponent.changeColItem(colItemId, this.itemDAO.getCaseById(colItemId));
+            this.tableComponent.updateColCase(colItemId, this.itemDAO.getCaseById(colItemId));
             if (this.simData) {
                 similarityValue = this.simData.getSimilarity(rowItemId, colItemId);
             }
@@ -113,7 +113,7 @@ class Controller {
     filterByItemId(itemId) {
         this.theHeatmap.filterById(itemId, true);
         this.resetButton.classList.remove("visually-hidden");
-        this.tableComponent.changeRowItem(itemId, this.itemDAO.getCaseById(itemId));
+        this.tableComponent.updateRowCase(itemId, this.itemDAO.getCaseById(itemId));
         this.tableComponent.resetColItem();
         this.updateSelectedItem(itemId);
     }

@@ -167,8 +167,80 @@ export class TableComparator {
         }
 
         // Finally, create the weight bars using the information about the weights
-        this._populateWeights();
+        this.populateWeights();
 
+    }
+
+    
+
+    /**
+     * Update the case that represents a row on the heatmap 
+     * @param id Case unique id
+     * @param item Case content
+     */
+    updateRowCase(id: string, item: { [k: string]: string; }) {
+        // It goes on the left column on the table
+        this.updateLeftColCase(id, item);
+    }
+
+    /**
+     * Update the case that represents a column on the heatmap 
+     * @param id Case unique id
+     * @param item Case content
+     */
+    updateColCase(id: string, item: { [k: string]: string; }) {
+        // It goes on the right column on the table
+        this.updateRightColCase(id, item);
+    }
+
+    /**
+     * Reset the table and write empty cases
+     */
+    resetTable() {
+        this.updateLeftColCase("id", this.emptyCase);
+        this.updateRightColCase("id", this.emptyCase);
+        this.updateSimilarityValue(null, null);
+    }
+
+    /**
+     * Reset and display an empty case for the one that represents a row on the heatmap
+     */
+    resetRowItem() {
+        this.updateLeftColCase("id", this.emptyCase);
+        this.updateSimilarityValue(null, null);
+    }
+
+    /**
+     * Reset and display an empty case for the one that represents a column on the heatmap
+     */
+    resetColItem() {
+        this.updateRightColCase("id", this.emptyCase);
+        this.updateSimilarityValue(null, null);
+    }
+
+    /**
+     * Update the similarity value between two cases. It changes the global similarity value
+     * on the header and the local similarity values
+     * @param newSimValue An object that contains the similarity value (with global and local similarity values)
+     * @param color The color employed for the global similarity value
+     */
+    updateSimilarityValue(newSimValue:SimilarityValue | null, color:string | null) {
+        let simValueElem = document.getElementById("item-sim-value");
+        if (simValueElem) {
+            if (newSimValue !== null) {
+                simValueElem.innerHTML = newSimValue.value.global.toFixed(3);
+                for (let [localAtt, localValue] of Object.entries(newSimValue.value.local)) {
+                    this.updateLocalSimilarity(localAtt, localValue);
+                }
+            } else {
+                simValueElem.innerHTML = "Similarity";
+            }
+        }
+        if (color !== null) {
+            (simValueElem && simValueElem.parentElement)?  simValueElem.parentElement.style.backgroundColor = color : null;
+        } else {
+            (simValueElem && simValueElem.parentElement) ? simValueElem.parentElement.style.backgroundColor = "" : null;
+        }
     }
 
     /**
@@ -190,20 +262,20 @@ export class TableComparator {
      * @param attType Type of the attribute
      * @returns The string employed as placeholder value for this attribute type
      */
-    private createPlaceholderForType(attType:string ) {
+    private createPlaceholderForType(attType: string) {
         let placeholder = "";
-        switch(attType) {
+        switch (attType) {
             case ("Image"):
-                placeholder= "./images/placeholder.jpg";
+                placeholder = "./images/placeholder.jpg";
                 break;
-            case("Color"):
+            case ("Color"):
                 placeholder = '';
                 break;
             default:
                 placeholder = ''
         }
         return placeholder;
-    } 
+    }
 
     /**
      * Modify a column of the table, updating it with the information about a case. 
@@ -215,7 +287,7 @@ export class TableComparator {
      * @param selector A string with the "row" or "col" word, which represents if the
      * first or the second column must be updated
      */
-    private updateCaseInColumn(id:string, caseContent:Object, selector:string):void {
+    private updateCaseInColumn(id: string, caseContent: Object, selector: string): void {
         // Update the table header with the case id
         this.updateHeaderWithId(id, selector + idName);
 
@@ -243,9 +315,9 @@ export class TableComparator {
      * @param attValue Value of the attribute
      * @returns A HTML string that represents a table cell for this attribute and value
      */
-    private createAttributeValueElement(attName:string, attValue:any): string {
+    private createAttributeValueElement(attName: string, attValue: any): string {
         // Select the template employed to create the attribute
-        let elemTemplate:CallableFunction = this.attTemplates[attName] as CallableFunction;
+        let elemTemplate: CallableFunction = this.attTemplates[attName] as CallableFunction;
         if (elemTemplate) {
             // Create the element using the handlebar compiled template
             return elemTemplate({ theValue: attValue })
@@ -254,82 +326,58 @@ export class TableComparator {
             return "";
     }
 
-    private updateHeaderWithId(newId:string, selector:string): void {
-        let idContainer = document.querySelector(selector +" .item-id-value");
+    private updateHeaderWithId(newId: string, selector: string): void {
+        let idContainer = document.querySelector(selector + " .item-id-value");
         if (idContainer) {
             idContainer.innerHTML = newId;
         }
         let idButton = document.querySelector(selector + " button");
-        if (idButton){
-            newId = newId=='id'?"":newId;
-            idButton.setAttribute("data-item-id",newId);
+        if (idButton) {
+            newId = newId == 'id' ? "" : newId;
+            idButton.setAttribute("data-item-id", newId);
         }
     }
 
-    _changeRowItem(id: string, item: { [k: string]: string; }) {
+    /**
+     * Modify the case  on left column of the table
+     * @param id Case unique id
+     * @param item Case content
+     */
+    private updateLeftColCase(id: string, item: { [k: string]: string; }) {
         if (item) {
             let selector = '#' + itemRowPrefix;
             this.updateCaseInColumn(id, item, selector);
         }
     }
 
-    _changeColItem(id: string, item: { [k: string]: string; }) {
+    /**
+     * Modify the case  on the right column of the table
+     * @param id Case unique id
+     * @param item Case content
+     */
+    private updateRightColCase(id: string, item: { [k: string]: string; }) {
         if (item) {
             this.updateCaseInColumn(id, item, '#' + itemColPrefix);
         }
     }
 
-    changeRowItem(id: string, item: { [k: string]: string; }) {
-        this._changeRowItem(id, item);
-    }
-
-    changeColItem(id: string, item: { [k: string]: string; }) {
-        this._changeColItem(id, item);
-    }
-
-    resetItems() {
-        this._changeRowItem("id", this.emptyCase);
-        this._changeColItem("id", this.emptyCase);
-        this.updateSimilarityValue(null, null);
-    }
-
-    resetColItem() {
-        this._changeColItem("id", this.emptyCase);
-        this.updateSimilarityValue(null, null);
-    }
-
-    resetRowItem() {
-        this._changeRowItem("id", this.emptyCase);
-        this.updateSimilarityValue(null, null);
-    }
-
-    updateSimilarityValue(newSimValue:SimilarityValue | null, color:string | null) {
-        let simValueElem = document.getElementById("item-sim-value");
-        if (simValueElem) {
-            if (newSimValue !== null) {
-                simValueElem.innerHTML = newSimValue.value.global.toFixed(3);
-                for (let [localAtt, localValue] of Object.entries(newSimValue.value.local)) {
-                    this._updateLocalSimilarity(localAtt, localValue);
-                }
-            } else {
-                simValueElem.innerHTML = "Similarity";
-            }
-        }
-        if (color !== null) {
-            (simValueElem && simValueElem.parentElement)?  simValueElem.parentElement.style.backgroundColor = color : null;
-        } else {
-            (simValueElem && simValueElem.parentElement) ? simValueElem.parentElement.style.backgroundColor = "" : null;
-        }
-    }
-
-    _updateLocalSimilarity (attName:string, value:number) {
+    /**
+     * Update the local similarity valu for an attribute (by name)
+     * @param attName Name of the attribute
+     * @param value Local similarity value for the attribute
+     */
+    private updateLocalSimilarity (attName:string, value:number) {
+        // The row of this attribute is characterized by a data attribute with the attribute name
         let valueElem = document.querySelector(`tr[data-att-name=${attName}] .att-value`);
         if (valueElem) {
             valueElem.innerHTML = value.toFixed(3);
         }
     }
 
-    _populateWeights() {
+    /**
+     * Create the bars for the weights 
+     */
+    private populateWeights() {
         let weights = document.querySelectorAll("#item-comparator .att-weight");
         for (let w of weights) {
             let stringWeightValue = w.getAttribute("data-weight");
