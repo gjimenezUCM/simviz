@@ -1,4 +1,4 @@
-import { CasebaseDescription } from "../types/simvizTypes";
+import { CasebaseDescription, StringStringObject } from "../types/simvizTypes";
 /**
  * Data Access Object that stores a casebase. It contains not only the cases
  * but also the metadata about the case description and the attribute employed
@@ -57,7 +57,7 @@ export class CasebaseDAO {
      * Return the attributes that define a case, with their corresponding types
      * @returns An object with the attributes that define a case
      */
-    getAttributes():Object {
+    getAttributes():StringStringObject {
         return this.cbDescription.attributes;
     }
 

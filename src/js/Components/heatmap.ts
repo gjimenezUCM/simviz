@@ -71,15 +71,17 @@ export class Heatmap extends PlotEventNotifier {
     * @param matrix A similarity matrix
     * @param containerNode The HTML node that will contain the histogra,
     */
-    constructor(ids: Array<string>, matrix: Array<Array<number>>, containerNode: HTMLElement){
+    constructor(ids: Array<string>, matrix: Array<Array<number>>, containerNode: HTMLElement | null){
         super();
-        this.caseIds = ids;
-        this.matrix = matrix;
-        this.currentMatrix = JSON.parse(JSON.stringify(this.matrix));
-        this.currentX = [...ids];
-        this.currentY = [...ids];
-        this.containerNode = containerNode;
-        this._init();
+        if (containerNode){
+            this.caseIds = ids;
+            this.matrix = matrix;
+            this.currentMatrix = JSON.parse(JSON.stringify(this.matrix));
+            this.currentX = [...ids];
+            this.currentY = [...ids];
+            this.containerNode = containerNode;
+            this._init();
+        }
     }
     
     /**

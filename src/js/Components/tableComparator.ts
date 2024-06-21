@@ -178,7 +178,7 @@ export class TableComparator {
      * @param id Case unique id
      * @param item Case content
      */
-    updateRowCase(id: string, item: { [k: string]: string; }) {
+    updateRowCase(id: string, item: Object | null ) {
         // It goes on the left column on the table
         this.updateLeftColCase(id, item);
     }
@@ -188,7 +188,7 @@ export class TableComparator {
      * @param id Case unique id
      * @param item Case content
      */
-    updateColCase(id: string, item: { [k: string]: string; }) {
+    updateColCase(id: string, item: Object | null ) {
         // It goes on the right column on the table
         this.updateRightColCase(id, item);
     }
@@ -343,7 +343,7 @@ export class TableComparator {
      * @param id Case unique id
      * @param item Case content
      */
-    private updateLeftColCase(id: string, item: { [k: string]: string; }) {
+    private updateLeftColCase(id: string, item: Object | null) {
         if (item) {
             let selector = '#' + itemRowPrefix;
             this.updateCaseInColumn(id, item, selector);
@@ -355,7 +355,7 @@ export class TableComparator {
      * @param id Case unique id
      * @param item Case content
      */
-    private updateRightColCase(id: string, item: { [k: string]: string; }) {
+    private updateRightColCase(id: string, item: Object | null) {
         if (item) {
             this.updateCaseInColumn(id, item, '#' + itemColPrefix);
         }

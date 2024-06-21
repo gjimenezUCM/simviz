@@ -1,3 +1,6 @@
+
+export type StringStringObject = { [k: string]: string };
+
 /**
  * Datatype for the metadata and the cases contained in a casebase
  */
@@ -10,7 +13,7 @@ export type CasebaseDescription = {
     /**
      * The attributes stored on a case
      */
-    attributes: { [k: string]: string };
+    attributes: StringStringObject;
 
     /**
      * Name of the case attribute that represents the unique case id
@@ -111,4 +114,3 @@ export interface DatasetInfo {
     "similarityDatasets": Array<DataProvider>
 }
 
-export type StringStringObject = { [k: string]: string };

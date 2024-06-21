@@ -47,22 +47,24 @@ export class Histogram extends PlotEventNotifier {
      * Constructor
      * @param ids A list with the unique ids of a casebase
      * @param matrix A similarity matrix
-     * @param containerNode The HTML node that will contain the histogra,
+     * @param containerNode The HTML node that will contain the histogram (can be null)
      */
-    constructor(ids: Array<string>, matrix: Array<Array<number>>, containerNode: HTMLElement) {
+    constructor(ids: Array<string>, matrix: Array<Array<number>>, containerNode: HTMLElement|null) {
         super();
-        this.simValueIndex = [];
-        this.simValues = [];
-        // Create the index and the simvalues using the similarity matrix and the ids
-        for (let i=0; i<ids.length; i++) {
-            for (let j = 0; j <ids.length; j++) {
-                let curIndex = j*i + j;
-                this.simValueIndex[curIndex] = [ids[i], ids[j]];
-                this.simValues[curIndex] = matrix[i][j];
+        if (containerNode){
+            this.simValueIndex = [];
+            this.simValues = [];
+            // Create the index and the simvalues using the similarity matrix and the ids
+            for (let i=0; i<ids.length; i++) {
+                for (let j = 0; j <ids.length; j++) {
+                    let curIndex = j*i + j;
+                    this.simValueIndex[curIndex] = [ids[i], ids[j]];
+                    this.simValues[curIndex] = matrix[i][j];
+                }
             }
+            this.containerNode = containerNode;
+            this._init();
         }
-        this.containerNode = containerNode;
-        this._init();
     }
 
     /**
