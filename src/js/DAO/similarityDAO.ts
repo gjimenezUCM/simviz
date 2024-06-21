@@ -116,7 +116,7 @@ export default class SimilarityDAO {
      */
     addSimilarityData(simFuncName: string, data: SimilarityData): boolean {
         if (data !== null) {
-            this.similarityDB[simFuncName] = new SimilarityData(data, this.caseIds);
+            this.similarityDB[simFuncName] = new SimilarityData(data.similarityDescription, data.similarityValues, this.caseIds);
             return true;
         } else {
             return false;

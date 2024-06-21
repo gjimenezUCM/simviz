@@ -31,10 +31,12 @@ export default class SimilarityData {
      * @param data Another similarityData object, commonly without the similarity matrix
      * @param caseIds A list with all the ids in the casebase
      */
-    constructor(data: SimilarityData, caseIds: Array<string>){
-        this.similarityDescription = data.similarityDescription;
-        this.similarityValues = data.similarityValues;
-        this.similarityMatrix = data.similarityMatrix ? data.similarityMatrix : this._createMatrix(data.similarityValues, caseIds);
+    constructor(description: SimilarityDescription, similarityValues: Array<SimilarityValue>, caseIds?: Array<string>){
+        this.similarityDescription = description;
+        this.similarityValues = similarityValues;
+        if (caseIds){
+            this.similarityMatrix = this._createMatrix(similarityValues, caseIds);
+        }
     }
 
     /**

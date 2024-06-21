@@ -68,7 +68,7 @@ const templates: { [key:string]: string } = {
     "ColorList": colorAttributeTemplate
 }
 
-const maxSize = 60;
+const MAX_WEIGHTBAR_SIZE = 60;
 
 /**
  * The class that creates the table employed to compare cases in SimViz. It uses Handlebars to
@@ -382,7 +382,7 @@ export class TableComparator {
         for (let w of weights) {
             let stringWeightValue = w.getAttribute("data-weight");
             let frameBar = document.createElement("div");
-            frameBar.style.width = `${maxSize + 2}px`;
+            frameBar.style.width = `${MAX_WEIGHTBAR_SIZE + 2}px`;
             frameBar.style.border = "1px solid black"
             w.appendChild(frameBar);
             let weightBar = document.createElement("div");
@@ -390,7 +390,7 @@ export class TableComparator {
             if (stringWeightValue) {
                 let weightValue = parseFloat(stringWeightValue);
                 weightBar.innerHTML = `${(weightValue * 100).toFixed(2)}%`
-                weightBar.style.width = `${maxSize * weightValue}px`;
+                weightBar.style.width = `${MAX_WEIGHTBAR_SIZE * weightValue}px`;
                 frameBar.appendChild(weightBar);
             }
         }

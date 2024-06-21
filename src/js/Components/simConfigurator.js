@@ -1,6 +1,7 @@
 import Handlebars from "handlebars";
 import { SimilarityComputing } from '../similarityComputing';
 import { theController } from "../controller";
+import SimilarityData from "../DAO/similarityData";
 
 const formAttributeRow = `
         <div class="col-4 text-end"><label for="input-att-{{attName}}" class="form-label">{{attName}}</label></div>
@@ -89,15 +90,10 @@ export class SimConfigurator {
                 }
             }
             if (newSimilarityName !== "" && modified){
-                let simComputing = new SimilarityComputing(this.simData, newDescription)
                 theController.showLoadingOverlay();
                 setTimeout(() => {
-                    simComputing.run();
-                    let newSimFunctionDataObject = {
-                        similarityDescription: newDescription,
-                        similarityValues: simComputing.newSimilarityData
-                    };
-                    this.simDao.addSimilarityData(newSimilarityName, newSimFunctionDataObject);
+                    let newSimData/*:SimilarityData*/ = SimilarityComputing.run(this.simData.similarityValues, newDescription);
+                    this.simDao.addSimilarityData(newSimilarityName, newSimData);
                     this.similarityPanel.addSimilarityFunctionToDropdown(newSimilarityName, true);
                     theController.hideLoadingOverlay();
                 }, 100);
