@@ -1,63 +1,24 @@
 import Handlebars from "handlebars";
 
-const basicAtributeTemplate: string = `
-    <td class="col-4">
-        {{#if theValue}}
-        {{theValue}}
-        {{else}}
-        <span class="badge text-bg-danger">NULL</span>
-        {{/if}}
-    </td>
-`;
-
-const colorAttributeTemplate: string = `
-    <td class="col-4">
-        {{#if theValue}}
-            {{#each theValue}}
-                {{#with this}}
-                <div class="box" aria-labelledby="color-label" style="background-color: rgb({{rgb}});"></div>
-                {{/with}}
-            {{/each}}
-        {{else}}
-        <span class="badge text-bg-danger">NULL</span>
-        {{/if}}
-    </td>
-`;
-
-const imageAttributeTemplate: string = `
-    <td class="col-4">
-        <img class="img-fluid" src="{{theValue}}"/>
-    </td>
-`;
-
-const rowTemplate: string = `
-    <tr data-att-name="{{attName}}">
-        <td class="col-2">
-            <div class="att-cell">
-                <div class="att-name">{{attName}}</div>
-                {{#if weight}}
-                <div class="att-weight" data-weight="{{weight}}"></div> 
-                {{else}}
-                <div class="att-weight" data-weight=""></div>
-                {{/if}}
-            </div>  
-        </td>
-        <td class="col-4 item-row-cell">
-        </td>
-        <td class="col-2">
-            <div class="att-cell">
-                <div class="att-value"></div> 
-            </div>                            
-        </td>
-        <td class="col-4 item-col-cell">
-        </td>
-    </tr>
-`;
-
-
+/**
+ * A utility class for managing and generating text using templates.
+ * This class acts as a wrapper of Handlebars, the engine employed to compile the templates
+ * We can register templates by name for reusing them, or create the text directly using a template.
+ */
 export default class TemplateManager {
+    /**
+     * A dictionary that stores the templates registered by other objects.
+     * The templates are stored as functions that are ready to use.
+     */
     private static templates: {[key:string]: CallableFunction } = {    };
 
+    /**
+     * Register a template using a name
+     * @param name Name of the template
+     * @param template Template that must be registered
+     * @returns False, if there is another template with this name,
+     * so the template is not registered; and true, otherwise
+     */
     static registerTemplate (name:string, template: string): boolean {
         if (name in Object.keys(this.templates)){
             return false;
@@ -68,6 +29,13 @@ export default class TemplateManager {
         }
     }
 
+    /**
+     * Create a string using a registered template using some data
+     * @param name The name of a template already registered
+     * @param data The data employed to fill in the template
+     * @returns A string with the corresponding template filled in using the data provided;
+     * or an empty string, if the template does not exist.
+     */
     static generateWithRegisteredTemplate(name:string, data:Object):string {
         let result = "";
         if (name in this.templates){
@@ -76,6 +44,12 @@ export default class TemplateManager {
         return result;
     }
 
+    /**
+     * Generate a string with a template and the data to fill in
+     * @param template A template
+     * @param data The data to fill in the template
+     * @returns A string with the template filled in with the data
+     */
     static generate(template:string, data:Object): string {
         return Handlebars.compile(template)(data);
     }

@@ -7,84 +7,135 @@ import SimilarityDAO from "../DAO/similarityDAO";
 import { CasebaseDAO } from "../DAO/casebaseDAO";
 import { SimilarityDescription } from "../types/simvizTypes";
 
-const maxSize = 50;
+/**
+ * Max size in pixels of the bar that visually represents a weight
+ */
+const MAX_WEIGHTBAR_SIZE_PX = 50;
+
+/**
+ * Class component in charge of the similarity panel in the UI
+ */
 export class SimilarityPanel {
-    simConf: SimConfigurator;
-    configButton: HTMLButtonElement | null;
-    simDAO: SimilarityDAO;
-    itemDAO: CasebaseDAO;
-    simMenu: HTMLSelectElement | null;
+
+    /**
+     * The panel for configuring new similarity functions
+     */
+    private simConf: SimConfigurator;
+    
+    /**
+     * A DAO that stores similarity functions
+     */
+    private simDAO: SimilarityDAO;
+
+    /**
+     * A DAO that stores casebases
+     */
+    private casebaseDAO: CasebaseDAO;
+
+    /**
+     * The button for activating the panel for configuring new similarity functions
+     */
+    private configSimilarityButton: HTMLButtonElement | null;
+
+
+    /**
+     * The dropdown employed to select a similarity function
+     */
+    private similarityFunctionMenu: HTMLSelectElement | null;
+
+    /**
+     * Constructor
+     */
     constructor() {
         this.simConf = new SimConfigurator(this);
-        this.configButton = document.getElementById("btn-show-configurator") as HTMLButtonElement;
+        this.configSimilarityButton = document.getElementById("btn-show-configurator") as HTMLButtonElement;
     }
-    init(simDAO:SimilarityDAO, itemDAO:CasebaseDAO){
+
+    /**
+     * Initialize the similarity panel using the DAOs already loaded
+     * @param simDAO A similarity DAO
+     * @param casebaseDAO A casebase DAO
+     */
+    init(simDAO:SimilarityDAO, casebaseDAO:CasebaseDAO){
         this.simDAO = simDAO;
-        this.itemDAO = itemDAO;
+        this.casebaseDAO = casebaseDAO;
         const simFiles = simDAO.getFiles();
-        this.simMenu = document.getElementById("similarity-select") as HTMLSelectElement;
-        if (this.simMenu){
-            this.simMenu.innerHTML = "<option selected>Choose similarity function...</option>";
+        this.similarityFunctionMenu = document.getElementById("similarity-select") as HTMLSelectElement;
+        if (this.similarityFunctionMenu){
+            this.similarityFunctionMenu.innerHTML = "<option selected>Choose similarity function...</option>";
             for (let file of simFiles) {
                 this.addSimilarityFunctionToDropdown(file);
             }
-            this.simMenu.addEventListener("change", () => {
-                if (this.simMenu && this.simMenu.selectedIndex !== 0) {
-                    this.loadSimilarityFunction(this.simDAO, this.itemDAO, this.simMenu.value);
+            this.similarityFunctionMenu.addEventListener("change", () => {
+                if (this.similarityFunctionMenu && this.similarityFunctionMenu.selectedIndex !== 0) {
+                    this.loadSimilarityFunction(this.similarityFunctionMenu.value);
                 }
             });
-            this.simMenu.selectedIndex = 0;
+            this.similarityFunctionMenu.selectedIndex = 0;
             this.updateSimilarityDescription(null);
         }
         
-        if (this.configButton){
-            this.configButton.classList.add("visually-hidden");
-        }
-        
+        if (this.configSimilarityButton){
+            this.configSimilarityButton.classList.add("visually-hidden");
+        }        
     }
 
-    async loadSimilarityFunction(simDAO:SimilarityDAO, itemDAO:CasebaseDAO, similarityFunctionName:string) {
+    /**
+     * Load a similarity function
+     * @param similarityFunctionName Name of the similarity function that should be loaded
+     */
+    private async loadSimilarityFunction(similarityFunctionName:string) {
+        // This is a time consuming task so show the spin loader
         theController.showLoadingOverlay();
         let simData = await this.simDAO.getSimilarityDataByName(similarityFunctionName);
         if (simData) {
+            // We need to use a setTimeout to show the spin while loading
             setTimeout(() => {
-                theController.init(this.itemDAO, simData);
-                window.addEventListener("resize", (event) => {
-                    theController.onResize();
-                });
-
+                theController.init(this.casebaseDAO, simData);
                 this.updateSimilarityDescription(simData.similarityDescription);
-                this.simConf.init(simDAO, simData);
-                if (this.configButton){
-                    this.configButton.classList.remove("visually-hidden");    
+                this.simConf.init(this.simDAO, simData);
+                // Show the configuration button
+                if (this.configSimilarityButton){
+                    this.configSimilarityButton.classList.remove("visually-hidden");    
                 }
+                // Hide the spin loader
                 theController.hideLoadingOverlay();            
             }, 0);
-
         }
-
     }
 
-    addSimilarityFunctionToDropdown(simFunctionName:string, andChange:boolean = false){
+    /**
+     * Add a new similarity function to the dropdown element of the similarity panel.
+     * By default, the similarity function is added but the function is not selected.
+     * However, it can be automatically selected using the "andSelect" parameter
+     * @param simFunctionName Name of the similarity function added
+     * @param andSelect If true, it changes the dropdown to the added similarity function (and loads it)
+     */
+    addSimilarityFunctionToDropdown(simFunctionName:string, andSelect:boolean = false){
         let item = document.createElement('template');
         item.innerHTML = `<option class="dropdown-item" data-sim-name="${simFunctionName}">${simFunctionName}</option>`;
-        if (this.simMenu){
-            this.simMenu.appendChild(item.content.children[0]);
-            if (andChange) {
-                this.simMenu.selectedIndex = this.simMenu.childElementCount - 1;
-                this.simMenu.dispatchEvent(new Event('change', { 'bubbles': true }));
+        if (this.similarityFunctionMenu){
+            this.similarityFunctionMenu.appendChild(item.content.children[0]);
+            if (andSelect) {
+                this.similarityFunctionMenu.selectedIndex = this.similarityFunctionMenu.childElementCount - 1;
+                this.similarityFunctionMenu.dispatchEvent(new Event('change', { 'bubbles': true }));
             } 
         }    
     }
 
-    updateSimilarityDescription(simDescription: SimilarityDescription|null) {
+    /**
+     * Update the information about the selected similarity function
+     * @param simDescription Description of the similarity function that should be updated.
+     * If null, it removes the previous information displayed by the panel
+     */
+    private updateSimilarityDescription(simDescription: SimilarityDescription|null): void {
         let parent = document.getElementById("sim-desc");
         if (parent) {
+            // If the paremeter is null, remove the current information
             if (simDescription === null) {
                 parent.innerHTML = "";
                 return;
             }
-
             parent.innerHTML = `<h3>Global function</h3>
             <p id="global-sim-desc">${simDescription.globalSim.simFunction}</p>
             <h3>Local functions</h3>
@@ -104,6 +155,7 @@ export class SimilarityPanel {
 
             let tableParent = parent.querySelector("tbody.table-group-divider");
             if (tableParent){
+                // Populate the table with local similarity functions
                 for (let [attName, localDesc] of Object.entries(simDescription.localSim)) {
                     let aRow = document.createElement("tr");
                     aRow.innerHTML = `<td>${attName}</td>
@@ -133,27 +185,31 @@ export class SimilarityPanel {
                     }
                 }
             }
-
-
         }
-        this._populateWeights();
+        this.populateWeights();
     }
-    _populateWeights() {
+
+    /**
+     * Create the bars for the weights 
+     */
+    private populateWeights() {
         let weights = document.querySelectorAll("#similarity-descriptor .att-weight");
         for (let w of weights) {
             let weightString = w.getAttribute("data-weight");
             let wValue = weightString ? parseFloat(weightString) : 0.0;
             let frameBar = document.createElement("div");
-            frameBar.style.width = `${maxSize + 2}px`;
+            frameBar.style.width = `${MAX_WEIGHTBAR_SIZE_PX + 2}px`;
             frameBar.style.border = "1px solid black"
             w.appendChild(frameBar);
             let weightBar = document.createElement("div");
             weightBar.classList.add("att-weight-bar");
             weightBar.innerHTML = `${(wValue * 100).toFixed(2)}%`
-            weightBar.style.width = `${maxSize * wValue}px`;
+            weightBar.style.width = `${MAX_WEIGHTBAR_SIZE_PX * wValue}px`;
             frameBar.appendChild(weightBar);
         }
     }
 }
+
+// Create an instance and export it as a "singleton"
 const similarityPanel = new SimilarityPanel();
 export { similarityPanel };

@@ -2,12 +2,18 @@
 import { SimilarityDescription, SimilarityValue, StringStringObject } from "../types/simvizTypes";
 import TemplateManager from "../utils/templateManager";
 
+/**********************************************************************
+ * CSS Selectors for the main elements of the table comparator
+ */
 const itemRowSelectorButton = '#heatmap-filter-btn-row';
 const itemColSelectorButton = '#heatmap-filter-btn-col';
 const itemRowPrefix = "item-row";
 const itemColPrefix = "item-col"
 const idName = "-id";
 
+/**********************************************************************
+ * Templates for creating the table
+ */
 const basicAtributeTemplate:string = `
     <td class="col-4">
         {{#if theValue}}
@@ -62,7 +68,10 @@ const rowTemplate: string = `
     </tr>
 `;
 
-const MAX_WEIGHTBAR_SIZE = 60;
+/**
+ * Max size in pixels of the bar that visually represents a weight
+ */
+const MAX_WEIGHTBAR_SIZE_PX = 60;
 
 /**
  * The class that creates the table employed to compare cases in SimViz. It uses Handlebars to
@@ -393,7 +402,7 @@ export class TableComparator {
         for (let w of weights) {
             let stringWeightValue = w.getAttribute("data-weight");
             let frameBar = document.createElement("div");
-            frameBar.style.width = `${MAX_WEIGHTBAR_SIZE + 2}px`;
+            frameBar.style.width = `${MAX_WEIGHTBAR_SIZE_PX + 2}px`;
             frameBar.style.border = "1px solid black"
             w.appendChild(frameBar);
             let weightBar = document.createElement("div");
@@ -401,7 +410,7 @@ export class TableComparator {
             if (stringWeightValue) {
                 let weightValue = parseFloat(stringWeightValue);
                 weightBar.innerHTML = `${(weightValue * 100).toFixed(2)}%`
-                weightBar.style.width = `${MAX_WEIGHTBAR_SIZE * weightValue}px`;
+                weightBar.style.width = `${MAX_WEIGHTBAR_SIZE_PX * weightValue}px`;
                 frameBar.appendChild(weightBar);
             }
         }

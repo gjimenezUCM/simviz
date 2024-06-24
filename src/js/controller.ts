@@ -78,6 +78,10 @@ class Controller {
                         this.resetButton.classList.add("visually-hidden");
                 });
             }
+
+            window.addEventListener("resize", (event) => {
+                this.onResize();
+            });
         }        
     }
 
