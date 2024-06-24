@@ -1,5 +1,6 @@
-import Handlebars from "handlebars";
+
 import { SimilarityDescription, SimilarityValue, StringStringObject } from "../types/simvizTypes";
+import TemplateManager from "../utils/templateManager";
 
 const itemRowSelectorButton = '#heatmap-filter-btn-row';
 const itemColSelectorButton = '#heatmap-filter-btn-col';
@@ -61,13 +62,6 @@ const rowTemplate: string = `
     </tr>
 `;
 
-const templates: { [key:string]: string } = {
-    "string": basicAtributeTemplate,
-    "number": basicAtributeTemplate,
-    "Image": imageAttributeTemplate,
-    "ColorList": colorAttributeTemplate
-}
-
 const MAX_WEIGHTBAR_SIZE = 60;
 
 /**
@@ -99,10 +93,10 @@ export class TableComparator {
      */
     private simDescription: SimilarityDescription | null;
 
-    /**
-     * Templates employed for each case attribute
-     */
-    private attTemplates: { [k: string]: unknown };
+    // /**
+    //  * Templates employed for each case attribute
+    //  */
+    // private attTemplates: { [k: string]: unknown };
 
     /**
      * A temporal empty case that is presented when no cases are selected
@@ -124,9 +118,9 @@ export class TableComparator {
 
         // Create the table
         if (table) {
+            this.registerTemplateTypes();
             let tableContent = document.createElement("tbody");
             tableContent.classList.add("table-group-divider");
-            const rowElement = Handlebars.compile(rowTemplate);
             // If the table is configured for a similarity function then we will start with the attributes
             // employed by the similarity function
             if (simDescription){
@@ -154,15 +148,12 @@ export class TableComparator {
             table.replaceWith(tableContent);
         }
 
-        // Create the templates depending on the attribute type
-        // and create the empty case employed when a case is not selected
-        this.attTemplates = {};
+        // Create the empty case employed when a case is not selected
         this.emptyCase = {};
         for (const [attName, attType] of Object.entries(allAtts)) {
             // Ignore attribute id because it appear in the table header
             if (attName === this.attId)
                 continue;
-            this.attTemplates[attName] = Handlebars.compile(templates[attType]);
             this.emptyCase[attName] = this.createPlaceholderForType(attType);
         }
 
@@ -244,13 +235,23 @@ export class TableComparator {
     }
 
     /**
+     * Register the templates in the template manager for the common attribute types
+     */
+    private registerTemplateTypes(){
+        TemplateManager.registerTemplate("string", basicAtributeTemplate);
+        TemplateManager.registerTemplate("number", basicAtributeTemplate);
+        TemplateManager.registerTemplate("Image", imageAttributeTemplate);
+        TemplateManager.registerTemplate("ColorList", colorAttributeTemplate);
+    }
+
+    /**
      * Create an empty row in the table
      * @param table HTML element that represents the table
      * @param rowData An object with the data that must be included in the row (attribute name and weight, if needed)
      */
     private createRowElement(table: HTMLElement, rowData: Object): void {
-        const rowElement = Handlebars.compile(rowTemplate);
-        const rowContent = rowElement(rowData);
+        //const rowElement = Handlebars.compile(rowTemplate);
+        const rowContent = TemplateManager.generate(rowTemplate, rowData);
         const node = document.createElement('template');
         node.innerHTML = rowContent;
         const result = node.content.children[0];
@@ -316,14 +317,24 @@ export class TableComparator {
      * @returns A HTML string that represents a table cell for this attribute and value
      */
     private createAttributeValueElement(attName: string, attValue: any): string {
-        // Select the template employed to create the attribute
-        let elemTemplate: CallableFunction = this.attTemplates[attName] as CallableFunction;
-        if (elemTemplate) {
-            // Create the element using the handlebar compiled template
-            return elemTemplate({ theValue: attValue })
+        let result = ""
+        if (this.simAtts[attName]) {
+            result = TemplateManager.generateWithRegisteredTemplate(this.simAtts[attName], { theValue: attValue });
         }
-        else
-            return "";
+
+        if (this.remainingAtts[attName]) {            
+            result = TemplateManager.generateWithRegisteredTemplate(this.remainingAtts[attName], { theValue: attValue });
+        }
+        console.log(attName, result);
+        return result;
+        // Select the template employed to create the attribute
+        // let elemTemplate: CallableFunction = this.attTemplates[attName] as CallableFunction;
+        // if (elemTemplate) {
+        //     // Create the element using the handlebar compiled template
+        //     return elemTemplate({ theValue: attValue })
+        // }
+        // else
+        //     return "";
     }
 
     private updateHeaderWithId(newId: string, selector: string): void {

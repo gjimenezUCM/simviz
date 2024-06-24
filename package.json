@@ -10,6 +10,7 @@
   "author": "Guillermo Jimenez-Diaz",
   "license": "ISC",
   "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
     "@types/plotly.js-dist-min": "^2.3.4",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",

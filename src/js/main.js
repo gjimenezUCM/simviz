@@ -12,24 +12,15 @@ import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import nanoMarkdown from 'nano-markdown';
 
-import { daoItems } from './mockdata';
+
 import { theController } from "./controller";
 import SimilarityDAO from './DAO/similarityDAO';
 import { DatasetLoader } from './datasetLoader';
 import { similarityPanel } from './Components/similarityPanel';
 import { SimConfigurator } from './Components/simConfigurator';
 
-let itemIds = daoItems.getIds();
 
 
-function populateIdSelect(selectNode, ids) {
-    for (let id of ids) {
-        let newOption = document.createElement("option");
-        newOption.innerHTML = id;
-        newOption.setAttribute("value", id);
-        selectNode.appendChild(newOption);
-    }
-}
 
 window.addEventListener("load", (event)=>  { initApp() });
 
