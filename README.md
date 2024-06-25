@@ -133,14 +133,6 @@ Install the prerrequisites with:
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-## Known Issues
-
-Plotly type file misses the orientation for the ColorBar so this line must be included in the ColorBar definition, in `node_modules/@types/plotly.js/index.d.ts`:
-
-```
-// ARROUND LINE 1537:
-orientation: "v" | "h";
-```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
