@@ -37,7 +37,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: './src/js/main.js',
+        app: './src/js/main.ts',
         help: './src/js/help.js'
     },
 
