@@ -1,8 +1,8 @@
 {
-  "name": "frontend",
+  "name": "SimViz",
   "version": "0.0.1",
-  "description": "Frontend for VizSim",
-  "main": "index.js",
+  "description": "Tool for visualizing similarity functions over a case base",
+  "main": "main.ts",
   "scripts": {
     "build": "webpack --config webpack.dev.js",
     "start": "webpack-dev-server --config webpack.dev.js",

@@ -31,12 +31,15 @@ export class SimilarityDAO {
 
     /**
      * Constructor
-     * @param similarityFunctions A list with the similarity data files available for a case base
-     * @param caseIds A list with the unique case ids for the casebase stored in this DAO
      */
     constructor() {
     }
 
+    /**
+     * Initialize the similarity DAO for a case base with the similarity functions provided
+     * @param similarityFunctions A list with the similarity data files available for a case base
+     * @param caseIds A list with the unique case ids for the casebase stored in this DAO
+     */
     init(similarityFunctions: Array<DataProvider> | null, caseIds: Array<string>){
         this.similarityFunctions = {};
         this.similarityDB = {};

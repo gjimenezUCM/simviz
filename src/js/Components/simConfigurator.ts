@@ -4,7 +4,6 @@ import { theController } from "../controller";
 import { SimilarityPanel } from './similarityPanel';
 import SimilarityData from "../DAO/similarityData";
 import { theSimilarityDAO } from '../DAO/similarityDAO';
-import { SimilarityDescription } from '../types/simvizTypes';
 import TemplateManager from '../utils/templateManager';
 
 const formAttributeRow = `
@@ -87,7 +86,6 @@ export class SimConfigurator {
 
     /**
      * Initializes the Similarity Configuration panel
-     * @param simDao The similarity DAO
      * @param simData The similarity data that might be modified
      */
     init(simData: SimilarityData): void {        

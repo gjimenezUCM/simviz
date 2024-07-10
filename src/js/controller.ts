@@ -275,5 +275,8 @@ class Controller {
 
 }
 
+/**
+ * A singleton-like instance of the Controller
+ */
 const theController = new Controller();
 export { theController };
