@@ -3,7 +3,7 @@ import { theController } from "../controller";
 import { Popover } from "bootstrap";
 import nanoMarkdown from 'nano-markdown';
 import { SimConfigurator } from "./simConfigurator";
-import SimilarityDAO from "../DAO/similarityDAO";
+import { theSimilarityDAO } from "../DAO/similarityDAO";
 import { CasebaseDAO } from "../DAO/casebaseDAO";
 import { SimilarityDescription } from "../types/simvizTypes";
 
@@ -22,11 +22,6 @@ export class SimilarityPanel {
      */
     private simConf: SimConfigurator;
     
-    /**
-     * A DAO that stores similarity functions
-     */
-    private simDAO: SimilarityDAO;
-
     /**
      * A DAO that stores casebases
      */
@@ -53,13 +48,11 @@ export class SimilarityPanel {
 
     /**
      * Initialize the similarity panel using the DAOs already loaded
-     * @param simDAO A similarity DAO
      * @param casebaseDAO A casebase DAO
      */
-    init(simDAO:SimilarityDAO, casebaseDAO:CasebaseDAO){
-        this.simDAO = simDAO;
+    init(casebaseDAO:CasebaseDAO){
         this.casebaseDAO = casebaseDAO;
-        const simFiles = simDAO.getFiles();
+        const simFiles = theSimilarityDAO.getFiles();
         this.similarityFunctionMenu = document.getElementById("similarity-select") as HTMLSelectElement;
         if (this.similarityFunctionMenu){
             this.similarityFunctionMenu.innerHTML = "<option selected>Choose similarity function...</option>";
@@ -87,13 +80,13 @@ export class SimilarityPanel {
     private async loadSimilarityFunction(similarityFunctionName:string) {
         // This is a time consuming task so show the spin loader
         theController.showLoadingOverlay();
-        let simData = await this.simDAO.getSimilarityDataByName(similarityFunctionName);
+        let simData = await theSimilarityDAO.getSimilarityDataByName(similarityFunctionName);
         if (simData) {
             // We need to use a setTimeout to show the spin while loading
             setTimeout(() => {
                 theController.init(this.casebaseDAO, simData);
                 this.updateSimilarityDescription(simData.similarityDescription);
-                this.simConf.init(this.simDAO, simData);
+                this.simConf.init(simData);
                 // Show the configuration button
                 if (this.configSimilarityButton){
                     this.configSimilarityButton.classList.remove("visually-hidden");    
@@ -211,5 +204,5 @@ export class SimilarityPanel {
 }
 
 // Create an instance and export it as a "singleton"
-const similarityPanel = new SimilarityPanel();
-export { similarityPanel };
+//const similarityPanel = new SimilarityPanel();
+//export { similarityPanel };

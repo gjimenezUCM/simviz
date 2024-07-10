@@ -8,7 +8,7 @@ import SimilarityData from "./similarityData";
 /**
  * A DAO that stores similarity data for different similarity functions for a unique case base
  */
-export default class SimilarityDAO {
+export class SimilarityDAO {
     /**
      * A list with the unique case ids for the casebase stored in this DAO
      */
@@ -34,14 +34,17 @@ export default class SimilarityDAO {
      * @param similarityFunctions A list with the similarity data files available for a case base
      * @param caseIds A list with the unique case ids for the casebase stored in this DAO
      */
-    constructor(similarityFunctions:Array<DataProvider>|null, caseIds: Array<string>) {
+    constructor() {
+    }
+
+    init(similarityFunctions: Array<DataProvider> | null, caseIds: Array<string>){
         this.similarityFunctions = {};
-        if (similarityFunctions!== null){
+        this.similarityDB = {};
+        if (similarityFunctions !== null) {
             for (let aSimFunction of similarityFunctions) {
                 this.similarityFunctions[aSimFunction.name] = aSimFunction;
             }
-        }        
-        this.similarityDB = {}
+        }    
         this.caseIds = caseIds;
     }
 
@@ -123,3 +126,6 @@ export default class SimilarityDAO {
         }
     }
 }
+
+const theSimilarityDAO = new SimilarityDAO();
+export { theSimilarityDAO };

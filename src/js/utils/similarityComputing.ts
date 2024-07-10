@@ -1,5 +1,5 @@
-import SimilarityData from "./DAO/similarityData";
-import { SimilarityDescription, SimilarityValue } from "./types/simvizTypes";
+import SimilarityData from "../DAO/similarityData";
+import { SimilarityDescription, SimilarityValue } from "../types/simvizTypes";
 
 /**
  * Utility class for computing the similarity values based on previouly loaded similarity data.

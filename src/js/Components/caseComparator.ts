@@ -80,7 +80,7 @@ const MAX_WEIGHTBAR_SIZE_PX = 60;
  * it includes additional information about the cases that are part of the similarity
  * function, adding a bar that represents the weight of this attribute in the similarity function
  */
-export class TableComparator {
+export class CaseComparator {
 
     /**
      * Attributes that are employed by a similarity function (name: type)
@@ -101,11 +101,6 @@ export class TableComparator {
      * The description of the similarity function selected when the table is created
      */
     private simDescription: SimilarityDescription | null;
-
-    // /**
-    //  * Templates employed for each case attribute
-    //  */
-    // private attTemplates: { [k: string]: unknown };
 
     /**
      * A temporal empty case that is presented when no cases are selected
@@ -168,10 +163,7 @@ export class TableComparator {
 
         // Finally, create the weight bars using the information about the weights
         this.populateWeights();
-
-    }
-
-    
+    }    
 
     /**
      * Update the case that represents a row on the heatmap 
@@ -334,18 +326,14 @@ export class TableComparator {
         if (this.remainingAtts[attName]) {            
             result = TemplateManager.generateWithRegisteredTemplate(this.remainingAtts[attName], { theValue: attValue });
         }
-        console.log(attName, result);
         return result;
-        // Select the template employed to create the attribute
-        // let elemTemplate: CallableFunction = this.attTemplates[attName] as CallableFunction;
-        // if (elemTemplate) {
-        //     // Create the element using the handlebar compiled template
-        //     return elemTemplate({ theValue: attValue })
-        // }
-        // else
-        //     return "";
     }
 
+    /**
+     * Change the header id with a new id
+     * @param newId The new Id
+     * @param selector String selector for the header
+     */
     private updateHeaderWithId(newId: string, selector: string): void {
         let idContainer = document.querySelector(selector + " .item-id-value");
         if (idContainer) {
@@ -416,4 +404,3 @@ export class TableComparator {
         }
     }
 }
-
