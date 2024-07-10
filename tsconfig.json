@@ -95,5 +95,11 @@
         "dist",
         "data",
         "images"
-    ]
+    ],
+    "typedocOptions": {
+        "entryPoints": [
+            "src/js/**/*.ts"
+        ],
+        "out": "docs"
+    }
 }
