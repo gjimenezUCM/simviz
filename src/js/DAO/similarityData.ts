@@ -33,7 +33,6 @@ export default class SimilarityData {
      */
     constructor(description: SimilarityDescription, similarityValues: Array<SimilarityValue>, caseIds?: Array<string>){
         this.similarityDescription = description;
-        console.log(similarityValues)
         this.similarities = similarityValues;
         if (caseIds){
             this.similarityMatrix = this._createMatrix(similarityValues, caseIds);

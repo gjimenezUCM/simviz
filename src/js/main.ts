@@ -78,8 +78,7 @@ async function loadDataset(datasetLoader:DatasetLoader, datasetName:string){
         <p>${casebaseDAO.getNumCases()}</p>`;
 
         theSimilarityDAO.init(datasetLoader.getSimilarityFunctionsForDataset(datasetName), casebaseDAO.getIds());
-        theController.onDatasetSelected();
-        theController.init(casebaseDAO, null);
+        theController.onDatasetSelected(casebaseDAO);
     }
 }
 

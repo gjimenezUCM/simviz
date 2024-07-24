@@ -25,7 +25,7 @@ export class SimilarityPanel {
     /**
      * A DAO that stores casebases
      */
-    private casebaseDAO: CasebaseDAO;
+    //private casebaseDAO: CasebaseDAO;
 
     /**
      * The button for activating the panel for configuring new similarity functions
@@ -48,10 +48,8 @@ export class SimilarityPanel {
 
     /**
      * Initialize the similarity panel using the DAOs already loaded
-     * @param casebaseDAO A casebase DAO
      */
-    init(casebaseDAO:CasebaseDAO){
-        this.casebaseDAO = casebaseDAO;
+    init(){
         const simFiles = theSimilarityDAO.getFiles();
         this.similarityFunctionMenu = document.getElementById("similarity-select") as HTMLSelectElement;
         if (this.similarityFunctionMenu){
@@ -84,7 +82,7 @@ export class SimilarityPanel {
         if (simData) {
             // We need to use a setTimeout to show the spin while loading
             setTimeout(() => {
-                theController.init(this.casebaseDAO, simData);
+                theController.init(simData);
                 this.updateSimilarityDescription(simData.similarityDescription);
                 this.simConf.init(simData);
                 // Show the configuration button
@@ -202,7 +200,3 @@ export class SimilarityPanel {
         }
     }
 }
-
-// Create an instance and export it as a "singleton"
-//const similarityPanel = new SimilarityPanel();
-//export { similarityPanel };

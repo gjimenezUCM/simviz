@@ -103,7 +103,6 @@ export class SimilarityDAO {
             if (simFuncName in this.similarityFunctions) {
                 let uri:string = this.similarityFunctions[simFuncName].uri;
                 const data = await loadJSONData(uri);
-                console.log(data);
                 if (this.addSimilarityData(simFuncName,data as SimilarityData)){
                     return this.similarityDB[simFuncName];
                 } else {

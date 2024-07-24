@@ -20,7 +20,7 @@ export class SimilarityComputing {
         let newSimilarityData: Array<SimilarityValue> = [];
 
         oldSimilarityValues.forEach(simPair => {
-            let newSimPair = JSON.parse(JSON.stringify(simPair));
+            let newSimPair: SimilarityValue = JSON.parse(JSON.stringify(simPair));
             let newSimValue = 0.0;
             let totalWeight = 0.0;
             for (let [att, localFunc] of Object.entries(newSimilarityDescription.localSim)) {
@@ -35,7 +35,7 @@ export class SimilarityComputing {
             } else {
                 newSimValue = 0.0;
             }
-            newSimPair['value']['global'] = newSimValue;
+            newSimPair['similarity']['value'] = newSimValue;
             newSimilarityData.push(newSimPair);       
         });
 
