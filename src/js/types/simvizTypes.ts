@@ -84,9 +84,9 @@ export type SimilarityValue = {
      * The similarity value, represented as the global similarity 
      * and the partial local similarity values
      */
-    value: {
-        global: number,
-        local: {
+    similarity: {
+        value: number,
+        by_attribute: {
             [key: string]: number
         }
     }

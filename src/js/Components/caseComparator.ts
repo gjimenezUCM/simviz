@@ -220,8 +220,8 @@ export class CaseComparator {
         let simValueElem = document.getElementById("item-sim-value");
         if (simValueElem) {
             if (newSimValue !== null) {
-                simValueElem.innerHTML = newSimValue.value.global.toFixed(3);
-                for (let [localAtt, localValue] of Object.entries(newSimValue.value.local)) {
+                simValueElem.innerHTML = newSimValue.similarity.value.toFixed(3);
+                for (let [localAtt, localValue] of Object.entries(newSimValue.similarity.by_attribute)) {
                     this.updateLocalSimilarity(localAtt, localValue);
                 }
             } else {

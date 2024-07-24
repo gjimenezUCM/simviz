@@ -159,7 +159,7 @@ export class SimConfigurator {
                 theController.showLoadingOverlay();
                 // launch using setTimeout to display the overlay
                 setTimeout(() => {
-                    let newSimData:SimilarityData = SimilarityComputing.run(this.oldSimData.similarityValues, newDescription);
+                    let newSimData:SimilarityData = SimilarityComputing.run(this.oldSimData.similarities, newDescription);
                     theSimilarityDAO.addSimilarityData(newSimilarityName, newSimData);
                     this.similarityPanel.addSimilarityFunctionToDropdown(newSimilarityName, true);
                     theController.hideLoadingOverlay();

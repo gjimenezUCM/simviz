@@ -102,8 +102,9 @@ export class SimilarityDAO {
         else {
             if (simFuncName in this.similarityFunctions) {
                 let uri:string = this.similarityFunctions[simFuncName].uri;
-                const data = await loadJSONData(uri) as SimilarityData;
-                if (this.addSimilarityData(simFuncName,data)){
+                const data = await loadJSONData(uri);
+                console.log(data);
+                if (this.addSimilarityData(simFuncName,data as SimilarityData)){
                     return this.similarityDB[simFuncName];
                 } else {
                     return null;
@@ -122,7 +123,7 @@ export class SimilarityDAO {
      */
     addSimilarityData(simFuncName: string, data: SimilarityData): boolean {
         if (data !== null) {
-            this.similarityDB[simFuncName] = new SimilarityData(data.similarityDescription, data.similarityValues, this.caseIds);
+            this.similarityDB[simFuncName] = new SimilarityData(data.similarityDescription, data.similarities, this.caseIds);
             return true;
         } else {
             return false;

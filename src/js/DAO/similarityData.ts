@@ -18,7 +18,7 @@ export default class SimilarityData {
     /**
      * A list of pairs of cases with detailed similarity values (global and local similarity values)
      */
-    similarityValues: Array<SimilarityValue>;
+    similarities: Array<SimilarityValue>;
 
     /**
      * A matrix of global similarity values. This attribute is optional because it is commonly created
@@ -33,7 +33,8 @@ export default class SimilarityData {
      */
     constructor(description: SimilarityDescription, similarityValues: Array<SimilarityValue>, caseIds?: Array<string>){
         this.similarityDescription = description;
-        this.similarityValues = similarityValues;
+        console.log(similarityValues)
+        this.similarities = similarityValues;
         if (caseIds){
             this.similarityMatrix = this._createMatrix(similarityValues, caseIds);
         }
@@ -56,8 +57,8 @@ export default class SimilarityData {
             let id2 = simPair["id2"]
             let index1 = itemIds.indexOf(id1);
             let index2 = itemIds.indexOf(id2);
-            matrix[index1][index2] = simPair["value"]["global"]
-            matrix[index2][index1] = simPair["value"]["global"]
+            matrix[index1][index2] = simPair["similarity"]["value"]
+            matrix[index2][index1] = simPair["similarity"]["value"]
         }
 
         return matrix;
@@ -72,7 +73,7 @@ export default class SimilarityData {
      */
     getSimilarity(id1:string, id2:string): SimilarityValue | null {
         // Look for (id1,id2)
-        let simObject = this.similarityValues.find(
+        let simObject = this.similarities.find(
             (elem) => (elem.id1 === id1) && (elem.id2 === id2)
         )
         if (simObject) {
@@ -80,7 +81,7 @@ export default class SimilarityData {
         }
         else {
             // Look for (id2,id1)
-            simObject = this.similarityValues.find(
+            simObject = this.similarities.find(
                 (elem) => (elem.id1 === id2) && (elem.id2 === id1)
             )
             if (simObject) {

@@ -26,8 +26,8 @@ export class SimilarityComputing {
             for (let [att, localFunc] of Object.entries(newSimilarityDescription.localSim)) {
                 let weight = localFunc.weight
                 totalWeight += weight;
-                if (att in simPair['value']['local']) {
-                    newSimValue += weight * simPair['value']['local'][att];
+                if (att in simPair['similarity']['by_attribute']) {
+                    newSimValue += weight * simPair['similarity']['by_attribute'][att];
                 }
             }
             if (totalWeight !== 0) {
