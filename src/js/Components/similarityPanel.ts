@@ -82,7 +82,7 @@ export class SimilarityPanel {
         if (simData) {
             // We need to use a setTimeout to show the spin while loading
             setTimeout(() => {
-                theController.init(simData);
+                theController.onSimilaritySelected(simData);
                 this.updateSimilarityDescription(simData.similarityDescription);
                 this.simConf.init(simData);
                 // Show the configuration button

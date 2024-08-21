@@ -88,10 +88,14 @@ class Controller {
     }
     
     /**
-    * Init the controller with the similarity data currently loaded
-    * @param simData The similarity data currently loaded
+    * Reset and update the interface with the similarity data currently loaded
+    * @param simData The similarity data currently selected and loaded
     */
-    init(simData: SimilarityData) {        
+    onSimilaritySelected(simData: SimilarityData) {   
+        let allAttributes = this.casebaseDAO.getAttributes();
+        let attId: string = this.casebaseDAO.getAttId();
+        this.tableComponent = new CaseComparator(allAttributes, simData.similarityDescription, attId);
+        this.tableComponent.resetTable();     
         // create the histogram and the heatmap with the similarity data loaded (if exists)
         
         let simDescription = simData ? simData.similarityDescription : null;
