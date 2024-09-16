@@ -146,7 +146,7 @@ export class Heatmap extends PlotEventNotifier {
     /**
     * Create a stripe chart filtering the heatmap by the caseId.
     * @param caseId The caseId selected for the stripe chart
-    * @param sorted Whether the stripe chart is sorted by similarity valu or not
+    * @param sorted Whether the stripe chart is sorted by similarity value or not
     */
     filterById(caseId:string, sorted:boolean): void {
         let rowId = this.caseIds.indexOf(caseId);

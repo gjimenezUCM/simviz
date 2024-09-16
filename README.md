@@ -137,7 +137,6 @@ Install the prerrequisites with:
 ## Usage
 
 The main interface of SimViz is organized in three columns or panels:
-
 – _Similarity selection and description panel_ (left): Users employ this panel to select a case base to visualize and to choose a similarity function over this case base.
 – _Similarity value distribution panel (middle)_: a heatmap and a histogram shows information about the distribution of the similarity values over the case base. Both are interactive and will help to explore the cases and similarity values.
 – _Case comparator panel (right)_: a table that displays side by side two cases selected using the similarity value distribution panel. The global similarity value is shown on the header while the local similarity values and the attributes involved in the similarity calculation are displayed in rows, with a bar displaying the attribute weight on the first cell of each row.
@@ -145,6 +144,7 @@ The main interface of SimViz is organized in three columns or panels:
 ### Datasets/Case bases
 
 Right now, with SimViz we can explore four different datasets:
+
 - [Blood Alcohol Domain](https://github.com/gateslm/Blood-Alcohol-Domain)
 - [Breast Cancer Wisconsin](https://doi.org/10.1016/j.artmed.2019.01.001)
 - [Travel Agent](https://ai-cbr.cs.auckland.ac.nz/cases.html)
@@ -157,6 +157,13 @@ The first ones use some basic local similarity metrics for numbers and nominal a
 Similarity data is computed offline using a weighted average as global similarity function, and predefined local similarity functions over the attributes of the cases contained in a case base. The case base and the similarity data are enriched with information about attribute datatypes, local similarity functions, weights for global similarity functions and user explanations.
 
 The [`data`](/data/) folder in this repository repository contains a notebook with some examples about how the current data was created to be visualized in the tool
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Known Issues
+
+- Casebase id attribute must be a string.
+- Stripe chart is not displayed properly if casebase id values start with numbers.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

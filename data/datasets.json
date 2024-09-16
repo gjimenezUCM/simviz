@@ -1,6 +1,18 @@
 [
     {
         "dataset": {
+            "name": "Cars",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cars-1k.json"
+        },
+        "similarityDatasets": [
+            {
+                "name": "Year, manufacturer, color, condition",
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cars_similarity.json"
+            }
+        ]
+    },
+    {
+        "dataset": {
             "name": "Blood alcohol domain",
             "uri": "data/blood-alcohol/blood-alcohol-domain.json"
         },

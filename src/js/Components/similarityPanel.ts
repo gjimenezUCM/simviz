@@ -92,6 +92,9 @@ export class SimilarityPanel {
                 // Hide the spin loader
                 theController.hideLoadingOverlay();            
             }, 0);
+        } else {
+            // Hide the spin loader
+            theController.hideLoadingOverlay();            
         }
     }
 

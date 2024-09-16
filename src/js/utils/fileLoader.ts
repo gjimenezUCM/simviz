@@ -5,8 +5,11 @@
  * @returns A object or null (if file does not exist)
  */
 export async function loadJSONData(fileName: string): Promise<Object | null> {
-    const response = await fetch(fileName);
-    if (response.ok) {
+    const response = await fetch(fileName).catch((error)=>{
+        window.alert("Error loading " + fileName + ":" + error);
+        return null; 
+    });
+    if (response && response.ok) {
         const json = await response.json();
         return json;
     } else {

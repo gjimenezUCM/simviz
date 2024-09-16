@@ -75,7 +75,7 @@ async function loadDataset(datasetLoader:DatasetLoader, datasetName:string){
         datasetDescription.innerHTML = `<h3>Description</h3>
         ${nanoMarkdown(casebaseDAO.getDescription())}
         <h3>Number of instances</h3>
-        <p>${casebaseDAO.getNumCases()}</p>`;
+        <p>${casebaseDAO.getNumCases()}</p>`
 
         theSimilarityDAO.init(datasetLoader.getSimilarityFunctionsForDataset(datasetName), casebaseDAO.getIds());
         theController.onDatasetSelected(casebaseDAO);
