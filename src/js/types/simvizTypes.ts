@@ -68,6 +68,10 @@ export type SimilarityDescription =  {
     }
 }
 
+export type EntrySimilarityValue = {
+    [key: string]: SimilarityValue 
+}
+
 /**
  * Datatype for describing the similarity value between a pair of cases.
  * Instead of a single value, this datatype stores the partial local similarity values
@@ -75,20 +79,12 @@ export type SimilarityDescription =  {
  */
 export type SimilarityValue = {
     /**
-     * Case ids
-     */
-    id1: string,
-    id2: string,
-
-    /**
      * The similarity value, represented as the global similarity 
      * and the partial local similarity values
      */
-    similarity: {
-        value: number,
-        by_attribute: {
-            [key: string]: number
-        }
+    value: number,
+    by_attribute: {
+        [key: string]: number
     }
 }
 

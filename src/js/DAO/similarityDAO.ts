@@ -60,7 +60,7 @@ export class SimilarityDAO {
     }
 
     /**
-     * It returns the list of local similarity functions for a similarity function
+     * Return the list of local similarity functions for a similarity function
      * @param simFuncName The name of a similarity function 
      * @returns The list of local similarity functions if the similarity function exists in this DAO; or null, otherwise
      */

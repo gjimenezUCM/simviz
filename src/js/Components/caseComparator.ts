@@ -220,8 +220,8 @@ export class CaseComparator {
         let simValueElem = document.getElementById("item-sim-value");
         if (simValueElem) {
             if (newSimValue !== null) {
-                simValueElem.innerHTML = newSimValue.similarity.value.toFixed(3);
-                for (let [localAtt, localValue] of Object.entries(newSimValue.similarity.by_attribute)) {
+                simValueElem.innerHTML = newSimValue.value.toFixed(3);
+                for (let [localAtt, localValue] of Object.entries(newSimValue.by_attribute)) {
                     this.updateLocalSimilarity(localAtt, localValue);
                 }
             } else {
@@ -375,10 +375,13 @@ export class CaseComparator {
      * @param value Local similarity value for the attribute
      */
     private updateLocalSimilarity (attName:string, value:number) {
-        // The row of this attribute is characterized by a data attribute with the attribute name
-        let valueElem = document.querySelector(`tr[data-att-name=${attName}] .att-value`);
-        if (valueElem) {
-            valueElem.innerHTML = value.toFixed(3);
+        // Just update if attName is part of the local similarity attributes
+        if (attName in this.simAtts){
+            // The row of this attribute is characterized by a data attribute with the attribute name
+            let valueElem = document.querySelector(`tr[data-att-name=${attName}] .att-value`);
+            if (valueElem) {
+                valueElem.innerHTML = value.toFixed(3);
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-import { SimilarityDescription, SimilarityValue } from "../types/simvizTypes";
+import { EntrySimilarityValue, SimilarityDescription, SimilarityValue } from "../types/simvizTypes";
 
 /**
  * This class encapsulates all the information about the similarity values computed using a similarity function 
@@ -18,7 +18,7 @@ export default class SimilarityData {
     /**
      * A list of pairs of cases with detailed similarity values (global and local similarity values)
      */
-    similarities: Array<SimilarityValue>;
+    similarities: { [key: string]: EntrySimilarityValue };
 
     /**
      * A matrix of global similarity values. This attribute is optional because it is commonly created
@@ -31,7 +31,7 @@ export default class SimilarityData {
      * @param data Another similarityData object, commonly without the similarity matrix
      * @param caseIds A list with all the ids in the casebase
      */
-    constructor(description: SimilarityDescription, similarityValues: Array<SimilarityValue>, caseIds?: Array<string>){
+    constructor(description: SimilarityDescription, similarityValues: { [key: string]: EntrySimilarityValue }, caseIds?: Array<string>){
         this.similarityDescription = description;
         this.similarities = similarityValues;
         if (caseIds){
@@ -45,19 +45,20 @@ export default class SimilarityData {
      * @param itemIds A list with all the ids in the casebase
      * @returns A matrix with global similarity values
      */
-    private _createMatrix(similarityValues: Array<SimilarityValue>, itemIds: Array<string>): Array<Array<number>> {
+    private _createMatrix(similarityValues: { [key: string]: EntrySimilarityValue }, itemIds: Array<string>): Array<Array<number>> {
         let matrix: Array<Array<number>> = [];
         for (let i = 0; i < itemIds.length; i++) {
             matrix[i] = [];
             matrix[i][i] = 1.0;
         }
-        for (let simPair of similarityValues) {
-            let id1 = simPair["id1"]
-            let id2 = simPair["id2"]
-            let index1 = itemIds.indexOf(id1);
-            let index2 = itemIds.indexOf(id2);
-            matrix[index1][index2] = simPair["similarity"]["value"]
-            matrix[index2][index1] = simPair["similarity"]["value"]
+        for (let id1 in similarityValues) {
+            let simData4Id1:EntrySimilarityValue = similarityValues[id1]
+            for (let id2 in simData4Id1) {
+                let index1 = itemIds.indexOf(id1);
+                let index2 = itemIds.indexOf(id2);
+                matrix[index1][index2] = simData4Id1[id2]["value"];
+                matrix[index2][index1] = simData4Id1[id2]["value"];
+            }
         }
 
         return matrix;
@@ -72,19 +73,13 @@ export default class SimilarityData {
      */
     getSimilarity(id1:string, id2:string): SimilarityValue | null {
         // Look for (id1,id2)
-        let simObject = this.similarities.find(
-            (elem) => (elem.id1 === id1) && (elem.id2 === id2)
-        )
-        if (simObject) {
-            return simObject;
+        if (id1 in this.similarities){
+            return this.similarities[id1][id2];
         }
         else {
             // Look for (id2,id1)
-            simObject = this.similarities.find(
-                (elem) => (elem.id1 === id2) && (elem.id2 === id1)
-            )
-            if (simObject) {
-                return simObject;
+            if (id2 in this.similarities) {
+                return this.similarities[id2][id1];
             } else {
                 return null;
             }
