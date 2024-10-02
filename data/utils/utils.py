@@ -105,26 +105,6 @@ def color_similarity():
         
         return simValue
     return wrapped_function
-    
-def nominal_range_similarity(listNominalValues: list):
-    """Similarity function for a range of nominal values
-    It works like the range similarity function but using 
-    value indexes
-    """
-    min = 0
-    max = len(listNominalValues)-1
-    range = max
-    def wrapped_function(x:str, y:str):
-        if (x in listNominalValues)  and (y in listNominalValues):
-            ix = listNominalValues.index(x)
-            iy = listNominalValues.index(y)
-            normalizeX = (ix - min) / range
-            normalizeY = (iy - min) / range
-            return 1-abs(normalizeX - normalizeY)
-        else:
-            return 0.0
-    return wrapped_function
-
 
 def list_similarity(similarityFunction:callable, aggFunction:callable):
     """Similarity function that aggregates the partial similarities
