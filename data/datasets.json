@@ -14,80 +14,80 @@
     {
         "dataset": {
             "name": "Blood alcohol domain",
-            "uri": "data/blood-alcohol/blood-alcohol-domain.json"
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/blood-alcohol-domain.json"
         },
         "similarityDatasets": [
             {
                 "name": "Gender, Amount Consumed, Meal, Duration",
-                "uri": "data/blood-alcohol/GenderAmountMealDuration.json"
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/GenderAmountMealDuration.json"
             },
             {
                 "name": "Gender, Amount Consumed, Meal, FrameSize",
-                "uri": "data/blood-alcohol/GenderAmountMealFrameSize.json"
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/GenderAmountMealFrameSize.json"
             },
             {
                 "name": "Amount Consumed, Meal, FrameSize",
-                "uri": "data/blood-alcohol/AmountMealFrameSize.json"
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/AmountMealFrameSize.json"
             }
         ]
     },
     {
         "dataset": {
             "name": "BCWD",
-            "uri": "data/BCWD/bcwd.json"
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/BCWD/bcwd.json"
         },
         "similarityDatasets": [
             {
                 "name": "All attributes",
-                "uri": "data/BCWD/AllAttributes.json"
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/BCWD/AllAttributes.json"
             }
         ]
     },
     {
         "dataset": {
             "name": "DMH artworks",
-            "uri": "data/DMH/items.json"
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/itemsDMH.json"
         },
         "similarityDatasets": [
             {
                 "name": "Author50Color50",
-                "uri": "data/DMH/Author50Color50.json"
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/Author50Color50.json"
             },
             {
                 "name": "Author80Color20",
-                "uri": "data/DMH/Author80Color20.json"
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/Author80Color20.json"
             },
             {
                 "name": "MaxColor",
-                "uri": "data/DMH/MaxColor.json"
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/MaxColor.json"
             },
             {
                 "name": "AvgColor",
-                "uri": "data/DMH/AvgColor.json"
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/AvgColor.json"
             },
             {
                 "name": "Decades",
-                "uri": "data/DMH/Decades.json"
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/Decades.json"
             }
         ]
     },
     {
         "dataset": {
             "name": "Travel Agent",
-            "uri": "data/travel/travel.json"
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/travel.json"
         },
         "similarityDatasets": [
             {
                 "name": "All attributes",
-                "uri": "data/travel/allAttributes.json"
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/allAttributes.json"
             },
             {
                 "name": "Months (1)",
-                "uri": "data/travel/month1.json"
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/month1.json"
             },
             {
                 "name": "Months (2)",
-                "uri": "data/travel/month2.json"
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/month2.json"
             }
         ]
     }
