@@ -1,1 +1,5 @@
 notebook==7.0.6
+colormath==3.0.0
+cbrkit==0.13.0
+orjson
+levenshtein
