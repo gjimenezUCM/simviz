@@ -172,6 +172,26 @@ def nominal_range_similarity(listNominalValues: list):
             return 0.0
     return wrapped_function
 
+def circular_range_similarity(listNominalValues: list):
+    """Similarity function for a range of nominal values
+    It works like the range similarity function but using 
+    value indexes
+    """
+    range = len(listNominalValues)
+
+    def wrapped_function(x:str, y:str):
+        if (x in listNominalValues) and (y in listNominalValues):
+            indexV1 = listNominalValues.index(x)
+            indexV2 = listNominalValues.index(y)
+            totheleft = (indexV2-indexV1) % range
+            totheright = (indexV1-indexV2) % range
+            return 1.0 - min(totheleft, totheright) / (range/2)
+        else:
+            return 0.0
+        
+    return wrapped_function
+
+
 
 def compute_similarity_data(casebase, simFunction,idAttribute = None):
     cases = casebase.values()
