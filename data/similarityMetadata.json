@@ -5,27 +5,29 @@
         },
     
         "localSim": {
-            "Color": {
+            "att1": {
                 "simFunction": "equals",
                 "weight": 0.5
             },
-            "title": {
+            "att2": {
                 "simFunction": "equals",
                 "weight": 0.5           
             }
         }
     },
-    "similarityData": [
-        {
-            "id1": "fkdlsjflñs",
-            "id2": "fkjdslfjdslkfjd",
-            "value": {
-                "global": 0.835,
-                "local": {
-                    "Color": 0.800,
-                    "title": 0.035
+    "similarities": {
+        "id1": {
+            "id2": {
+                "value": 1.0,
+                "by_attribute": {
+                    "att1": 1.0,
+                    "att2": 1.0
                 }
             }
+            /* ... */
+        },
+        "id2":{
+            /* ... */
         }
-    ]
+    }
 }

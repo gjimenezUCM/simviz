@@ -61,8 +61,6 @@ rectifying errors in both data and similarity measures
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <!-- <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li> -->
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -77,8 +75,6 @@ rectifying errors in both data and similarity measures
 [![SimViz ScreenShot](/images/mainUI.png)](https://github.com/gjimenezUCM/simviz)
 
 SimViz (**Sim**ilarity **Vi**suali**Z**ation) is a tool focused on the interactive visualization of similarity functions and how they are computed over different case bases.
-
-<!-- Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description` -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -148,6 +144,7 @@ Right now, with SimViz we can explore four different datasets:
 - [Blood Alcohol Domain](https://github.com/gateslm/Blood-Alcohol-Domain)
 - [Breast Cancer Wisconsin](https://doi.org/10.1016/j.artmed.2019.01.001)
 - [Travel Agent](https://ai-cbr.cs.auckland.ac.nz/cases.html)
+- [Used Cars](https://www.kaggle.com/datasets/austinreese/craigslist-carstrucks-data)
 - DMH Dataset
 
 The first ones use some basic local similarity metrics for numbers and nominal attribute values. The DMH dataset contains 64 artwork descriptions from the Design Museum Helsinki, which imposed the definition of new similarity functions [for color perception and emotions](https://doi.org/10.1007/978-3-030-86957-1_4).
@@ -156,7 +153,7 @@ The first ones use some basic local similarity metrics for numbers and nominal a
 
 Similarity data is computed offline using a weighted average as global similarity function, and predefined local similarity functions over the attributes of the cases contained in a case base. The case base and the similarity data are enriched with information about attribute datatypes, local similarity functions, weights for global similarity functions and user explanations.
 
-The [`data`](/data/) folder in this repository repository contains a notebook with some examples about how the current data was created to be visualized in the tool
+The [`data`](/data/) folder in this repository contains a folder for each dataset and notebooks with some examples about how the current data was created to be visualized in the tool. Similarity data is generated using [CBRkit](https://github.com/wi2trier/cbrkit).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -167,39 +164,6 @@ The [`data`](/data/) folder in this repository repository contains a notebook wi
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-<!-- ## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/gjimenezUCM/simviz/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
-
-
-
-<!-- CONTRIBUTING -->
-<!-- ## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
-
 
 
 <!-- LICENSE -->
@@ -214,9 +178,9 @@ Distributed under the APACHE 2.0 License. See `LICENSE-2.0.txt` for more informa
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@guille_fdi](https://twitter.com/guille_fdi) - gjimenez@ucm.es
+[@guille_fdi](https://twitter.com/guille_fdi) - gjimenez@ucm.es
 
-Project Link: [https://github.com/gjimenezUCM/simviz](https://github.com/gjimenezUCM/simviz)
+[https://github.com/gjimenezUCM/simviz](https://github.com/gjimenezUCM/simviz)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

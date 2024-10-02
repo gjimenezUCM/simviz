@@ -9,54 +9,45 @@
     },
     "id": "_id",
     "data": [
-{
-    "_id": "634f19096c70ef5cf152f237",
-    "title": "Scandia",
-    "Object": "CUTLERY",
-    "Special name": "*",
-    "id": "44171",
-    "author": "Franck, Kaj",
-    "Production date": "1952",
-    "Collection": "K\u00c3\u00a4ytt\u00c3\u00b6kokoelma",
-    "Manufacturer": "Hackman Sorsakoski",
-    "Dimension in cm": "fork: 17.5 cm (length) x 0.15cm (thickness)  knife: 18.6 cm (length) x 0.3/0.15 cm (thickness)  spoon: 18 cm (length)",
-    "Weight in kg": "*",
-    "Materials": [
-        "metal"
-    ],
-    "Colour": [
-        "metal"
-    ],
-    "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
-    "_timestamp": 1668599056,
-    "_timestamp_year": 2022,
-    "_timestamp_month": 11,
-    "_timestamp_day": 16,
-    "_timestamp_hour": 11,
-    "_timestamp_minute": 44,
-    "_timestamp_second": 16,
-    "_updated": 1.0,
-    "year": 1952.0,
-    "ColourRGB": [
-        [
-            109,
-            114,
-            120
-        ]
-    ],
-    "image": "https://i.postimg.cc/Zqn1M35m/44171.png",
-    "Object group": "cutlery",
-    "Color": [
         {
-            "colorName": "metal",
-            "rgb": [
-                109,
-                114,
-                120
+            "_id": "634f19096c70ef5cf152f237",
+            "title": "Scandia",
+            "Object": "CUTLERY",
+            "Special name": "*",
+            "id": "44171",
+            "author": "Franck, Kaj",
+            "Production date": "1952",
+            "Collection": "K\u00c3\u00a4ytt\u00c3\u00b6kokoelma",
+            "Manufacturer": "Hackman Sorsakoski",
+            "Dimension in cm": "fork: 17.5 cm (length) x 0.15cm (thickness)  knife: 18.6 cm (length) x 0.3/0.15 cm (thickness)  spoon: 18 cm (length)",
+            "Weight in kg": "*",
+            "Materials": [
+                "metal"
+            ],
+            "Colour": [
+                "metal"
+            ],
+            "year": 1952,
+            "ColourRGB": [
+                [
+                    109,
+                    114,
+                    120
+                ]
+            ],
+            "image": "https://i.postimg.cc/Zqn1M35m/44171.png",
+            "Object group": "cutlery",
+            "Color": [
+                {
+                    "colorName": "metal",
+                    "rgb": [
+                        109,
+                        114,
+                        120
+                    ]
+                }
             ]
-        }
+        }            
     ]
-}            
-    ]
-
+    
 }
