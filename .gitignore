@@ -3,3 +3,9 @@ node_modules
 data/computeSimilarity.html
 
 .vscode/launch.json
+
+.vscode/
+
+.venv/
+
+data/utils/__pycache__/
