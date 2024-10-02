@@ -14,7 +14,7 @@
     "Materials": [
       "metal"
     ],
-    "Colour": [
+    "ColorName": [
       "metal"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -27,7 +27,7 @@
     "_timestamp_second": 16,
     "_updated": 1.0,
     "year": 1952.0,
-    "ColourRGB": [
+    "Color": [
       [
         109,
         114,
@@ -36,7 +36,7 @@
     ],
     "image": "https://i.postimg.cc/Zqn1M35m/44171.png",
     "Object group": "cutlery",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "metal",
         "rgb": [
@@ -62,7 +62,7 @@
     "Materials": [
       "metal"
     ],
-    "Colour": [
+    "ColorName": [
       "metal"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -75,7 +75,7 @@
     "_timestamp_second": 14,
     "_updated": 1.0,
     "year": 1967.0,
-    "ColourRGB": [
+    "Color": [
       [
         109,
         114,
@@ -84,7 +84,7 @@
     ],
     "image": "https://i.postimg.cc/65NxpyYV/44168.png",
     "Object group": "cutlery",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "metal",
         "rgb": [
@@ -110,7 +110,7 @@
     "Materials": [
       "glass"
     ],
-    "Colour": [
+    "ColorName": [
       "colourless glass"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -123,10 +123,10 @@
     "_timestamp_second": 18,
     "_updated": null,
     "year": 1970.0,
-    "ColourRGB": [],
+    "Color": [],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-017298_wirkkala_ultima_thule-2000x1621.jpg",
     "Object group": "glass",
-    "Color": []
+    "ColorDict": []
   },
   {
     "_id": "634f1907d8af1b50664089d0",
@@ -143,7 +143,7 @@
     "Materials": [
       "stoneware"
     ],
-    "Colour": [
+    "ColorName": [
       "light brown",
       "dark brown"
     ],
@@ -157,7 +157,7 @@
     "_timestamp_second": 54,
     "_updated": 1.0,
     "year": null,
-    "ColourRGB": [
+    "Color": [
       [
         165,
         42,
@@ -171,7 +171,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-b561-2000x1500.jpg",
     "Object group": "pots",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "light brown",
         "rgb": [
@@ -205,7 +205,7 @@
     "Materials": [
       "polyesterivanu"
     ],
-    "Colour": [
+    "ColorName": [
       "orange",
       " green",
       " blue",
@@ -221,7 +221,7 @@
     "_timestamp_second": 49,
     "_updated": 1.0,
     "year": 1984.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         165,
@@ -245,7 +245,7 @@
     ],
     "image": "https://i.postimg.cc/bNHcDpB7/44166.jpg",
     "Object group": "clothes and accessories",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "orange",
         "rgb": [
@@ -296,7 +296,7 @@
       "wool",
       "cotton"
     ],
-    "Colour": [
+    "ColorName": [
       "violet",
       " yellowish"
     ],
@@ -310,7 +310,7 @@
     "_timestamp_second": 26,
     "_updated": null,
     "year": 1931.0,
-    "ColourRGB": [
+    "Color": [
       [
         238,
         130,
@@ -324,7 +324,7 @@
     ],
     "image": "https://i.postimg.cc/ZqDhbHM0/16850.jpg",
     "Object group": "wall textiles",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "violet",
         "rgb": [
@@ -359,7 +359,7 @@
       "wool",
       "cotton"
     ],
-    "Colour": [
+    "ColorName": [
       "white",
       " red",
       " brown"
@@ -374,7 +374,7 @@
     "_timestamp_second": 26,
     "_updated": null,
     "year": 1932.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         255,
@@ -393,7 +393,7 @@
     ],
     "image": "https://i.postimg.cc/mgB48t9Z/13906.jpg",
     "Object group": "wall textiles",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "white",
         "rgb": [
@@ -436,7 +436,7 @@
       "wool",
       "cotton"
     ],
-    "Colour": [],
+    "ColorName": [],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
     "_timestamp": 1666128146,
     "_timestamp_year": 2022,
@@ -447,10 +447,10 @@
     "_timestamp_second": 26,
     "_updated": null,
     "year": 1899.0,
-    "ColourRGB": [],
+    "Color": [],
     "image": "https://i.postimg.cc/fWdhsxjT/17876.jpg",
     "Object group": "wall textiles",
-    "Color": []
+    "ColorDict": []
   },
   {
     "_id": "634f1911d28967637e31c912",
@@ -467,7 +467,7 @@
     "Materials": [
       "wool"
     ],
-    "Colour": [],
+    "ColorName": [],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
     "_timestamp": 1666128145,
     "_timestamp_year": 2022,
@@ -478,10 +478,10 @@
     "_timestamp_second": 25,
     "_updated": null,
     "year": 1958.0,
-    "ColourRGB": [],
+    "Color": [],
     "image": "https://i.postimg.cc/d3GM9YtT/32628.jpg",
     "Object group": "wall textiles",
-    "Color": []
+    "ColorDict": []
   },
   {
     "_id": "634f1911a45b33465c10ceba",
@@ -499,7 +499,7 @@
       "wool",
       "cotton"
     ],
-    "Colour": [
+    "ColorName": [
       "black",
       " white"
     ],
@@ -513,7 +513,7 @@
     "_timestamp_second": 25,
     "_updated": null,
     "year": 1951.0,
-    "ColourRGB": [
+    "Color": [
       [
         0,
         0,
@@ -527,7 +527,7 @@
     ],
     "image": "https://i.postimg.cc/GmL0v60H/32627.jpg",
     "Object group": "wall textiles",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "black",
         "rgb": [
@@ -562,7 +562,7 @@
       "wool",
       "cotton"
     ],
-    "Colour": [
+    "ColorName": [
       "brown",
       " light pastel shade"
     ],
@@ -576,7 +576,7 @@
     "_timestamp_second": 25,
     "_updated": null,
     "year": 1934.0,
-    "ColourRGB": [
+    "Color": [
       [
         165,
         42,
@@ -585,7 +585,7 @@
     ],
     "image": "https://i.postimg.cc/rppk23gv/16851.jpg",
     "Object group": "wall textiles",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "brown",
         "rgb": [
@@ -611,7 +611,7 @@
     "Materials": [
       "porcelain"
     ],
-    "Colour": [
+    "ColorName": [
       "blue",
       " white"
     ],
@@ -625,7 +625,7 @@
     "_timestamp_second": 24,
     "_updated": null,
     "year": 2001.0,
-    "ColourRGB": [
+    "Color": [
       [
         0,
         0,
@@ -639,7 +639,7 @@
     ],
     "image": "https://i.postimg.cc/HLFPvhN0/44184.png",
     "Object group": "cups",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "blue",
         "rgb": [
@@ -673,7 +673,7 @@
     "Materials": [
       "wool"
     ],
-    "Colour": [
+    "ColorName": [
       "different tones of red brown"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -686,7 +686,7 @@
     "_timestamp_second": 24,
     "_updated": null,
     "year": 1975.0,
-    "ColourRGB": [
+    "Color": [
       [
         165,
         42,
@@ -695,7 +695,7 @@
     ],
     "image": "https://i.postimg.cc/d0fzP1hy/32361.jpg",
     "Object group": "wall textiles",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "different tones of red brown",
         "rgb": [
@@ -721,7 +721,7 @@
     "Materials": [
       "wool"
     ],
-    "Colour": [
+    "ColorName": [
       "red",
       " aniline",
       " yellow"
@@ -736,7 +736,7 @@
     "_timestamp_second": 24,
     "_updated": null,
     "year": 1962.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         0,
@@ -755,7 +755,7 @@
     ],
     "image": "https://i.postimg.cc/zG0s7p5p/33288.jpg",
     "Object group": "wall textiles",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "red",
         "rgb": [
@@ -797,7 +797,7 @@
     "Materials": [
       "ceramics"
     ],
-    "Colour": [
+    "ColorName": [
       "blue",
       " green",
       " white"
@@ -812,7 +812,7 @@
     "_timestamp_second": 23,
     "_updated": null,
     "year": 1978.0,
-    "ColourRGB": [
+    "Color": [
       [
         0,
         0,
@@ -831,7 +831,7 @@
     ],
     "image": "https://i.postimg.cc/kgXZ288S/44181.png",
     "Object group": "cups",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "blue",
         "rgb": [
@@ -873,7 +873,7 @@
     "Materials": [
       "ceramics"
     ],
-    "Colour": [
+    "ColorName": [
       "yellow",
       " white"
     ],
@@ -887,7 +887,7 @@
     "_timestamp_second": 23,
     "_updated": null,
     "year": 1998.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         255,
@@ -901,7 +901,7 @@
     ],
     "image": "https://i.postimg.cc/nhRWBzYP/44182.png",
     "Object group": "cups",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "yellow",
         "rgb": [
@@ -936,7 +936,7 @@
       "ceramics",
       "wood"
     ],
-    "Colour": [
+    "ColorName": [
       "white",
       " wood"
     ],
@@ -950,7 +950,7 @@
     "_timestamp_second": 23,
     "_updated": null,
     "year": 1998.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         255,
@@ -964,7 +964,7 @@
     ],
     "image": "https://i.postimg.cc/jjDFXbMd/44183.png",
     "Object group": "cups",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "white",
         "rgb": [
@@ -998,7 +998,7 @@
     "Materials": [
       "ceramics"
     ],
-    "Colour": [
+    "ColorName": [
       "white"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -1011,7 +1011,7 @@
     "_timestamp_second": 22,
     "_updated": null,
     "year": 1981.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         255,
@@ -1020,7 +1020,7 @@
     ],
     "image": "https://i.postimg.cc/XNdtmn4r/44178.png",
     "Object group": "cups",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "white",
         "rgb": [
@@ -1046,7 +1046,7 @@
     "Materials": [
       "ceramics"
     ],
-    "Colour": [
+    "ColorName": [
       "brown"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -1059,7 +1059,7 @@
     "_timestamp_second": 22,
     "_updated": null,
     "year": 1960.0,
-    "ColourRGB": [
+    "Color": [
       [
         165,
         42,
@@ -1068,7 +1068,7 @@
     ],
     "image": "https://i.postimg.cc/CL09V9xm/44179.png",
     "Object group": "cups",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "brown",
         "rgb": [
@@ -1094,7 +1094,7 @@
     "Materials": [
       "plastic"
     ],
-    "Colour": [
+    "ColorName": [
       "brown"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -1107,7 +1107,7 @@
     "_timestamp_second": 22,
     "_updated": null,
     "year": 1969.0,
-    "ColourRGB": [
+    "Color": [
       [
         165,
         42,
@@ -1116,7 +1116,7 @@
     ],
     "image": "https://i.postimg.cc/jdhmqvWK/44180.png",
     "Object group": "cups",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "brown",
         "rgb": [
@@ -1142,7 +1142,7 @@
     "Materials": [
       "ceramics"
     ],
-    "Colour": [
+    "ColorName": [
       "brown",
       " blue",
       " white"
@@ -1157,7 +1157,7 @@
     "_timestamp_second": 21,
     "_updated": null,
     "year": 1900.0,
-    "ColourRGB": [
+    "Color": [
       [
         165,
         42,
@@ -1176,7 +1176,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/08/wsi-imageoptim-b548-2000x2665.jpg",
     "Object group": "pots",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "brown",
         "rgb": [
@@ -1218,7 +1218,7 @@
     "Materials": [
       "ceramics"
     ],
-    "Colour": [
+    "ColorName": [
       "white",
       " brown",
       " gold"
@@ -1233,7 +1233,7 @@
     "_timestamp_second": 21,
     "_updated": null,
     "year": 1937.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         255,
@@ -1252,7 +1252,7 @@
     ],
     "image": "https://i.postimg.cc/2yQJZ72Q/44176.png",
     "Object group": "cups",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "white",
         "rgb": [
@@ -1294,7 +1294,7 @@
     "Materials": [
       "ceramics"
     ],
-    "Colour": [
+    "ColorName": [
       "white"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -1307,7 +1307,7 @@
     "_timestamp_second": 21,
     "_updated": null,
     "year": 1945.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         255,
@@ -1316,7 +1316,7 @@
     ],
     "image": "https://i.postimg.cc/J0Vv02c7/44177.png",
     "Object group": "cups",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "white",
         "rgb": [
@@ -1342,7 +1342,7 @@
     "Materials": [
       "glass"
     ],
-    "Colour": [
+    "ColorName": [
       "green gray"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -1355,7 +1355,7 @@
     "_timestamp_second": 20,
     "_updated": null,
     "year": 1956.0,
-    "ColourRGB": [
+    "Color": [
       [
         114,
         131,
@@ -1364,7 +1364,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-025419-2000x1333.jpg",
     "Object group": "glass",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "green gray",
         "rgb": [
@@ -1390,7 +1390,7 @@
     "Materials": [
       "glass"
     ],
-    "Colour": [
+    "ColorName": [
       "blue",
       " violet"
     ],
@@ -1404,7 +1404,7 @@
     "_timestamp_second": 20,
     "_updated": null,
     "year": 1956.0,
-    "ColourRGB": [
+    "Color": [
       [
         0,
         0,
@@ -1418,7 +1418,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-025419-2000x1333.jpg",
     "Object group": "glass",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "blue",
         "rgb": [
@@ -1452,7 +1452,7 @@
     "Materials": [
       "glass"
     ],
-    "Colour": [
+    "ColorName": [
       "colourless glass"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -1465,10 +1465,10 @@
     "_timestamp_second": 20,
     "_updated": null,
     "year": 1968.0,
-    "ColourRGB": [],
+    "Color": [],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-017298_wirkkala_ultima_thule-2000x1621.jpg",
     "Object group": "glass",
-    "Color": []
+    "ColorDict": []
   },
   {
     "_id": "634f190b9d480d2bcc4ac7a8",
@@ -1485,7 +1485,7 @@
     "Materials": [
       "glass"
     ],
-    "Colour": [
+    "ColorName": [
       "red"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -1498,7 +1498,7 @@
     "_timestamp_second": 19,
     "_updated": null,
     "year": 1954.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         0,
@@ -1507,7 +1507,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-dmpm_20150103_2785-2000x3000.jpg",
     "Object group": "glass",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "red",
         "rgb": [
@@ -1533,7 +1533,7 @@
     "Materials": [
       "glass"
     ],
-    "Colour": [
+    "ColorName": [
       "rubin red"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -1546,7 +1546,7 @@
     "_timestamp_second": 19,
     "_updated": null,
     "year": 1953.0,
-    "ColourRGB": [
+    "Color": [
       [
         224,
         17,
@@ -1555,7 +1555,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-025608__franck_p-1-1327x1823.jpg",
     "Object group": "glass",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "rubin red",
         "rgb": [
@@ -1581,7 +1581,7 @@
     "Materials": [
       "glass"
     ],
-    "Colour": [
+    "ColorName": [
       "red",
       " purple"
     ],
@@ -1595,7 +1595,7 @@
     "_timestamp_second": 19,
     "_updated": null,
     "year": 1954.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         0,
@@ -1609,7 +1609,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-franck-1610-lh-1667x2379.jpeg",
     "Object group": "jugs",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "red",
         "rgb": [
@@ -1643,7 +1643,7 @@
     "Materials": [
       "porcelain"
     ],
-    "Colour": [
+    "ColorName": [
       "white"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -1656,7 +1656,7 @@
     "_timestamp_second": 18,
     "_updated": null,
     "year": 1948.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         255,
@@ -1665,7 +1665,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/05/kermakko-mk-am1699-320x320.jpg",
     "Object group": "pots",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "white",
         "rgb": [
@@ -1691,7 +1691,7 @@
     "Materials": [
       "stoneware"
     ],
-    "Colour": [
+    "ColorName": [
       "gray",
       " black",
       " white"
@@ -1706,7 +1706,7 @@
     "_timestamp_second": 18,
     "_updated": null,
     "year": 1984.0,
-    "ColourRGB": [
+    "Color": [
       [
         128,
         128,
@@ -1725,7 +1725,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/09/wsi-imageoptim-muumi1-2000x2666.jpg",
     "Object group": "cups",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "gray",
         "rgb": [
@@ -1767,7 +1767,7 @@
     "Materials": [
       "glass"
     ],
-    "Colour": [
+    "ColorName": [
       "clear"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -1780,10 +1780,10 @@
     "_timestamp_second": 18,
     "_updated": null,
     "year": 1950.0,
-    "ColourRGB": [],
+    "Color": [],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-dmpm_20150103_2785-2000x3000.jpg",
     "Object group": "jugs",
-    "Color": []
+    "ColorDict": []
   },
   {
     "_id": "634f19095350725cb83093c0",
@@ -1801,7 +1801,7 @@
       "plastic",
       "metal"
     ],
-    "Colour": [
+    "ColorName": [
       "orange"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -1814,7 +1814,7 @@
     "_timestamp_second": 17,
     "_updated": null,
     "year": 1967.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         165,
@@ -1823,7 +1823,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/01/wsi-imageoptim-img656-1667x2181.jpg",
     "Object group": "industrial design",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "orange",
         "rgb": [
@@ -1851,7 +1851,7 @@
       "enamel",
       "melamine"
     ],
-    "Colour": [
+    "ColorName": [
       "red",
       " black"
     ],
@@ -1865,7 +1865,7 @@
     "_timestamp_second": 16,
     "_updated": null,
     "year": 1957.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         0,
@@ -1879,7 +1879,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-025478_anurmesniemi_pehtoori_rt-1327x1990.jpg",
     "Object group": "pots",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "red",
         "rgb": [
@@ -1914,7 +1914,7 @@
       "castiron",
       "teak"
     ],
-    "Colour": [
+    "ColorName": [
       "black"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -1927,7 +1927,7 @@
     "_timestamp_second": 16,
     "_updated": null,
     "year": 1960.0,
-    "ColourRGB": [
+    "Color": [
       [
         0,
         0,
@@ -1936,7 +1936,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-32712-2000x2667.jpg",
     "Object group": "pots",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "black",
         "rgb": [
@@ -1962,7 +1962,7 @@
     "Materials": [
       "fiberglass"
     ],
-    "Colour": [
+    "ColorName": [
       "orange"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -1975,7 +1975,7 @@
     "_timestamp_second": 15,
     "_updated": null,
     "year": 1979.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         165,
@@ -1984,7 +1984,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/09/wsi-imageoptim-metro-41816-899x477.jpg",
     "Object group": "industrial design",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "orange",
         "rgb": [
@@ -2010,7 +2010,7 @@
     "Materials": [
       "metal"
     ],
-    "Colour": [
+    "ColorName": [
       "metal"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -2023,7 +2023,7 @@
     "_timestamp_second": 15,
     "_updated": null,
     "year": 1989.0,
-    "ColourRGB": [
+    "Color": [
       [
         109,
         114,
@@ -2032,7 +2032,7 @@
     ],
     "image": "",
     "Object group": "industrial design",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "metal",
         "rgb": [
@@ -2058,7 +2058,7 @@
     "Materials": [
       "metal"
     ],
-    "Colour": [
+    "ColorName": [
       "green",
       " black"
     ],
@@ -2072,7 +2072,7 @@
     "_timestamp_second": 14,
     "_updated": null,
     "year": 1972.0,
-    "ColourRGB": [
+    "Color": [
       [
         0,
         128,
@@ -2086,7 +2086,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-img_3604-2000x1958.jpg",
     "Object group": "vehicles",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "green",
         "rgb": [
@@ -2121,7 +2121,7 @@
       "metal",
       "leather"
     ],
-    "Colour": [
+    "ColorName": [
       "blue",
       " white",
       " red",
@@ -2137,7 +2137,7 @@
     "_timestamp_second": 14,
     "_updated": null,
     "year": 1960.0,
-    "ColourRGB": [
+    "Color": [
       [
         0,
         0,
@@ -2161,7 +2161,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-1210201010051517_richard_lindh_solifer_export_1960_suomi_017667-compressor-2000x1297.jpg",
     "Object group": "vehicles",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "blue",
         "rgb": [
@@ -2211,7 +2211,7 @@
     "Materials": [
       "plastic"
     ],
-    "Colour": [
+    "ColorName": [
       "red"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -2224,7 +2224,7 @@
     "_timestamp_second": 14,
     "_updated": null,
     "year": 1971.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         0,
@@ -2233,7 +2233,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/09/wsi-imageoptim-32030-2000x2667.jpg",
     "Object group": "industrial design",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "red",
         "rgb": [
@@ -2260,7 +2260,7 @@
       "plastic",
       "metal"
     ],
-    "Colour": [
+    "ColorName": [
       "black"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -2273,7 +2273,7 @@
     "_timestamp_second": 13,
     "_updated": null,
     "year": 1985.0,
-    "ColourRGB": [
+    "Color": [
       [
         0,
         0,
@@ -2282,7 +2282,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/03/wsi-imageoptim-img_9261-2000x2896.jpg",
     "Object group": "devices",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "black",
         "rgb": [
@@ -2309,7 +2309,7 @@
       "reinforcedplastic",
       "castaluminium"
     ],
-    "Colour": [
+    "ColorName": [
       "red"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -2322,7 +2322,7 @@
     "_timestamp_second": 13,
     "_updated": null,
     "year": 1969.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         0,
@@ -2331,7 +2331,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-asa-20260-320x415.jpg",
     "Object group": "devices",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "red",
         "rgb": [
@@ -2357,7 +2357,7 @@
     "Materials": [
       "plastic"
     ],
-    "Colour": [
+    "ColorName": [
       "orange",
       " white"
     ],
@@ -2371,7 +2371,7 @@
     "_timestamp_second": 13,
     "_updated": null,
     "year": 1965.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         165,
@@ -2385,7 +2385,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/11/wsi-imageoptim-mehulinko-320x378.jpg",
     "Object group": "industrial design",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "orange",
         "rgb": [
@@ -2419,7 +2419,7 @@
     "Materials": [
       "silver"
     ],
-    "Colour": [
+    "ColorName": [
       "silver"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -2432,7 +2432,7 @@
     "_timestamp_second": 12,
     "_updated": null,
     "year": 1969.0,
-    "ColourRGB": [
+    "Color": [
       [
         192,
         192,
@@ -2441,7 +2441,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/01/wsi-imageoptim-026918_planetaarisetlaaksot_p-2000x1333.jpg",
     "Object group": "jewelry",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "silver",
         "rgb": [
@@ -2468,7 +2468,7 @@
       "cotton",
       "marquis"
     ],
-    "Colour": [
+    "ColorName": [
       "yellow",
       " green"
     ],
@@ -2482,7 +2482,7 @@
     "_timestamp_second": 12,
     "_updated": null,
     "year": 1975.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         255,
@@ -2496,7 +2496,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/08/wsi-imageoptim-marimekko_laukku-1327x1600.jpg",
     "Object group": "clothes and accessories",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "yellow",
         "rgb": [
@@ -2531,7 +2531,7 @@
       "plastic",
       "metal"
     ],
-    "Colour": [
+    "ColorName": [
       "gray"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -2544,7 +2544,7 @@
     "_timestamp_second": 12,
     "_updated": null,
     "year": 1998.0,
-    "ColourRGB": [
+    "Color": [
       [
         128,
         128,
@@ -2553,7 +2553,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-puhelin2-320x323.jpg",
     "Object group": "devices",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "gray",
         "rgb": [
@@ -2579,7 +2579,7 @@
     "Materials": [
       "cotton"
     ],
-    "Colour": [
+    "ColorName": [
       "green",
       " orange",
       " violet"
@@ -2594,7 +2594,7 @@
     "_timestamp_second": 11,
     "_updated": null,
     "year": 1967.0,
-    "ColourRGB": [
+    "Color": [
       [
         0,
         128,
@@ -2613,7 +2613,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2022/09/wsi-imageoptim-2812011103641rimala_monrepos_p-1327x1958.jpg",
     "Object group": "clothes and accessories",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "green",
         "rgb": [
@@ -2655,7 +2655,7 @@
     "Materials": [
       "wool"
     ],
-    "Colour": [
+    "ColorName": [
       "yellow"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -2668,7 +2668,7 @@
     "_timestamp_second": 11,
     "_updated": null,
     "year": 1967.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         255,
@@ -2677,7 +2677,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/03/wsi-imageoptim-22320118103827303-320x495.jpg",
     "Object group": "clothes and accessories",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "yellow",
         "rgb": [
@@ -2703,7 +2703,7 @@
     "Materials": [
       "wood"
     ],
-    "Colour": [
+    "ColorName": [
       "wood",
       " blue",
       " red"
@@ -2718,7 +2718,7 @@
     "_timestamp_second": 10,
     "_updated": null,
     "year": 1945.0,
-    "ColourRGB": [
+    "Color": [
       [
         186,
         140,
@@ -2737,7 +2737,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/09/wsi-imageoptim-38518-899x1299.jpg",
     "Object group": "ornamentation",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "wood",
         "rgb": [
@@ -2779,7 +2779,7 @@
     "Materials": [
       "glass"
     ],
-    "Colour": [
+    "ColorName": [
       "silver",
       " red",
       " green"
@@ -2794,7 +2794,7 @@
     "_timestamp_second": 10,
     "_updated": null,
     "year": 1980.0,
-    "ColourRGB": [
+    "Color": [
       [
         192,
         192,
@@ -2813,7 +2813,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-13081-2000x2667.jpg",
     "Object group": "ornamentation",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "silver",
         "rgb": [
@@ -2855,7 +2855,7 @@
     "Materials": [
       "cotton"
     ],
-    "Colour": [
+    "ColorName": [
       "black",
       " white"
     ],
@@ -2869,7 +2869,7 @@
     "_timestamp_second": 10,
     "_updated": null,
     "year": 1954.0,
-    "ColourRGB": [
+    "Color": [
       [
         0,
         0,
@@ -2883,7 +2883,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-es41602-2000x1806.jpg",
     "Object group": "clothes and accessories",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "black",
         "rgb": [
@@ -2917,7 +2917,7 @@
     "Materials": [
       "glass"
     ],
-    "Colour": [
+    "ColorName": [
       "colourless glass"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -2930,10 +2930,10 @@
     "_timestamp_second": 9,
     "_updated": null,
     "year": 1996.0,
-    "ColourRGB": [],
+    "Color": [],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-kk-1667x1075.jpg",
     "Object group": "devices",
-    "Color": []
+    "ColorDict": []
   },
   {
     "_id": "634f1901e09bfd1d9a04b8ef",
@@ -2950,7 +2950,7 @@
     "Materials": [
       "faience"
     ],
-    "Colour": [
+    "ColorName": [
       "blue tones",
       " several colours"
     ],
@@ -2964,7 +2964,7 @@
     "_timestamp_second": 9,
     "_updated": null,
     "year": 1950.0,
-    "ColourRGB": [
+    "Color": [
       [
         0,
         0,
@@ -2973,7 +2973,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2023/04/wsi-imageoptim-bryk_-ehtoollinen1950_arabia_kuvart_8-2-1667x1213.jpg",
     "Object group": "ornamentation",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "blue tones",
         "rgb": [
@@ -2999,7 +2999,7 @@
     "Materials": [
       "pine"
     ],
-    "Colour": [
+    "ColorName": [
       "wood"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -3012,7 +3012,7 @@
     "_timestamp_second": 9,
     "_updated": null,
     "year": 1973.0,
-    "ColourRGB": [
+    "Color": [
       [
         186,
         140,
@@ -3021,7 +3021,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-aarikka_passi-harry-kivilinna-1327x746.jpg",
     "Object group": "ornamentation",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "wood",
         "rgb": [
@@ -3047,7 +3047,7 @@
     "Materials": [
       "redclay"
     ],
-    "Colour": [
+    "ColorName": [
       "brown",
       " green",
       " blue-green"
@@ -3062,7 +3062,7 @@
     "_timestamp_second": 8,
     "_updated": null,
     "year": 1900.0,
-    "ColourRGB": [
+    "Color": [
       [
         165,
         42,
@@ -3081,7 +3081,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/04/wsi-imageoptim-b548-2000x2665.jpg",
     "Object group": "pots",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "brown",
         "rgb": [
@@ -3123,7 +3123,7 @@
     "Materials": [
       "stoneware"
     ],
-    "Colour": [
+    "ColorName": [
       "brown"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -3136,7 +3136,7 @@
     "_timestamp_second": 8,
     "_updated": null,
     "year": 1957.0,
-    "ColourRGB": [
+    "Color": [
       [
         165,
         42,
@@ -3145,7 +3145,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-am6077-2000x2667.jpg",
     "Object group": "pots",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "brown",
         "rgb": [
@@ -3173,7 +3173,7 @@
       "teak",
       "pinelaminate(seat)"
     ],
-    "Colour": [
+    "ColorName": [
       "wood"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -3186,7 +3186,7 @@
     "_timestamp_second": 7,
     "_updated": null,
     "year": 1952.0,
-    "ColourRGB": [
+    "Color": [
       [
         186,
         140,
@@ -3195,7 +3195,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/01/wsi-imageoptim-luku9_025492_nurmesniemi_saunajakkara_kuvart-compressor-2000x2074.jpg",
     "Object group": "furniture",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "wood",
         "rgb": [
@@ -3221,7 +3221,7 @@
     "Materials": [
       "glass"
     ],
-    "Colour": [
+    "ColorName": [
       "rio brown"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -3234,7 +3234,7 @@
     "_timestamp_second": 7,
     "_updated": null,
     "year": 1936.0,
-    "ColourRGB": [
+    "Color": [
       [
         181,
         153,
@@ -3243,7 +3243,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/02/wsi-imageoptim-img_9801-1327x1025.jpg",
     "Object group": "industrial design",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "rio brown",
         "rgb": [
@@ -3269,7 +3269,7 @@
     "Materials": [
       "redclay"
     ],
-    "Colour": [
+    "ColorName": [
       "blue",
       " white",
       " brown"
@@ -3284,7 +3284,7 @@
     "_timestamp_second": 7,
     "_updated": null,
     "year": 1900.0,
-    "ColourRGB": [
+    "Color": [
       [
         0,
         0,
@@ -3303,7 +3303,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/04/wsi-imageoptim-16101-2000x2667.jpg",
     "Object group": "pots",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "blue",
         "rgb": [
@@ -3345,7 +3345,7 @@
     "Materials": [
       "birch"
     ],
-    "Colour": [
+    "ColorName": [
       "black",
       " birch"
     ],
@@ -3359,7 +3359,7 @@
     "_timestamp_second": 6,
     "_updated": null,
     "year": 1932.0,
-    "ColourRGB": [
+    "Color": [
       [
         0,
         0,
@@ -3373,7 +3373,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/01/wsi-imageoptim-06391_paimio_rt-2000x1372.jpg",
     "Object group": "furniture",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "black",
         "rgb": [
@@ -3407,7 +3407,7 @@
     "Materials": [
       "fiberglass"
     ],
-    "Colour": [
+    "ColorName": [
       "yellow"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -3420,7 +3420,7 @@
     "_timestamp_second": 6,
     "_updated": null,
     "year": 1968.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         255,
@@ -3429,7 +3429,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-pastilli-rt-p-2000x1395.jpg",
     "Object group": "furniture",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "yellow",
         "rgb": [
@@ -3456,7 +3456,7 @@
       "solidbirch",
       "plywood"
     ],
-    "Colour": [
+    "ColorName": [
       "red",
       " birch"
     ],
@@ -3470,7 +3470,7 @@
     "_timestamp_second": 6,
     "_updated": null,
     "year": 1965.0,
-    "ColourRGB": [
+    "Color": [
       [
         255,
         0,
@@ -3484,7 +3484,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/10/wsi-imageoptim-syottotuoli-320x410.jpg",
     "Object group": "furniture",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "red",
         "rgb": [
@@ -3518,7 +3518,7 @@
     "Materials": [
       "birch"
     ],
-    "Colour": [
+    "ColorName": [
       "birch"
     ],
     "_datasetid": "0daa0287-d7f4-4f03-a068-95f43afcc347",
@@ -3531,7 +3531,7 @@
     "_timestamp_second": 5,
     "_updated": null,
     "year": 1933.0,
-    "ColourRGB": [
+    "Color": [
       [
         223,
         215,
@@ -3540,7 +3540,7 @@
     ],
     "image": "https://apicollection.designmuseum.fi/wp-content/uploads/2017/11/wsi-imageoptim-aalto_jakkara-1327x1998.jpg",
     "Object group": "furniture",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "birch",
         "rgb": [
@@ -3566,7 +3566,7 @@
     "Materials": [
       "pine"
     ],
-    "Colour": [
+    "ColorName": [
       "pine",
       "black"
     ],
@@ -3580,7 +3580,7 @@
     "_timestamp_second": 5,
     "_updated": null,
     "year": 1955.0,
-    "ColourRGB": [
+    "Color": [
       [
         238,
         213,
@@ -3594,7 +3594,7 @@
     ],
     "image": "https://i.postimg.cc/76F876Dk/44164.png",
     "Object group": "furniture",
-    "Color": [
+    "ColorDict": [
       {
         "colorName": "pine",
         "rgb": [

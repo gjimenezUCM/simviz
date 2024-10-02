@@ -24,14 +24,22 @@ const basicAtributeTemplate:string = `
     </td>
 `;
 
-const colorAttributeTemplate:string = `
+const colorRGBListAttributeTemplate:string = `
     <td class="col-4">
         {{#if theValue}}
             {{#each theValue}}
-                {{#with this}}
-                <div class="box" aria-labelledby="color-label" style="background-color: rgb({{rgb}});"></div>
-                {{/with}}
+                <div class="box" title="rgb({{this}})" aria-labelledby="color-label" style="background-color: rgb({{this}});"></div>
             {{/each}}
+        {{else}}
+        <span class="badge text-bg-danger">NULL</span>
+        {{/if}}
+    </td>
+`;
+
+const colorAttributeTemplate: string = `
+    <td class="col-4">
+        {{#if theValue}}
+            <div class="box" aria-labelledby="color-label" title={{theValue}} style="background-color: {{theValue}};"></div>
         {{else}}
         <span class="badge text-bg-danger">NULL</span>
         {{/if}}
@@ -242,7 +250,8 @@ export class CaseComparator {
         TemplateManager.registerTemplate("string", basicAtributeTemplate);
         TemplateManager.registerTemplate("number", basicAtributeTemplate);
         TemplateManager.registerTemplate("Image", imageAttributeTemplate);
-        TemplateManager.registerTemplate("ColorList", colorAttributeTemplate);
+        TemplateManager.registerTemplate("ColorRGBList", colorRGBListAttributeTemplate);
+        TemplateManager.registerTemplate("Color", colorAttributeTemplate);
     }
 
     /**
