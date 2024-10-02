@@ -3,6 +3,7 @@ from colormath.color_conversions import convert_color
 from colormath.color_diff import delta_e_cie2000
 import json
 from cbrkit import retrieval
+import os
 
 # color_diff.py uses numpy.asscalar() np.asscalar(a) and is deprecated since NumPy v1.16
 # temporary solution (https://github.com/gtaylor/python-colormath/issues/104)
@@ -13,7 +14,8 @@ def patch_asscalar(a):
 setattr(np, "asscalar", patch_asscalar)
 
 # Read the color JSON file
-with open('./colors.json') as json_file:
+colorfilePath = os.path.dirname(__file__)
+with open(colorfilePath+'/colors.json') as json_file:
     objColors = json.load(json_file)
 
 def colorName2RGB(colorName: str) -> list:
