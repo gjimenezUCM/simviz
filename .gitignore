@@ -9,3 +9,5 @@ data/computeSimilarity.html
 .venv/
 
 data/utils/__pycache__/
+
+data/cars/cars_similarity.json

@@ -72,14 +72,23 @@ export default class SimilarityData {
      * @returns A similarity value object; or null if any case does not exist.
      */
     getSimilarity(id1:string, id2:string): SimilarityValue | null {
+        console.log(id1,id2);
         // Look for (id1,id2)
         if (id1 in this.similarities){
-            return this.similarities[id1][id2];
+            if (id2 in this.similarities[id1]){
+                return this.similarities[id1][id2];
+            } else {
+                return null;
+            }
         }
         else {
             // Look for (id2,id1)
             if (id2 in this.similarities) {
-                return this.similarities[id2][id1];
+                if (id1 in this.similarities[id2]) {
+                    return this.similarities[id2][id1];
+                } else {
+                    return null;
+                }
             } else {
                 return null;
             }

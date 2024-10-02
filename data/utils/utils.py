@@ -208,8 +208,9 @@ def compute_similarity_data(casebase, simFunction,idAttribute = None):
         result = retrieval.apply(casebase, query, retriever)
         simValues = {}
         for (caseId,simValue) in result.similarities.items():
-            id2 = "c"+str(caseId) if idAttribute is None else casebase[caseId][idAttribute]
-            simValues[id2] = simValue
+            if caseId>=i:
+                id2 = "c"+str(caseId) if idAttribute is None else casebase[caseId][idAttribute]
+                simValues[id2] = simValue
         similarityData[id1] = simValues
         i+=1
     return similarityData
