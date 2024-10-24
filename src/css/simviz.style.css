@@ -140,6 +140,10 @@ img {
     }
     
 }
+#the-taxonomy,
+#detail-taxonomy {
+    height: 97vh;
+}
 
 
 

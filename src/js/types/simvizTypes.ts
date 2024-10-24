@@ -1,4 +1,4 @@
-
+import  { TaxonomyData } from "./taxonomy";
 export type StringStringObject = { [k: string]: string };
 
 /**
@@ -23,7 +23,9 @@ export type CasebaseDescription = {
     /**
      * The cases
      */
-    data: Array<Object>
+    data: Array<Object>;
+
+    taxonomy?: TaxonomyData;
 }
 
 

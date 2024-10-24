@@ -1,4 +1,5 @@
 import { CasebaseDescription, StringStringObject } from "../types/simvizTypes";
+import { Taxonomy } from "../types/taxonomy";
 /**
  * Data Access Object that stores a casebase. It contains not only the cases
  * but also the metadata about the case description and the attribute employed
@@ -76,6 +77,10 @@ export class CasebaseDAO {
     getCaseById(id:string): Object | null {
         let index = this.ids.indexOf(id);
         return index === -1 ? null : this.cbDescription.data[index];
+    }
+
+    getTaxonomy():Taxonomy | null {
+        return this.cbDescription.taxonomy ? new Taxonomy(this.cbDescription.taxonomy) : null;
     }
 
     /**
