@@ -8,6 +8,18 @@
             {
                 "name": "Year, manufacturer, color, condition",
                 "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cars_similarity.json"
+            },
+            {
+                "name": "Manufacturer (Wu Palmer)",
+                "uri": "/data/cars/cars_tax_wupalmer_similarity.json"
+            },
+            {
+                "name": "Manufacturer (Path Steps)",
+                "uri": "/data/cars/cars_tax_pathsteps_similarity.json"
+            },
+            {
+                "name": "Manufacturer (Node level)",
+                "uri": "/data/cars/cars_tax_nodelevel_similarity.json"
             }
         ]
     },
