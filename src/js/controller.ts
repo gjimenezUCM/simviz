@@ -178,7 +178,6 @@ class Controller {
         let tax = casebaseDAO.getTaxonomy();
         if (tax) {
             this.taxonomyViewer.init(tax);
-            this.taxonomyViewer.updateSubTree("jaguar", "c11111", "ram", "c2222");
         }
     }
 
@@ -190,14 +189,17 @@ class Controller {
     * @param color Color of the similarity value
     */
     updateCaseInfo(rowCaseId: string, colCaseId: string, color: string) {
+        let rowCase, colCase = null;
         if (rowCaseId) {
-            this.tableComponent.updateRowCase(rowCaseId, this.casebaseDAO.getCaseById(rowCaseId));
+            rowCase = this.casebaseDAO.getCaseById(rowCaseId);
+            this.tableComponent.updateRowCase(rowCaseId, rowCase);
         } else {
             this.tableComponent.resetRowItem();
         }
 
         if (colCaseId) {
-            this.tableComponent.updateColCase(colCaseId, this.casebaseDAO.getCaseById(colCaseId));
+            colCase = this.casebaseDAO.getCaseById(colCaseId);
+            this.tableComponent.updateColCase(colCaseId, colCase);
             if (this.similarityData) {
                 let newSimilarityValue = this.similarityData.getSimilarity(rowCaseId, colCaseId);
                 this.tableComponent.updateSimilarityValue(newSimilarityValue, color);
@@ -206,6 +208,16 @@ class Controller {
             this.tableComponent.resetColItem();
             this.tableComponent.updateSimilarityValue(null, null);
         }
+
+        // HACKHACK (for demo)
+        if (rowCase && colCase){
+            if (("manufacturer" in rowCase) && ("manufacturer" in colCase) &&
+                ("id" in rowCase) && ("id" in colCase)){
+                let newSimilarityValue = this.similarityData.getSimilarity(rowCaseId, colCaseId);
+                this.taxonomyViewer.updateSubTree(rowCase["manufacturer"] as string, rowCase["id"] as string, colCase["manufacturer"] as string, colCase["id"] as string, newSimilarityValue?.by_attribute["manufacturer"]);
+            }
+        }
+        // HACKHACK (for demo)
     }
 
     /**

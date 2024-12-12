@@ -15,7 +15,12 @@ const DEFAULT_VIS_OPTIONS:vis.Options = {
     },
     nodes: {
         shape: "dot",
-        font: "14px Roboto black",
+        font:{
+            multi: "html",
+            size: 14,
+            face: "Roboto",
+            color: "black"
+        },
         borderWidth: 3,
         color: "#F5F5F7"
     },
@@ -40,7 +45,11 @@ const DEFAULT_VIS_OPTIONS:vis.Options = {
             sortMethod: "directed",
             shakeTowards: "roots"
         },
+    },
+    interaction: {
+        zoomView: true,
     }
+
 };
 
 /**
@@ -77,7 +86,8 @@ export class TaxonomyViewer {
             edges: aTaxonomy.getEdges(),
         };
         if (this.taxonomyContainerNode) {
-            this.taxonomyGraph = new vis.Network(this.taxonomyContainerNode, this.taxonomyVisData, DEFAULT_VIS_OPTIONS);
+            let data: VisTaxonomyData = JSON.parse(JSON.stringify(this.taxonomyVisData));
+            this.taxonomyGraph = new vis.Network(this.taxonomyContainerNode, data, DEFAULT_VIS_OPTIONS);
         }
 
     }
@@ -92,7 +102,7 @@ export class TaxonomyViewer {
      * @param rightCaseLabel - The taxonomy label of the right item.
      * @param rightCaseId - The identifier of the right item.
      */
-    updateSubTree(leftCaseLabel: string, leftCaseId: string, rightCaseLabel: string, rightCaseId:string){
+    updateSubTree(leftCaseLabel: string, leftCaseId: string, rightCaseLabel: string, rightCaseId:string, similarityValue: number = 0.0){
         if (this.detailContainerNode){
             let data = this.createSubtree(leftCaseLabel, rightCaseLabel);
             if (data) {
@@ -102,17 +112,23 @@ export class TaxonomyViewer {
                 let lcaIndex = data.nodes.findIndex(e => e.id === lcaId);
                 if (lcaIndex !== -1) {
                     data.nodes[lcaIndex]["group"] = "lca";
+                    data.nodes[lcaIndex]["label"] = `${data.nodes[lcaIndex]["label"]}\n <b>${String(similarityValue.toFixed(3))}</b>`;
                     data.nodes[0]["group"] = "leftItem";
                     data.nodes[0]["title"] = leftCaseId;
                     data.nodes[1]["group"] = "rightItem";
-                    data.nodes[0]["title"] = rightCaseId;
+                    data.nodes[1]["title"] = rightCaseId;
 
-                    let options = DEFAULT_VIS_OPTIONS;
+                    let options = JSON.parse(JSON.stringify(DEFAULT_VIS_OPTIONS)); ;
+                    if (leftCaseLabel === rightCaseLabel) {
+                        // When both cases have the same taxonomical value, then modify the default options
+                        options.layout.hierarchical.direction = "LR";
+                        options.edges.dashes = true;
+                    }
                     options["interaction"] = {
                         hover: true,
                         zoomView: false,
                     }
-                    this.detailGraph = new vis.Network(this.detailContainerNode, data, DEFAULT_VIS_OPTIONS);
+                    this.detailGraph = new vis.Network(this.detailContainerNode, data, options);
                     this.detailGraph.on("selectNode", (eventData) => {
                         if (this.taxonomyGraph) {
                             let f: vis.EasingFunction = 'easeInOutQuad'
@@ -138,13 +154,15 @@ export class TaxonomyViewer {
 
     /**
      * Create a new visualization of the whole taxonomy highlighting the nodes that represent
-     * the taxonomy labels of the left and right case and 
+     * the taxonomy labels of the left and right case 
      * @param leftLabel The label of the taxonomy concept of the left case
      * @param rightLabel The label of the taxonomy concept of the right case
      * @param lcaLabel The label of the lower common ancestor of left and right taxonomy labels
      */
     private highlightNodes(leftLabel:string, rightLabel:string, lcaLabel:string) { 
         let data: VisTaxonomyData = JSON.parse(JSON.stringify(this.taxonomyVisData));
+        // Remove previous highlighting
+        data.nodes.forEach((elem) => delete elem.group);
         let index = data.nodes.findIndex(e => e.label === leftLabel);
         if (index !== -1) {
             data.nodes[index]["group"] = "leftItem";
@@ -178,19 +196,32 @@ export class TaxonomyViewer {
         let c2Node = this.theTaxonomy.findNodeByLabel(c2Label);
         let lcaNode = this.theTaxonomy.findLCA(c1Label, c2Label);
         if (c1Node && c2Node && lcaNode) {
-            let visData = {
+            let visData: VisTaxonomyData = {
                 nodes: [c1Node, c2Node],
                 edges: []
             }
-            let curId = 0;
-            curId = this.edgesBetween(c1Node, lcaNode, curId, visData);
-            curId = this.edgesBetween(c2Node, lcaNode, curId, visData);
+            // Both nodes are the same so we create a fake subtree with the same node and
+            // an edge between them
+            if (c1Node.label === c2Node.label) {
+                //Change the id to create the second fake node
+                let c2NodeCopy = JSON.parse(JSON.stringify(c2Node));
+                c2NodeCopy.id +=1;
+                visData.nodes[1] = c2NodeCopy;
+                visData.edges.push({
+                    id: 0,
+                    from: c1Node.id,
+                    to: c2NodeCopy.id
+                });
+            } else{ 
+                let curId = 0;
+                curId = this.edgesBetween(c1Node, lcaNode, curId, visData);
+                curId = this.edgesBetween(c2Node, lcaNode, curId, visData);
+            }
             return visData;
         }
         else {
             return null;
         }
-
     }
 
     /**
@@ -219,8 +250,5 @@ export class TaxonomyViewer {
             }
         }
         return currentEdgeId;
-
     }
-
-
 }

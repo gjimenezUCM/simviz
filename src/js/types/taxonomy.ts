@@ -13,20 +13,42 @@ export class Taxonomy {
     getEdges(){
         return this.data.edges;
     }
-
+    /**
+     * Find the first node with a specific label
+     * @param label node label
+     * @returns A copy of the taxonomy node with the label; or undefined, if it does not exist
+     */
     findNodeByLabel(label: string): TaxonomyNode | undefined {
-        return this.data.nodes.find((el) => el.label == label);
+        let node = this.data.nodes.find((el) => el.label == label);
+        if (node) {
+            node = JSON.parse(JSON.stringify(node)); 
+        }
+        return node;
     }
-
+    /**
+     * Find the node with a specific id
+     * @param id node id
+     * @returns A copy of the taxonomy node with the id; or undefined, if it does not exist
+     */
     findNodeById(id: number): TaxonomyNode | undefined {
-        return this.data.nodes.find((el) => el.id == id);
+        let node = this.data.nodes.find((el) => el.id == id);
+        if (node) {
+            node = JSON.parse(JSON.stringify(node));
+        }
+        return node;        
     }
 
+    /**
+     * Compute the lowest common ancestor for two nodes identified by their labels
+     * @param c1Label Label of the first node
+     * @param c2Label Label of the second node
+     * @returns A copy of the lowest common ancestor of the nodes; or null, if any input node does not exist
+     */
     findLCA (c1Label:string, c2Label:string):TaxonomyNode | null {
         let node1 = this.findNodeByLabel(c1Label);
         let node2 = this.findNodeByLabel(c2Label);
         if (node1 && node2) {
-            while (node1 != node2) {
+            while (node1.id != node2.id) {
                 if (node1.parent == -1) {
                     return node1;
                 }
@@ -49,7 +71,7 @@ export class Taxonomy {
                     }
                 }
             }
-            return node1;
+            return JSON.parse(JSON.stringify(node1));;
         } else return null;
     } 
 }
@@ -70,7 +92,8 @@ export interface TaxonomyNode extends Partial<NodeOptions> {
 }
 
 export type TaxonomyEdge = {
-    id: number;
-    from: number;
-    to: number;
+    id: number,
+    from: number,
+    to: number,
+    label?: string
 }
