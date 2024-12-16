@@ -46,7 +46,7 @@ export type LocalSimilarityDescription = {
      */
     weight: number,
     /**
-     * A textual description of the local similarity function
+     * A textual description of the local similarity function (in Markdown)
      */
     description: string
 };

@@ -44,10 +44,14 @@ h2.panel-header{
     height: 97vh;
 }
 
-#item-comparator {
+#case-comparison-panel {
     height: 60vh;
     #selection-header{
         display: none;
+    }
+    table {
+        table-layout: fixed; 
+            word-wrap: break-word;
     }
 }
 
@@ -90,13 +94,13 @@ h2.panel-header{
     z-index: 100;
 }
 
-/* Item-comparator */
+/* Case comparison panel */
 
 #selection-header .form-label {
     font-size: 1.4rem;
 }
 
-#item-comparator{
+#case-comparison-panel{
     tbody {
         font-size: 0.9rem;
     }
@@ -107,7 +111,6 @@ h2.panel-header{
      padding: 0.5rem 1rem;   
 
     }
-
 } 
 
 .box {
@@ -129,14 +132,14 @@ img {
 }
 .att-cell{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content:space-between;
     .att-name,
     .att-value {
         font-weight: 700;
     }   
     .att-weight{
         align-self: center;
-        margin-top: 2px;
     }
     
 }
@@ -159,6 +162,7 @@ img {
 }
 
 .att-weight-bar {
+    font-size: 10px;
     background-color: #dda8f8;
     overflow: visible;
     overflow-wrap: normal;

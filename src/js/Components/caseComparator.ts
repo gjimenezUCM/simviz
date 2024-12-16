@@ -126,7 +126,7 @@ export class CaseComparator {
         this.simDescription = simDescription;
         this.simAtts = {};
         this.attId = attId;
-        let table = document.querySelector("#item-comparator tbody");
+        let table = document.querySelector("#case-comparison-panel tbody");
 
         // Create the table
         if (table) {
@@ -398,7 +398,7 @@ export class CaseComparator {
      * Create the bars for the weights 
      */
     private populateWeights() {
-        let weights = document.querySelectorAll("#item-comparator .att-weight");
+        let weights = document.querySelectorAll("#case-comparison-panel .att-weight");
         for (let w of weights) {
             let stringWeightValue = w.getAttribute("data-weight");
             let frameBar = document.createElement("div");
