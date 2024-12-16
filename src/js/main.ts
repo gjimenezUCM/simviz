@@ -48,7 +48,7 @@ async function initApp() {
             });
         }
     };
-    let pinButtons = document.querySelectorAll("#item-comparator button[data-item-id]");
+    let pinButtons = document.querySelectorAll("#case-comparison-panel button[data-item-id]");
     // Suscribe to click events on pin buttons
     for (let btn of pinButtons){
         btn.addEventListener("click", (event) => {

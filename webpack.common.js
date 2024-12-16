@@ -38,7 +38,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: {
         app: './src/js/main.ts',
-        help: './src/js/help.js'
+        help: './src/js/help.js',
+        datatable: './src/js/datatable.js'
     },
 
     plugins: [
@@ -56,6 +57,14 @@ module.exports = {
             template: "src/help.html",
             chunks: ['help'],
             filename: 'help.html'
+        }),
+        new HtmlWebpackPlugin({
+            // Título de la página index.html que nos genera como base.
+            title: 'SimViz new',
+            // Plantilla que usamos
+            template: "src/datatable.html",
+            chunks: ['datatable'],
+            filename: 'datatable.html'
         }),
         new webpack.DefinePlugin({
             // Si añades alguna, defínelas para TypeScript en types/definePlugin.d.ts
