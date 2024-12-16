@@ -7,4 +7,11 @@ namespace Plotly {
     export interface ColorBar {
         orientation?: "v" | "h";
     }
+    export interface PlotData {
+        ybins: {
+            start: number | string;
+            end: number | string;
+            size: number | string;
+        };
+    }
 }

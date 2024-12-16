@@ -96,9 +96,6 @@ export class Heatmap extends PlotEventNotifier {
             y: this.currentY,
             z: this.currentMatrix,
             type: 'heatmap',
-            colorbar: {
-                orientation: "h"
-            },
             colorscale: magmaColorscaleValue,
             showscale: true,
             hovertemplate: "id: %{y}<br>id: %{x}<br>Similarity: %{z}<extra></extra>",
@@ -109,7 +106,7 @@ export class Heatmap extends PlotEventNotifier {
             paper_bgcolor: 'transparent',
             margin: {
                 l: 10,
-                r: 20,
+                r: 10,
                 b: 10,
                 t: 0,
             },
@@ -134,7 +131,7 @@ export class Heatmap extends PlotEventNotifier {
                     size: 16
                 }
             },
-            height: containerWidth,
+            height: containerHeight,
             width: containerWidth
         };
         

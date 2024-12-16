@@ -11,12 +11,13 @@ h2.panel-header{
 }
 /* Layout */
 #menu {
-    height: 3vh;
+    display: none;
+
 }
 
 /* similarity-container */
 #similarity-container {
-    height: 97vh;
+    height: 14vh;
     overflow: auto;
     padding: 1rem;
 
@@ -28,8 +29,6 @@ h2.panel-header{
         margin-top: 1.3rem;
     }
     #similarity-descriptor {
-        margin-top: 1.5rem;
-
         .btn-outline-dark{
             --bs-btn-border-width: 0;
             margin-right: 3px;
@@ -40,12 +39,12 @@ h2.panel-header{
     }
 }
 
-#plot-container {
-    height: 97vh;
-}
+/* #plot-container {
+    height: 43vh;
+} */
 
 #case-comparison-panel {
-    height: 60vh;
+    height: 86vh;
     #selection-header{
         display: none;
     }
@@ -58,8 +57,10 @@ h2.panel-header{
 /* plot-container */
 
 
+
+
 #heatmap {
-    height: 80vh;
+    height: 43vh;
     #heatmap-content {
         height: 100%;
         background-color:aliceblue;
@@ -72,7 +73,8 @@ h2.panel-header{
 
 
 #histogram{
-    height: 20vh;
+    height: 43vh;
+
     #histogram-content {
         height: 100%;
         background-color: aliceblue;
@@ -145,7 +147,8 @@ img {
 }
 #the-taxonomy,
 #detail-taxonomy {
-    height: 97vh;
+    height: 43vh;
+    background-color: #dda8f8;
 }
 
 

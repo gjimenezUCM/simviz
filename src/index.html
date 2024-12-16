@@ -25,88 +25,100 @@
             
         </section>
         <div class="row">
-            <section id="similarity-container" class="col-3">
-                <div id="dataset-descriptor" class="card">
-                        <h2 class="card-header text-bg-dark">Dataset</h2>
-                    <div class="card-body">
-                        <div class="form">
-                            <select id="dataset-select" class="form-control form-select " aria-label="Dataset select">
-                                <option selected>Choose dataset...</option>
-                            </select>
-                        </div>
-                        <div id="dataset-desc">
+            <section id="similarity-container" class="row">
+                <div class="col-6">
+                    <div id="dataset-descriptor" class="card">
+                            <h2 class="card-header text-bg-dark">Dataset</h2>
+                        <div class="card-body">
+                            <div class="form">
+                                <select id="dataset-select" class="form-control form-select " aria-label="Dataset select">
+                                    <option selected>Choose dataset...</option>
+                                </select>
+                            </div>
+                            <div id="dataset-desc">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div id="similarity-descriptor" class="card">
-                    <h2 class="card-header text-bg-dark">Similarity function</h2>
-                    <div class="card-body">
-                        <div class="form">
-                            <select id="similarity-select" class="form-select" aria-label="Similarity select">
-                                <option selected>Choose similarity function...</option>
-                            </select>
+                <div class="col-6">
+                    <div id="similarity-descriptor" class="card">
+                        <h2 class="card-header text-bg-dark">Similarity function</h2>
+                        <div class="card-body">
+                            <div class="form">
+                                <select id="similarity-select" class="form-select" aria-label="Similarity select">
+                                    <option selected>Choose similarity function...</option>
+                                </select>
+                            </div>
+                            <div id="sim-desc">
+                            </div>
+                            <button type="button" id="btn-show-configurator" class="btn btn-primary visually-hidden" data-bs-toggle="modal" data-bs-target="#similarity-configuration">Reconfigure Weights</button>
                         </div>
-                        <div id="sim-desc">
-                        </div>
-                        <button type="button" id="btn-show-configurator" class="btn btn-primary visually-hidden" data-bs-toggle="modal" data-bs-target="#similarity-configuration">Reconfigure Weights</button>
                     </div>
                 </div>
             </section>
 
-            <section id="plot-container" class="col-4">
-                <h2 class="panel-header text-bg-dark">Similarity value distribution</h2>
-                <div id="histogram-content" class="row">
-                    <div id="histogram"></div>
-                </div>
-                <button type="button" class="btn btn-primary visually-hidden" id="reset-filter-btn">Reset</button>
-                <div id="heatmap-content" class="row">
-                    <div id="heatmap"></div>
-                </div>
-            </section>
-
-            <section id="case-comparison-panel" class="col-5 text-center">
-                <h2 class="panel-header text-bg-dark">Case comparison</h2>
-                <div id="selection-header" class="row">
-                    <div class="col-2">
-                        <label class="form-label" for="heatmap-filter-select">Select Item</label>
+            <div class="row">
+                <section id="plot-container" class="col-8">
+                    <h2 class="panel-header text-bg-dark">Similarity value distribution</h2>
+                    <div class="row">
+                        <div id="heatmap-content" class="col-7">
+                            <div id="heatmap"></div>
+                            <button type="button" class="btn btn-primary visually-hidden" id="reset-filter-btn">Reset</button>
+                        </div>
+                        <div id="histogram-content" class="col-5">
+                            <div id="histogram"></div>
+                        </div>
                     </div>
-                    <div class="col-10">
-                        <select id="heatmap-filter-select" class="form-select" aria-label="Item select">
-                            <option selected>*</option>
-                        </select>
+                    <h2 class="panel-header text-bg-dark">Taxonomy</h2>
+                    <div class="row">                        
+                        <div class="col-9" id="the-taxonomy"></div>
+                        <div class="col-3" id="detail-taxonomy"></div>
                     </div>
-                </div>
-                <div id="table-panel" class="row">
-                    <table class="table table-striped align-middle">
-                        <thead>
-                            <tr>
-                                <th class="col-2 item-row-cell">
-                                    <span class="item-id-value">Attribute</span>
-                                </th>
-                                <th id="item-row-id" class="col-4 item-row-cell">
-                                    <button class="btn btn-sm btn-primary" data-item-id="">
-                                        <i class="bi-pin"></i>
-                                    </button>
-                                    <span class="item-id-value">CaseId</span>
-                                </th>
-                                <th class="col-2">
-                                    <div class="badge rounded-pill">
-                                        <span id="item-sim-value">Similarity</span>
-                                    </div>
-                                </th>
-                                <th id="item-col-id" class="col-4 item-col-cell">
-                                    <span class="item-id-value">CaseId</span>
-                                    <button class="btn btn-sm btn-primary" data-item-id="">
-                                        <i class="bi-pin"></i>
-                                    </button>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+                </section>
+                <section id="case-comparison-panel" class="col-4 text-center">
+                    <h2 class="panel-header text-bg-dark">Case comparison</h2>
+                    <div id="selection-header" class="row">
+                        <div class="col-2">
+                            <label class="form-label" for="heatmap-filter-select">Select Item</label>
+                        </div>
+                        <div class="col-10">
+                            <select id="heatmap-filter-select" class="form-select" aria-label="Item select">
+                                <option selected>*</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="table-panel" class="row">
+                        <table class="table table-striped align-middle">
+                            <thead>
+                                <tr>
+                                    <th class="col-2 item-row-cell">
+                                        <span class="item-id-value">Attribute</span>
+                                    </th>
+                                    <th id="item-row-id" class="col-4 item-row-cell">
+                                        <button class="btn btn-sm btn-primary" data-item-id="">
+                                            <i class="bi-pin"></i>
+                                        </button>
+                                        <span class="item-id-value">CaseId</span>
+                                    </th>
+                                    <th class="col-2">
+                                        <div class="badge rounded-pill">
+                                            <span id="item-sim-value">Similarity</span>
+                                        </div>
+                                    </th>
+                                    <th id="item-col-id" class="col-4 item-col-cell">
+                                        <span class="item-id-value">CaseId</span>
+                                        <button class="btn btn-sm btn-primary" data-item-id="">
+                                            <i class="bi-pin"></i>
+                                        </button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
     <div id="similarity-configuration" class="modal fade" tabindex="-1">
@@ -131,10 +143,7 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-9" id="the-taxonomy"></div>
-        <div class="col-3" id="detail-taxonomy"></div>
-    </div>
+
 
 
 </body>

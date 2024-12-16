@@ -24,8 +24,9 @@
             </ul>
             
         </section>
-        <div class="row">
-            <section id="similarity-container" class="col-3">
+        
+        <section id="similarity-container" class="row">
+            <div class="col-6">
                 <div id="dataset-descriptor" class="card">
                         <h2 class="card-header text-bg-dark">Dataset</h2>
                     <div class="card-body">
@@ -38,6 +39,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-6">
                 <div id="similarity-descriptor" class="card">
                     <h2 class="card-header text-bg-dark">Similarity function</h2>
                     <div class="card-body">
@@ -51,20 +54,28 @@
                         <button type="button" id="btn-show-configurator" class="btn btn-primary visually-hidden" data-bs-toggle="modal" data-bs-target="#similarity-configuration">Reconfigure Weights</button>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="plot-container" class="col-4">
+        <div class="row">
+            <section id="plot-container" class="col-8">
                 <h2 class="panel-header text-bg-dark">Similarity value distribution</h2>
-                <div id="histogram-content" class="row">
-                    <div id="histogram"></div>
+                <div class="row">
+                    <div id="histogram-content" class="col-6">
+                        <div id="histogram"></div>
+                    </div>
+                    <button type="button" class="btn btn-primary visually-hidden" id="reset-filter-btn">Reset</button>
+                    <div id="heatmap-content" class="col-6">
+                        <div id="heatmap"></div>
+                    </div>
                 </div>
-                <button type="button" class="btn btn-primary visually-hidden" id="reset-filter-btn">Reset</button>
-                <div id="heatmap-content" class="row">
-                    <div id="heatmap"></div>
+                <div class="row">
+                    <div class="col-9" id="the-taxonomy"></div>
+                    <div class="col-3" id="detail-taxonomy"></div>
                 </div>
             </section>
 
-            <section id="case-comparison-panel" class="col-5 text-center">
+            <section id="case-comparison-panel" class="col-4 text-center">
                 <h2 class="panel-header text-bg-dark">Case comparison</h2>
                 <div id="table-panel" class="row">
                     <table id="case-comparison-table" class="table stripe compact align-middle">
@@ -388,10 +399,7 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-9" id="the-taxonomy"></div>
-        <div class="col-3" id="detail-taxonomy"></div>
-    </div>
+
 
 
 </body>
