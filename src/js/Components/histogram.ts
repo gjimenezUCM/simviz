@@ -74,10 +74,10 @@ export class Histogram extends PlotEventNotifier {
         let containerWidth = this.containerNode.offsetWidth;
         let containerHeight = this.containerNode.parentNode ? (<HTMLElement>this.containerNode.parentNode).offsetHeight : 0;
         let trace: Plotly.Data = {
-            x: this.simValues,
+            y: this.simValues,
             type: 'histogram',
             histnorm: 'percent',
-            xbins: {
+            ybins: {
                 start: 0.0,
                 size: 0.10000001, // This way, last bucket contains 1.0 and do not push the other buckets
                 end: 1.0
