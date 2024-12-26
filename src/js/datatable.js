@@ -51,9 +51,9 @@ window.addEventListener("load", (event) => {
         ordering: false,
         searching: false,
         columnDefs: [
-            { targets: [0], className: 'dt-left' },
-            { targets: [1], width: "8%", render: DataTable.render.percentBar("round", 'auto', 'black', '#dda8f8'), className: 'dt-right  att-weight-bar' },
-            { targets: [2], width: "8%", render: renderSimilarityFunction, className: 'dt-left' }, 
+            { targets: [0], width: "35%", className: 'dt-left' },
+            { targets: [1], width: "10%", render: DataTable.render.percentBar("round", 'auto', 'black', '#dda8f8'), className: 'dt-right  att-weight-bar' },
+            { targets: [2], width: "10%", render: renderSimilarityFunction, className: 'dt-left' }, 
             { targets: [4], render: DataTable.render.number(null, ".", 2) },
         ],
         columns: [
@@ -87,6 +87,46 @@ window.addEventListener("load", (event) => {
             console.log(button)
         }
     }); 
+
+    table.rows().every(function () {
+        let rowIdx = 5;
+        let n =  document.createElement("tr");
+        n.innerHTML = '<td>' +
+            rowIdx +
+            '.1</td>' +
+            '<td>' +
+            rowIdx +
+            '.2</td>' +
+            '<td>' +
+            rowIdx +
+            '.3</td>' +
+            '<td>' +
+            rowIdx +
+            '.4</td>' +
+            '</tr>';
+        this.child(n).show();
+    });
+    let tableBody = document.querySelector('#case-comparison-table tbody');
+    table.on('click', 'td.details-control', function () {
+        var tr = tableBody.parents('tr');
+        var row = table.row(tr);
+
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row (the format() function would return the data to be shown)
+            if (row.child() && row.child().length) {
+                row.child.show();
+            }
+            else {
+                row.child(format(row.data())).show();
+            }
+            tr.addClass('shown');
+        }
+    });
 
 });     
 
