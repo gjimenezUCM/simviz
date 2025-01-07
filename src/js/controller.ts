@@ -188,8 +188,9 @@ class Controller {
     * @param colCaseId Id of the second case (column on the heatmap)
     * @param color Color of the similarity value
     */
-    updateCaseInfo(rowCaseId: string, colCaseId: string, color: string) {
-        let rowCase, colCase = null;
+    private updateCaseInfo(rowCaseId: string, colCaseId: string, color: string) {
+        let rowCase:Object|null = null;
+        let colCase:Object|null = null;
         if (rowCaseId) {
             rowCase = this.casebaseDAO.getCaseById(rowCaseId);
             this.tableComponent.updateRowCase(rowCaseId, rowCase);
@@ -209,15 +210,25 @@ class Controller {
             this.tableComponent.updateSimilarityValue(null, null);
         }
 
-        // HACKHACK (for demo)
-        if (rowCase && colCase){
-            if (("manufacturer" in rowCase) && ("manufacturer" in colCase) &&
-                ("id" in rowCase) && ("id" in colCase)){
-                let newSimilarityValue = this.similarityData.getSimilarity(rowCaseId, colCaseId);
-                this.updateTaxonomyViewer(rowCase["manufacturer"] as string, rowCase["id"] as string, colCase["manufacturer"] as string, colCase["id"] as string, newSimilarityValue?.by_attribute["manufacturer"] || 0.0);
+        // Update taxonomy:
+        // 1. Find if the current case base has a taxonomy attribute (choose the first one)
+        let attributes = this.casebaseDAO.getAttributes();
+        let taxAttribute:keyof Object| null = null;
+        for (const [key, value] of Object.entries(attributes)) {
+            if (value === "Taxonomy") {
+                taxAttribute = key as keyof Object;
+                break;
             }
         }
-        // HACKHACK (for demo)
+        // 2. If found, update the taxonomy viewer
+        if (rowCase && colCase && taxAttribute){
+            if ((rowCase.hasOwnProperty(taxAttribute)) && 
+                (colCase.hasOwnProperty(taxAttribute)) &&
+                ("id" in rowCase) && ("id" in colCase)) {
+                    let newSimilarityValue = this.similarityData.getSimilarity(rowCaseId, colCaseId);
+                    this.updateTaxonomyViewer(String(rowCase[taxAttribute]), rowCase["id"] as string, String(colCase[taxAttribute]), colCase["id"] as string, newSimilarityValue?.by_attribute["manufacturer"] || 0.0);
+            }
+        }
     }
 
     /**
