@@ -130,20 +130,7 @@ export class TaxonomyViewer {
                     }
                     this.detailGraph = new vis.Network(this.detailContainerNode, data, options);
                     this.detailGraph.on("selectNode", (eventData) => {
-                        if (this.taxonomyGraph) {
-                            let f: vis.EasingFunction = 'easeInOutQuad'
-                            let moveOptions = {
-                                scale: 1.0,
-                                offset: { x: 0.0, y: 0.0 },
-                                animation: {
-                                    duration: 1000,
-                                    easingFunction: f
-                                }
-                            };
-                            this.taxonomyGraph.focus(eventData.nodes[0], moveOptions);
-                            this.taxonomyGraph.selectNodes([eventData.nodes[0]])
-                        }
-
+                        this.focusOnNode(eventData.nodes[0]);
                     });
                     this.highlightNodes(leftCaseLabel, rightCaseLabel, lcaNode?.label || "")
                 }
@@ -250,5 +237,38 @@ export class TaxonomyViewer {
             }
         }
         return currentEdgeId;
+    }
+
+    /**
+     * Focus on a node. The node is selected using its id or its label
+     * @param nodeId Id (or the label) of the node to focus on
+     */
+    public focusOnNode(nodeId:number|string) {
+        console.log(nodeId)
+        if (this.taxonomyGraph) {
+            if (typeof(nodeId) === "string") {
+                // Find its id
+                let node = this.theTaxonomy.findNodeByLabel(nodeId);
+                if (node) {
+                    nodeId = node.id;
+                }
+                else {
+                    nodeId = Number.NaN;
+                }
+            }
+            if (nodeId !== Number.NaN) {
+                let f: vis.EasingFunction = 'easeInOutQuad'
+                let moveOptions = {
+                    scale: 1.0,
+                    offset: { x: 0.0, y: 0.0 },
+                    animation: {
+                        duration: 1000,
+                        easingFunction: f
+                    }
+                };
+                this.taxonomyGraph.focus(nodeId, moveOptions);
+                this.taxonomyGraph.selectNodes([nodeId])
+            }
+        }       
     }
 }

@@ -214,7 +214,7 @@ class Controller {
             if (("manufacturer" in rowCase) && ("manufacturer" in colCase) &&
                 ("id" in rowCase) && ("id" in colCase)){
                 let newSimilarityValue = this.similarityData.getSimilarity(rowCaseId, colCaseId);
-                this.taxonomyViewer.updateSubTree(rowCase["manufacturer"] as string, rowCase["id"] as string, colCase["manufacturer"] as string, colCase["id"] as string, newSimilarityValue?.by_attribute["manufacturer"]);
+                this.updateTaxonomyViewer(rowCase["manufacturer"] as string, rowCase["id"] as string, colCase["manufacturer"] as string, colCase["id"] as string, newSimilarityValue?.by_attribute["manufacturer"] || 0.0);
             }
         }
         // HACKHACK (for demo)
@@ -229,6 +229,12 @@ class Controller {
         this.heatmapSelect ? this.heatmapSelect.selectedIndex = this.caseIds.indexOf(caseId) + 1 : null;
     }
 
+    focusOnTaxonomyNode(taxonomyLabel:string) {
+        if (this.taxonomyViewer) {
+            this.taxonomyViewer.focusOnNode(taxonomyLabel);
+        }
+    }
+
 
     /**
     * Fuction called whe the user resizes the interface
@@ -238,11 +244,47 @@ class Controller {
         this.theHistogram ? this.theHistogram.refresh() : null;
     }
 
+    private updateTaxonomyViewer(leftCaseLabel:string, leftCaseId:string, rightCaseLabel:string, rightCaseId:string, similarityValue: number){
+        if (this.taxonomyViewer) {
+            this.taxonomyViewer.updateSubTree(leftCaseLabel, leftCaseId, rightCaseLabel, rightCaseId, similarityValue);
+        }
+    }
+
+
+ 
+    /**
+    * Function called when the user clicks on the pin icon and freezes a case,
+    * changing the heatmap into a stripechart
+    * @param caseId Id of the case selected
+    */
+    filterByCaseId(caseId: string) {
+        if (this.theHeatmap && this.resetButton) {
+            this.theHeatmap.filterById(caseId, true);
+            this.resetButton.classList.remove("visually-hidden");
+            this.tableComponent.updateRowCase(caseId, this.casebaseDAO.getCaseById(caseId));
+            this.tableComponent.resetColItem();
+            this.updateSelectedCase(caseId);
+        }
+    }
 
     /**
+    * Show the spin loading panel
+    */
+    showLoadingOverlay() {
+        this.loadingOverlay ? this.loadingOverlay.classList.remove("visually-hidden") : null;
+    }
+
+    /**
+    * Hide the spin loading panel
+    */
+    hideLoadingOverlay() {
+        this.loadingOverlay ? this.loadingOverlay.classList.add("visually-hidden") : null;
+    }
+
+       /**
     * Populate the selector (WIP)
     */
-    private populateCaseIdSelect() {
+       private populateCaseIdSelect() {
         if (this.heatmapSelect) {
             this.heatmapSelect.replaceChildren();
             let emptyOption = document.createElement("option");
@@ -273,34 +315,6 @@ class Controller {
         }
     }
 
-    /**
-    * Function called when the user clicks on the pin icon and freezes a case,
-    * changing the heatmap into a stripechart
-    * @param caseId Id of the case selected
-    */
-    filterByCaseId(caseId: string) {
-        if (this.theHeatmap && this.resetButton) {
-            this.theHeatmap.filterById(caseId, true);
-            this.resetButton.classList.remove("visually-hidden");
-            this.tableComponent.updateRowCase(caseId, this.casebaseDAO.getCaseById(caseId));
-            this.tableComponent.resetColItem();
-            this.updateSelectedCase(caseId);
-        }
-    }
-
-    /**
-    * Show the spin loading panel
-    */
-    showLoadingOverlay() {
-        this.loadingOverlay ? this.loadingOverlay.classList.remove("visually-hidden") : null;
-    }
-
-    /**
-    * Hide the spin loading panel
-    */
-    hideLoadingOverlay() {
-        this.loadingOverlay ? this.loadingOverlay.classList.add("visually-hidden") : null;
-    }
 
 }
 

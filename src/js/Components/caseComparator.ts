@@ -1,6 +1,7 @@
 
 import { SimilarityDescription, SimilarityValue, StringStringObject } from "../types/simvizTypes";
 import TemplateManager from "../utils/templateManager";
+import { theController } from "../controller";
 
 /**********************************************************************
  * CSS Selectors for the main elements of the table comparator
@@ -49,6 +50,16 @@ const colorAttributeTemplate: string = `
 const imageAttributeTemplate:string = `
     <td class="col-4">
         <img class="img-fluid" src="{{theValue}}"/>
+    </td>
+`;
+
+const taxonomyAttributeTemplate:string = `
+    <td class="col-4">
+        {{#if theValue}}
+        <a class="taxonomy-label" href="#" data-label="{{theValue}}">{{theValue}}</a>
+        {{else}}
+        <span class="badge text-bg-danger">NULL</span>
+        {{/if}}
     </td>
 `;
 
@@ -241,6 +252,27 @@ export class CaseComparator {
         } else {
             (simValueElem && simValueElem.parentElement) ? simValueElem.parentElement.style.backgroundColor = "" : null;
         }
+        // run post update functions
+        this.postUpdate();
+    }
+
+    /**
+     * Tasks to do after updating the similarityValue
+     */
+    private postUpdate() {
+        // Update taxonomy links for taxonomy atributes
+        let taxonomyLinks = document.querySelectorAll("#case-comparison-panel a.taxonomy-label");
+        // Suscribe to click events on links to taxonomyLabels
+        for (let link of taxonomyLinks){
+            link.addEventListener("click", (event) => {
+                if (event.currentTarget){
+                    let label = (<HTMLElement>event.currentTarget).getAttribute("data-label");
+                    if (label) {
+                        theController.focusOnTaxonomyNode(label);
+                    }
+                }
+            })
+        }
     }
 
     /**
@@ -252,6 +284,8 @@ export class CaseComparator {
         TemplateManager.registerTemplate("Image", imageAttributeTemplate);
         TemplateManager.registerTemplate("ColorRGBList", colorRGBListAttributeTemplate);
         TemplateManager.registerTemplate("Color", colorAttributeTemplate);
+        TemplateManager.registerTemplate("Taxonomy", taxonomyAttributeTemplate);
+
     }
 
     /**
