@@ -246,6 +246,17 @@ class Controller {
         }
     }
 
+    selectCaseByTaxonomyLabel(label:string):boolean {
+        let caseId:string|null = this.casebaseDAO.getRandomCaseByTaxonomyLabel(label);
+        if (caseId) {
+            this.filterByCaseId(caseId);
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 
     /**
     * Fuction called whe the user resizes the interface

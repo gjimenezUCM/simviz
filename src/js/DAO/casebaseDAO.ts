@@ -17,17 +17,49 @@ export class CasebaseDAO {
      */
     private ids: Array<string>;
 
+    
+    /**
+     * A dictionary to find cases by taxonomy labels
+     */
+    private taxonomyDict: {[k:string]: Array<string>};
+
     /**
      * Constructor
      * @param jsonContent Metadata and content of a casebase (see CasebaseDescription)
      */
     constructor(jsonContent: CasebaseDescription) {
-        this.cbDescription = jsonContent
-        // this.data = jsonContent.data;
-        // this.description = jsonContent.description;
-        // this.attributes = jsonContent.attributes;
-        // this.attributeId = jsonContent.id;
+        this.cbDescription = jsonContent;
         this.ids = this.generateIds(this.cbDescription.data);
+        if (this.cbDescription.taxonomy) {
+            let taxAttribute:keyof Object|null = null;
+            this.taxonomyDict = {};
+            for (const [key, value] of Object.entries(this.cbDescription.attributes)) {
+                if (value === "Taxonomy") {
+                    taxAttribute = key as keyof Object;
+                    break;
+                }
+            }
+            if (taxAttribute) {
+                let attId = this.cbDescription.id;
+                this.cbDescription.data.forEach( (aCase) => {
+                    let taxValue:string = String(aCase[taxAttribute]);
+                    let caseId = String(aCase[attId as keyof Object]) || "";
+                    if (taxValue in this.taxonomyDict) {                        
+                        this.taxonomyDict[taxValue].push(caseId);
+                    } else {
+                        this.taxonomyDict[taxValue] = [caseId];
+                    }
+                });
+            }
+        }
+    }
+
+    getRandomCaseByTaxonomyLabel(label:string): string|null {
+        if (label in this.taxonomyDict) {
+            let size = this.taxonomyDict[label].length;
+            return this.taxonomyDict[label][Math.floor(Math.random() * size)];
+        }
+        return null;
     }
 
     /**
