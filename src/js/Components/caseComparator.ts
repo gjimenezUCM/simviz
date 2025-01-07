@@ -285,7 +285,6 @@ export class CaseComparator {
         TemplateManager.registerTemplate("ColorRGBList", colorRGBListAttributeTemplate);
         TemplateManager.registerTemplate("Color", colorAttributeTemplate);
         TemplateManager.registerTemplate("Taxonomy", taxonomyAttributeTemplate);
-
     }
 
     /**
