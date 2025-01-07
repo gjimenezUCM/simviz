@@ -85,14 +85,10 @@ h2.panel-header{
     }
 }
 
-
-
-
 #reset-filter-btn{
-    position: relative;
-    width: 100px;
-    top: 200px;
-    left: 50px;
+    position: absolute;
+    top: 10px;
+    left: 20px;
     z-index: 100;
 }
 

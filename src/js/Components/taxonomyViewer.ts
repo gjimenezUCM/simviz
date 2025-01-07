@@ -1,5 +1,6 @@
 import { Taxonomy, TaxonomyEdge, TaxonomyNode } from "../types/taxonomy";
 import vis, { Network } from 'vis-network';
+import "vis-network/styles/vis-network.min.css"
 import { theController } from "../controller";
 
 
@@ -49,6 +50,7 @@ const DEFAULT_VIS_OPTIONS:vis.Options = {
     },
     interaction: {
         zoomView: true,
+        navigationButtons: true
     }
 
 };
@@ -159,6 +161,7 @@ export class TaxonomyViewer {
                     options["interaction"] = {
                         hover: true,
                         zoomView: false,
+                        navigationButtons: false
                     }
                     this.detailGraph = new vis.Network(this.detailContainerNode, data, options);
                     this.detailGraph.on("selectNode", (eventData) => {
