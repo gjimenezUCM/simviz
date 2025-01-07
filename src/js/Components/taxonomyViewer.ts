@@ -1,5 +1,6 @@
 import { Taxonomy, TaxonomyEdge, TaxonomyNode } from "../types/taxonomy";
 import vis, { Network } from 'vis-network';
+import { theController } from "../controller";
 
 
 type VisTaxonomyData = {
@@ -63,6 +64,8 @@ export class TaxonomyViewer {
     private taxonomyGraph: Network | null;
     private detailGraph: Network | null;
     private taxonomyVisData: vis.Data | null;
+    private leftLabelSelected:string;
+    private rightLabelSelected:string;
 
     /**
      * Constructor
@@ -72,6 +75,8 @@ export class TaxonomyViewer {
         this.detailContainerNode = document.getElementById("detail-taxonomy");
         this.taxonomyGraph = null;
         this.detailGraph = null;
+        this.leftLabelSelected = "";
+        this.rightLabelSelected = "";
     }
 
     /**
@@ -87,11 +92,38 @@ export class TaxonomyViewer {
         };
         if (this.taxonomyContainerNode) {
             let data: VisTaxonomyData = JSON.parse(JSON.stringify(this.taxonomyVisData));
-            this.taxonomyGraph = new vis.Network(this.taxonomyContainerNode, data, DEFAULT_VIS_OPTIONS);
+            this.resetTaxonomyGraph(data);
         }
 
     }
 
+    resetTaxonomyGraph(data:any) {
+        if (this.taxonomyContainerNode) {
+            this.taxonomyGraph = new vis.Network(this.taxonomyContainerNode, data, DEFAULT_VIS_OPTIONS);
+            this.taxonomyGraph.on("click", (eventData) => {
+                let nodeId = eventData.nodes[0];
+                let node = this.theTaxonomy.findNodeById(nodeId);
+                if (node) {
+                    let label = node.label;
+                    if (theController.selectCaseByTaxonomyLabel(label)) {
+                        this.removeSubtree();
+                        if (this.leftLabelSelected !== label || this.rightLabelSelected!=="") {
+                            this.highlightNodes(label);
+                            setTimeout(()=>this.focusOnNode(nodeId), 200);
+                            this.leftLabelSelected = label;
+                            this.rightLabelSelected="";
+                        }
+                    };
+                }
+            });
+        }
+    }
+
+    removeSubtree() {
+        if (this.detailContainerNode){
+            this.detailContainerNode.innerHTML = "";
+        }
+    }
     /**
      * Updates the subtree visualization of two cases identified by their taxonomy labels.
      * Case ids are also employed to show them on hover
@@ -130,6 +162,7 @@ export class TaxonomyViewer {
                     }
                     this.detailGraph = new vis.Network(this.detailContainerNode, data, options);
                     this.detailGraph.on("selectNode", (eventData) => {
+                        console.log(eventData);
                         this.focusOnNode(eventData.nodes[0]);
                     });
                     this.highlightNodes(leftCaseLabel, rightCaseLabel, lcaNode?.label || "")
@@ -146,18 +179,20 @@ export class TaxonomyViewer {
      * @param rightLabel The label of the taxonomy concept of the right case
      * @param lcaLabel The label of the lower common ancestor of left and right taxonomy labels
      */
-    private highlightNodes(leftLabel:string, rightLabel:string, lcaLabel:string) { 
+    private highlightNodes(leftLabel:string, rightLabel:string="", lcaLabel:string="") { 
         let data: VisTaxonomyData = JSON.parse(JSON.stringify(this.taxonomyVisData));
         // Remove previous highlighting
         data.nodes.forEach((elem) => delete elem.group);
         let index = data.nodes.findIndex(e => e.label === leftLabel);
         if (index !== -1) {
             data.nodes[index]["group"] = "leftItem";
+            this.leftLabelSelected = leftLabel;
         }
         
         index = data.nodes.findIndex(e => e.label === rightLabel);
         if (index !== -1) {
             data.nodes[index]["group"] = "rightItem";
+            this.rightLabelSelected = rightLabel;
         }
 
         index = data.nodes.findIndex(e => e.label === lcaLabel);
@@ -166,7 +201,7 @@ export class TaxonomyViewer {
         }
 
         if (this.taxonomyContainerNode) {
-            this.taxonomyGraph = new vis.Network(this.taxonomyContainerNode, data, DEFAULT_VIS_OPTIONS);
+            this.resetTaxonomyGraph(data);
         }
 
     }
@@ -244,7 +279,6 @@ export class TaxonomyViewer {
      * @param nodeId Id (or the label) of the node to focus on
      */
     public focusOnNode(nodeId:number|string) {
-        console.log(nodeId)
         if (this.taxonomyGraph) {
             if (typeof(nodeId) === "string") {
                 // Find its id
