@@ -2,6 +2,11 @@ import  { TaxonomyData } from "./taxonomy";
 export type StringStringObject = { [k: string]: string };
 
 /**
+ * Valid types for case attributes in SimViz
+ */
+export type AttributeType = "string" | "number" | "Image" | "ColorRGBList" | "Color" | "Taxonomy";
+
+/**
  * Datatype for the metadata and the cases contained in a casebase
  */
 export type CasebaseDescription = {
@@ -13,7 +18,7 @@ export type CasebaseDescription = {
     /**
      * The attributes stored on a case
      */
-    attributes: StringStringObject;
+    attributes: { [k: string]: AttributeType };
 
     /**
      * Name of the case attribute that represents the unique case id

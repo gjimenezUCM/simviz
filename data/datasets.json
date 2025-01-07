@@ -2,7 +2,7 @@
     {
         "dataset": {
             "name": "Cars",
-            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cars-1k.json"
+            "uri": "./data/cars/cars-1k.json"
         },
         "similarityDatasets": [
             {
