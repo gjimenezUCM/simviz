@@ -28,11 +28,10 @@
   "dependencies": {
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.3",
-    "datatables.net-bs5": "^2.1.8",
-    "datatables.net-plugins": "^2.1.7",
     "handlebars": "^4.7.8",
     "nano-markdown": "^1.2.2",
     "plotly.js-dist-min": "^2.27.1",
+    "tabulator-tables": "^6.3.0",
     "vis-network": "^9.1.9"
   }
 }

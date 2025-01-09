@@ -3,144 +3,146 @@
 */
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
+import 'tabulator-tables/dist/css/tabulator_bootstrap5.min.css'
 import '../css/simviz.style.css';
-import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css';
-
 
 /*
 * JS/TS imports
 */
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import DataTable from 'datatables.net-bs5';
-import 'datatables.net-plugins/dataRender/percentageBars.js';
 import { Popover } from "bootstrap";
 import nanoMarkdown from 'nano-markdown';
 
+import { FormatModule, DataTreeModule, Tabulator } from 'tabulator-tables';
+
 const data =[ {
     attribute: {
-        name: "ClumpThickness",
+        name: "year",
         similarityDescription: {
             "simFunction": "RangeSimilarity",
-            "weight": 0.1111111111111111*100,
-            "description": "Maximum similarity similarity when comparing two sets of colors. Similarity between every pair of colors is computed using [Delta E 2000 color difference function](http://www.colorwiki.com/wiki/Delta_E:_The_Color_Difference#dE2000), which is a standard measurement that quantifies the difference between two colors that appear on a screen"
+            "weight": 0.5*100,
+            "description": "Similarity normalized in range (1950,2021)"
         },
     },
-    leftCase: 4,
-    rightCase: 5,
-    value: 0.923
+    leftCase: 2016,
+    rightCase: 2018,
+    value: 0.972,
 },
     {
         attribute: {
-            name: "ClumpThickness",
-            weight: 100,
+            name: "make",
             similarityDescription: {
-                "simFunction": "RangeSimilarity",
-                "weight": 0.1111111111111111*100,
-                "description": "Similarity normalized in range (1,14)"
+                "simFunction": "Nested similarity",
+                "weight": 0.5*100,
+                "description": "Weighted similarity of the nested attributes"
             },
         },
-        leftCase: 4,
-        rightCase: 5,
-        value: 0.923
+        leftCase: "",
+        rightCase: "",
+        value: 0.12,
+        _children: [
+            {
+                attribute: {
+                    name: "model",
+                    similarityDescription: {
+                        "simFunction": "Levensthein",
+                        "weight": 0.3*100,
+                        "description": "String similarity using Levensthein"
+                    },
+                },
+                leftCase: "silverado 2500 ltz",
+                rightCase: "outlander se",
+                value: 0.1,
+            },
+            {
+                attribute: {
+                    name: "manufacturer",
+                    similarityDescription: {
+                        "simFunction": "Levensthein",
+                        "weight": 0.7*100,
+                        "description": "String similarity using Levensthein"
+                    },
+                },
+                leftCase: "chevrolet",
+                rightCase: "mitsubishi",
+                value: 0.27,
+            }              
+        ]
     }
 ]
 window.addEventListener("load", (event) => { 
-    let table = new DataTable('#case-comparison-table', {
-        paging: false,
-        info: false,
-        ordering: false,
-        searching: false,
-        columnDefs: [
-            { targets: [0], width: "35%", className: 'dt-left' },
-            { targets: [1], width: "10%", render: DataTable.render.percentBar("round", 'auto', 'black', '#dda8f8'), className: 'dt-right  att-weight-bar' },
-            { targets: [2], width: "10%", render: renderSimilarityFunction, className: 'dt-left' }, 
-            { targets: [4], render: DataTable.render.number(null, ".", 2) },
-        ],
-        columns: [
-            { data: 'attribute.name', title: 'Name' },
-            { data: 'attribute.similarityDescription.weight' },
-            { data: 'attribute.similarityDescription' },
-            { data: 'leftCase' },
-            { data: 'value' },
-            { data: 'rightCase' }
-        ],
-        data: data,
-        createdRow: (row, data, index) => {
-            let button = row.querySelector("button.btn-function");
-            
-            if (button) {
-                const popover = new Popover(button, {
-                    content: nanoMarkdown(data.attribute.similarityDescription.description),
-                    placement: "bottom",
-                    html: true,
-                    trigger: 'focus'
-                })
-                button.addEventListener('inserted.bs.popover', () => {
-                    let links = document.querySelectorAll(".popover-body a");
-                    if (links) {
-                        for (let aLink of links) {
-                            aLink.setAttribute("target", "_blank");
-                        }
-                    }
-                });
-            }
-            console.log(button)
-        }
-    }); 
+    Tabulator.registerModule([DataTreeModule, FormatModule]);
 
-    table.rows().every(function () {
-        let rowIdx = 5;
-        let n =  document.createElement("tr");
-        n.innerHTML = '<td>' +
-            rowIdx +
-            '.1</td>' +
-            '<td>' +
-            rowIdx +
-            '.2</td>' +
-            '<td>' +
-            rowIdx +
-            '.3</td>' +
-            '<td>' +
-            rowIdx +
-            '.4</td>' +
-            '</tr>';
-        this.child(n).show();
+    let table = new Tabulator('#case-comparison-table', {
+        data:data,
+        dataTree:true,
+        dataTreeBranchElement:false,
+        layout:"fitDataFill",
+        columns:[
+            { 
+                field: 'attribute.name',
+                title: 'Attribute',
+                formatter:"textarea",
+                width: "30%",
+                cssClass:"dt-att-name"
+            },
+            { field: 'attribute.similarityDescription.weight', width: "10%",
+                formatter:"progress",
+                formatterParams:{
+                    color: "#dda8f8",
+                    legendColor:"#000000",
+                    legendAlign:"center",
+                    legend: formatNumber
+                },
+                cssClass:"dt-att-weight",
+                vertAlign: "bottom"
+            },
+            { field: 'attribute.similarityDescription', width: "5%",
+                formatter: renderSimilarityFunction,
+            },
+            {
+                width: "55%",
+                columns:[
+                { field: 'leftCase' , width: "20%",hozAlign:"right", formatter:"textarea"},
+                { 
+                    field: 'value',
+                    hozAlign:"center",
+                    cssClass:"dt-att-value"
+                },
+                { field: 'rightCase', width: "20%",formatter:"textarea"}           
+                ]
+            }
+        ]
     });
-    let tableBody = document.querySelector('#case-comparison-table tbody');
-    table.on('click', 'td.details-control', function () {
-        var tr = tableBody.parents('tr');
-        var row = table.row(tr);
 
-        if (row.child.isShown()) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
-        }
-        else {
-            // Open this row (the format() function would return the data to be shown)
-            if (row.child() && row.child().length) {
-                row.child.show();
-            }
-            else {
-                row.child(format(row.data())).show();
-            }
-            tr.addClass('shown');
-        }
-    });
 
 });     
-
-function renderSimilarityFunction(data, type, row) {
-    if (type === "display"){
-        //console.log(data, row, type);
-        return `<button class="btn btn-dark btn-sm btn-function"><img src="./images/function-white.png" alt="similarity function icon" width="18"></button>`;
-    }
-    return null;
+function formatNumber(value) {
+    return Number(value).toFixed(2) + "%"
 }
 
-function renderAttName(data, type, row) {
-    if (type === "display") {
-        
-    }
+function renderSimilarityFunction(cell, formatterParams, onRendered) {
+    let data = cell.getValue();
+    const template = document.createElement('template');
+    template.innerHTML = `<button class="btn btn-dark btn-sm btn-function"><img src="./images/function-white.png" alt="similarity function icon" width="14"></button>`;
+    let button = template.content.firstChild;
+    const popover = new Popover(button, {
+        title: data.simFunction,
+        content: nanoMarkdown(data.description),
+        placement: "bottom",
+        html: true,
+        trigger: 'focus'
+    })
+    button.addEventListener('inserted.bs.popover', () => {
+        let links = document.querySelectorAll(".popover-body a");
+        if (links) {
+            for (let aLink of links) {
+                aLink.setAttribute("target", "_blank");
+            }
+        }
+    });   
+    return button;
 }
+
+
 
