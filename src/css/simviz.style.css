@@ -17,7 +17,7 @@ h2.panel-header{
 
 /* similarity-container */
 #similarity-container {
-    height: 14vh;
+    height: 11vh;
     overflow: auto;
     padding: 1rem;
 
@@ -60,7 +60,7 @@ h2.panel-header{
 
 
 #heatmap {
-    height: 43vh;
+    height: 40vh;
     #heatmap-content {
         height: 100%;
         background-color:aliceblue;
@@ -73,7 +73,7 @@ h2.panel-header{
 
 
 #histogram{
-    height: 43vh;
+    height: 40vh;
 
     #histogram-content {
         height: 100%;
@@ -141,14 +141,6 @@ img {
     }
     
 }
-#the-taxonomy,
-#detail-taxonomy {
-    height: 43vh;
-    background-color: #dda8f8;
-}
-
-
-
 
 .att-weight {
     font-size: smaller;
@@ -189,4 +181,57 @@ img {
         font-size: 2rem;
         margin-bottom: 2rem;
     }
+}
+
+/* Vis.js Navigation buttons */
+#the-taxonomy,
+#detail-taxonomy {
+    height: 42vh;
+    border: 1px solid rgb(36, 36, 36);
+}
+#detail-taxonomy {
+    border-left: none;
+}
+div.vis-network div.vis-navigation div.vis-button.vis-up {
+    top:10px;
+    left:100px;
+}
+div.vis-network div.vis-navigation div.vis-button.vis-down {
+    top:45px;
+    left:100px;
+}
+div.vis-network div.vis-navigation div.vis-button.vis-left {
+    top: 25px;
+    left:150px;
+}
+div.vis-network div.vis-navigation div.vis-button.vis-right {
+    top:25px;
+    left:200px;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends {
+    top:45px;
+
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomOut {
+    top:10px;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomIn {
+    top:10px;
+}
+
+
+/* Tabulator */
+.tabulator {
+    font-size: 0.9rem;
+}
+.dt-att-name,
+.dt-att-value{
+    font-weight: 700;
+}
+
+.dt-att-weight{
+    font-size: 11px;
 }
