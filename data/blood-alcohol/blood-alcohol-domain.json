@@ -1,4 +1,5 @@
 {
+  "metadata":{
   "description": "Blood Alcohol Domain with additional files about processing and background information.",
   "attributes": {
     "casename": "string",
@@ -9,8 +10,9 @@
     "Duration": "number",
     "solution": "string"
   },
-  "id": "casename",
-  "data": [
+  "id": "casename"
+},
+  "cases": [
     {
       "casename": "n1",
       "Gender": "male",
