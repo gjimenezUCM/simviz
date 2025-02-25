@@ -32,7 +32,7 @@ async function initApp() {
     let datasetLoader = new DatasetLoader();
 
     // Load the dataset/casebase file and populate the dataset selector
-    if (await datasetLoader.init("data/datasets.json")){
+    if (await datasetLoader.init("data/datasets-local.json")){
         let datasetMenu: HTMLSelectElement | null = <HTMLSelectElement>document.getElementById("dataset-select");
         if (datasetMenu){
             datasetMenu.innerHTML = "<option selected>Choose dataset...</option>";

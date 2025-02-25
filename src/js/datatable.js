@@ -18,6 +18,7 @@ import { FormatModule, DataTreeModule, Tabulator } from 'tabulator-tables';
 const data =[ {
     attribute: {
         name: "year",
+        type: "number",
         similarityDescription: {
             "simFunction": "RangeSimilarity",
             "weight": 0.5*100,
@@ -31,6 +32,7 @@ const data =[ {
     {
         attribute: {
             name: "make",
+            type: "nested",
             similarityDescription: {
                 "simFunction": "Nested similarity",
                 "weight": 0.5*100,
@@ -44,6 +46,7 @@ const data =[ {
             {
                 attribute: {
                     name: "model",
+                    type: "string",
                     similarityDescription: {
                         "simFunction": "Levensthein",
                         "weight": 0.3*100,
@@ -57,6 +60,7 @@ const data =[ {
             {
                 attribute: {
                     name: "manufacturer",
+                    type: "string",
                     similarityDescription: {
                         "simFunction": "Levensthein",
                         "weight": 0.7*100,
@@ -72,52 +76,91 @@ const data =[ {
 ]
 window.addEventListener("load", (event) => { 
     Tabulator.registerModule([DataTreeModule, FormatModule]);
-
-    let table = new Tabulator('#case-comparison-table', {
-        data:data,
-        dataTree:true,
-        dataTreeBranchElement:false,
-        layout:"fitDataFill",
-        columns:[
-            { 
-                field: 'attribute.name',
-                title: 'Attribute',
-                formatter:"textarea",
-                width: "30%",
-                cssClass:"dt-att-name"
-            },
-            { field: 'attribute.similarityDescription.weight', width: "10%",
-                formatter:"progress",
-                formatterParams:{
-                    color: "#dda8f8",
-                    legendColor:"#000000",
-                    legendAlign:"center",
-                    legend: formatNumber
-                },
-                cssClass:"dt-att-weight",
-                vertAlign: "bottom"
-            },
-            { field: 'attribute.similarityDescription', width: "5%",
-                formatter: renderSimilarityFunction,
+    let table = new Tabulator("#case-comparison-table", {
+      data: data,
+      dataTree: true,
+      dataTreeBranchElement: false,
+      layout: "fitColumns",
+      columns: [
+        {
+          field: "attribute.name",
+          title: "Attribute",
+          formatter: "textarea",
+          cssClass: "dt-att-name",
+        },
+        {
+          field: "attribute.similarityDescription.weight",
+          width: "10%",
+          formatter: "progress",
+          formatterParams: {
+            color: "#dda8f8",
+            legendColor: "#000000",
+            legendAlign: "center",
+            legend: formatWeight,
+          },
+          cssClass: "dt-att-weight",
+          vertAlign: "bottom",
+        },
+        {
+          field: "attribute.similarityDescription",
+          width: "5%",
+          formatter: renderSimilarityFunction,
+        },
+        {
+          columns: [
+            {
+              field: "leftCase",
+              hozAlign: "right",
+              formatter: formatByType,
             },
             {
-                width: "55%",
-                columns:[
-                { field: 'leftCase' , width: "20%",hozAlign:"right", formatter:"textarea"},
-                { 
-                    field: 'value',
-                    hozAlign:"center",
-                    cssClass:"dt-att-value"
-                },
-                { field: 'rightCase', width: "20%",formatter:"textarea"}           
-                ]
-            }
-        ]
+              field: "value",
+              width: "10%",
+              hozAlign: "center",
+              cssClass: "dt-att-value",
+            },
+            { field: "rightCase",formatter: formatByType },
+          ],
+        },
+      ],
     });
 
 
 });     
-function formatNumber(value) {
+
+function formatByType(cell, formatterParams) {
+    let data = cell.getData();
+    if ("type" in data.attribute) {
+        switch(data.attribute["type"]) {
+            case "number":
+                return formatNumber(cell, formatterParams);
+                break;
+            case "nested":
+                return "&nbsp;";
+            default:
+                return formatDefault(cell);
+        }
+    } else {
+        return formatDefault(cell);
+    }
+}
+
+function formatDefault(cell) {
+    if (cell.getValue()) {
+        cell.getElement().style.whiteSpace = "pre-wrap";
+        return cell.getValue();
+    } else {
+        return `<span class="badge text-bg-danger">NULL</span>`;
+    }
+}
+
+function formatNumber(cell, formatterParams) {
+    let precision = formatterParams.precision ? formatterParams.precision: 0;
+    return Number(cell.getValue()).toFixed(precision);
+}
+
+
+function formatWeight(value) {
     return Number(value).toFixed(2) + "%"
 }
 
@@ -143,6 +186,8 @@ function renderSimilarityFunction(cell, formatterParams, onRendered) {
     });   
     return button;
 }
+
+
 
 
 

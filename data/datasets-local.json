@@ -7,7 +7,7 @@
         "similarityDatasets": [
             {
                 "name": "Year, manufacturer, color, condition",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cars_similarity.json"
+                "uri": "/data/cars//cars_similarity.json"
             },
             {
                 "name": "Manufacturer (Wu Palmer)",
@@ -26,20 +26,20 @@
     {
         "dataset": {
             "name": "Blood alcohol domain",
-            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/blood-alcohol-domain.json"
+            "uri": "/data/blood-alcohol/blood-alcohol-domain.json"
         },
         "similarityDatasets": [
             {
                 "name": "Gender, Amount Consumed, Meal, Duration",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/GenderAmountMealDuration.json"
+                "uri": "/data/blood-alcohol/GenderAmountMealDuration.json"
             },
             {
                 "name": "Gender, Amount Consumed, Meal, FrameSize",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/GenderAmountMealFrameSize.json"
+                "uri": "/data/blood-alcohol/GenderAmountMealFrameSize.json"
             },
             {
                 "name": "Amount Consumed, Meal, FrameSize",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/AmountMealFrameSize.json"
+                "uri": "/data/blood-alcohol/AmountMealFrameSize.json"
             }
         ]
     },
@@ -51,55 +51,55 @@
         "similarityDatasets": [
             {
                 "name": "All attributes",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/BCWD/AllAttributes.json"
+                "uri": "/data/BCWD/AllAttributes.json"
             }
         ]
     },
     {
         "dataset": {
             "name": "DMH artworks",
-            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/itemsDMH.json"
+            "uri": "/data/DMH/items.json"
         },
         "similarityDatasets": [
             {
                 "name": "Author50Color50",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/Author50Color50.json"
+                "uri": "/data/DMH/Author50Color50.json"
             },
             {
                 "name": "Author80Color20",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/Author80Color20.json"
+                "uri": "/data/DMH/Author80Color20.json"
             },
             {
                 "name": "MaxColor",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/MaxColor.json"
+                "uri": "/data/DMH/MaxColor.json"
             },
             {
                 "name": "AvgColor",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/AvgColor.json"
+                "uri": "/data/DMH/AvgColor.json"
             },
             {
                 "name": "Decades",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/Decades.json"
+                "uri": "/data/DMH/Decades.json"
             }
         ]
     },
     {
         "dataset": {
             "name": "Travel Agent",
-            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/travel.json"
+            "uri": "/data/travel/travel.json"
         },
         "similarityDatasets": [
             {
                 "name": "All attributes",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/allAttributes.json"
+                "uri": "/data/travel/allAttributes.json"
             },
             {
                 "name": "Months (1)",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/month1.json"
+                "uri": "/data/travel/month1.json"
             },
             {
                 "name": "Months (2)",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/month2.json"
+                "uri": "/data/travel/month2.json"
             }
         ]
     }

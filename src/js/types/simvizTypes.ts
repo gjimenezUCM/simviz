@@ -6,31 +6,38 @@ export type StringStringObject = { [k: string]: string };
  */
 export type AttributeType = "string" | "number" | "Image" | "ColorRGBList" | "Color" | "Taxonomy";
 
+export type CasebaseMetadata = {
+  /**
+   * A textual description of the case base
+   */
+  description: string;
+
+  /**
+   * The attributes stored on a case
+   */
+  attributes: { [k: string]: AttributeType };
+
+  /**
+   * Name of the case attribute that represents the unique case id
+   */
+  id: string;
+
+  /**
+   * (Optional) Taxonomical data of an attribute
+   */
+  taxonomy?: TaxonomyData;
+};
 /**
  * Datatype for the metadata and the cases contained in a casebase
  */
 export type CasebaseDescription = {
-    /**
-    * A textual description of the case base
-    */
-    description: string;
 
-    /**
-     * The attributes stored on a case
-     */
-    attributes: { [k: string]: AttributeType };
-
-    /**
-     * Name of the case attribute that represents the unique case id
-     */
-    id: string;
+    metadata: CasebaseMetadata;
     
     /**
      * The cases
      */
-    data: Array<Object>;
-
-    taxonomy?: TaxonomyData;
+    cases: Array<Object>;
 }
 
 
