@@ -11,3 +11,5 @@ data/computeSimilarity.html
 data/utils/__pycache__/
 
 data/cars/cars_similarity.json
+
+.DS_Store
