@@ -31,15 +31,7 @@
         "similarityDatasets": [
             {
                 "name": "Gender, Amount Consumed, Meal, Duration",
-                "uri": "/data/blood-alcohol/GenderAmountMealDuration.json"
-            },
-            {
-                "name": "Gender, Amount Consumed, Meal, FrameSize",
-                "uri": "/data/blood-alcohol/GenderAmountMealFrameSize.json"
-            },
-            {
-                "name": "Amount Consumed, Meal, FrameSize",
-                "uri": "/data/blood-alcohol/AmountMealFrameSize.json"
+                "uri": "/data/blood-alcohol/cbrkit_GenderAmountMealDuration.json"
             }
         ]
     },

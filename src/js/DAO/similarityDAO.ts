@@ -2,6 +2,7 @@ const FILEPATH = "./data/";
 const FILEEXTENSION = ".json";
 
 import { DataProvider, SimilarityConfiguration, SimilarityValue } from "../types/simvizTypes";
+import { CBRkitAdapter } from "../utils/CBRkitAdapter";
 import { loadJSONData } from "../utils/fileLoader";
 import SimilarityData from "./similarityData";
 
@@ -122,7 +123,11 @@ export class SimilarityDAO {
      */
     addSimilarityData(simFuncName: string, data: any): boolean {
         if (data !== null) {
-            this.similarityDB[simFuncName] = new SimilarityData(data.similarityConfiguration, data.similarityScores, this.caseIds);
+            this.similarityDB[simFuncName] = new SimilarityData(
+              CBRkitAdapter.adaptConfiguration(data.similarityConfiguration),
+              data.similarityScores,
+              this.caseIds
+            );
             return true;
         } else {
             return false;
