@@ -19,7 +19,7 @@ const data =[ {
     attribute: {
         name: "year",
         type: "number",
-        similarityDescription: {
+        similarityConfiguration: {
             "simFunction": "RangeSimilarity",
             "weight": 0.5*100,
             "description": "Similarity normalized in range (1950,2021)"
@@ -33,7 +33,7 @@ const data =[ {
         attribute: {
             name: "make",
             type: "nested",
-            similarityDescription: {
+            similarityConfiguration: {
                 "simFunction": "Nested similarity",
                 "weight": 0.5*100,
                 "description": "Weighted similarity of the nested attributes"
@@ -47,7 +47,7 @@ const data =[ {
                 attribute: {
                     name: "model",
                     type: "string",
-                    similarityDescription: {
+                    similarityConfiguration: {
                         "simFunction": "Levensthein",
                         "weight": 0.3*100,
                         "description": "String similarity using Levensthein"
@@ -61,7 +61,7 @@ const data =[ {
                 attribute: {
                     name: "manufacturer",
                     type: "string",
-                    similarityDescription: {
+                    similarityConfiguration: {
                         "simFunction": "Levensthein",
                         "weight": 0.7*100,
                         "description": "String similarity using Levensthein"
@@ -89,7 +89,7 @@ window.addEventListener("load", (event) => {
           cssClass: "dt-att-name",
         },
         {
-          field: "attribute.similarityDescription.weight",
+          field: "attribute.similarityConfiguration.weight",
           width: "10%",
           formatter: "progress",
           formatterParams: {
@@ -102,7 +102,7 @@ window.addEventListener("load", (event) => {
           vertAlign: "bottom",
         },
         {
-          field: "attribute.similarityDescription",
+          field: "attribute.similarityConfiguration",
           width: "5%",
           formatter: renderSimilarityFunction,
         },

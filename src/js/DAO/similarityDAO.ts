@@ -1,7 +1,7 @@
 const FILEPATH = "./data/";
 const FILEEXTENSION = ".json";
 
-import { DataProvider, SimilarityDescription, SimilarityValue } from "../types/simvizTypes";
+import { DataProvider, SimilarityConfiguration, SimilarityValue } from "../types/simvizTypes";
 import { loadJSONData } from "../utils/fileLoader";
 import SimilarityData from "./similarityData";
 
@@ -66,7 +66,7 @@ export class SimilarityDAO {
      */
     getListSimilarityAttsByName(simFuncName: string): Array<string>|null {
         if (simFuncName in this.similarityDB) {
-            return Object.keys(this.similarityDB[simFuncName].similarityDescription["localSim"]);
+            return Object.keys(this.similarityDB[simFuncName].similarityConfiguration["localSim"]);
         }
         else 
             return null;
@@ -120,9 +120,9 @@ export class SimilarityDAO {
      * @param data The similarity data (commonly, from a similarity data file)
      * @returns true if the similarity data was created; false, otherwise
      */
-    addSimilarityData(simFuncName: string, data: SimilarityData): boolean {
+    addSimilarityData(simFuncName: string, data: any): boolean {
         if (data !== null) {
-            this.similarityDB[simFuncName] = new SimilarityData(data.similarityDescription, data.similarities, this.caseIds);
+            this.similarityDB[simFuncName] = new SimilarityData(data.similarityConfiguration, data.similarityScores, this.caseIds);
             return true;
         } else {
             return false;

@@ -1,5 +1,5 @@
 import SimilarityData from "../DAO/similarityData";
-import { SimilarityDescription, EntrySimilarityValue, SimilarityValue } from "../types/simvizTypes";
+import { SimilarityConfiguration, EntrySimilarityValue, SimilarityValue } from "../types/simvizTypes";
 
 /**
  * Utility class for computing the similarity values based on previouly loaded similarity data.
@@ -16,7 +16,7 @@ export class SimilarityComputing {
      * @param newSimilarityDescription Description of the new similarity data
      * @returns A SimilarityData object
      */
-    static run(oldSimilarityValues: { [key: string]: EntrySimilarityValue }, newSimilarityDescription: SimilarityDescription): SimilarityData {
+    static run(oldSimilarityValues: { [key: string]: EntrySimilarityValue }, newSimilarityDescription: SimilarityConfiguration): SimilarityData {
         let newSimilarityData: { [key: string]: EntrySimilarityValue } = {};
 
         for (let id1 in oldSimilarityValues) {
@@ -28,8 +28,8 @@ export class SimilarityComputing {
                 for (let [att, localFunc] of Object.entries(newSimilarityDescription.localSim)) {
                     let weight = localFunc.weight
                     totalWeight += weight;
-                    if (att in newSimPair['by_attribute']) {
-                        newSimValue += weight * newSimPair['by_attribute'][att];
+                    if (att in newSimPair['attributes']) {
+                        newSimValue += weight * newSimPair['attributes'][att];
                     }
                 }
                 if (totalWeight !== 0) {
@@ -51,8 +51,8 @@ export class SimilarityComputing {
         //     for (let [att, localFunc] of Object.entries(newSimilarityDescription.localSim)) {
         //         let weight = localFunc.weight
         //         totalWeight += weight;
-        //         if (att in simPair['similarity']['by_attribute']) {
-        //             newSimValue += weight * simPair['similarity']['by_attribute'][att];
+        //         if (att in simPair['similarity']['attributes']) {
+        //             newSimValue += weight * simPair['similarity']['attributes'][att];
         //         }
         //     }
         //     if (totalWeight !== 0) {

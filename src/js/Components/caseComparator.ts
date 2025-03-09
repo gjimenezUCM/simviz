@@ -1,5 +1,5 @@
 
-import { SimilarityDescription, SimilarityValue, StringStringObject } from "../types/simvizTypes";
+import { SimilarityConfiguration, SimilarityValue, StringStringObject } from "../types/simvizTypes";
 import TemplateManager from "../utils/templateManager";
 import { theController } from "../controller";
 
@@ -119,7 +119,7 @@ export class CaseComparator {
     /**
      * The description of the similarity function selected when the table is created
      */
-    private simDescription: SimilarityDescription | null;
+    private simDescription: SimilarityConfiguration | null;
 
     /**
      * A temporal empty case that is presented when no cases are selected
@@ -132,7 +132,7 @@ export class CaseComparator {
      * @param simDescription The similarity function that will be presented. It can be null.
      * @param attId The attribute employed as unique id.
      */
-    constructor(allAtts: StringStringObject, simDescription: SimilarityDescription | null, attId: string) {
+    constructor(allAtts: StringStringObject, simDescription: SimilarityConfiguration | null, attId: string) {
         this.remainingAtts = {};
         this.simDescription = simDescription;
         this.simAtts = {};
@@ -240,7 +240,7 @@ export class CaseComparator {
         if (simValueElem) {
             if (newSimValue !== null) {
                 simValueElem.innerHTML = newSimValue.value.toFixed(3);
-                for (let [localAtt, localValue] of Object.entries(newSimValue.by_attribute)) {
+                for (let [localAtt, localValue] of Object.entries(newSimValue.attributes)) {
                     this.updateLocalSimilarity(localAtt, localValue);
                 }
             } else {

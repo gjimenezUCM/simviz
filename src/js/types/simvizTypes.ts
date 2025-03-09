@@ -52,7 +52,7 @@ export type LocalSimilarityDescription = {
     /**
      * Name of the similarity function
      */
-    simFunction: string;
+    name: string;
     /**
      * Weight of this local similarity on a weighted global similarity function
      */
@@ -67,12 +67,14 @@ export type LocalSimilarityDescription = {
 /**
  * Datatype for describing a global similarity function
  */
-export type SimilarityDescription =  {
+export type SimilarityConfiguration =  {
     /**
      * The name of the global similarity function
      */
     globalSim: {
-        simFunction: string
+        name: string,
+        description?: string
+
     },
     /**
      * Each attribute represents a local similarity function 
@@ -97,7 +99,7 @@ export type SimilarityValue = {
      * and the partial local similarity values
      */
     value: number,
-    by_attribute: {
+    attributes: {
         [key: string]: number
     }
 }

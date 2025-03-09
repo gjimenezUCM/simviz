@@ -1,4 +1,4 @@
-import { EntrySimilarityValue, SimilarityDescription, SimilarityValue } from "../types/simvizTypes";
+import { EntrySimilarityValue, SimilarityConfiguration, SimilarityValue } from "../types/simvizTypes";
 
 /**
  * This class encapsulates all the information about the similarity values computed using a similarity function 
@@ -13,12 +13,12 @@ export default class SimilarityData {
     /**
      * A detailed description about the similarity function employed to computed the similarity data
      */
-    similarityDescription: SimilarityDescription;
+    similarityConfiguration: SimilarityConfiguration;
 
     /**
      * A list of pairs of cases with detailed similarity values (global and local similarity values)
      */
-    similarities: { [key: string]: EntrySimilarityValue };
+    similarityScores: { [key: string]: EntrySimilarityValue };
 
     /**
      * A matrix of global similarity values. This attribute is optional because it is commonly created
@@ -31,9 +31,9 @@ export default class SimilarityData {
      * @param data Another similarityData object, commonly without the similarity matrix
      * @param caseIds A list with all the ids in the casebase
      */
-    constructor(description: SimilarityDescription, similarityValues: { [key: string]: EntrySimilarityValue }, caseIds?: Array<string>){
-        this.similarityDescription = description;
-        this.similarities = similarityValues;
+    constructor(description: SimilarityConfiguration, similarityValues: { [key: string]: EntrySimilarityValue }, caseIds?: Array<string>){
+        this.similarityConfiguration = description;
+        this.similarityScores = similarityValues;
         if (caseIds){
             this.similarityMatrix = this._createMatrix(similarityValues, caseIds);
         }
@@ -73,12 +73,12 @@ export default class SimilarityData {
      */
     getSimilarity(id1:string, id2:string): SimilarityValue | null {
         // Look for (id1,id2)
-        if ((id1 in this.similarities) && (id2 in this.similarities[id1])){
-            return this.similarities[id1][id2];
+        if ((id1 in this.similarityScores) && (id2 in this.similarityScores[id1])){
+            return this.similarityScores[id1][id2];
         }
         // Look for (id2,id1)
-        if ((id2 in this.similarities) && (id1 in this.similarities[id2])) {
-            return this.similarities[id2][id1];
+        if ((id2 in this.similarityScores) && (id1 in this.similarityScores[id2])) {
+            return this.similarityScores[id2][id1];
         }
         return null;
     }

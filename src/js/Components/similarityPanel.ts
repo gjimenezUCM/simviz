@@ -5,7 +5,7 @@ import nanoMarkdown from 'nano-markdown';
 import { SimConfigurator } from "./simConfigurator";
 import { theSimilarityDAO } from "../DAO/similarityDAO";
 import { CasebaseDAO } from "../DAO/casebaseDAO";
-import { SimilarityDescription } from "../types/simvizTypes";
+import { SimilarityConfiguration } from "../types/simvizTypes";
 
 /**
  * Max size in pixels of the bar that visually represents a weight
@@ -83,7 +83,7 @@ export class SimilarityPanel {
             // We need to use a setTimeout to show the spin while loading
             setTimeout(() => {
                 theController.onSimilaritySelected(simData);
-                this.updateSimilarityDescription(simData.similarityDescription);
+                this.updateSimilarityDescription(simData.similarityConfiguration);
                 this.simConf.init(simData);
                 // Show the configuration button
                 if (this.configSimilarityButton){
@@ -122,7 +122,7 @@ export class SimilarityPanel {
      * @param simDescription Description of the similarity function that should be updated.
      * If null, it removes the previous information displayed by the panel
      */
-    private updateSimilarityDescription(simDescription: SimilarityDescription|null): void {
+    private updateSimilarityDescription(simDescription: SimilarityConfiguration|null): void {
         let parent = document.getElementById("sim-desc");
         if (parent) {
             // If the paremeter is null, remove the current information
@@ -131,7 +131,7 @@ export class SimilarityPanel {
                 return;
             }
             parent.innerHTML = `<h3>Global function</h3>
-            <p id="global-sim-desc">${simDescription.globalSim.simFunction}</p>
+            <p id="global-sim-desc">${simDescription.globalSim.name}</p>
             <h3>Local functions</h3>
             <div class="table-responsive">
             <table id="local-sim-desc"class="table table-sm table-striped">
@@ -153,7 +153,7 @@ export class SimilarityPanel {
                 for (let [attName, localDesc] of Object.entries(simDescription.localSim)) {
                     let aRow = document.createElement("tr");
                     aRow.innerHTML = `<td>${attName}</td>
-                        <td class="sim-function-name">${localDesc.description ? '<button class="btn btn-outline-dark btn-sm"><i class="bi bi-question-circle-fill"></i></button>' : ''}${localDesc.simFunction}</td>
+                        <td class="sim-function-name">${localDesc.description ? '<button class="btn btn-outline-dark btn-sm"><i class="bi bi-question-circle-fill"></i></button>' : ''}${localDesc.name}</td>
                         <td>
                             <div class="att-weight align-self-center" data-weight="${localDesc.weight}"></div>
                         </td>`;

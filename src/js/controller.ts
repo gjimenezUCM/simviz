@@ -101,11 +101,11 @@ class Controller {
     onSimilaritySelected(simData: SimilarityData) {
         let allAttributes = this.casebaseDAO.getAttributes();
         let attId: string = this.casebaseDAO.getAttId();
-        this.tableComponent = new CaseComparator(allAttributes, simData.similarityDescription, attId);
+        this.tableComponent = new CaseComparator(allAttributes, simData.similarityConfiguration, attId);
         this.tableComponent.resetTable();
         // create the histogram and the heatmap with the similarity data loaded (if exists)
 
-        let simDescription = simData ? simData.similarityDescription : null;
+        let simDescription = simData ? simData.similarityConfiguration : null;
         this.similarityData = simData;
         this.theHistogram = this.similarityData.similarityMatrix ? new Histogram(this.caseIds, this.similarityData.similarityMatrix, this.histogramContainer) : null;
         if (this.theHistogram) {
@@ -226,7 +226,7 @@ class Controller {
                 (colCase.hasOwnProperty(taxAttribute)) &&
                 ("id" in rowCase) && ("id" in colCase)) {
                     let newSimilarityValue = this.similarityData.getSimilarity(rowCaseId, colCaseId);
-                    this.updateTaxonomyViewer(String(rowCase[taxAttribute]), rowCase["id"] as string, String(colCase[taxAttribute]), colCase["id"] as string, newSimilarityValue?.by_attribute["manufacturer"] || 0.0);
+                    this.updateTaxonomyViewer(String(rowCase[taxAttribute]), rowCase["id"] as string, String(colCase[taxAttribute]), colCase["id"] as string, newSimilarityValue?.attributes["manufacturer"] || 0.0);
             }
         }
     }
