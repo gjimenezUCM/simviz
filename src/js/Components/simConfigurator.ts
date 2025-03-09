@@ -90,7 +90,7 @@ export class SimConfigurator {
      */
     init(simData: SimilarityData): void {        
         this.oldSimData = simData;
-        let oldSimDescription = simData.similarityDescription;
+        let oldSimDescription = simData.similarityConfiguration;
         let theForm = document.getElementById("similarity-configuration-form");
         if (theForm){
             theForm.innerHTML = "";
@@ -138,7 +138,7 @@ export class SimConfigurator {
         // Avoid multiple calls
         if (this.started){
             let newSimilarityName = "";
-            let oldSimDescription = this.oldSimData.similarityDescription;
+            let oldSimDescription = this.oldSimData.similarityConfiguration;
             let newDescription = JSON.parse(JSON.stringify(oldSimDescription));
             let modified = false;
             for (let [attName, simFunction] of Object.entries(oldSimDescription.localSim)) {
@@ -159,7 +159,7 @@ export class SimConfigurator {
                 theController.showLoadingOverlay();
                 // launch using setTimeout to display the overlay
                 setTimeout(() => {
-                    let newSimData:SimilarityData = SimilarityComputing.run(this.oldSimData.similarities, newDescription);
+                    let newSimData:SimilarityData = SimilarityComputing.run(this.oldSimData.similarityScores, newDescription);
                     theSimilarityDAO.addSimilarityData(newSimilarityName, newSimData);
                     this.similarityPanel.addSimilarityFunctionToDropdown(newSimilarityName, true);
                     theController.hideLoadingOverlay();

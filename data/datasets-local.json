@@ -7,7 +7,7 @@
         "similarityDatasets": [
             {
                 "name": "Year, manufacturer, color, condition",
-                "uri": "/data/cars//cars_similarity.json"
+                "uri": "/data/cars/cars_tax_similarity.json"
             },
             {
                 "name": "Manufacturer (Wu Palmer)",

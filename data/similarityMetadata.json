@@ -1,5 +1,5 @@
 {
-    "similarityDescription":{
+    "similarityConfiguration":{
         "globalSim": {
             "simFunction": "Weighted average"
         },
@@ -15,11 +15,11 @@
             }
         }
     },
-    "similarities": {
+    "similarityScores": {
         "id1": {
             "id2": {
                 "value": 1.0,
-                "by_attribute": {
+                "attributes": {
                     "att1": 1.0,
                     "att2": 1.0
                 }
