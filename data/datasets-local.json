@@ -59,15 +59,15 @@
         "similarityDatasets": [
             {
                 "name": "Author50Color50",
-                "uri": "/data/DMH/Author50Color50.json"
+                "uri": "/data/DMH/cbrkit_Author50Color50.json"
             },
             {
                 "name": "Author80Color20",
-                "uri": "/data/DMH/Author80Color20.json"
+                "uri": "/data/DMH/cbrkit_Author80Color20.json"
             },
             {
                 "name": "MaxColor",
-                "uri": "/data/DMH/MaxColor.json"
+                "uri": "/data/DMH/cbrkit_MaxColor.json"
             },
             {
                 "name": "AvgColor",
@@ -75,7 +75,7 @@
             },
             {
                 "name": "Decades",
-                "uri": "/data/DMH/Decades.json"
+                "uri": "/data/DMH/cbrkit_Decades.json"
             }
         ]
     },
@@ -87,15 +87,15 @@
         "similarityDatasets": [
             {
                 "name": "All attributes",
-                "uri": "/data/travel/allAttributes.json"
+                "uri": "/data/travel/cbrkit_allAttributes.json"
             },
             {
                 "name": "Months (1)",
-                "uri": "/data/travel/month1.json"
+                "uri": "/data/travel/cbrkit_month1.json"
             },
             {
                 "name": "Months (2)",
-                "uri": "/data/travel/month2.json"
+                "uri": "/data/travel/cbrkit_month2.json"
             }
         ]
     }
