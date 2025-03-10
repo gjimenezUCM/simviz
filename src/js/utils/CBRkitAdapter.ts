@@ -1,6 +1,27 @@
 import { LocalSimilarityDescription, SimilarityConfiguration, EntrySimilarityValue} from "../types/simvizTypes";
 
 export class CBRkitAdapter {
+  public similarityConfiguration: SimilarityConfiguration;
+  public similarityScores: {
+    [key: string]: EntrySimilarityValue;
+  };
+
+  constructor(data: any) {
+    if (data.hasOwnProperty("similarityConfiguration") && data.hasOwnProperty("similarityScores")) {
+      // SimViz data format
+      this.similarityScores = data.similarityScores;
+      this.similarityConfiguration = CBRkitAdapter.adaptConfiguration(
+        data.similarityConfiguration
+      );
+    } 
+    else {
+      // CBRkit data format
+      this.similarityConfiguration = CBRkitAdapter.adaptSimilarityConfiguration(data);
+      this.similarityScores = CBRkitAdapter.adaptSimilarityData(data);
+    }
+  }
+
+
   static adaptConfiguration(config: any): SimilarityConfiguration {
     let adaptedConfig: any = {
       globalSim: {
@@ -71,7 +92,6 @@ export class CBRkitAdapter {
       if ("metadata" in firstStep) {
         return CBRkitAdapter.adaptConfiguration(firstStep["metadata"]);
       }
-      
     }
     return simData;
   }
