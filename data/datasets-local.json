@@ -6,20 +6,12 @@
         },
         "similarityDatasets": [
             {
-                "name": "Year, manufacturer, color, condition",
-                "uri": "/data/cars/cars_tax_similarity.json"
-            },
-            {
                 "name": "Manufacturer (Wu Palmer)",
-                "uri": "/data/cars/cars_tax_wupalmer_similarity.json"
+                "uri": "/data/cars/cbrkit_cars_tax_wupalmer.json"
             },
             {
-                "name": "Manufacturer (Path Steps)",
-                "uri": "/data/cars/cars_tax_pathsteps_similarity.json"
-            },
-            {
-                "name": "Manufacturer (Node level)",
-                "uri": "/data/cars/cars_tax_nodelevel_similarity.json"
+                "name": "Year and Manufacturer (Equality)",
+                "uri": "/data/cars/cbrkit_year_manufacturer.json"
             }
         ]
     },

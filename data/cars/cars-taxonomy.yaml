@@ -1,0 +1,126 @@
+name: Manufacturers
+weight: 0.0
+children:
+  - name: AwtoWAS
+    children:
+      - lada
+  - name: BMW AG
+    children:
+      - bmw
+      - mini
+      - name: Rolls-Royce Motor Cars
+        children:
+          - rolls-royce
+  - name: Fiat Chrysler Automobiles
+    children:
+      - name: alfa-romeo
+      - name: Chrysler Group
+        children:
+          - name: chrysler
+          - name: ram
+      - name: dodge
+      - name: FCA Italy S.p.A.
+        children:
+          - name: fiat
+          - name: lancia
+      - name: ferrari
+      - name: jeep
+  - name: Daimler AG
+    children:
+      - name: mercedes-benz
+      - name: smart
+  - name: Daewoo Motor Company
+    children:
+      - name: daewoo
+  - name: Ford Motor Company
+    children:
+      - name: aston-martin
+      - name: ford
+      - name: jaguar
+      - name: land-rover
+      - name: lincoln
+      - name: mazda
+      - name: mercury
+      - name: rover
+      - name: volvo
+  - name: General Motors
+    children:
+      - name: buick
+      - name: cadillac
+      - name: chevrolet
+      - name: gmc
+      - name: hummer
+      - name: pontiac
+      - name: saturn
+      - name: Saab Automobile
+        children:
+          - name: saab
+  - name: Harley Davidson Inc
+    children:
+      - name: harley-davidson
+  - name: Honda Group
+    children:
+      - name: acura
+      - name: honda
+  - name: Hyundai Motor Company
+    children:
+      - name: hyundai
+  - name: Isuzu Motors Limited
+    children:
+      - name: isuzu
+      - name: statesman
+      - name: suzuki
+  - name: Kia Motors
+    children:
+      - name: asia
+      - name: kia
+  - name: Lotus Cars
+    children:
+      - name: lotus
+  - name: Maserati S.p.A.
+    children:
+      - name: maserati
+  - name: Peugeot Societe Anonyme
+    children:
+      - name: citroen
+      - name: peugeot
+      - name: opel
+  - name: Renault-Nissan-Mitsubishi
+    children:
+      - name: Nissan Motor Company
+        children:
+          - name: datsun
+          - name: nissan
+          - name: infiniti
+      - name: Renault Group
+        children:
+          - name: dacia
+          - name: renault
+      - name: Mitsubishi Motors
+        children:
+          - name: mitsubishi
+  - name: Skoda Auto
+    children:
+      - name: skoda
+  - name: Subaru Corporation
+    children:
+      - name: subaru
+  - name: Tesla Inc.
+    children:
+      - name: tesla
+  - name: Toyota Motor Corporation
+    children:
+      - name: lexus
+      - name: daihatsu
+      - name: toyota
+  - name: VEB Automobilwerk
+    children:
+      - name: trabant
+  - name: Volkswagen AG
+    children:
+      - name: audi
+      - name: bentley
+      - name: lamborghini
+      - name: porsche
+      - name: seat
+      - name: volkswagen
