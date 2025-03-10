@@ -123,11 +123,21 @@ export class SimilarityDAO {
      */
     addSimilarityData(simFuncName: string, data: any): boolean {
         if (data !== null) {
-            this.similarityDB[simFuncName] = new SimilarityData(
-              CBRkitAdapter.adaptConfiguration(data.similarityConfiguration),
-              data.similarityScores,
-              this.caseIds
-            );
+            if (data.hasOwnProperty("similarityConfiguration") && data.hasOwnProperty("similarityScores")) {
+                this.similarityDB[simFuncName] = new SimilarityData(
+                CBRkitAdapter.adaptConfiguration(data.similarityConfiguration),
+                data.similarityScores,
+                this.caseIds
+                );               
+            }
+            else {
+                this.similarityDB[simFuncName] = new SimilarityData(
+                  CBRkitAdapter.adaptSimilarityConfiguration(data),
+                  CBRkitAdapter.adaptSimilarityData(data),
+                  this.caseIds
+                );
+            }
+
             return true;
         } else {
             return false;

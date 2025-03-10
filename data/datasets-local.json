@@ -7,11 +7,15 @@
         "similarityDatasets": [
             {
                 "name": "Manufacturer (Wu Palmer)",
-                "uri": "/data/cars/cbrkit_cars_tax_wupalmer.json"
+                "uri": "/data/cars/cbrkit_wu_palmer.json"
             },
             {
-                "name": "Year and Manufacturer (Equality)",
-                "uri": "/data/cars/cbrkit_year_manufacturer.json"
+                "name": "Manufacturer (Path Steps)",
+                "uri": "/data/cars/cbrkit_paths.json"
+            },
+            {
+                "name": "Year and Manufacturer (Levenshtein)",
+                "uri": "/data/cars/cars_year_manufacturer.json"
             }
         ]
     },
@@ -24,6 +28,14 @@
             {
                 "name": "Gender, Amount Consumed, Meal, Duration",
                 "uri": "/data/blood-alcohol/cbrkit_GenderAmountMealDuration.json"
+            },
+            {
+                "name": "Gender, Amount Consumed, Meal, FrameSize",
+                "uri": "/data/blood-alcohol/cbrkit_GenderAmountMealFrameSize.json"
+            },
+            {
+                "name": "Amount Consumed, Meal, Duration",
+                "uri": "/data/blood-alcohol/cbrkit_AmountMealFrameSize.json"
             }
         ]
     },
@@ -35,7 +47,7 @@
         "similarityDatasets": [
             {
                 "name": "All attributes",
-                "uri": "/data/BCWD/AllAttributes.json"
+                "uri": "/data/BCWD/cbrkit_allattributes.json"
             }
         ]
     },
