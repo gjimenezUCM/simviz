@@ -1,6 +1,7 @@
 
 import { SimilarityConfiguration, SimilarityValue, StringStringObject } from "../types/simvizTypes";
 import { VanillaRenderer } from "./vanillaRenderer";
+import {TabulatorRenderer} from "./tabulatorRenderer";
 
 
 /**
@@ -17,7 +18,7 @@ export class CaseComparator {
 /**
  * The renderer in charge of rendering the case comparator
  */
-  private renderer: VanillaRenderer;
+  private renderer: TabulatorRenderer;
 
   /**
    * Constructor
@@ -30,7 +31,7 @@ export class CaseComparator {
     simDescription: SimilarityConfiguration | null,
     attId: string
   ) {
-    this.renderer = new VanillaRenderer(allAtts, simDescription, attId);
+    this.renderer = new TabulatorRenderer(allAtts, simDescription, attId);
   }
 
   /**
