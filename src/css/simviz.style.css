@@ -17,7 +17,7 @@ h2.panel-header{
 
 /* similarity-container */
 #similarity-container {
-    height: 11vh;
+    height: 30vh;
     overflow: auto;
     padding: 1rem;
 
@@ -43,16 +43,7 @@ h2.panel-header{
     height: 43vh;
 } */
 
-#case-comparison-panel {
-    height: 86vh;
-    #selection-header{
-        display: none;
-    }
-    table {
-        table-layout: fixed; 
-            word-wrap: break-word;
-    }
-}
+
 
 /* plot-container */
 
@@ -98,18 +89,30 @@ h2.panel-header{
     font-size: 1.4rem;
 }
 
-#case-comparison-panel{
+#case-comparison-panel {
+    height: 86vh;
+
+    #selection-header {
+        display: none;
+    }
+
+    table {
+        table-layout: fixed;
+        word-wrap: break-word;
+    }
+
     tbody {
         font-size: 0.9rem;
     }
-    button[data-item-id=""] {
-            display: none;
-        }
-    #table-panel{
-     padding: 0.5rem 1rem;   
 
+    button[data-item-id=""] {
+        display: none;
     }
-} 
+
+    #table-panel {
+        padding: 0.5rem 1rem;
+    }
+}
 
 .box {
     width: 25px;
@@ -181,6 +184,10 @@ img {
         font-size: 2rem;
         margin-bottom: 2rem;
     }
+}
+
+#case-comparison-table {
+    font-size: 0.9rem;
 }
 
 /* Vis.js Navigation buttons */

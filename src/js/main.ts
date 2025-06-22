@@ -4,6 +4,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/simviz.style.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
+import "tabulator-tables/dist/css/tabulator_bootstrap5.min.css";
 
 
 /*
