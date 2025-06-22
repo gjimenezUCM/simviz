@@ -21,7 +21,7 @@ const data = [
       name: "year",
       type: "number",
       similarityConfiguration: {
-        simFunction: "RangeSimilarity",
+        name: "RangeSimilarity",
         weight: 0.5 * 100,
         description: "Similarity normalized in range (1950,2021)",
       },
@@ -35,7 +35,7 @@ const data = [
       name: "image",
       type: "Image",
       similarityConfiguration: {
-        simFunction: "lorem ipsum",
+        name: "lorem ipsum",
         weight: 0.1 * 100,
         description: "lorem ipsum",
       },
@@ -50,7 +50,7 @@ const data = [
       name: "paint_color",
       type: "Color",
       similarityConfiguration: {
-        simFunction: "lorem ipsum",
+        name: "lorem ipsum",
         weight: 0.1 * 100,
         description: "lorem ipsum",
       },
@@ -64,7 +64,7 @@ const data = [
       name: "manufacturer2",
       type: "Taxonomy",
       similarityConfiguration: {
-        simFunction: "lorem ipsum",
+        name: "lorem ipsum",
         weight: 0.1 * 100,
         description: "lorem ipsum",
       },
@@ -78,7 +78,7 @@ const data = [
       name: "make",
       type: "nested",
       similarityConfiguration: {
-        simFunction: "Nested similarity",
+        name: "Nested similarity",
         weight: 0.5 * 100,
         description: "Weighted similarity of the nested attributes",
       },
@@ -92,7 +92,7 @@ const data = [
           name: "model",
           type: "string",
           similarityConfiguration: {
-            simFunction: "Levensthein",
+            name: "Levensthein",
             weight: 0.3 * 100,
             description: "String similarity using Levensthein",
           },
@@ -106,7 +106,7 @@ const data = [
           name: "manufacturer",
           type: "string",
           similarityConfiguration: {
-            simFunction: "Levensthein",
+            name: "Levensthein",
             weight: 0.7 * 100,
             description: "String similarity using Levensthein",
           },
@@ -304,7 +304,7 @@ function renderSimilarityFunction(cell, formatterParams, onRendered) {
     template.innerHTML = `<button class="btn btn-dark btn-sm btn-function"><img src="./images/function-white.png" alt="similarity function icon" width="14"></button>`;
     let button = template.content.firstChild;
     const popover = new Popover(button, {
-        title: data.simFunction,
+        title: data.name,
         content: nanoMarkdown(data.description),
         placement: "bottom",
         html: true,
