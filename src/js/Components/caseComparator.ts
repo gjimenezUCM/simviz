@@ -14,10 +14,9 @@ const MAX_WEIGHTBAR_SIZE_PX = 60;
  * It delegates the way that the case comparator is rendered to a vanilla renderer.
  */
 export class CaseComparator {
-
-/**
- * The renderer in charge of rendering the case comparator
- */
+  /**
+   * The renderer in charge of rendering the case comparator
+   */
   private renderer: TabulatorRenderer;
 
   /**
@@ -58,8 +57,8 @@ export class CaseComparator {
    * Reset the table and write empty cases
    */
   resetTable() {
-    this.updateLeftColCase("id", null);
-    this.updateRightColCase("id", null);
+    this.updateLeftColCase(null, null);
+    this.updateRightColCase(null, null);
     this.updateSimilarityValue(null, null);
   }
 
@@ -67,7 +66,7 @@ export class CaseComparator {
    * Reset and display an empty case for the one that represents a row on the heatmap
    */
   resetRowItem() {
-    this.updateLeftColCase("id", null);
+    this.updateLeftColCase(null, null);
     this.updateSimilarityValue(null, null);
   }
 
@@ -75,7 +74,7 @@ export class CaseComparator {
    * Reset and display an empty case for the one that represents a column on the heatmap
    */
   resetColItem() {
-    this.updateRightColCase("id", null);
+    this.updateRightColCase(null, null);
     this.updateSimilarityValue(null, null);
   }
 
@@ -97,7 +96,7 @@ export class CaseComparator {
    * @param id Case unique id
    * @param item Case content
    */
-  private updateLeftColCase(id: string, item: Object | null) {
+  private updateLeftColCase(id: string | null, item: Object | null) {
     this.renderer.updateLeftColCase(id, item);
   }
 
@@ -106,9 +105,7 @@ export class CaseComparator {
    * @param id Case unique id
    * @param item Case content
    */
-  private updateRightColCase(id: string, item: Object | null) {
+  private updateRightColCase(id: string | null, item: Object | null) {
     this.renderer.updateRightColCase(id, item);
   }
-
- 
 }

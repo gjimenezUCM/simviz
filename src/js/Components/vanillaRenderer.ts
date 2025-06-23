@@ -189,7 +189,7 @@ export class VanillaRenderer {
    * @param id Case unique id
    * @param item Case content
    */
-  public updateLeftColCase(id: string, item: Object | null) {
+  public updateLeftColCase(id: string | null, item: Object | null) {
     let selector = "#" + itemRowPrefix;
     let actualItem = item ? item : this.emptyCase;
     this.updateCaseInColumn(id, actualItem, selector);
@@ -200,9 +200,9 @@ export class VanillaRenderer {
    * @param id Case unique id
    * @param item Case content
    */
-  public updateRightColCase(id: string, item: Object | null) {
+  public updateRightColCase(id: string | null, item: Object | null) {
     let selector = "#" + itemColPrefix;
-    let actualItem = item? item : this.emptyCase;
+    let actualItem = item ? item : this.emptyCase;
     this.updateCaseInColumn(id, actualItem, selector);
   }
 
@@ -227,6 +227,9 @@ export class VanillaRenderer {
         }
       } else {
         simValueElem.innerHTML = "Similarity";
+        for (let att of Object.keys(this.simAtts)) {
+          this.updateLocalSimilarity(att, 0);
+        }
       }
     }
     if (color !== null) {
@@ -253,7 +256,7 @@ export class VanillaRenderer {
    * first or the second column must be updated
    */
   private updateCaseInColumn(
-    id: string,
+    id: string | null,
     caseContent: Object,
     selector: string
   ): void {
@@ -365,15 +368,15 @@ export class VanillaRenderer {
    * @param newId The new Id
    * @param selector String selector for the header
    */
-  private updateHeaderWithId(newId: string, selector: string): void {
+  private updateHeaderWithId(newId: string | null, selector: string): void {
     let idContainer = document.querySelector(selector + " .item-id-value");
     if (idContainer) {
-      idContainer.innerHTML = newId;
+      idContainer.innerHTML = newId? newId : "id";
     }
     let idButton = document.querySelector(selector + " button");
     if (idButton) {
-      newId = newId == "id" ? "" : newId;
-      idButton.setAttribute("data-item-id", newId);
+      let actualId:string = newId ? newId as string: "";
+      idButton.setAttribute("data-item-id", actualId);
     }
   }
 
