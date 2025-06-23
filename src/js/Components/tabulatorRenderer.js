@@ -33,6 +33,7 @@ export class TabulatorRenderer {
     this.rightCaseId = null;
     this.similarity = null;
     this.similarityColor = null;
+    this.table = null;
 
     // If the table is configured for a similarity function then we will start with the attributes
     // employed by the similarity function
@@ -186,10 +187,13 @@ export class TabulatorRenderer {
   }
 
   createTable(theData) {
-    // let root = document.getElementById("case-comparison-table");
-    // if (root) {
-    //   root.innerHTML = "";
-    // }
+    let root = document.getElementById("case-comparison-table");
+    if (root) {
+      root.innerHTML = "";
+    }
+    if (this.table) {
+      this.table.destroy();
+    }
     this.table = new Tabulator("#case-comparison-table", {
       data: theData,
       dataTree: true,
@@ -269,9 +273,12 @@ export class TabulatorRenderer {
       );
       if (el) {
         if (that.similarityColor) {
-          el.parentElement.style.backgroundColor = that.similarityColor;
+          el.parentElement.parentElement. style.backgroundColor =
+            that.similarityColor;
         }
-        el.innerHTML = that.similarity ? that.similarity : "Similarity";
+        el.innerHTML = that.similarity
+          ? `<span>${that.similarity}</span>`
+          : `<span>Similarity</span>`;
       }
 
       // Update taxonomy links for taxonomy atributes

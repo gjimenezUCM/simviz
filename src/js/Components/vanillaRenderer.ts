@@ -136,7 +136,7 @@ export class VanillaRenderer {
     this.remainingAtts = {};
     this.simAtts = {};
     this.attId = attId;
-    let table = document.querySelector("#case-comparison-panel tbody");
+    let table = document.querySelector("#case-comparison-table tbody");
 
     // Create the table
     if (table) {
