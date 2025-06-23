@@ -160,25 +160,29 @@ class Controller {
     * @param casebaseDAO The DAO for the dataset/casebase selected
     */
     onDatasetSelected(casebaseDAO: CasebaseDAO) {
-        this.histogramContainer ? this.histogramContainer.innerHTML = "" : null;
-        this.heatmapContainer ? this.heatmapContainer.innerHTML = "" : null;
-        this.heatmapSelect ? this.heatmapSelect.selectedIndex = 0 : null;
-        // if (this.tableComponent) {
-        //     this.tableComponent.resetTable();
-        // }
-        this.casebaseDAO = casebaseDAO;
-        this.caseIds = casebaseDAO.getIds();
-        this.similarityPanel.init();
+      this.histogramContainer ? (this.histogramContainer.innerHTML = "") : null;
+      this.heatmapContainer ? (this.heatmapContainer.innerHTML = "") : null;
+      this.heatmapSelect ? (this.heatmapSelect.selectedIndex = 0) : null;
+      // FIX: add for VanillaRenderer
+      // if (this.tableComponent) {
+      //     this.tableComponent.resetTable();
+      // }
+      this.casebaseDAO = casebaseDAO;
+      this.caseIds = casebaseDAO.getIds();
+      this.similarityPanel.init();
 
-        this.resetButton ? this.resetButton.classList.add("visually-hidden") : null;
-        let allAttributes = this.casebaseDAO.getAttributes();
-        let attId: string = this.casebaseDAO.getAttId();
-        this.tableComponent = new CaseComparator(allAttributes, null, attId);
-        //this.tableComponent.resetTable();
-        let tax = casebaseDAO.getTaxonomy();
-        if (tax) {
-            this.taxonomyViewer.init(tax);
-        }
+      this.resetButton
+        ? this.resetButton.classList.add("visually-hidden")
+        : null;
+      let allAttributes = this.casebaseDAO.getAttributes();
+      let attId: string = this.casebaseDAO.getAttId();
+      this.tableComponent = new CaseComparator(allAttributes, null, attId);
+      // FIX: add for VanillaRenderer
+      //this.tableComponent.resetTable();
+      let tax = casebaseDAO.getTaxonomy();
+      if (tax) {
+        this.taxonomyViewer.init(tax);
+      }
     }
 
     /**
