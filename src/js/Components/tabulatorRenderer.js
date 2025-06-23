@@ -257,18 +257,34 @@ export class TabulatorRenderer {
 
     let that = this;
     this.table.on("dataLoaded", function (data) {
+
+      // 1. Update headers
       let el = document.querySelector(
         ".tabulator-col[role='columnheader'].dt-left-case .tabulator-col-title"
       );
       if (el) {
-        el.innerHTML = that.leftCaseId ? that.leftCaseId : "Case Id";
+        if (that.leftCaseId) {
+          el.innerHTML = `<button class="btn btn-sm btn-primary" data-item-id="${that.leftCaseId}">
+          <i class="bi-pin"></i>
+          </button>
+          <span class="item-id-value">${that.leftCaseId}</span>`
+        } else {
+          el.innerHTML = "Case Id";
+        }
       }
 
       el = document.querySelector(
         ".tabulator-col[role='columnheader'].dt-right-case .tabulator-col-title"
       );
       if (el) {
-        el.innerHTML = that.rightCaseId ? that.rightCaseId : "Case Id";
+        if (that.rightCaseId) {
+          el.innerHTML = `<span class="item-id-value">${that.rightCaseId}</span>
+          <button class="btn btn-sm btn-primary" data-item-id="${that.rightCaseId}">
+          <i class="bi-pin"></i>
+          </button>`;
+        } else {
+          el.innerHTML = "Case Id";
+        }
       }
       el = document.querySelector(
         ".tabulator-col[role='columnheader'].dt-att-value .tabulator-col-title"
@@ -283,11 +299,11 @@ export class TabulatorRenderer {
           : `<span>Similarity</span>`;
       }
 
-      // Update taxonomy links for taxonomy atributes
+      // 2. Update taxonomy links for taxonomy atributes
       let taxonomyLinks = document.querySelectorAll(
         "#case-comparison-panel a.taxonomy-label"
       );
-      // Suscribe to click events on links to taxonomyLabels
+      // 2.1 Suscribe to click events on links to taxonomyLabels
       for (let link of taxonomyLinks) {
         link.addEventListener("click", (event) => {
           if (event.currentTarget) {
@@ -297,6 +313,22 @@ export class TabulatorRenderer {
             }
           }
         });
+      }
+
+      // 3. Update pin link buttons
+      let pinButtons = document.querySelectorAll(
+        "#case-comparison-table button[data-item-id]"
+      );
+      // Suscribe to click events on pin buttons
+      for (let btn of pinButtons){
+          btn.addEventListener("click", (event) => {
+              if (event.currentTarget){
+                  let itemId = (event.currentTarget).getAttribute("data-item-id");
+                  if (itemId) {
+                      theController.filterByCaseId(itemId);
+                  }
+              }
+          })
       }
     });
   }
