@@ -46,7 +46,9 @@ export class TabulatorRenderer {
           attribute: {
             name: attName,
             type: allAtts[attName],
-            similarityConfiguration: simDescription.localSim[attName],
+            similarityConfiguration: JSON.parse(
+              JSON.stringify(simDescription.localSim[attName])
+            ),
           },
           leftCase: null,
           rightCase: null,
@@ -105,24 +107,6 @@ export class TabulatorRenderer {
     this.table.setData(this.data);
     //this.createTable(this.data);
   }
-  resetValues(leftCase) {
-    if (leftCase) {
-      Object.values(this.simAtts).forEach((att) => (att["leftCase"] = null));
-      Object.values(this.remainingAtts).forEach(
-        (att) => (att["leftCase"] = null)
-      );
-      this.updateLeftCaseHeader(null);
-    } else {
-      Object.values(this.simAtts).forEach((att) => (att["rightCase"] = null));
-      Object.values(this.remainingAtts).forEach(
-        (att) => (att["rightCase"] = null)
-      );
-      this.updateRightCaseHeader(null);
-    }
-
-    this.table.setData(this.data);
-    //this.createTable(this.data);
-  }
 
   /**
    * Modify the case  on left column of the table
@@ -138,9 +122,28 @@ export class TabulatorRenderer {
         value["rightCase"] = item[key];
       }
     } else {
-      this.resetValues(true);
+      this.resetValues(false);
     }
     this.updateRightCaseHeader(id);
+    this.table.setData(this.data);
+    //this.createTable(this.data);
+  }
+
+  resetValues(leftCase) {
+    if (leftCase) {
+      Object.values(this.simAtts).forEach((att) => (att["leftCase"] = null));
+      Object.values(this.remainingAtts).forEach(
+        (att) => (att["leftCase"] = null)
+      );
+      this.updateLeftCaseHeader(null);
+    } else {
+      Object.values(this.simAtts).forEach((att) => (att["rightCase"] = null));
+      Object.values(this.remainingAtts).forEach(
+        (att) => (att["rightCase"] = null)
+      );
+      this.updateRightCaseHeader(null);
+    }
+
     this.table.setData(this.data);
     //this.createTable(this.data);
   }
@@ -171,19 +174,18 @@ export class TabulatorRenderer {
    * @param color The color employed for the global similarity value
    */
   updateSimilarityValue(newSimValue, color) {
-
     if (newSimValue !== null) {
       this.updateSimilarityHeader(newSimValue.value.toFixed(3), color);
       for (let [localAtt, localValue] of Object.entries(
         newSimValue.attributes
       )) {
-        this.simAtts[localAtt]["value"] = localValue
+        this.simAtts[localAtt]["value"] = localValue;
       }
     } else {
-      this.updateSimilarityHeader(null)
+      this.updateSimilarityHeader(null);
+      Object.keys(this.simAtts).forEach((att) =>this.simAtts[att]["value"] = null);
     }
     this.table.setData(this.data);
-    
   }
 
   createTable(theData) {
@@ -273,7 +275,7 @@ export class TabulatorRenderer {
       );
       if (el) {
         if (that.similarityColor) {
-          el.parentElement.parentElement. style.backgroundColor =
+          el.parentElement.parentElement.style.backgroundColor =
             that.similarityColor;
         }
         el.innerHTML = that.similarity
