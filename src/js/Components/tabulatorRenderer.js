@@ -21,7 +21,7 @@ export class TabulatorRenderer {
    */
   constructor(allAtts, simDescription, attId) {
     Tabulator.registerModule([DataTreeModule, FormatModule]);
-    this.initTable(allAtts, simDescription, attId);    
+    this.initTable(allAtts, simDescription, attId);
   }
 
   initTable(allAtts, simDescription, attId) {
@@ -32,6 +32,7 @@ export class TabulatorRenderer {
     this.leftCaseId = null;
     this.rightCaseId = null;
     this.similarity = null;
+    this.similarityColor = null;
 
     // If the table is configured for a similarity function then we will start with the attributes
     // employed by the similarity function
@@ -46,16 +47,16 @@ export class TabulatorRenderer {
             type: allAtts[attName],
             similarityConfiguration: simDescription.localSim[attName],
           },
-          leftCase: "",
-          rightCase: "",
-          value: 0.0,
+          leftCase: null,
+          rightCase: null,
+          value: null,
         };
         this.simAtts[attName]["attribute"]["similarityConfiguration"][
           "weight"
         ] =
           this.simAtts[attName]["attribute"]["similarityConfiguration"][
             "weight"
-          ] *100;
+          ] * 100;
       }
     }
 
@@ -71,9 +72,9 @@ export class TabulatorRenderer {
           type: allAtts[attName],
           similarityConfiguration: null,
         },
-        leftCase: "",
-        rightCase: "",
-        value: 0.0,
+        leftCase: null,
+        rightCase: null,
+        value: null,
       };
     }
 
@@ -99,23 +100,25 @@ export class TabulatorRenderer {
     } else {
       this.resetValues(true);
     }
-    this.updateHeader(id);
+    this.updateLeftCaseHeader(id);
     this.table.setData(this.data);
     //this.createTable(this.data);
   }
-  resetValues (leftCase) {
+  resetValues(leftCase) {
     if (leftCase) {
-      Object.values(this.simAtts).forEach((att) => (att["leftCase"] = ""));
+      Object.values(this.simAtts).forEach((att) => (att["leftCase"] = null));
       Object.values(this.remainingAtts).forEach(
-        (att) => (att["leftCase"] = "")
+        (att) => (att["leftCase"] = null)
       );
+      this.updateLeftCaseHeader(null);
     } else {
-      Object.values(this.simAtts).forEach((att) => (att["rightCase"] = ""));
+      Object.values(this.simAtts).forEach((att) => (att["rightCase"] = null));
       Object.values(this.remainingAtts).forEach(
-        (att) => (att["rightCase"] = "")
+        (att) => (att["rightCase"] = null)
       );
+      this.updateRightCaseHeader(null);
     }
-    this.updateHeader();
+
     this.table.setData(this.data);
     //this.createTable(this.data);
   }
@@ -136,16 +139,28 @@ export class TabulatorRenderer {
     } else {
       this.resetValues(true);
     }
-    this.updateHeader(null, id);
+    this.updateRightCaseHeader(id);
     this.table.setData(this.data);
-    //this.createTable(this.data);   
-
+    //this.createTable(this.data);
   }
 
-  updateHeader(leftCaseId=null, rightCaseId=null, similarity=null) {
+  updateHeader(leftCaseId = null, rightCaseId = null, similarity = null) {
     this.leftCaseId = leftCaseId;
     this.rightCaseId = rightCaseId;
     this.similarity = similarity;
+  }
+
+  updateLeftCaseHeader(id) {
+    this.leftCaseId = id;
+  }
+
+  updateRightCaseHeader(id) {
+    this.rightCaseId = id;
+  }
+
+  updateSimilarityHeader(value, color) {
+    this.similarity = value;
+    this.similarityColor = color;
   }
 
   /**
@@ -154,7 +169,21 @@ export class TabulatorRenderer {
    * @param newSimValue An object that contains the similarity value (with global and local similarity values)
    * @param color The color employed for the global similarity value
    */
-  updateSimilarityValue(newSimValue, color) {}
+  updateSimilarityValue(newSimValue, color) {
+
+    if (newSimValue !== null) {
+      this.updateSimilarityHeader(newSimValue.value.toFixed(3), color);
+      for (let [localAtt, localValue] of Object.entries(
+        newSimValue.attributes
+      )) {
+        this.simAtts[localAtt]["value"] = localValue
+      }
+    } else {
+      this.updateSimilarityHeader(null)
+    }
+    this.table.setData(this.data);
+    
+  }
 
   createTable(theData) {
     // let root = document.getElementById("case-comparison-table");
@@ -209,7 +238,7 @@ export class TabulatorRenderer {
           cssClass: "dt-att-value",
           headerHozAlign: "center",
           formatter: RenderUtils.renderNumber,
-          formatterParams: { renderNull: false },
+          formatterParams: { renderNull: false, precision: 3 },
         },
         {
           title: "caseId",
@@ -226,20 +255,39 @@ export class TabulatorRenderer {
         ".tabulator-col[role='columnheader'].dt-left-case .tabulator-col-title"
       );
       if (el) {
-        el.innerHTML = that.leftCaseId?that.leftCaseId:"Case Id";
+        el.innerHTML = that.leftCaseId ? that.leftCaseId : "Case Id";
       }
 
       el = document.querySelector(
         ".tabulator-col[role='columnheader'].dt-right-case .tabulator-col-title"
       );
       if (el) {
-        el.innerHTML = that.rightCaseId ? that.rightCaseId : "Case Id";;
+        el.innerHTML = that.rightCaseId ? that.rightCaseId : "Case Id";
       }
       el = document.querySelector(
         ".tabulator-col[role='columnheader'].dt-att-value .tabulator-col-title"
       );
       if (el) {
+        if (that.similarityColor) {
+          el.parentElement.style.backgroundColor = that.similarityColor;
+        }
         el.innerHTML = that.similarity ? that.similarity : "Similarity";
+      }
+
+      // Update taxonomy links for taxonomy atributes
+      let taxonomyLinks = document.querySelectorAll(
+        "#case-comparison-panel a.taxonomy-label"
+      );
+      // Suscribe to click events on links to taxonomyLabels
+      for (let link of taxonomyLinks) {
+        link.addEventListener("click", (event) => {
+          if (event.currentTarget) {
+            let label = event.currentTarget.getAttribute("data-label");
+            if (label) {
+              theController.focusOnTaxonomyNode(label);
+            }
+          }
+        });
       }
     });
   }
@@ -285,7 +333,7 @@ class RenderUtils {
   }
 
   static renderNumber(cell, formatterParams) {
-    if (cell.getValue()) {
+    if (cell.getValue()!==null) {
       let precision = formatterParams.precision ? formatterParams.precision : 0;
       return Number(cell.getValue()).toFixed(precision);
     } else {
@@ -353,8 +401,7 @@ class RenderUtils {
       if (event.currentTarget) {
         let label = event.currentTarget.getAttribute("data-label");
         if (label) {
-          /// TODO
-          console.log(label);
+          theController.focusOnTaxonomyNode(label);
         }
       }
     });
