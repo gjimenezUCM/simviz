@@ -12,110 +12,6 @@ import {
   EmptyCallback,
 } from "tabulator-tables";
 
-const data = [
-  {
-    attribute: {
-      name: "year",
-      type: "number",
-      similarityConfiguration: {
-        simFunction: "RangeSimilarity",
-        weight: 0.5 * 100,
-        description: "Similarity normalized in range (1950,2021)",
-      },
-    },
-    leftCase: 2016,
-    rightCase: 2018,
-    value: 0.972,
-  },
-  {
-    attribute: {
-      name: "image",
-      type: "Image",
-      similarityConfiguration: {
-        simFunction: "lorem ipsum",
-        weight: 0.1 * 100,
-        description: "lorem ipsum",
-      },
-    },
-    leftCase: "https://i.postimg.cc/Zqn1M35m/44171.png",
-    rightCase: "",
-    value: 0.05,
-  },
-  
-  {
-    attribute: {
-      name: "paint_color",
-      type: "Color",
-      similarityConfiguration: {
-        simFunction: "lorem ipsum",
-        weight: 0.1 * 100,
-        description: "lorem ipsum",
-      },
-    },
-    leftCase: [0, 0, 255],
-    rightCase: "white",
-    value: 0.05,
-  },
-  {
-    attribute: {
-      name: "manufacturer2",
-      type: "Taxonomy",
-      similarityConfiguration: {
-        simFunction: "lorem ipsum",
-        weight: 0.1 * 100,
-        description: "lorem ipsum",
-      },
-    },
-    leftCase: "ford",
-    rightCase: "subaru",
-    value: 0.05,
-  },
-  {
-    attribute: {
-      name: "make",
-      type: "nested",
-      similarityConfiguration: {
-        simFunction: "Nested similarity",
-        weight: 0.5 * 100,
-        description: "Weighted similarity of the nested attributes",
-      },
-    },
-    leftCase: "",
-    rightCase: "",
-    value: 0.12,
-    _children: [
-      {
-        attribute: {
-          name: "model",
-          type: "string",
-          similarityConfiguration: {
-            simFunction: "Levensthein",
-            weight: 0.3 * 100,
-            description: "String similarity using Levensthein",
-          },
-        },
-        leftCase: "silverado 2500 ltz",
-        rightCase: "outlander se",
-        value: 0.1,
-      },
-      {
-        attribute: {
-          name: "manufacturer",
-          type: "string",
-          similarityConfiguration: {
-            simFunction: "Levensthein",
-            weight: 0.7 * 100,
-            description: "String similarity using Levensthein",
-          },
-        },
-        leftCase: "chevrolet dsjkajdslakjdsla kjdlskaj dslkaj sdlkj ",
-        rightCase: "mitsubishi",
-        value: 0.27,
-      },
-    ],
-  },
-];
-
 export class TabulatorRenderer {
   /**
    * Constructor
@@ -124,16 +20,18 @@ export class TabulatorRenderer {
    * @param attId
    */
   constructor(allAtts, simDescription, attId) {
-    console.log(Tabulator);
     Tabulator.registerModule([DataTreeModule, FormatModule]);
-    this.initTable(allAtts, simDescription, attId);
-    
+    this.initTable(allAtts, simDescription, attId);    
   }
 
   initTable(allAtts, simDescription, attId) {
     this.remainingAtts = {};
     this.simAtts = {};
     this.attId = attId;
+    this.data = [];
+    this.leftCaseId = null;
+    this.rightCaseId = null;
+    this.similarity = null;
 
     // If the table is configured for a similarity function then we will start with the attributes
     // employed by the similarity function
@@ -179,12 +77,92 @@ export class TabulatorRenderer {
       };
     }
 
-    let data = Object.values(this.simAtts);
-    data.push(...Object.values(this.remainingAtts));
-    console.log(data)
+    this.data = Object.values(this.simAtts);
+    this.data.push(...Object.values(this.remainingAtts));
 
-    let table = new Tabulator("#case-comparison-table", {
-      data: data,
+    this.createTable(this.data);
+  }
+
+  /**
+   * Modify the case  on left column of the table
+   * @param id Case unique id
+   * @param item Case content
+   */
+  updateLeftColCase(id, item) {
+    if (item) {
+      for (const [key, value] of Object.entries(this.simAtts)) {
+        value["leftCase"] = item[key];
+      }
+      for (const [key, value] of Object.entries(this.remainingAtts)) {
+        value["leftCase"] = item[key];
+      }
+    } else {
+      this.resetValues(true);
+    }
+    this.updateHeader(id);
+    this.table.setData(this.data);
+    //this.createTable(this.data);
+  }
+  resetValues (leftCase) {
+    if (leftCase) {
+      Object.values(this.simAtts).forEach((att) => (att["leftCase"] = ""));
+      Object.values(this.remainingAtts).forEach(
+        (att) => (att["leftCase"] = "")
+      );
+    } else {
+      Object.values(this.simAtts).forEach((att) => (att["rightCase"] = ""));
+      Object.values(this.remainingAtts).forEach(
+        (att) => (att["rightCase"] = "")
+      );
+    }
+    this.updateHeader();
+    this.table.setData(this.data);
+    //this.createTable(this.data);
+  }
+
+  /**
+   * Modify the case  on left column of the table
+   * @param id Case unique id
+   * @param item Case content
+   */
+  updateRightColCase(id, item) {
+    if (item) {
+      for (const [key, value] of Object.entries(this.simAtts)) {
+        value["rightCase"] = item[key];
+      }
+      for (const [key, value] of Object.entries(this.remainingAtts)) {
+        value["rightCase"] = item[key];
+      }
+    } else {
+      this.resetValues(true);
+    }
+    this.updateHeader(null, id);
+    this.table.setData(this.data);
+    //this.createTable(this.data);   
+
+  }
+
+  updateHeader(leftCaseId=null, rightCaseId=null, similarity=null) {
+    this.leftCaseId = leftCaseId;
+    this.rightCaseId = rightCaseId;
+    this.similarity = similarity;
+  }
+
+  /**
+   * Update the similarity value between two cases. It changes the global similarity value
+   * on the header and the local similarity values
+   * @param newSimValue An object that contains the similarity value (with global and local similarity values)
+   * @param color The color employed for the global similarity value
+   */
+  updateSimilarityValue(newSimValue, color) {}
+
+  createTable(theData) {
+    // let root = document.getElementById("case-comparison-table");
+    // if (root) {
+    //   root.innerHTML = "";
+    // }
+    this.table = new Tabulator("#case-comparison-table", {
+      data: theData,
       dataTree: true,
       dataTreeBranchElement: false,
       layout: "fitColumns",
@@ -231,7 +209,7 @@ export class TabulatorRenderer {
           cssClass: "dt-att-value",
           headerHozAlign: "center",
           formatter: RenderUtils.renderNumber,
-          formatterParams:{ renderNull: false }
+          formatterParams: { renderNull: false },
         },
         {
           title: "caseId",
@@ -242,52 +220,29 @@ export class TabulatorRenderer {
       ],
     });
 
-    table.on("dataLoaded", function (data) {
-      console.log("data loaded");
+    let that = this;
+    this.table.on("dataLoaded", function (data) {
       let el = document.querySelector(
         ".tabulator-col[role='columnheader'].dt-left-case .tabulator-col-title"
       );
       if (el) {
-        el.innerHTML = "Case Id";
+        el.innerHTML = that.leftCaseId?that.leftCaseId:"Case Id";
       }
 
       el = document.querySelector(
         ".tabulator-col[role='columnheader'].dt-right-case .tabulator-col-title"
       );
       if (el) {
-        el.innerHTML = "Case Id";
+        el.innerHTML = that.rightCaseId ? that.rightCaseId : "Case Id";;
       }
       el = document.querySelector(
         ".tabulator-col[role='columnheader'].dt-att-value .tabulator-col-title"
       );
       if (el) {
-        el.innerHTML = "Similarity";
+        el.innerHTML = that.similarity ? that.similarity : "Similarity";
       }
     });
   }
-
-  /**
-   * Modify the case  on left column of the table
-   * @param id Case unique id
-   * @param item Case content
-   */
-  updateLeftColCase(id, item) {}
-
-  /**
-   * Modify the case  on left column of the table
-   * @param id Case unique id
-   * @param item Case content
-   */
-  updateRightColCase(id, item) {}
-
-  /**
-   * Update the similarity value between two cases. It changes the global similarity value
-   * on the header and the local similarity values
-   * @param newSimValue An object that contains the similarity value (with global and local similarity values)
-   * @param color The color employed for the global similarity value
-   */
-  updateSimilarityValue(newSimValue, color) {}
-
 
   formatByType(cell, formatterParams, onRendered) {
     let data = cell.getData();

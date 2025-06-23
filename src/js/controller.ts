@@ -102,7 +102,7 @@ class Controller {
         let allAttributes = this.casebaseDAO.getAttributes();
         let attId: string = this.casebaseDAO.getAttId();
         this.tableComponent = new CaseComparator(allAttributes, simData.similarityConfiguration, attId);
-        this.tableComponent.resetTable();
+        //this.tableComponent.resetTable();
         // create the histogram and the heatmap with the similarity data loaded (if exists)
 
         let simDescription = simData ? simData.similarityConfiguration : null;
@@ -163,9 +163,9 @@ class Controller {
         this.histogramContainer ? this.histogramContainer.innerHTML = "" : null;
         this.heatmapContainer ? this.heatmapContainer.innerHTML = "" : null;
         this.heatmapSelect ? this.heatmapSelect.selectedIndex = 0 : null;
-        if (this.tableComponent) {
-            this.tableComponent.resetTable();
-        }
+        // if (this.tableComponent) {
+        //     this.tableComponent.resetTable();
+        // }
         this.casebaseDAO = casebaseDAO;
         this.caseIds = casebaseDAO.getIds();
         this.similarityPanel.init();
@@ -174,7 +174,7 @@ class Controller {
         let allAttributes = this.casebaseDAO.getAttributes();
         let attId: string = this.casebaseDAO.getAttId();
         this.tableComponent = new CaseComparator(allAttributes, null, attId);
-        this.tableComponent.resetTable();
+        //this.tableComponent.resetTable();
         let tax = casebaseDAO.getTaxonomy();
         if (tax) {
             this.taxonomyViewer.init(tax);
