@@ -188,6 +188,11 @@ img {
 
 #case-comparison-table {
     font-size: 0.9rem;
+    .tabulator-col[tabulator-field=value] {
+        .tabulator-col-title span{
+            background-color: white;
+        }
+    }
 }
 
 /* Vis.js Navigation buttons */
