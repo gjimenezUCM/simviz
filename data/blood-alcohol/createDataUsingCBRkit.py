@@ -1,24 +1,31 @@
 import cbrkit
 import json
+from cbrkit.typing import SimFunc
+type Number = float | int
+import os
 
-def nominal_range_similarity(listNominalValues: list):
+class nominal_range_similarity(SimFunc[Number, float]):
     """Similarity function for a range of nominal values
     It works like the range similarity function but using 
     value indexes
     """
-    min = 0
-    max = len(listNominalValues)-1
-    range = max
-    def wrapped_function(x:str, y:str):
-        if (x in listNominalValues)  and (y in listNominalValues):
-            ix = listNominalValues.index(x)
-            iy = listNominalValues.index(y)
-            normalizeX = (ix - min) / range
-            normalizeY = (iy - min) / range
+
+    def __init__(self, listNominalValues):
+        super().__init__()
+        self.listNominalValues = listNominalValues
+        self.min = 0
+        self.max = len(listNominalValues)-1
+        self.range = self.max
+
+    def __call__(self, x: str, y: str) -> float:
+        if (x in self.listNominalValues)  and (y in self.listNominalValues):
+            ix = self.listNominalValues.index(x)
+            iy = self.listNominalValues.index(y)
+            normalizeX = (ix - self.min) / self.range
+            normalizeY = (iy - self.min) / self.range
             return 1-abs(normalizeX - normalizeY)
         else:
             return 0.0
-    return wrapped_function
 
 def runAndDump(casebase, simFunction, dumpFilename):
     retriever = cbrkit.retrieval.build(
@@ -26,13 +33,13 @@ def runAndDump(casebase, simFunction, dumpFilename):
         )
     result = cbrkit.retrieval.apply_queries(casebase, casebase, retriever)
 
-    cbrkit.dumpers.file(dumpFilename,result)
+    cbrkit.dumpers.file(os.path.join(os.path.dirname(__file__),dumpFilename),result)
 
 
 if __name__ == "__main__":
     import json
     # Opening JSON file
-    with open('./blood-alcohol/blood-alcohol-domain.json') as f:
+    with open(os.path.join(os.path.dirname(__file__),'blood-alcohol-domain.json')) as f:
         dataFile = json.load(f)
     cases = dataFile["cases"]
 
@@ -52,7 +59,7 @@ if __name__ == "__main__":
         aggregator=cbrkit.sim.aggregator(pooling="mean")
     )
 
-    runAndDump(casebase, simFunction, "./blood-alcohol/cbrkit_GenderAmountMealDuration.json")
+    runAndDump(casebase, simFunction, "cbrkit_GenderAmountMealDuration.json")
 
     simFunction = cbrkit.sim.attribute_value(
         attributes= {
@@ -64,7 +71,7 @@ if __name__ == "__main__":
         aggregator=cbrkit.sim.aggregator(pooling="mean")
     )
 
-    runAndDump(casebase, simFunction, "./blood-alcohol/cbrkit_GenderAmountMealFrameSize.json")
+    runAndDump(casebase, simFunction, "cbrkit_GenderAmountMealFrameSize.json")
 
     simFunction = cbrkit.sim.attribute_value(
         attributes= {
@@ -75,7 +82,7 @@ if __name__ == "__main__":
         aggregator=cbrkit.sim.aggregator(pooling="mean")
     )
 
-    runAndDump(casebase, simFunction, "./blood-alcohol/cbrkit_AmountMealFrameSize.json")
+    runAndDump(casebase, simFunction, "cbrkit_AmountMealFrameSize.json")
 
 
     

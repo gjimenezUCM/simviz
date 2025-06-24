@@ -1,8 +1,12 @@
 import cbrkit
 import json
+from cbrkit.typing import SimFunc
+type Number = float | int
+
 from colormath.color_objects import LabColor, sRGBColor
 from colormath.color_conversions import convert_color
 from colormath.color_diff import delta_e_cie2000
+import os
 
 
 def runAndDump(casebase, simFunction, dumpFilename):
@@ -11,42 +15,52 @@ def runAndDump(casebase, simFunction, dumpFilename):
         )
     result = cbrkit.retrieval.apply_queries(casebase, casebase, retriever)
 
-    cbrkit.dumpers.file(dumpFilename,result)
+    cbrkit.dumpers.file(os.path.join(os.path.dirname(__file__),dumpFilename),result)
 
 # color_diff.py uses numpy.asscalar() np.asscalar(a) and is deprecated since NumPy v1.16
-# temporary solution (https://github.com/gtaylor/python-colormath/issues/104)
+# temporary solution (https://github.com/gtaylor/python-colormath/issues/104)
 import numpy as np
 def patch_asscalar(a):
     return a.item()
 
-setattr(np, "asscalar", patch_asscalar)
 
-# Read the color JSON file
-colorfilePath = "./utils"
-with open(colorfilePath+'/colors.json') as json_file:
-    objColors = json.load(json_file)
 
-def colorName2RGB(colorName: str) -> list:
-    """Converts a color name into a list with RGB values.
+def avg(aList:list):
+    return sum(aList) / len(aList)
 
-    ColorName must be a X11 color.
-
-    Returns
-    -------
-    list
-        A list with the RGB values in [0,255]; 
-        or an empty list if the color name does not exist.
+class ColorSimilarity(SimFunc[str, float]):
+    """Return the perceived similarity value of two colors
+    Colors can be defined as a list with RGB values (in [0,255]) or
+    a string with a X11 color name
     """
-    if colorName.lower() in objColors:
-        return objColors[colorName.lower()]
-    else:
-        return []
 
-def color_similarity():
-    cache = {}
+    def __init__(self):
+        super().__init__()
+        self.cache = {}
+        setattr(np, "asscalar", patch_asscalar)
 
-    def wrapped_function(x: str | list, y: str | list) -> float:
-        cache = {}
+        #. Read the color JSON file
+        colorfilePath = colorfilePath = os.path.join(os.path.dirname(__file__),'..','utils','colors.json')
+        with open(colorfilePath) as json_file:
+            self.objColors = json.load(json_file)
+
+    def colorName2RGB(self, colorName: str) -> list:
+        """Converts a color name into a list with RGB values.
+
+        ColorName must be a X11 color.
+
+        Returns
+        -------
+        list
+            A list with the RGB values in [0,255]; 
+            or an empty list if the color name does not exist.
+        """
+        if colorName.lower() in self.objColors:
+            return self.objColors[colorName.lower()]
+        else:
+            return []
+        
+    def __call__(self, x: str, y: str) -> float:
 
         """Return the perceived similarity value of two colors
         Colors can be defined as a list with RGB values (in [0,255]) or
@@ -63,28 +77,28 @@ def color_similarity():
 
         # If colors are strings, then convert to RGB
         if (type(x) is str) and (type(y) is str):
-            if (x in cache) and (y in cache[x]):
-                return cache[x][y]
-            elif (y in cache) and (x in cache[y]):
-                return cache[y][x]
+            if (x in self.cache) and (y in self.cache[x]):
+                return self.cache[x][y]
+            elif (y in self.cache) and (x in self.cache[y]):
+                return self.cache[y][x]
             else:
-                x = colorName2RGB(x)
-                y = colorName2RGB(y)
+                x = self.colorName2RGB(x)
+                y = self.colorName2RGB(y)
         
         # If colors are lists but not in RGB, return 0.0
         if (type(x) is list) and len(x) != 3:
             if len(xName)!=0:
-                if xName in cache:
-                    cache[xName][yName] = 0.0
+                if xName in self.cache:
+                    self.cache[xName][yName] = 0.0
                 else:
-                    cache[xName] = dict(yName=  0.0)
+                    self.cache[xName] = dict(yName=  0.0)
             return 0.0
         if (type(y) is list) and len(y) != 3:
             if len(yName)!=0:
-                if yName in cache:
-                    cache[yName][xName] = 0.0
+                if yName in self.cache:
+                    self.cache[yName][xName] = 0.0
                 else:
-                    cache[yName] = dict(xName=  0.0)
+                    self.cache[yName] = dict(xName=  0.0)
             return 0.0
 
         # Apply delta function to compare colors. First, convert to Lab color format
@@ -101,24 +115,29 @@ def color_similarity():
         simValue = 1.0 - deltaValue
         # Store in cache
         if len(xName)!=0:
-            if xName in cache:
-                cache[xName][yName] = simValue
+            if xName in self.cache:
+                self.cache[xName][yName] = simValue
             else:
-                cache[xName] = dict(yName= simValue)
+                self.cache[xName] = dict(yName= simValue)
         if len(yName)!=0:
-            if (yName in cache):
-                cache[yName][xName] = simValue
+            if (yName in self.cache):
+                self.cache[yName][xName] = simValue
             else:
-                cache[yName] = dict(xName= simValue)
+                self.cache[yName] = dict(xName= simValue)
         
         return simValue
-    return wrapped_function
 
-def list_similarity(similarityFunction:callable, aggFunction:callable):
+class list_similarity(SimFunc[str, float]):
     """Similarity function that aggregates the partial similarities
     of the elements of two lists using an aggregation function.
     Lists can have different lenght"""
-    def wrapped_function(x:list, y:list):
+
+    def __init__(self, similarityFunction:callable, aggFunction:callable):
+        super().__init__()
+        self.similarityFunction = similarityFunction
+        self.aggFunction = aggFunction
+
+    def __call__(self, x:list, y:list):
         if (type (x) is not list) or len(x) == 0:
             return 0.0
         if (type (y) is not list) or len(y) == 0:
@@ -133,39 +152,43 @@ def list_similarity(similarityFunction:callable, aggFunction:callable):
         for i in range(len(x)):
             simValuesForItem = []
             for j in range(len(y)):
-                simValuesForItem.append(similarityFunction(x[i], y[j]))
+                simValuesForItem.append(self.similarityFunction(x[i], y[j]))
             # Choose the best similarity value 
             partialSims.append( max(simValuesForItem) )  
         
-        return aggFunction(partialSims) 
+        return self.aggFunction(partialSims) 
 
-    return wrapped_function  
+class decade_similarity(SimFunc[Number, float]):
+    """Similarity based on the _Decade_ that the year belongs to, normalized in the range of
+    decades included in the dataset. The _Decade_ is computed using the year and starts in "1"
+    and finishes in "0" (e.g. 1950 belongs to the 40s)
+    """
 
-def decade_similarity(minYear:int, maxYear:int):
-    def convertYearToDecade(year):
-        return int((year-1)/10) * 10
-    
-    minDecade = convertYearToDecade(minYear)
-    maxDecade = convertYearToDecade(maxYear)
-    decadeRange = maxDecade - minDecade
+    def __init__(self,minYear:int, maxYear:int):
+        super().__init__()
+        self.minDecade = self.convertYearToDecade(minYear)
+        self.maxDecade = self.convertYearToDecade(maxYear)
+        self.decadeRange = self.maxDecade - self.minDecade
 
-    def wrapped_function(year1:int, year2:int):
-        if (year1 is not None) and (year2 is not None):
-            decade1 = convertYearToDecade(year1)
-            decade2 = convertYearToDecade(year2)
+    def __call__(self, x: Number, y: Number) -> float:
+        if (x is not None) and (y is not None):
+            decade1 = self.convertYearToDecade(x)
+            decade2 = self.convertYearToDecade(y)
 
-            normalizeDecade1 = (decade1 - minDecade) / decadeRange
-            normalizeDecade2 = (decade2 - minDecade) / decadeRange
+            normalizeDecade1 = (decade1 - self.minDecade) / self.decadeRange
+            normalizeDecade2 = (decade2 - self.minDecade) / self.decadeRange
             return 1-abs(normalizeDecade2 - normalizeDecade1)
         else:
             return 0.0
-    return wrapped_function
+    
+    def convertYearToDecade(self,year):
+        return int((year-1)/10) * 10
 
 
 if __name__ == "__main__":
     import json
     # Opening JSON file
-    with open('./DMH/items.json') as f:
+    with open(os.path.join(os.path.dirname(__file__),'items.json')) as f:
         dataFile = json.load(f)
     cases = dataFile["cases"]
 
@@ -182,30 +205,38 @@ if __name__ == "__main__":
         },
         aggregator=cbrkit.sim.aggregator(pooling="mean")
     )
-    runAndDump(casebase, simFunction, "./DMH/cbrkit_Decades.json")
+    runAndDump(casebase, simFunction, "cbrkit_Decades.json")
 
     simFunction = cbrkit.sim.attribute_value(
         attributes={
-            "Color": list_similarity(color_similarity(),max)
+            "Color": list_similarity(ColorSimilarity(),max)
         },
         aggregator=cbrkit.sim.aggregator(pooling="mean")
     )
-    runAndDump(casebase, simFunction, "./DMH/cbrkit_MaxColor.json")
+    runAndDump(casebase, simFunction, "cbrkit_MaxColor.json")
 
     simFunction = cbrkit.sim.attribute_value(
         attributes={
-            "Color": list_similarity(color_similarity(),max),
+            "Color": list_similarity(ColorSimilarity(),avg)
+        },
+        aggregator=cbrkit.sim.aggregator(pooling="mean")
+    )
+    runAndDump(casebase, simFunction, "cbrkit_AvgColor.json")
+
+    simFunction = cbrkit.sim.attribute_value(
+        attributes={
+            "Color": list_similarity(ColorSimilarity(),max),
             "author": cbrkit.sim.strings.levenshtein()
         },
         aggregator=cbrkit.sim.aggregator(pooling="mean", pooling_weights=dict(Color=0.8, author=0.2))
     )
-    runAndDump(casebase, simFunction, "./DMH/cbrkit_Author80Color20.json")
+    runAndDump(casebase, simFunction, "cbrkit_Author80Color20.json")
 
     simFunction = cbrkit.sim.attribute_value(
         attributes={
-            "Color": list_similarity(color_similarity(),max),
+            "Color": list_similarity(ColorSimilarity(),max),
             "author": cbrkit.sim.strings.levenshtein()
         },
         aggregator=cbrkit.sim.aggregator(pooling="mean", pooling_weights=dict(Color=0.5, author=0.5))
     )
-    runAndDump(casebase, simFunction, "./DMH/cbrkit_Author50Color50.json")
+    runAndDump(casebase, simFunction, "cbrkit_Author50Color50.json")
