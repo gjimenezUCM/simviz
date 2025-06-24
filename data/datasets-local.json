@@ -6,16 +6,24 @@
         },
         "similarityDatasets": [
             {
+                "name": "Year, Manufacturer and Price",
+                "uri": "/data/cars/cbrkit_year_manufacturer_price.json"
+            },
+            {
+                "name": "Year, Manufacturer and Condition",
+                "uri": "/data/cars/cbrkit_year_manufacturer_condition.json"
+            },
+            {
+                "name": "Color",
+                "uri": "/data/cars/cbrkit_color.json"
+            },
+            {
                 "name": "Manufacturer (Wu Palmer)",
                 "uri": "/data/cars/cbrkit_wu_palmer.json"
             },
             {
                 "name": "Manufacturer (Path Steps)",
                 "uri": "/data/cars/cbrkit_paths.json"
-            },
-            {
-                "name": "Year and Manufacturer (Levenshtein)",
-                "uri": "/data/cars/cars_year_manufacturer.json"
             }
         ]
     },
@@ -71,7 +79,7 @@
             },
             {
                 "name": "AvgColor",
-                "uri": "/data/DMH/AvgColor.json"
+                "uri": "/data/DMH/cbrkit_AvgColor.json"
             },
             {
                 "name": "Decades",

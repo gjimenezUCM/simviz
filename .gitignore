@@ -13,3 +13,5 @@ data/utils/__pycache__/
 data/cars/cars_similarity.json
 
 .DS_Store
+
+data/cars/cars-100.json

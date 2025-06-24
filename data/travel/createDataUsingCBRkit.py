@@ -1,7 +1,9 @@
 import cbrkit
 import json
+from dataclasses import dataclass
+from cbrkit.typing import SimFunc
 
-
+type Number = float | int
 def runAndDump(casebase, simFunction, dumpFilename):
     retriever = cbrkit.retrieval.build(
             simFunction
@@ -10,43 +12,49 @@ def runAndDump(casebase, simFunction, dumpFilename):
 
     cbrkit.dumpers.file(dumpFilename,result)
 
-def nominal_range_similarity(listNominalValues: list):
+class nominal_range_similarity(SimFunc[Number, float]):
     """Similarity function for a range of nominal values
     It works like the range similarity function but using 
     value indexes
     """
-    min = 0
-    max = len(listNominalValues)-1
-    range = max
-    def wrapped_function(x:str, y:str):
-        if (x in listNominalValues)  and (y in listNominalValues):
-            ix = listNominalValues.index(x)
-            iy = listNominalValues.index(y)
-            normalizeX = (ix - min) / range
-            normalizeY = (iy - min) / range
+
+    def __init__(self, listNominalValues):
+        super().__init__()
+        self.listNominalValues = listNominalValues
+        self.min = 0
+        self.max = len(listNominalValues)-1
+        self.range = self.max
+
+    def __call__(self, x: str, y: str) -> float:
+        if (x in self.listNominalValues)  and (y in self.listNominalValues):
+            ix = self.listNominalValues.index(x)
+            iy = self.listNominalValues.index(y)
+            normalizeX = (ix - self.min) / self.range
+            normalizeY = (iy - self.min) / self.range
             return 1-abs(normalizeX - normalizeY)
         else:
             return 0.0
-    return wrapped_function
 
-def circular_range_similarity(listNominalValues: list):
+class circular_range_similarity(SimFunc[Number, float]):
     """Similarity function for a range of nominal values
     It works like the range similarity function but using 
     value indexes
     """
-    range = len(listNominalValues)
 
-    def wrapped_function(x:str, y:str):
-        if (x in listNominalValues) and (y in listNominalValues):
-            indexV1 = listNominalValues.index(x)
-            indexV2 = listNominalValues.index(y)
-            totheleft = (indexV2-indexV1) % range
-            totheright = (indexV1-indexV2) % range
-            return 1.0 - min(totheleft, totheright) / (range/2)
+    def __init__(self, listNominalValues):
+        super().__init__()
+        self.listNominalValues = listNominalValues
+        self.range = len(listNominalValues)
+
+    def __call__(self, x: str, y: str) -> float:
+        if (x in self.listNominalValues) and (y in self.listNominalValues):
+            indexV1 = self.listNominalValues.index(x)
+            indexV2 = self.listNominalValues.index(y)
+            totheleft = (indexV2-indexV1) % self.range
+            totheright = (indexV1-indexV2) % self.range
+            return 1.0 - min(totheleft, totheright) / (self.range/2)
         else:
             return 0.0
-        
-    return wrapped_function
 
 if __name__ == "__main__":
     import json
