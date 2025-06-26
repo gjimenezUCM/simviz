@@ -40,6 +40,32 @@ nav{
     }
 }
 
+h2.modal-title {
+    color: var(--bs-btn-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: .5rem 0 .8rem 0;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+    background: var(--bs-body-bg);
+    filter: brightness(95%);
+}
+
+input[type='range']::-moz-range-track {
+    background: var(--bs-body-bg);
+    filter: brightness(95%);
+}
+
+input[type='range']::-webkit-slider-thumb {
+    background-color: var(--bs-btn-primary);
+}
+
+input[type='range']::-moz-range-thumb{
+    background-color: var(--bs-btn-primary);
+}
+
+
 section>.panel {
     background-color: var(--bs-body-bg);
     border-radius: var(--bs-border-radius) !important;
