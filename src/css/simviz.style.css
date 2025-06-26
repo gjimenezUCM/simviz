@@ -15,7 +15,9 @@ body {
 }
 
 .btn.btn-primary,
-.btn.btn-primary:active {
+.btn.btn-primary:active
+.btn.btn-function,
+.btn.btn-function {
     background-color: var(--bs-btn-primary);
     border-color: var(--bs-btn-primary);
     box-shadow: none;
@@ -54,32 +56,19 @@ section>.panel {
 
 }
 
-
-/* .card-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-
-    .form-select {
-        width: 70%
-    }
-
-    h2 {
-        font-size: 1.4rem;
-        display: inline;
-        margin-bottom: 0;
-    }
-} */
-/* Layout */
-/* #menu {
-    display: none;
-
-} */
-
 /* similarity-container */
 #info-panel{
     h3 {
-        font-size: 1.2rem;
+        color: var(--bs-btn-primary);
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding-top: 0.5rem;
+        padding-bottom: 0.3rem;
+    }
+    h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0;
     }
     #similarity-descriptor {
         .btn-outline-dark{
@@ -87,8 +76,46 @@ section>.panel {
             margin-right: 3px;
         }
     }
+    p {
+        margin-bottom: 0.8rem;
+    }
     table{
-        font-size: 0.8rem;
+        margin-top: 0.8rem;
+        :not(caption) > * > * {
+            font-size: 0.9rem;
+                color: var(--bs-body-color);
+        }
+
+        thead{
+            border-top: rgb(222, 226, 230) 1px solid;
+        }
+                
+
+        .att-weight {
+            font-size: smaller;
+            font-weight: 500;
+            height: 2rem;
+        }
+        
+        .att-weight[data-weight=""] {
+            display: none;
+        }
+        
+        .att-weight-bar {
+            font-size: 10px;
+            background-color: #dda8f8;
+            overflow: visible;
+            overflow-wrap: normal;
+            height: 2rem;
+        }
+
+        img {
+            height: 1rem;
+        }
+
+        .sim-function-name span {
+            margin-left: 0.5rem;
+        }
     }
 }
 
@@ -189,24 +216,6 @@ img {
     .att-weight{
         align-self: center;
     }
-    
-}
-
-.att-weight {
-    font-size: smaller;
-    font-weight: 500;
-    line-height: 1.3em;
-}
-
-.att-weight[data-weight=""] {
-    display: none;
-}
-
-.att-weight-bar {
-    font-size: 10px;
-    background-color: #dda8f8;
-    overflow: visible;
-    overflow-wrap: normal;
 }
 
 #item-sim-value {
@@ -237,7 +246,7 @@ img {
     font-size: 0.9rem;
     .tabulator-col[tabulator-field=value] {
         .tabulator-col-title span{
-            background-color: white;
+            background-color: var(--bs-body-bg);
         }
     }
 }
@@ -284,9 +293,24 @@ div.vis-network div.vis-navigation div.vis-button.vis-zoomIn {
 
 
 /* Tabulator */
-.tabulator {
-    font-size: 0.9rem;
-}
+
+#case-comparison-table.tabulator {
+        font-size: 0.9rem;
+        background-color: var(--panel-bg);
+        .tabulator-header {
+            background-color: var(--panel-bg);
+            .tabulator-col{
+                background-color: var(--panel-bg);
+            }    
+        }
+        .tabulator-row {
+            background-color: var(--panel-bg);
+            
+        }
+        .tabulator-row-odd {
+            filter: brightness(95%);
+        }
+    }
 .dt-att-name,
 .dt-att-value{
     font-weight: 700;
@@ -295,3 +319,4 @@ div.vis-network div.vis-navigation div.vis-button.vis-zoomIn {
 .dt-att-weight{
     font-size: 11px;
 }
+

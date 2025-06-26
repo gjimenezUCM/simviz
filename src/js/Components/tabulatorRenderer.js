@@ -454,7 +454,7 @@ class RenderUtils {
     //return "&nbsp;";
     if (data && data.name) {
       const template = document.createElement("template");
-      template.innerHTML = `<button class="btn btn-dark btn-sm btn-function"><img src="./images/function-white.png" alt="similarity function icon" width="14"></button>`;
+      template.innerHTML = `<button class="btn btn-sm btn-function"><img src="./images/function-white.png" alt="similarity function icon" width="14"></button>`;
       let button = template.content.firstChild;
       const popover = new Popover(button, {
         title: data.name,

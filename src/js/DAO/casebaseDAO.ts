@@ -34,9 +34,7 @@ export class CasebaseDAO {
     if (this.metadata.taxonomy) {
       let taxAttribute: keyof Object | null = null;
       this.taxonomyDict = {};
-      for (const [key, value] of Object.entries(
-        this.metadata.attributes
-      )) {
+      for (const [key, value] of Object.entries(this.metadata.attributes)) {
         if (value === "Taxonomy") {
           taxAttribute = key as keyof Object;
           break;
@@ -99,6 +97,7 @@ export class CasebaseDAO {
 
   /**
    * Return a textual description of the casebase
+   * @returns A textual description of this case base
    */
   getDescription(): string {
     return this.metadata.description;
@@ -115,9 +114,7 @@ export class CasebaseDAO {
   }
 
   getTaxonomy(): Taxonomy | null {
-    return this.metadata.taxonomy
-      ? new Taxonomy(this.metadata.taxonomy)
-      : null;
+    return this.metadata.taxonomy ? new Taxonomy(this.metadata.taxonomy) : null;
   }
 
   /**

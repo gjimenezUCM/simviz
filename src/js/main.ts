@@ -70,16 +70,9 @@ async function initApp() {
  */
 async function loadDataset(datasetLoader:DatasetLoader, datasetName:string){
     let casebaseDAO:CasebaseDAO|null = await datasetLoader.getCasebaseDAO(datasetName);
-
-    let datasetDescription = document.getElementById("dataset-desc");
-    if (datasetDescription && casebaseDAO){
-        datasetDescription.innerHTML = `<h3>Description</h3>
-        ${nanoMarkdown(casebaseDAO.getDescription())}
-        <h3>Number of instances</h3>
-        <p>${casebaseDAO.getNumCases()}</p>`
-
+    if (casebaseDAO){
         theSimilarityDAO.init(datasetLoader.getSimilarityFunctionsForDataset(datasetName), casebaseDAO.getIds());
-        theController.onDatasetSelected(casebaseDAO);
+        theController.onDatasetSelected(datasetName, casebaseDAO);
     }
 }
 
