@@ -5,6 +5,7 @@ import { SimilarityPanel } from './similarityPanel';
 import SimilarityData from "../DAO/similarityData";
 import { theSimilarityDAO } from '../DAO/similarityDAO';
 import TemplateManager from '../utils/templateManager';
+import { SimilarityConfiguration } from '../types/simvizTypes';
 
 const formAttributeRow = `
         <div class="col-4 text-end"><label for="input-att-{{attName}}" class="form-label">{{attName}}</label></div>
@@ -97,7 +98,12 @@ export class SimConfigurator {
             let numAtts = 0;
             // Create a row for each attribute
             for (let [attName, simFunction] of Object.entries(oldSimDescription.localSim)) {
-                let aRow = document.createElement("div")
+
+                /// FIX: ignoring complex functions
+                if ("globalSim" in  simFunction) {
+                    continue;
+                }
+                  let aRow = document.createElement("div");
                 aRow.classList.add("row", "align-items-center");
                 let attRowElement = TemplateManager.generate(formAttributeRow, { attName: attName, weightValue: simFunction.weight });
                 aRow.innerHTML = attRowElement;
@@ -142,17 +148,26 @@ export class SimConfigurator {
             let newDescription = JSON.parse(JSON.stringify(oldSimDescription));
             let modified = false;
             for (let [attName, simFunction] of Object.entries(oldSimDescription.localSim)) {
-                let weightInput = document.getElementById(`input-att-${attName}`) as HTMLInputElement;
-                if (weightInput){
-                    let newWeight = parseFloat(weightInput.value);
-                    if (newWeight>0){
-                        newSimilarityName+=attName+(newWeight*100).toFixed(0);
-                        newDescription.localSim[attName].weight = newWeight;
-                        modified = modified || (newWeight !== oldSimDescription.localSim[attName].weight);
-                    } else {
-                        delete newDescription.localSim[attName];
-                    }
+              let weightInput = document.getElementById(
+                `input-att-${attName}`
+              ) as HTMLInputElement;
+
+              /// FIX: ignoring complex functions
+              if (
+                weightInput &&
+                "weight" in oldSimDescription.localSim[attName]
+              ) {
+                let newWeight = parseFloat(weightInput.value);
+                if (newWeight > 0) {
+                  newSimilarityName += attName + (newWeight * 100).toFixed(0);
+                  newDescription.localSim[attName].weight = newWeight;
+                  modified =
+                    modified ||
+                    newWeight !== oldSimDescription.localSim[attName].weight;
+                } else {
+                  delete newDescription.localSim[attName];
                 }
+              }
             }
             // Only recalculate if any weight has been modified 
             if (newSimilarityName !== "" && modified){

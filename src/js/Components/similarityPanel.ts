@@ -195,7 +195,13 @@ export class SimilarityPanel {
         for (let [attName, localDesc] of Object.entries(
           simDescription.localSim
         )) {
-          let aRow = document.createElement("tr");
+          /// FIX: ignoring complex functions
+          if (
+            "weight" in localDesc &&
+            "weight" in localDesc &&
+            "name" in localDesc
+          ){
+            let aRow = document.createElement("tr");
           aRow.innerHTML = `
                         <td style="width: 25%" class="dt-att-name">${attName}</td>
                         <td style="width: 10%">
@@ -230,6 +236,7 @@ export class SimilarityPanel {
               });
             }
           }
+        }
         }
       }
     }

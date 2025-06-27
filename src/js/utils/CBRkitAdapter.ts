@@ -36,22 +36,75 @@ export class CBRkitAdapter {
       "metadata" in config["metadata"]["similarity_func"]
     ) {
       let metadata = config["metadata"]["similarity_func"]["metadata"];
-      let weights: any = {};
-      if ("aggregator" in metadata && "metadata" in metadata["aggregator"]) {
-        let globalSimMetadata = metadata["aggregator"]["metadata"];
+      adaptedConfig = this.extractSimilarityConfig(metadata);
+      // let weights: any = {};
+      // if ("aggregator" in metadata && "metadata" in metadata["aggregator"]) {
+      //   let globalSimMetadata = metadata["aggregator"]["metadata"];
 
-        if ("pooling" in globalSimMetadata) {
-          adaptedConfig.globalSim.name = globalSimMetadata["pooling"];
-        }
-        if ("pooling_weights" in globalSimMetadata) {
-          weights = globalSimMetadata["pooling_weights"];
-        }
+      //   if ("pooling" in globalSimMetadata) {
+      //     adaptedConfig.globalSim.name = globalSimMetadata["pooling"];
+      //   }
+      //   if ("pooling_weights" in globalSimMetadata) {
+      //     weights = globalSimMetadata["pooling_weights"];
+      //   }
+      // }
+
+      // if ("attributes" in metadata) {
+      //   for (const attName of Object.keys(metadata["attributes"])) {
+      //     let currentLocalSim = metadata["attributes"][attName];
+
+      //     let localSimConfig: LocalSimilarityDescription = {
+      //       name: "",
+      //       weight: 1.0,
+      //       description: "",
+      //     };
+
+      //     localSimConfig["name"] = currentLocalSim["name"];
+      //     localSimConfig["description"] = currentLocalSim["doc"];
+      //     if (weights && attName in weights) {
+      //       localSimConfig["weight"] = weights[attName];
+      //     }
+      //     adaptedConfig.localSim[attName] = localSimConfig;
+      //   }
+      // }
+      return adaptedConfig;
+    } else {
+      return config;
+    }
+  }
+
+  static extractSimilarityConfig(theMetadata:any):any {
+    let adaptedConfig: any = {
+      globalSim: {
+        name: "",
+      },
+      localSim: {},
+    };
+    let weights: any = {};
+    if (
+      "aggregator" in theMetadata &&
+      "metadata" in theMetadata["aggregator"]
+    ) {
+      let globalSimMetadata = theMetadata["aggregator"]["metadata"];
+
+      if ("pooling" in globalSimMetadata) {
+        adaptedConfig.globalSim.name = globalSimMetadata["pooling"];
       }
+      if ("pooling_weights" in globalSimMetadata) {
+        weights = globalSimMetadata["pooling_weights"];
+      }
+    }
 
-      if ("attributes" in metadata) {
-        for (const attName of Object.keys(metadata["attributes"])) {
-          let currentLocalSim = metadata["attributes"][attName];
-
+    if ("attributes" in theMetadata) {
+      for (const attName of Object.keys(theMetadata["attributes"])) {
+        let currentLocalSim = theMetadata["attributes"][attName];
+        if (
+          "metadata" in currentLocalSim &&
+          "aggregator" in currentLocalSim["metadata"]
+        ) {
+          let complexSimConfig = this.extractSimilarityConfig( currentLocalSim["metadata"]);
+          adaptedConfig.localSim[attName] = complexSimConfig;
+        } else{
           let localSimConfig: LocalSimilarityDescription = {
             name: "",
             weight: 1.0,
@@ -66,10 +119,9 @@ export class CBRkitAdapter {
           adaptedConfig.localSim[attName] = localSimConfig;
         }
       }
-      return adaptedConfig;
-    } else {
-      return config;
     }
+    return adaptedConfig;
+    
   }
 
   static adaptSimilarityData(simData: any): {

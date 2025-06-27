@@ -215,7 +215,7 @@ def colorSimilarity(casebase):
 if __name__ == "__main__":
     print (os.path.dirname(__file__))
     # cars-1k.json contains the cases and the metadata about the casebase
-    cbFileName = os.path.join(os.path.dirname(__file__),'cars-1k.json' )
+    cbFileName = os.path.join(os.path.dirname(__file__),'cars-10.json' )
     with open(cbFileName) as f:
         dataFile = json.load(f)
     cases = dataFile["cases"]
@@ -238,7 +238,7 @@ if __name__ == "__main__":
     #paths(casebase)
 
     # Color
-    colorSimilarity(casebase)
+    # colorSimilarity(casebase)
 
     # simFunction = cbrkit.sim.attribute_value(
     #     attributes={
@@ -247,4 +247,25 @@ if __name__ == "__main__":
     #     aggregator=cbrkit.sim.aggregator(pooling="mean")
     # )
     # runAndDump(casebase, simFunction, "./cars/cbrkit_color.json")
+    retriever = cbrkit.retrieval.build(
+        cbrkit.sim.attribute_value(
+            attributes={
+                "year": cbrkit.sim.numbers.linear_interval(1950,2021),
+                "model": cbrkit.sim.attribute_value(
+                    attributes={
+                        "make": cbrkit.sim.strings.levenshtein(),
+                        "manufacturer": cbrkit.sim.taxonomy.build(
+                            os.path.join(os.path.dirname(__file__),"cars-taxonomy.yaml"),
+                            cbrkit.sim.taxonomy.wu_palmer(),
+                        ),
+                    }
+                ),
+            },
+            aggregator=cbrkit.sim.aggregator(pooling="mean"),
+        ),
+    )
+    result = cbrkit.retrieval.apply_queries(casebase, casebase, retriever)
+
+    cbrkit.dumpers.file(os.path.join(os.path.dirname(__file__),"model-object.json"),result)
+
     
