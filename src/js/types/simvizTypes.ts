@@ -80,7 +80,7 @@ export type SimilarityConfiguration =  {
      * Each attribute represents a local similarity function 
      */
     localSim: {
-        [key:string]: LocalSimilarityDescription
+        [key:string]: LocalSimilarityDescription | SimilarityConfiguration
     }
 }
 

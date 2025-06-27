@@ -150,6 +150,8 @@ export class VanillaRenderer {
         for (let attName of listAttsInSim) {
           // Ignore attribute id because it appear in the table header
           if (attName === attId) continue;
+          /// FIX: ignoring complex functions
+          if ("weight" in simDescription.localSim[attName] ){
           this.simAtts[attName] = allAtts[attName];
           let weight = simDescription
             ? simDescription.localSim[attName].weight
@@ -158,6 +160,7 @@ export class VanillaRenderer {
             attName: attName,
             weight: weight,
           });
+        }
         }
       }
       // Now add the attributes that are not part of the similarity function

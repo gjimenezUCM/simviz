@@ -42,24 +42,10 @@ export class TabulatorRenderer {
       for (let attName of listAttsInSim) {
         // Ignore attribute id because it appear in the table header
         if (attName === attId) continue;
-        this.simAtts[attName] = {
-          attribute: {
-            name: attName,
-            type: allAtts[attName],
-            similarityConfiguration: JSON.parse(
-              JSON.stringify(simDescription.localSim[attName])
-            ),
-          },
-          leftCase: null,
-          rightCase: null,
-          value: null,
-        };
-        this.simAtts[attName]["attribute"]["similarityConfiguration"][
-          "weight"
-        ] =
-          this.simAtts[attName]["attribute"]["similarityConfiguration"][
-            "weight"
-          ] * 100;
+        
+        let rowData = this.createRowData(attName,allAtts,simDescription);
+        this.simAtts[attName] = rowData;
+        
       }
     }
 
@@ -87,6 +73,51 @@ export class TabulatorRenderer {
     this.createTable(this.data);
   }
 
+  createRowData(attName, allAtts, simDescription) {
+    if ("globalSim" in simDescription.localSim[attName]) {
+      let rowData = {
+        attribute: {
+          name: attName,
+          type: "object",
+          similarityConfiguration: JSON.parse(
+            JSON.stringify(simDescription.localSim[attName])
+          ),
+        },
+        leftCase: null,
+        rightCase: null,
+        value: null,
+        _children: []
+      };    
+      let listAttsInSim = Object.keys(simDescription.localSim[attName]["localSim"]);  
+      for (let localAttName of listAttsInSim) {
+        let subRowData = this.createRowData(
+          localAttName,
+          allAtts[attName],
+          simDescription.localSim[attName]
+        );
+        rowData._children.push(subRowData)
+      }
+      return rowData;
+    } else {
+      let rowData= {
+        attribute: {
+          name: attName,
+          type: allAtts[attName],
+          similarityConfiguration: JSON.parse(
+            JSON.stringify(simDescription.localSim[attName])
+          ),
+        },
+        leftCase: null,
+        rightCase: null,
+        value: null,
+      };
+      rowData["attribute"]["similarityConfiguration"]["weight"] =
+        rowData["attribute"]["similarityConfiguration"]["weight"] * 100;
+      
+      return rowData;
+    }
+  }
+
   /**
    * Modify the case  on left column of the table
    * @param id Case unique id
@@ -95,10 +126,34 @@ export class TabulatorRenderer {
   updateLeftColCase(id, item) {
     if (item) {
       for (const [key, value] of Object.entries(this.simAtts)) {
-        value["leftCase"] = item[key];
+        if (typeof item[key] == "object") {
+          let subAtts = Object.keys(item[key])
+          let children = value._children;
+          for (let subAtt of subAtts) {
+            for (let child of children) {
+              if (child["attribute"]["name"] === subAtt) {
+                child["leftCase"] = item[key][subAtt];
+              }
+            }
+          }
+        } else {
+          value["leftCase"] = item[key];
+        }
       }
       for (const [key, value] of Object.entries(this.remainingAtts)) {
-        value["leftCase"] = item[key];
+        if (typeof item[key] == "object") {
+          let subAtts = Object.keys(item[key]);
+          let children = value._children;
+          for (let subAtt of subAtts) {
+            for (let child of children) {
+              if (child["attribute"]["name"] === subAtt) {
+                child["leftCase"] = item[key][subAtt];
+              }
+            }
+          }
+        } else {
+          value["leftCase"] = item[key];
+        }
       }
     } else {
       this.resetValues(true);
@@ -116,10 +171,34 @@ export class TabulatorRenderer {
   updateRightColCase(id, item) {
     if (item) {
       for (const [key, value] of Object.entries(this.simAtts)) {
-        value["rightCase"] = item[key];
+        if (typeof item[key] == "object") {
+          let subAtts = Object.keys(item[key]);
+          let children = value._children;
+          for (let subAtt of subAtts) {
+            for (let child of children) {
+              if (child["attribute"]["name"] === subAtt) {
+                child["rightCase"] = item[key][subAtt];
+              }
+            }
+          }
+        } else {
+          value["rightCase"] = item[key];
+        }
       }
       for (const [key, value] of Object.entries(this.remainingAtts)) {
-        value["rightCase"] = item[key];
+        if (typeof item[key] == "object") {
+          let subAtts = Object.keys(item[key]);
+          let children = value._children;
+          for (let subAtt of subAtts) {
+            for (let child of children) {
+              if (child["attribute"]["name"] === subAtt) {
+                child["rightCase"] = item[key][subAtt];
+              }
+            }
+          }
+        } else {
+          value["rightCase"] = item[key];
+        }
       }
     } else {
       this.resetValues(false);
@@ -179,11 +258,32 @@ export class TabulatorRenderer {
       for (let [localAtt, localValue] of Object.entries(
         newSimValue.attributes
       )) {
-        this.simAtts[localAtt]["value"] = localValue;
+        if (typeof localValue === "number") {
+          this.simAtts[localAtt]["value"] = localValue;
+        }
+        else {
+          if ("value" in localValue) {
+            this.simAtts[localAtt]["value"] = localValue["value"];
+            let subAtts = Object.keys(localValue["attributes"]);
+            let children = this.simAtts[localAtt]._children;
+            for (let subAtt of subAtts) {
+              for (let child of children) {
+                if (child["attribute"]["name"] === subAtt) {
+                  child["value"] = localValue["attributes"][subAtt];
+                }
+              }              
+            }
+          }
+          else {
+            this.simAtts[localAtt]["value"] = "";
+          }
+        }
       }
     } else {
       this.updateSimilarityHeader(null);
-      Object.keys(this.simAtts).forEach((att) =>this.simAtts[att]["value"] = null);
+      Object.keys(this.simAtts).forEach(
+        (att) => (this.simAtts[att]["value"] = null)
+      );
     }
     this.table.setData(this.data);
   }
@@ -257,7 +357,6 @@ export class TabulatorRenderer {
 
     let that = this;
     this.table.on("dataLoaded", function (data) {
-
       // 1. Update headers
       let el = document.querySelector(
         ".tabulator-col[role='columnheader'].dt-left-case .tabulator-col-title"
@@ -267,7 +366,7 @@ export class TabulatorRenderer {
           el.innerHTML = `<button class="btn btn-sm btn-primary" data-item-id="${that.leftCaseId}">
           <i class="bi-pin"></i>
           </button>
-          <span class="item-id-value">${that.leftCaseId}</span>`
+          <span class="item-id-value">${that.leftCaseId}</span>`;
         } else {
           el.innerHTML = "Case Id";
         }
@@ -320,15 +419,15 @@ export class TabulatorRenderer {
         "#case-comparison-table button[data-item-id]"
       );
       // Suscribe to click events on pin buttons
-      for (let btn of pinButtons){
-          btn.addEventListener("click", (event) => {
-              if (event.currentTarget){
-                  let itemId = (event.currentTarget).getAttribute("data-item-id");
-                  if (itemId) {
-                      theController.filterByCaseId(itemId);
-                  }
-              }
-          })
+      for (let btn of pinButtons) {
+        btn.addEventListener("click", (event) => {
+          if (event.currentTarget) {
+            let itemId = event.currentTarget.getAttribute("data-item-id");
+            if (itemId) {
+              theController.filterByCaseId(itemId);
+            }
+          }
+        });
       }
     });
   }
@@ -336,6 +435,9 @@ export class TabulatorRenderer {
   formatByType(cell, formatterParams, onRendered) {
     let data = cell.getData();
     if ("type" in data.attribute) {
+      if (typeof data.attribute["type"] === "object") {
+        return "&nbsp;";
+      }
       switch (data.attribute["type"]) {
         case "number":
           return RenderUtils.renderNumber(cell, { renderNull: true });
@@ -352,7 +454,7 @@ export class TabulatorRenderer {
         case "Taxonomy":
           return RenderUtils.renderTaxonomyLabel(cell, formatterParams);
           break;
-        case "nested":
+        case "object":
           return "&nbsp;";
         default:
           return RenderUtils.renderDefault(cell);

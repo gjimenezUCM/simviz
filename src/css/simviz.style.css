@@ -336,6 +336,21 @@ div.vis-network div.vis-navigation div.vis-button.vis-zoomIn {
         .tabulator-row-odd {
             filter: brightness(95%);
         }
+        .tabulator-data-tree-control {
+            border-color: var(--bs-btn-primary);
+        }
+        .tabulator-data-tree-control-expand {
+            background-color: var(--bs-btn-primary);
+        }
+        .tabulator-data-tree-control-expand:after {
+            background-color: var(--bs-btn-primary);
+        }
+        .tabulator-data-tree-control-collapse {
+            background-color: var(--bs-btn-primary);
+        }
+        .tabulator-data-tree-control-collapse:after {
+            background-color: var(--bs-btn-primary);
+        }
     }
 .dt-att-name,
 .dt-att-value{
