@@ -174,73 +174,78 @@ export class SimilarityPanel {
             <h3>${similarityFunctionName}</h3>
             <h4>Global function</h4>
             <p id="global-sim-desc">${simDescription.globalSim.name}</p>
-            <h4>Local functions</h4>
-            <div class="table-responsive">
-            <table id="local-sim-desc"class="table table-sm table-striped">
-                <thead>
-                    <tr>
-                        <th>Attribute</th>
-                        <th>Weight</th>
-                        <th>Function</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
             </div>`;
-
-      let tableParent = parent.querySelector("tbody");
-      if (tableParent) {
-        // Populate the table with local similarity functions
-        for (let [attName, localDesc] of Object.entries(
-          simDescription.localSim
-        )) {
-          /// FIX: ignoring complex functions
-          if (
-            "weight" in localDesc &&
-            "weight" in localDesc &&
-            "name" in localDesc
-          ){
-            let aRow = document.createElement("tr");
-          aRow.innerHTML = `
-                        <td style="width: 25%" class="dt-att-name">${attName}</td>
-                        <td style="width: 10%">
-                            <div class="att-weight align-self-center" data-weight="${
-                              localDesc.weight
-                            }"></div>
-                        </td>
-                        <td class="sim-function-name">${
-                          localDesc.description
-                            ? '<button class="btn btn-sm btn-function"><img src="./images/function-white.png" alt="similarity function icon"></button>'
-                            : ""
-                        }<span>${localDesc.name}</span></td>`;
-          tableParent.appendChild(aRow);
-          if (localDesc.description) {
-            let helpIcon = aRow.querySelector("button");
-            if (helpIcon) {
-              const popover = new Popover(helpIcon, {
-                content: localDesc.description
-                  ? nanoMarkdown(localDesc.description)
-                  : "",
-                placement: "bottom",
-                html: true,
-                trigger: "focus",
-              });
-              helpIcon.addEventListener("inserted.bs.popover", () => {
-                let links = document.querySelectorAll(".popover-body a");
-                if (links) {
-                  for (let aLink of links) {
-                    aLink.setAttribute("target", "_blank");
-                  }
-                }
-              });
-            }
-          }
-        }
-        }
-      }
     }
-    this.populateWeights();
+    //   parent.innerHTML = `
+    //         <h3>${similarityFunctionName}</h3>
+    //         <h4>Global function</h4>
+    //         <p id="global-sim-desc">${simDescription.globalSim.name}</p>
+    //         <h4>Local functions</h4>
+    //         <div class="table-responsive">
+    //         <table id="local-sim-desc"class="table table-sm table-striped">
+    //             <thead>
+    //                 <tr>
+    //                     <th>Attribute</th>
+    //                     <th>Weight</th>
+    //                     <th>Function</th>
+    //                 </tr>
+    //             </thead>
+    //             <tbody>
+    //             </tbody>
+    //         </table>
+    //         </div>`;
+    //   let tableParent = parent.querySelector("tbody");
+    //   if (tableParent) {
+    //     // Populate the table with local similarity functions
+    //     for (let [attName, localDesc] of Object.entries(
+    //       simDescription.localSim
+    //     )) {
+    //       /// FIX: ignoring complex functions
+    //       if (
+    //         "weight" in localDesc &&
+    //         "weight" in localDesc &&
+    //         "name" in localDesc
+    //       ){
+    //         let aRow = document.createElement("tr");
+    //       aRow.innerHTML = `
+    //                     <td style="width: 25%" class="dt-att-name">${attName}</td>
+    //                     <td style="width: 10%">
+    //                         <div class="att-weight align-self-center" data-weight="${
+    //                           localDesc.weight
+    //                         }"></div>
+    //                     </td>
+    //                     <td class="sim-function-name">${
+    //                       localDesc.description
+    //                         ? '<button class="btn btn-sm btn-function"><img src="./images/function-white.png" alt="similarity function icon"></button>'
+    //                         : ""
+    //                     }<span>${localDesc.name}</span></td>`;
+    //       tableParent.appendChild(aRow);
+    //       if (localDesc.description) {
+    //         let helpIcon = aRow.querySelector("button");
+    //         if (helpIcon) {
+    //           const popover = new Popover(helpIcon, {
+    //             content: localDesc.description
+    //               ? nanoMarkdown(localDesc.description)
+    //               : "",
+    //             placement: "bottom",
+    //             html: true,
+    //             trigger: "focus",
+    //           });
+    //           helpIcon.addEventListener("inserted.bs.popover", () => {
+    //             let links = document.querySelectorAll(".popover-body a");
+    //             if (links) {
+    //               for (let aLink of links) {
+    //                 aLink.setAttribute("target", "_blank");
+    //               }
+    //             }
+    //           });
+    //         }
+    //       }
+    //     }
+    //     }
+    //   }
+    // }
+    // this.populateWeights();
   }
 
   /**
