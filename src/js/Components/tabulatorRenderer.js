@@ -126,8 +126,12 @@ export class TabulatorRenderer {
   updateLeftColCase(id, item) {
     if (item) {
       for (const [key, value] of Object.entries(this.simAtts)) {
-        if (typeof item[key] == "object") {
-          let subAtts = Object.keys(item[key])
+        if (
+          item[key] &&
+          typeof item[key] === "object" &&
+          !Array.isArray(item[key])
+        ) {
+          let subAtts = Object.keys(item[key]);
           let children = value._children;
           for (let subAtt of subAtts) {
             for (let child of children) {
@@ -141,7 +145,11 @@ export class TabulatorRenderer {
         }
       }
       for (const [key, value] of Object.entries(this.remainingAtts)) {
-        if (typeof item[key] == "object") {
+        if (
+          item[key] &&
+          typeof item[key] === "object" &&
+          !Array.isArray(item[key])
+        ) {
           let subAtts = Object.keys(item[key]);
           let children = value._children;
           for (let subAtt of subAtts) {
@@ -171,7 +179,7 @@ export class TabulatorRenderer {
   updateRightColCase(id, item) {
     if (item) {
       for (const [key, value] of Object.entries(this.simAtts)) {
-        if (typeof item[key] == "object") {
+        if (item[key] && typeof item[key] === "object" && !Array.isArray(item[key])) {
           let subAtts = Object.keys(item[key]);
           let children = value._children;
           for (let subAtt of subAtts) {
@@ -186,7 +194,7 @@ export class TabulatorRenderer {
         }
       }
       for (const [key, value] of Object.entries(this.remainingAtts)) {
-        if (typeof item[key] == "object") {
+        if (item[key] && typeof item[key] === "object" && !Array.isArray(item[key])) {
           let subAtts = Object.keys(item[key]);
           let children = value._children;
           for (let subAtt of subAtts) {
@@ -335,6 +343,7 @@ export class TabulatorRenderer {
           formatter: this.formatByType,
           cssClass: "dt-left-case",
           headerHozAlign: "right",
+          variableHeight: true,
         },
         {
           title: "Similarity",
@@ -351,6 +360,7 @@ export class TabulatorRenderer {
           field: "rightCase",
           formatter: this.formatByType,
           cssClass: "dt-right-case",
+          variableHeight: true
         },
       ],
     });
@@ -497,7 +507,7 @@ class RenderUtils {
     let template = document.createElement("template");
     if (data && data[cell.getField()]) {
       let value = data[cell.getField()];
-      template.innerHTML = `<img class="img-fluid" src="${value}"/>`;
+      template.innerHTML = `<img class="img-fluid" height="15vh" src="${value}"/>`;
     } else {
       template.innerHTML = `<span class="badge text-bg-danger">EMPTY</span>`;
     }
@@ -520,8 +530,6 @@ class RenderUtils {
           (value) =>
             `<div class="box" aria-labelledby="color-label" title=rgb(${value}) style="background-color: rgb(${value});"></div>`
         );
-        console.log(colorBoxes.join(""));
-        //template.innerHTML = `<div>colorBoxes.join("");
         template.innerHTML = `<div>${colorBoxes.join("")}</div>`;
       }
     } else {
