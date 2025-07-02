@@ -1,26 +1,42 @@
 [
     {
+      "dataset": {
+        "name": "Cars (object)",
+        "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cars-10.json"
+      },
+      "similarityDatasets": [
+        {
+          "name": "Test",
+          "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/model-object.json"
+        }
+      ]
+    },
+    {
         "dataset": {
             "name": "Cars",
-            "uri": "./data/cars/cars-1k.json"
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cars-1k.json"
         },
         "similarityDatasets": [
-            {
-                "name": "Year, manufacturer, color, condition",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cars_similarity.json"
-            },
-            {
-                "name": "Manufacturer (Wu Palmer)",
-                "uri": "/data/cars/cars_tax_wupalmer_similarity.json"
-            },
-            {
-                "name": "Manufacturer (Path Steps)",
-                "uri": "/data/cars/cars_tax_pathsteps_similarity.json"
-            },
-            {
-                "name": "Manufacturer (Node level)",
-                "uri": "/data/cars/cars_tax_nodelevel_similarity.json"
-            }
+          {
+            "name": "Year, Manufacturer and Price",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cbrkit_year_manufacturer_price.json"
+          },
+          {
+            "name": "Year, Manufacturer and Condition",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cbrkit_year_manufacturer_condition.json"
+          },
+          {
+            "name": "Color",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cbrkit_color.json"
+          },
+          {
+            "name": "Manufacturer (Wu Palmer)",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cbrkit_wu_palmer.json"
+          },
+          {
+            "name": "Manufacturer (Path Steps)",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cbrkit_paths.json"
+          }
         ]
     },
     {
@@ -29,29 +45,29 @@
             "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/blood-alcohol-domain.json"
         },
         "similarityDatasets": [
-            {
-                "name": "Gender, Amount Consumed, Meal, Duration",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/GenderAmountMealDuration.json"
-            },
-            {
-                "name": "Gender, Amount Consumed, Meal, FrameSize",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/GenderAmountMealFrameSize.json"
-            },
-            {
-                "name": "Amount Consumed, Meal, FrameSize",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/AmountMealFrameSize.json"
-            }
+          {
+            "name": "Gender, Amount Consumed, Meal, Duration",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/cbrkit_GenderAmountMealDuration.json"
+          },
+          {
+            "name": "Gender, Amount Consumed, Meal, FrameSize",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/cbrkit_GenderAmountMealFrameSize.json"
+          },
+          {
+            "name": "Amount Consumed, Meal, Duration",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/blood-alcohol/cbrkit_AmountMealFrameSize.json"
+          }
         ]
     },
     {
         "dataset": {
             "name": "BCWD",
-            "uri": "/data/BCWD/bcwd.json" 
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/BCWD/bcwd.json" 
         },
         "similarityDatasets": [
             {
                 "name": "All attributes",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/BCWD/AllAttributes.json"
+                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/BCWD/cbrkit_allattributes.json"
             }
         ]
     },
@@ -61,26 +77,26 @@
             "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/itemsDMH.json"
         },
         "similarityDatasets": [
-            {
-                "name": "Author50Color50",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/Author50Color50.json"
-            },
-            {
-                "name": "Author80Color20",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/Author80Color20.json"
-            },
-            {
-                "name": "MaxColor",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/MaxColor.json"
-            },
-            {
-                "name": "AvgColor",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/AvgColor.json"
-            },
-            {
-                "name": "Decades",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/Decades.json"
-            }
+          {
+            "name": "Author50Color50",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/cbrkit_Author50Color50.json"
+          },
+          {
+            "name": "Author80Color20",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/cbrkit_Author80Color20.json"
+          },
+          {
+            "name": "MaxColor",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/cbrkit_MaxColor.json"
+          },
+          {
+            "name": "AvgColor",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/cbrkit_AvgColor.json"
+          },
+          {
+            "name": "Decades",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/DMH/cbrkit_Decades.json"
+          }
         ]
     },
     {
@@ -89,18 +105,18 @@
             "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/travel.json"
         },
         "similarityDatasets": [
-            {
-                "name": "All attributes",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/allAttributes.json"
-            },
-            {
-                "name": "Months (1)",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/month1.json"
-            },
-            {
-                "name": "Months (2)",
-                "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/month2.json"
-            }
+          {
+            "name": "All attributes",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/cbrkit_allAttributes.json"
+          },
+          {
+            "name": "Months (1)",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/cbrkit_month1.json"
+          },
+          {
+            "name": "Months (2)",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/travel/cbrkit_month2.json"
+          }
         ]
     }
 ]
