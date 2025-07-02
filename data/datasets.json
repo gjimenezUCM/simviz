@@ -2,7 +2,7 @@
     {
         "dataset": {
             "name": "Cars",
-            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cars-1k.json"
+            "uri": "./data/cars/cars-1k.json"
         },
         "similarityDatasets": [
             {
@@ -46,7 +46,7 @@
     {
         "dataset": {
             "name": "BCWD",
-            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/BCWD/bcwd.json"
+            "uri": "/data/BCWD/bcwd.json" 
         },
         "similarityDatasets": [
             {

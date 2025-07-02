@@ -1,0 +1,122 @@
+[
+  {
+    "dataset": {
+      "name": "Cars (object)",
+      "uri": "./data/cars/cars-10.json"
+    },
+    "similarityDatasets": [
+      {
+        "name": "Test",
+        "uri": "/data/cars/model-object.json"
+      }
+    ]
+  },
+  {
+    "dataset": {
+      "name": "Cars",
+      "uri": "./data/cars/cars-1k.json"
+    },
+    "similarityDatasets": [
+      {
+        "name": "Year, Manufacturer and Price",
+        "uri": "/data/cars/cbrkit_year_manufacturer_price.json"
+      },
+      {
+        "name": "Year, Manufacturer and Condition",
+        "uri": "/data/cars/cbrkit_year_manufacturer_condition.json"
+      },
+      {
+        "name": "Color",
+        "uri": "/data/cars/cbrkit_color.json"
+      },
+      {
+        "name": "Manufacturer (Wu Palmer)",
+        "uri": "/data/cars/cbrkit_wu_palmer.json"
+      },
+      {
+        "name": "Manufacturer (Path Steps)",
+        "uri": "/data/cars/cbrkit_paths.json"
+      }
+    ]
+  },
+  {
+    "dataset": {
+      "name": "Blood alcohol domain",
+      "uri": "/data/blood-alcohol/blood-alcohol-domain.json"
+    },
+    "similarityDatasets": [
+      {
+        "name": "Gender, Amount Consumed, Meal, Duration",
+        "uri": "/data/blood-alcohol/cbrkit_GenderAmountMealDuration.json"
+      },
+      {
+        "name": "Gender, Amount Consumed, Meal, FrameSize",
+        "uri": "/data/blood-alcohol/cbrkit_GenderAmountMealFrameSize.json"
+      },
+      {
+        "name": "Amount Consumed, Meal, Duration",
+        "uri": "/data/blood-alcohol/cbrkit_AmountMealFrameSize.json"
+      }
+    ]
+  },
+  {
+    "dataset": {
+      "name": "BCWD",
+      "uri": "/data/BCWD/bcwd.json"
+    },
+    "similarityDatasets": [
+      {
+        "name": "All attributes",
+        "uri": "/data/BCWD/cbrkit_allattributes.json"
+      }
+    ]
+  },
+  {
+    "dataset": {
+      "name": "DMH artworks",
+      "uri": "/data/DMH/items.json"
+    },
+    "similarityDatasets": [
+      {
+        "name": "Author50Color50",
+        "uri": "/data/DMH/cbrkit_Author50Color50.json"
+      },
+      {
+        "name": "Author80Color20",
+        "uri": "/data/DMH/cbrkit_Author80Color20.json"
+      },
+      {
+        "name": "MaxColor",
+        "uri": "/data/DMH/cbrkit_MaxColor.json"
+      },
+      {
+        "name": "AvgColor",
+        "uri": "/data/DMH/cbrkit_AvgColor.json"
+      },
+      {
+        "name": "Decades",
+        "uri": "/data/DMH/cbrkit_Decades.json"
+      }
+    ]
+  },
+  {
+    "dataset": {
+      "name": "Travel Agent",
+      "uri": "/data/travel/travel.json"
+    },
+    "similarityDatasets": [
+      {
+        "name": "All attributes",
+        "uri": "/data/travel/cbrkit_allAttributes.json"
+      },
+      {
+        "name": "Months (1)",
+        "uri": "/data/travel/cbrkit_month1.json"
+      },
+      {
+        "name": "Months (2)",
+        "uri": "/data/travel/cbrkit_month2.json"
+      }
+    ]
+  }
+]
