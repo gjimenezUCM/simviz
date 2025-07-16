@@ -90,10 +90,7 @@ export class TaxonomyViewer {
       edges: aTaxonomy.getEdges(),
     };
     if (this.taxonomyContainerNode) {
-      let data: VisTaxonomyData = JSON.parse(
-        JSON.stringify(this.taxonomyVisData)
-      );
-      this.resetTaxonomyGraph(data);
+      this.resetTaxonomyGraph();
     }
   }
 
@@ -116,11 +113,11 @@ export class TaxonomyViewer {
     }
   }
 
-  resetTaxonomyGraph(data: any) {
+  resetTaxonomyGraph(data: vis.Data | null = null) {
     if (this.taxonomyContainerNode) {
       this.taxonomyGraph = new vis.Network(
         this.taxonomyContainerNode,
-        data,
+        data ? data : JSON.parse(JSON.stringify(this.taxonomyVisData)),
         DEFAULT_VIS_OPTIONS
       );
       this.taxonomyGraph.on("click", (eventData) => {
@@ -160,7 +157,7 @@ export class TaxonomyViewer {
     leftCaseId: string,
     rightCaseLabel: string,
     rightCaseId: string,
-    similarityValue: number = 0.0
+    similarityValue: number | null
   ) {
     if (this.detailContainerNode) {
       let data = this.createSubtree(leftCaseLabel, rightCaseLabel);
@@ -173,7 +170,9 @@ export class TaxonomyViewer {
           data.nodes[lcaIndex]["group"] = "lca";
           data.nodes[lcaIndex]["label"] = `${
             data.nodes[lcaIndex]["label"]
-          }\n <b>${String(similarityValue.toFixed(3))}</b>`;
+          }\n <b>${String(
+            similarityValue === null ? "-" : similarityValue.toFixed(3)
+          )}</b>`;
           data.nodes[0]["group"] = "leftItem";
           data.nodes[0]["title"] = leftCaseId;
           data.nodes[1]["group"] = "rightItem";

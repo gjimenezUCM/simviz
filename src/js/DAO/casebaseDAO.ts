@@ -1,5 +1,10 @@
-import { CasebaseDescription, CasebaseMetadata, StringStringObject } from "../types/simvizTypes";
+import {
+  CasebaseDescription,
+  CasebaseMetadata,
+  StringStringObject,
+} from "../types/simvizTypes";
 import { Taxonomy } from "../types/taxonomy";
+import { findTaxonomyAttribute, findValueInCase } from "../utils/caseUtils";
 /**
  * Data Access Object that stores a casebase. It contains not only the cases
  * but also the metadata about the case description and the attribute employed
@@ -32,18 +37,19 @@ export class CasebaseDAO {
     this.cases = jsonContent.cases;
     this.ids = this.generateIds(this.cases);
     if (this.metadata.taxonomy) {
-      let taxAttribute: keyof Object | null = null;
+      let taxAttribute: string | null = null;
       this.taxonomyDict = {};
-      for (const [key, value] of Object.entries(this.metadata.attributes)) {
-        if (value === "Taxonomy") {
-          taxAttribute = key as keyof Object;
-          break;
-        }
-      }
+      taxAttribute = findTaxonomyAttribute(this.metadata.attributes);
+      // for (const [key, value] of Object.entries(this.metadata.attributes)) {
+      //   if (value === "Taxonomy") {
+      //     taxAttribute = key as keyof Object;
+      //     break;
+      //   }
+      // }
       if (taxAttribute) {
         let attId = this.metadata.id;
         this.cases.forEach((aCase) => {
-          let taxValue: string = String(aCase[taxAttribute]);
+          let taxValue: string = findValueInCase(aCase, taxAttribute);
           let caseId = String(aCase[attId as keyof Object]) || "";
           if (taxValue in this.taxonomyDict) {
             this.taxonomyDict[taxValue].push(caseId);
@@ -132,4 +138,3 @@ export class CasebaseDAO {
     return idList;
   }
 }
-

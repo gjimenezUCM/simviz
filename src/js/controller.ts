@@ -7,7 +7,11 @@ import { SimilarityPanel } from "./Components/similarityPanel";
 import vis, { Network } from "vis-network";
 import { TaxonomyViewer } from "./Components/taxonomyViewer";
 import { StringStringObject } from "./types/simvizTypes";
-import { findValueInCase, findValueInSimilarityValue } from "./utils/caseUtils";
+import {
+  findValueInCase,
+  findValueInSimilarityValue,
+  findTaxonomyAttribute,
+} from "./utils/caseUtils";
 
 /**
  * This class acts as a mediator between different objects and panels in SimViz
@@ -162,6 +166,11 @@ class Controller {
       });
     }
 
+    if (this.taxonomyViewer) {
+      this.taxonomyViewer.resetTaxonomyGraph();
+      this.taxonomyViewer.removeSubtree();
+    }
+
     window.addEventListener("resize", (event) => {
       this.onResize();
     });
@@ -235,15 +244,10 @@ class Controller {
     // Update taxonomy:
     // 1. Find if the current case base has a taxonomy attribute (choose the first one)
     let attributes = this.casebaseDAO.getAttributes();
-    let taxAttribute: keyof Object | null = null;
-    taxAttribute = this.findTaxonomyAttribute(attributes) as keyof Object;
+    let taxAttribute: keyof Object | null = findTaxonomyAttribute(
+      attributes
+    ) as keyof Object;
 
-    // for (const [key, value] of Object.entries(attributes)) {
-    //   if (value === "Taxonomy") {
-    //     taxAttribute = key as keyof Object;
-    //     break;
-    //   }
-    // }
     // 2. If found, update the taxonomy viewer
     if (rowCase && colCase && taxAttribute) {
       if ("id" in rowCase && "id" in colCase) {
@@ -264,24 +268,6 @@ class Controller {
         );
       }
     }
-  }
-
-  private findTaxonomyAttribute(attributes: StringStringObject): string {
-    let attribute = "";
-    for (const [key, value] of Object.entries(attributes)) {
-      if (value === "Taxonomy") {
-        attribute = key;
-        return attribute;
-      } else {
-        if (typeof value === "object") {
-          let suffix = this.findTaxonomyAttribute(value);
-          if (suffix !== "") {
-            return `${key}.${suffix}`;
-          }
-        }
-      }
-    }
-    return attribute;
   }
 
   /**
@@ -325,7 +311,7 @@ class Controller {
     leftCaseId: string,
     rightCaseLabel: string,
     rightCaseId: string,
-    similarityValue: number
+    similarityValue: number | null
   ) {
     if (this.taxonomyViewer) {
       this.taxonomyViewer.updateSubTree(
