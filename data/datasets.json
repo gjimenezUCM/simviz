@@ -18,6 +18,10 @@
         },
         "similarityDatasets": [
           {
+            "name": "Color (zip)",
+            "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cbrkit_color.zip"
+          },
+          {
             "name": "Year, Manufacturer and Price",
             "uri": "https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cbrkit_year_manufacturer_price.json"
           },
