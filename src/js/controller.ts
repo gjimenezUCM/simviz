@@ -1,16 +1,15 @@
-
-import { Heatmap } from './Components/heatmap';
+import { Heatmap } from "./Components/heatmap";
 import { Histogram } from "./Components/histogram";
-import { CaseComparator } from './Components/caseComparator';
-import { CasebaseDAO } from './DAO/casebaseDAO';
-import SimilarityData from './DAO/similarityData';
-import { SimilarityPanel } from './Components/similarityPanel';
-import vis, { Network } from 'vis-network';
-import { TaxonomyViewer } from './Components/taxonomyViewer';
+import { CaseComparator } from "./Components/caseComparator";
+import { CasebaseDAO } from "./DAO/casebaseDAO";
+import SimilarityData from "./DAO/similarityData";
+import { SimilarityPanel } from "./Components/similarityPanel";
+import vis, { Network } from "vis-network";
+import { TaxonomyViewer } from "./Components/taxonomyViewer";
 
 /**
-* This class acts as a mediator between different objects and panels in SimViz
-*/
+ * This class acts as a mediator between different objects and panels in SimViz
+ */
 class Controller {
   /**
    * Case comparator panel
@@ -181,13 +180,18 @@ class Controller {
     this.casebaseDAO = casebaseDAO;
     this.caseIds = casebaseDAO.getIds();
     this.similarityPanel.init();
-    this.similarityPanel.updateCasebaseDescription(casebaseName, casebaseDAO.getDescription(), casebaseDAO.getNumCases());
+    this.similarityPanel.updateCasebaseDescription(
+      casebaseName,
+      casebaseDAO.getDescription(),
+      casebaseDAO.getNumCases()
+    );
     this.resetButton ? this.resetButton.classList.add("visually-hidden") : null;
     let allAttributes = this.casebaseDAO.getAttributes();
     let attId: string = this.casebaseDAO.getAttId();
     this.tableComponent = new CaseComparator(allAttributes, null, attId);
     // FIX: add for VanillaRenderer
     //this.tableComponent.resetTable();
+    this.taxonomyViewer.clearTaxonomyViewer();
     let tax = casebaseDAO.getTaxonomy();
     if (tax) {
       this.taxonomyViewer.init(tax);
@@ -385,7 +389,7 @@ class Controller {
 }
 
 /**
-* A singleton-like instance of the Controller
-*/
+ * A singleton-like instance of the Controller
+ */
 const theController = new Controller();
 export { theController };
