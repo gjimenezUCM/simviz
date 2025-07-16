@@ -97,11 +97,23 @@ export class TaxonomyViewer {
     }
   }
 
+  /**
+   * Clears the taxonomy viewer
+   */
   clearTaxonomyViewer() {
     if (this.taxonomyContainerNode) {
       this.taxonomyContainerNode.innerHTML = "";
     }
     this.removeSubtree();
+  }
+
+  /**
+   * Clears the subtree view
+   */
+  removeSubtree() {
+    if (this.detailContainerNode) {
+      this.detailContainerNode.innerHTML = "";
+    }
   }
 
   resetTaxonomyGraph(data: any) {
@@ -133,11 +145,6 @@ export class TaxonomyViewer {
     }
   }
 
-  removeSubtree() {
-    if (this.detailContainerNode) {
-      this.detailContainerNode.innerHTML = "";
-    }
-  }
   /**
    * Updates the subtree visualization of two cases identified by their taxonomy labels.
    * Case ids are also employed to show them on hover

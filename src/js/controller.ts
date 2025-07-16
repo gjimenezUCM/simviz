@@ -6,6 +6,8 @@ import SimilarityData from "./DAO/similarityData";
 import { SimilarityPanel } from "./Components/similarityPanel";
 import vis, { Network } from "vis-network";
 import { TaxonomyViewer } from "./Components/taxonomyViewer";
+import { StringStringObject } from "./types/simvizTypes";
+import { findValueInCase, findValueInSimilarityValue } from "./utils/caseUtils";
 
 /**
  * This class acts as a mediator between different objects and panels in SimViz
@@ -234,33 +236,52 @@ class Controller {
     // 1. Find if the current case base has a taxonomy attribute (choose the first one)
     let attributes = this.casebaseDAO.getAttributes();
     let taxAttribute: keyof Object | null = null;
-    for (const [key, value] of Object.entries(attributes)) {
-      if (value === "Taxonomy") {
-        taxAttribute = key as keyof Object;
-        break;
-      }
-    }
+    taxAttribute = this.findTaxonomyAttribute(attributes) as keyof Object;
+
+    // for (const [key, value] of Object.entries(attributes)) {
+    //   if (value === "Taxonomy") {
+    //     taxAttribute = key as keyof Object;
+    //     break;
+    //   }
+    // }
     // 2. If found, update the taxonomy viewer
     if (rowCase && colCase && taxAttribute) {
-      if (
-        rowCase.hasOwnProperty(taxAttribute) &&
-        colCase.hasOwnProperty(taxAttribute) &&
-        "id" in rowCase &&
-        "id" in colCase
-      ) {
+      if ("id" in rowCase && "id" in colCase) {
         let newSimilarityValue = this.similarityData.getSimilarity(
           rowCaseId,
           colCaseId
         );
+        let simValue = findValueInSimilarityValue(
+          newSimilarityValue?.attributes,
+          taxAttribute
+        );
         this.updateTaxonomyViewer(
-          String(rowCase[taxAttribute]),
+          findValueInCase(rowCase, taxAttribute),
           rowCase["id"] as string,
-          String(colCase[taxAttribute]),
+          findValueInCase(colCase, taxAttribute),
           colCase["id"] as string,
-          newSimilarityValue?.attributes["manufacturer"] || 0.0
+          simValue
         );
       }
     }
+  }
+
+  private findTaxonomyAttribute(attributes: StringStringObject): string {
+    let attribute = "";
+    for (const [key, value] of Object.entries(attributes)) {
+      if (value === "Taxonomy") {
+        attribute = key;
+        return attribute;
+      } else {
+        if (typeof value === "object") {
+          let suffix = this.findTaxonomyAttribute(value);
+          if (suffix !== "") {
+            return `${key}.${suffix}`;
+          }
+        }
+      }
+    }
+    return attribute;
   }
 
   /**
