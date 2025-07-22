@@ -40,12 +40,6 @@ export class CasebaseDAO {
       let taxAttribute: string | null = null;
       this.taxonomyDict = {};
       taxAttribute = findTaxonomyAttribute(this.metadata.attributes);
-      // for (const [key, value] of Object.entries(this.metadata.attributes)) {
-      //   if (value === "Taxonomy") {
-      //     taxAttribute = key as keyof Object;
-      //     break;
-      //   }
-      // }
       if (taxAttribute) {
         let attId = this.metadata.id;
         this.cases.forEach((aCase) => {

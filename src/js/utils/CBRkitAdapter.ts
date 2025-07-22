@@ -1,4 +1,8 @@
-import { LocalSimilarityDescription, SimilarityConfiguration, EntrySimilarityValue} from "../types/simvizTypes";
+import {
+  LocalSimilarityDescription,
+  SimilarityConfiguration,
+  EntrySimilarityValue,
+} from "../types/simvizTypes";
 
 export class CBRkitAdapter {
   public similarityConfiguration: SimilarityConfiguration;
@@ -7,20 +11,22 @@ export class CBRkitAdapter {
   };
 
   constructor(data: any) {
-    if (data.hasOwnProperty("similarityConfiguration") && data.hasOwnProperty("similarityScores")) {
+    if (
+      data.hasOwnProperty("similarityConfiguration") &&
+      data.hasOwnProperty("similarityScores")
+    ) {
       // SimViz data format
       this.similarityScores = data.similarityScores;
       this.similarityConfiguration = CBRkitAdapter.adaptConfiguration(
         data.similarityConfiguration
       );
-    } 
-    else {
+    } else {
       // CBRkit data format
-      this.similarityConfiguration = CBRkitAdapter.adaptSimilarityConfiguration(data);
+      this.similarityConfiguration =
+        CBRkitAdapter.adaptSimilarityConfiguration(data);
       this.similarityScores = CBRkitAdapter.adaptSimilarityData(data);
     }
   }
-
 
   static adaptConfiguration(config: any): SimilarityConfiguration {
     let adaptedConfig: any = {
@@ -73,7 +79,7 @@ export class CBRkitAdapter {
     }
   }
 
-  static extractSimilarityConfig(theMetadata:any):any {
+  static extractSimilarityConfig(theMetadata: any): any {
     let adaptedConfig: any = {
       globalSim: {
         name: "",
@@ -98,30 +104,39 @@ export class CBRkitAdapter {
     if ("attributes" in theMetadata) {
       for (const attName of Object.keys(theMetadata["attributes"])) {
         let currentLocalSim = theMetadata["attributes"][attName];
+
+        let localSimConfig: LocalSimilarityDescription = {
+          name: "",
+          weight: 1.0,
+          description: "",
+          nestedSimilarityConfiguration: null,
+        };
+
+        localSimConfig["name"] = currentLocalSim["name"];
+        localSimConfig["description"] = currentLocalSim["doc"];
+        if (weights && attName in weights) {
+          localSimConfig["weight"] = weights[attName];
+        }
+
         if (
           "metadata" in currentLocalSim &&
           "aggregator" in currentLocalSim["metadata"]
         ) {
-          let complexSimConfig = this.extractSimilarityConfig( currentLocalSim["metadata"]);
-          adaptedConfig.localSim[attName] = complexSimConfig;
-        } else{
-          let localSimConfig: LocalSimilarityDescription = {
-            name: "",
-            weight: 1.0,
-            description: "",
-          };
+          let nestedSimConfig = this.extractSimilarityConfig(
+            currentLocalSim["metadata"]
+          );
+          localSimConfig.nestedSimilarityConfiguration = nestedSimConfig;
+          localSimConfig.name =
+            currentLocalSim["metadata"]["aggregator"]["metadata"]["pooling"];
+          localSimConfig.description =
+            currentLocalSim["metadata"]["aggregator"]["doc"];
 
-          localSimConfig["name"] = currentLocalSim["name"];
-          localSimConfig["description"] = currentLocalSim["doc"];
-          if (weights && attName in weights) {
-            localSimConfig["weight"] = weights[attName];
-          }
-          adaptedConfig.localSim[attName] = localSimConfig;
+          //adaptedConfig.localSim[attName] = nestedSimConfig;
         }
+        adaptedConfig.localSim[attName] = localSimConfig;
       }
     }
     return adaptedConfig;
-    
   }
 
   static adaptSimilarityData(simData: any): {

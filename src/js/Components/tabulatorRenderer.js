@@ -1,16 +1,8 @@
-
 import { theController } from "../controller";
 import { Popover } from "bootstrap";
 import nanoMarkdown from "nano-markdown";
 
-import {
-  Tabulator,  
-  FormatModule,
-  DataTreeModule,
-  CellComponent,
-  FormatterParams,
-  EmptyCallback,
-} from "tabulator-tables";
+import { Tabulator, FormatModule, DataTreeModule } from "tabulator-tables";
 
 export class TabulatorRenderer {
   /**
@@ -42,10 +34,9 @@ export class TabulatorRenderer {
       for (let attName of listAttsInSim) {
         // Ignore attribute id because it appear in the table header
         if (attName === attId) continue;
-        
-        let rowData = this.createRowData(attName,allAtts,simDescription);
+
+        let rowData = this.createRowData(attName, allAtts, simDescription);
         this.simAtts[attName] = rowData;
-        
       }
     }
 
@@ -74,11 +65,13 @@ export class TabulatorRenderer {
   }
 
   createRowData(attName, allAtts, simDescription) {
-    if ("globalSim" in simDescription.localSim[attName]) {
+    if (
+      simDescription.localSim[attName].nestedSimilarityConfiguration !== null
+    ) {
       let rowData = {
         attribute: {
           name: attName,
-          type: "object",
+          type: "nested",
           similarityConfiguration: JSON.parse(
             JSON.stringify(simDescription.localSim[attName])
           ),
@@ -86,20 +79,24 @@ export class TabulatorRenderer {
         leftCase: null,
         rightCase: null,
         value: null,
-        _children: []
-      };    
-      let listAttsInSim = Object.keys(simDescription.localSim[attName]["localSim"]);  
+        _children: [],
+      };
+      rowData["attribute"]["similarityConfiguration"]["weight"] =
+        rowData["attribute"]["similarityConfiguration"]["weight"] * 100;
+      let listAttsInSim = Object.keys(
+        simDescription.localSim[attName].nestedSimilarityConfiguration.localSim
+      );
       for (let localAttName of listAttsInSim) {
         let subRowData = this.createRowData(
           localAttName,
           allAtts[attName],
-          simDescription.localSim[attName]
+          simDescription.localSim[attName].nestedSimilarityConfiguration
         );
-        rowData._children.push(subRowData)
+        rowData._children.push(subRowData);
       }
       return rowData;
     } else {
-      let rowData= {
+      let rowData = {
         attribute: {
           name: attName,
           type: allAtts[attName],
@@ -113,7 +110,7 @@ export class TabulatorRenderer {
       };
       rowData["attribute"]["similarityConfiguration"]["weight"] =
         rowData["attribute"]["similarityConfiguration"]["weight"] * 100;
-      
+
       return rowData;
     }
   }
@@ -128,7 +125,7 @@ export class TabulatorRenderer {
       for (const [key, value] of Object.entries(this.simAtts)) {
         if (
           item[key] &&
-          typeof item[key] === "object" &&
+          typeof item[key] === "nested" &&
           !Array.isArray(item[key])
         ) {
           let subAtts = Object.keys(item[key]);
@@ -147,7 +144,7 @@ export class TabulatorRenderer {
       for (const [key, value] of Object.entries(this.remainingAtts)) {
         if (
           item[key] &&
-          typeof item[key] === "object" &&
+          typeof item[key] === "nested" &&
           !Array.isArray(item[key])
         ) {
           let subAtts = Object.keys(item[key]);
@@ -179,7 +176,11 @@ export class TabulatorRenderer {
   updateRightColCase(id, item) {
     if (item) {
       for (const [key, value] of Object.entries(this.simAtts)) {
-        if (item[key] && typeof item[key] === "object" && !Array.isArray(item[key])) {
+        if (
+          item[key] &&
+          typeof item[key] === "nested" &&
+          !Array.isArray(item[key])
+        ) {
           let subAtts = Object.keys(item[key]);
           let children = value._children;
           for (let subAtt of subAtts) {
@@ -194,7 +195,11 @@ export class TabulatorRenderer {
         }
       }
       for (const [key, value] of Object.entries(this.remainingAtts)) {
-        if (item[key] && typeof item[key] === "object" && !Array.isArray(item[key])) {
+        if (
+          item[key] &&
+          typeof item[key] === "nested" &&
+          !Array.isArray(item[key])
+        ) {
           let subAtts = Object.keys(item[key]);
           let children = value._children;
           for (let subAtt of subAtts) {
@@ -268,8 +273,7 @@ export class TabulatorRenderer {
       )) {
         if (typeof localValue === "number") {
           this.simAtts[localAtt]["value"] = localValue;
-        }
-        else {
+        } else {
           if ("value" in localValue) {
             this.simAtts[localAtt]["value"] = localValue["value"];
             let subAtts = Object.keys(localValue["attributes"]);
@@ -279,10 +283,9 @@ export class TabulatorRenderer {
                 if (child["attribute"]["name"] === subAtt) {
                   child["value"] = localValue["attributes"][subAtt];
                 }
-              }              
+              }
             }
-          }
-          else {
+          } else {
             this.simAtts[localAtt]["value"] = "";
           }
         }
@@ -360,7 +363,7 @@ export class TabulatorRenderer {
           field: "rightCase",
           formatter: this.formatByType,
           cssClass: "dt-right-case",
-          variableHeight: true
+          variableHeight: true,
         },
       ],
     });
@@ -445,7 +448,7 @@ export class TabulatorRenderer {
   formatByType(cell, formatterParams, onRendered) {
     let data = cell.getData();
     if ("type" in data.attribute) {
-      if (typeof data.attribute["type"] === "object") {
+      if (typeof data.attribute["type"] === "nested") {
         return "&nbsp;";
       }
       switch (data.attribute["type"]) {
@@ -464,7 +467,7 @@ export class TabulatorRenderer {
         case "Taxonomy":
           return RenderUtils.renderTaxonomyLabel(cell, formatterParams);
           break;
-        case "object":
+        case "nested":
           return "&nbsp;";
         default:
           return RenderUtils.renderDefault(cell);
@@ -473,7 +476,7 @@ export class TabulatorRenderer {
       return RenderUtils.renderDefault(cell);
     }
   }
-};
+}
 
 class RenderUtils {
   static renderDefault(cell) {
@@ -486,15 +489,14 @@ class RenderUtils {
   }
 
   static renderNumber(cell, formatterParams) {
-    if (cell.getValue()!==null) {
+    if (cell.getValue() !== null) {
       let precision = formatterParams.precision ? formatterParams.precision : 0;
       return Number(cell.getValue()).toFixed(precision);
     } else {
       if (formatterParams && formatterParams["renderNull"]) {
         return `<span class="badge text-bg-danger">EMPTY</span>`;
-      }
-      else {
-        return ""
+      } else {
+        return "";
       }
     }
   }
@@ -568,7 +570,7 @@ class RenderUtils {
       let button = template.content.firstChild;
       const popover = new Popover(button, {
         title: data.name,
-        content: data.description? nanoMarkdown(data.description): "",
+        content: data.description ? nanoMarkdown(data.description) : "",
         placement: "bottom",
         html: true,
         trigger: "focus",
@@ -595,4 +597,3 @@ class RenderUtils {
     }
   }
 }
-
