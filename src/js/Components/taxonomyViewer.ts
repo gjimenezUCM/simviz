@@ -65,6 +65,7 @@ export class TaxonomyViewer {
   private taxonomyVisData: vis.Data | null;
   private leftLabelSelected: string;
   private rightLabelSelected: string;
+  private initialized: boolean;
 
   /**
    * Constructor
@@ -76,6 +77,7 @@ export class TaxonomyViewer {
     this.detailGraph = null;
     this.leftLabelSelected = "";
     this.rightLabelSelected = "";
+    this.initialized = false;
   }
 
   /**
@@ -90,6 +92,7 @@ export class TaxonomyViewer {
       edges: aTaxonomy.getEdges(),
     };
     if (this.taxonomyContainerNode) {
+      this.initialized = true;
       this.resetTaxonomyGraph();
     }
   }
@@ -102,6 +105,7 @@ export class TaxonomyViewer {
       this.taxonomyContainerNode.innerHTML = "";
     }
     this.removeSubtree();
+    this.initialized = false;
   }
 
   /**
@@ -114,7 +118,7 @@ export class TaxonomyViewer {
   }
 
   resetTaxonomyGraph(data: vis.Data | null = null) {
-    if (this.taxonomyContainerNode) {
+    if (this.taxonomyContainerNode && this.initialized) {
       this.taxonomyGraph = new vis.Network(
         this.taxonomyContainerNode,
         data ? data : JSON.parse(JSON.stringify(this.taxonomyVisData)),
