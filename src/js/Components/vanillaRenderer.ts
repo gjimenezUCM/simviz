@@ -151,16 +151,16 @@ export class VanillaRenderer {
           // Ignore attribute id because it appear in the table header
           if (attName === attId) continue;
           /// FIX: ignoring complex functions
-          if ("weight" in simDescription.localSim[attName] ){
-          this.simAtts[attName] = allAtts[attName];
-          let weight = simDescription
-            ? simDescription.localSim[attName].weight
-            : 0.0;
-          this.createRowElement(tableContent, {
-            attName: attName,
-            weight: weight,
-          });
-        }
+          if ("weight" in simDescription.localSim[attName]) {
+            this.simAtts[attName] = allAtts[attName];
+            let weight = simDescription
+              ? simDescription.localSim[attName].weight
+              : 0.0;
+            this.createRowElement(tableContent, {
+              attName: attName,
+              weight: weight,
+            });
+          }
         }
       }
       // Now add the attributes that are not part of the similarity function
@@ -374,11 +374,11 @@ export class VanillaRenderer {
   private updateHeaderWithId(newId: string | null, selector: string): void {
     let idContainer = document.querySelector(selector + " .item-id-value");
     if (idContainer) {
-      idContainer.innerHTML = newId? newId : "id";
+      idContainer.innerHTML = newId ? newId : "id";
     }
     let idButton = document.querySelector(selector + " button");
     if (idButton) {
-      let actualId:string = newId ? newId as string: "";
+      let actualId: string = newId ? (newId as string) : "";
       idButton.setAttribute("data-item-id", actualId);
     }
   }
@@ -412,7 +412,10 @@ export class VanillaRenderer {
    * @param attName Name of the attribute
    * @param value Local similarity value for the attribute
    */
-  private updateLocalSimilarity(attName: string, value: number) {
+  private updateLocalSimilarity(
+    attName: string,
+    value: number | SimilarityValue
+  ) {
     // Just update if attName is part of the local similarity attributes
     if (attName in this.simAtts) {
       // The row of this attribute is characterized by a data attribute with the attribute name
@@ -420,7 +423,9 @@ export class VanillaRenderer {
         `tr[data-att-name=${attName}] .att-value`
       );
       if (valueElem) {
-        valueElem.innerHTML = value.toFixed(3);
+        if (typeof value === "number") {
+          valueElem.innerHTML = value.toFixed(3);
+        }
       }
     }
   }

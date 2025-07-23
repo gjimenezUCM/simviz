@@ -104,7 +104,7 @@ export type SimilarityValue = {
    */
   value: number;
   attributes: {
-    [key: string]: number;
+    [key: string]: number | SimilarityValue;
   };
 };
 

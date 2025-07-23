@@ -71,7 +71,7 @@ export class TabulatorRenderer {
       let rowData = {
         attribute: {
           name: attName,
-          type: "nested",
+          type: "object",
           similarityConfiguration: JSON.parse(
             JSON.stringify(simDescription.localSim[attName])
           ),
@@ -125,7 +125,7 @@ export class TabulatorRenderer {
       for (const [key, value] of Object.entries(this.simAtts)) {
         if (
           item[key] &&
-          typeof item[key] === "nested" &&
+          typeof item[key] === "object" &&
           !Array.isArray(item[key])
         ) {
           let subAtts = Object.keys(item[key]);
@@ -144,7 +144,7 @@ export class TabulatorRenderer {
       for (const [key, value] of Object.entries(this.remainingAtts)) {
         if (
           item[key] &&
-          typeof item[key] === "nested" &&
+          typeof item[key] === "object" &&
           !Array.isArray(item[key])
         ) {
           let subAtts = Object.keys(item[key]);
@@ -178,7 +178,7 @@ export class TabulatorRenderer {
       for (const [key, value] of Object.entries(this.simAtts)) {
         if (
           item[key] &&
-          typeof item[key] === "nested" &&
+          typeof item[key] === "object" &&
           !Array.isArray(item[key])
         ) {
           let subAtts = Object.keys(item[key]);
@@ -197,7 +197,7 @@ export class TabulatorRenderer {
       for (const [key, value] of Object.entries(this.remainingAtts)) {
         if (
           item[key] &&
-          typeof item[key] === "nested" &&
+          typeof item[key] === "object" &&
           !Array.isArray(item[key])
         ) {
           let subAtts = Object.keys(item[key]);
@@ -448,7 +448,7 @@ export class TabulatorRenderer {
   formatByType(cell, formatterParams, onRendered) {
     let data = cell.getData();
     if ("type" in data.attribute) {
-      if (typeof data.attribute["type"] === "nested") {
+      if (typeof data.attribute["type"] === "object") {
         return "&nbsp;";
       }
       switch (data.attribute["type"]) {
@@ -467,7 +467,7 @@ export class TabulatorRenderer {
         case "Taxonomy":
           return RenderUtils.renderTaxonomyLabel(cell, formatterParams);
           break;
-        case "nested":
+        case "object":
           return "&nbsp;";
         default:
           return RenderUtils.renderDefault(cell);
