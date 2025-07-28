@@ -41,7 +41,7 @@ export class SimilarityComputing {
         )) {
           let weight = localFunc.weight;
           totalWeight += weight;
-          if (att in newSimPair["attributes"]) {
+          if (att in newSimPair.attributes) {
             const attValue = this.computeLocalSimilarityValue(
               newSimPair,
               newSimilarityDescription,
@@ -49,23 +49,13 @@ export class SimilarityComputing {
             );
             newSimValue += weight * attValue;
           }
-
-          // /// FIX: ignoring complex functions
-          // if (localFunc.nestedSimilarityConfiguration === null) {
-          //   let weight = localFunc.weight;
-          //   totalWeight += weight;
-          //   if (att in newSimPair["attributes"]) {
-          //     const attValue = newSimPair["attributes"][att] as number;
-          //     newSimValue += weight * attValue;
-          //   }
-          // }
         }
         if (totalWeight !== 0) {
           newSimValue /= totalWeight;
         } else {
           newSimValue = 0.0;
         }
-        newSimPair["value"] = newSimValue;
+        newSimPair.value = newSimValue;
         simData4Id1[id2] = newSimPair;
       }
       newSimilarityData[id1] = simData4Id1;
@@ -91,18 +81,18 @@ export class SimilarityComputing {
   ): number {
     let result = 0;
     if (
-      attName in simValue["attributes"] &&
-      typeof simValue["attributes"][attName] === "number"
+      attName in simValue.attributes &&
+      typeof simValue.attributes[attName] === "number"
     ) {
-      result = simValue["attributes"][attName];
+      result = simValue.attributes[attName];
     } else {
       // Recursive on nested similarity configuration
-      let innerSimValue = simValue["attributes"][attName] as SimilarityValue;
+      let innerSimValue = simValue.attributes[attName] as SimilarityValue;
       let innerSimilarityConfiguration =
-        simDescription["localSim"][attName].nestedSimilarityConfiguration;
+        simDescription.localSim[attName].nestedSimilarityConfiguration;
       if (innerSimilarityConfiguration) {
         let totalWeight = 0.0;
-        for (const subAtt in innerSimValue["attributes"]) {
+        for (const subAtt in innerSimValue.attributes) {
           if (subAtt in innerSimilarityConfiguration.localSim) {
             let partialResult = this.computeLocalSimilarityValue(
               innerSimValue,
@@ -111,9 +101,8 @@ export class SimilarityComputing {
             );
             result +=
               partialResult *
-              innerSimilarityConfiguration["localSim"][subAtt].weight;
-            totalWeight +=
-              innerSimilarityConfiguration["localSim"][subAtt].weight;
+              innerSimilarityConfiguration.localSim[subAtt].weight;
+            totalWeight += innerSimilarityConfiguration.localSim[subAtt].weight;
           }
         }
         if (totalWeight !== 0) {

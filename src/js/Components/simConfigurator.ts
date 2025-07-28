@@ -10,7 +10,6 @@ import {
 } from "../types/simvizTypes";
 import {
   getWeightInSimilarityConfiguration,
-  removeAttributeFromSimilarityConfiguration,
   setWeightInSimilarityConfiguration,
 } from "../utils/caseUtils";
 

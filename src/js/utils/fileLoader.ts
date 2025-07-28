@@ -1,3 +1,6 @@
+/**
+ * Utilities for loading files
+ */
 import JSZip from "jszip";
 
 /**
@@ -22,6 +25,7 @@ export async function loadJSONData(
   );
   if (response && response.ok) {
     if (fileName?.endsWith(".zip")) {
+      // Read and open the zip file
       fileName = fileName.replace(".zip", "");
       const json = await readJsonFromZip(response, fileName);
       return json;
