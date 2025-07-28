@@ -4,9 +4,7 @@ import { CaseComparator } from "./Components/caseComparator";
 import { CasebaseDAO } from "./DAO/casebaseDAO";
 import SimilarityData from "./DAO/similarityData";
 import { SimilarityPanel } from "./Components/similarityPanel";
-import vis, { Network } from "vis-network";
 import { TaxonomyViewer } from "./Components/taxonomyViewer";
-import { StringStringObject } from "./types/simvizTypes";
 import {
   findValueInCase,
   findValueInSimilarityValue,
@@ -27,6 +25,9 @@ class Controller {
    */
   private similarityPanel: SimilarityPanel;
 
+  /**
+   * Taxonomy viewer panel
+   */
   private taxonomyViewer: TaxonomyViewer;
 
   /**
@@ -76,9 +77,9 @@ class Controller {
   private similarityData: SimilarityData;
 
   /**
-   * Case selector (WIP)
+   * HTML ID for reset button
    */
-  private heatmapSelect: HTMLSelectElement | null;
+  private readonly RESET_BUTTON_ID = "reset-filter-btn";
 
   /**
    * Constructor
@@ -86,11 +87,8 @@ class Controller {
   constructor() {
     this.loadingOverlay = document.getElementById("loading-overlay");
     this.resetButton = document.getElementById(
-      "reset-filter-btn"
+      this.RESET_BUTTON_ID
     ) as HTMLButtonElement;
-    this.heatmapSelect = document.getElementById(
-      "heatmap-filter-select"
-    ) as HTMLSelectElement;
     this.histogramContainer = document.getElementById("histogram");
     this.heatmapContainer = document.getElementById("heatmap");
     this.similarityPanel = new SimilarityPanel();
@@ -109,9 +107,8 @@ class Controller {
       simData.similarityConfiguration,
       attId
     );
-    //this.tableComponent.resetTable();
-    // create the histogram and the heatmap with the similarity data loaded (if exists)
 
+    // create the histogram and the heatmap with the similarity data loaded (if exists)
     let simDescription = simData ? simData.similarityConfiguration : null;
     this.similarityData = simData;
     this.theHistogram = this.similarityData.similarityMatrix
@@ -125,7 +122,6 @@ class Controller {
       // Suscribe to events when clicking on the histogram
       this.theHistogram.on((source, data) => {
         this.updateCaseInfo(data.id1, data.id2, data.color);
-        this.updateSelectedCase(data.id1);
       });
     }
 
@@ -140,19 +136,6 @@ class Controller {
       // Suscribe to events when clicking on the heatmap
       this.theHeatmap.on((source, data) => {
         this.updateCaseInfo(data.id1, data.id2, data.color);
-        this.updateSelectedCase(data.id1);
-      });
-    }
-
-    this.populateCaseIdSelect();
-    if (this.heatmapSelect) {
-      // Suscribe to events when clicking on the selector (WIP)
-      this.heatmapSelect.addEventListener("change", (event) => {
-        if (this.heatmapSelect) {
-          if (this.heatmapSelect.value !== "*") {
-            this.filterByCaseId(this.heatmapSelect.value);
-          }
-        }
       });
     }
 
@@ -160,7 +143,6 @@ class Controller {
       // Suscribe to events when clicking on reset button
       this.resetButton.addEventListener("click", (event) => {
         if (this.theHeatmap) this.theHeatmap.reset();
-        if (this.heatmapSelect) this.heatmapSelect.selectedIndex = 0;
         this.tableComponent.resetTable();
         if (this.resetButton) this.resetButton.classList.add("visually-hidden");
       });
@@ -183,11 +165,6 @@ class Controller {
   onDatasetSelected(casebaseName: string, casebaseDAO: CasebaseDAO) {
     this.histogramContainer ? (this.histogramContainer.innerHTML = "") : null;
     this.heatmapContainer ? (this.heatmapContainer.innerHTML = "") : null;
-    this.heatmapSelect ? (this.heatmapSelect.selectedIndex = 0) : null;
-    // FIX: add for VanillaRenderer
-    // if (this.tableComponent) {
-    //     this.tableComponent.resetTable();
-    // }
     this.casebaseDAO = casebaseDAO;
     this.caseIds = casebaseDAO.getIds();
     this.similarityPanel.init();
@@ -200,8 +177,6 @@ class Controller {
     let allAttributes = this.casebaseDAO.getAttributes();
     let attId: string = this.casebaseDAO.getAttId();
     this.tableComponent = new CaseComparator(allAttributes, null, attId);
-    // FIX: add for VanillaRenderer
-    //this.tableComponent.resetTable();
     this.taxonomyViewer.clearTaxonomyViewer();
     let tax = casebaseDAO.getTaxonomy();
     if (tax) {
@@ -271,22 +246,23 @@ class Controller {
   }
 
   /**
-   * Update the selector with the case id of the case that is currently displayed on the
-   * case comparator (WIP)
-   * @param caseId Id of the case
+   * Focuses the taxonomy viewer on the node with the specified taxonomic label.
+   *
+   * @param taxonomyLabel - The label of the taxonomy node to focus on.
    */
-  updateSelectedCase(caseId: string) {
-    this.heatmapSelect
-      ? (this.heatmapSelect.selectedIndex = this.caseIds.indexOf(caseId) + 1)
-      : null;
-  }
-
   focusOnTaxonomyNode(taxonomyLabel: string) {
     if (this.taxonomyViewer) {
       this.taxonomyViewer.focusOnNode(taxonomyLabel);
     }
   }
 
+  /**
+   * Selects a random case from the casebase that matches the specified taxonomy label.
+   * If a matching case is found, filters the view by the selected case ID.
+   *
+   * @param label - The taxonomy label used to find a matching case.
+   * @returns `true` if a case was found and selected; otherwise, `false`.
+   */
   selectCaseByTaxonomyLabel(label: string): boolean {
     let caseId: string | null =
       this.casebaseDAO.getRandomCaseByTaxonomyLabel(label);
@@ -299,13 +275,16 @@ class Controller {
   }
 
   /**
-   * Fuction called whe the user resizes the interface
+   * Updates the taxonomy viewer with information about two selected cases and their similarity.
+   * This method is called when users interact with the heatmap or histogram to compare cases
+   * that have taxonomic attributes.
+   *
+   * @param leftCaseLabel - The taxonomic label of the first case being compared
+   * @param leftCaseId - The unique identifier of the first case
+   * @param rightCaseLabel - The taxonomic label of the second case being compared
+   * @param rightCaseId - The unique identifier of the second case
+   * @param similarityValue - The computed similarity value between the two cases for the taxonomic attribute, or null if not available
    */
-  onResize() {
-    this.theHeatmap ? this.theHeatmap.refresh() : null;
-    this.theHistogram ? this.theHistogram.refresh() : null;
-  }
-
   private updateTaxonomyViewer(
     leftCaseLabel: string,
     leftCaseId: string,
@@ -338,7 +317,6 @@ class Controller {
         this.casebaseDAO.getCaseById(caseId)
       );
       this.tableComponent.resetColItem();
-      this.updateSelectedCase(caseId);
     }
   }
 
@@ -361,37 +339,11 @@ class Controller {
   }
 
   /**
-   * Populate the selector (WIP)
+   * Fuction called whe the user resizes the interface
    */
-  private populateCaseIdSelect() {
-    if (this.heatmapSelect) {
-      this.heatmapSelect.replaceChildren();
-      let emptyOption = document.createElement("option");
-      emptyOption.innerHTML = "*";
-      emptyOption.setAttribute("value", "*");
-      this.heatmapSelect.appendChild(emptyOption);
-      for (let id of this.caseIds) {
-        let newOption = document.createElement("option");
-        newOption.innerHTML = id;
-        newOption.setAttribute("value", id);
-        this.heatmapSelect.appendChild(newOption);
-      }
-      this.heatmapSelect.selectedIndex = 0;
-    }
-  }
-
-  /**
-   * Function called when the user selects a case using the selector (WIP)
-   */
-  filterBySelectedCase() {
-    if (this.heatmapSelect && this.theHeatmap && this.resetButton) {
-      if (this.heatmapSelect.value !== "*") {
-        this.theHeatmap.filterById(this.heatmapSelect.value, true);
-        this.resetButton.classList.remove("visually-hidden");
-      } else {
-        this.theHeatmap.reset();
-      }
-    }
+  onResize() {
+    this.theHeatmap ? this.theHeatmap.refresh() : null;
+    this.theHistogram ? this.theHistogram.refresh() : null;
   }
 }
 

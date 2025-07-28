@@ -10,7 +10,6 @@ import "tabulator-tables/dist/css/tabulator_bootstrap5.min.css";
  * JS/TS imports
  */
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import nanoMarkdown from "nano-markdown";
 
 import { theController } from "./controller";
 import { theSimilarityDAO } from "./DAO/similarityDAO";

@@ -69,7 +69,7 @@ input[type='range']::-moz-range-thumb{
 section>.panel {
     background-color: var(--bs-body-bg);
     border-radius: var(--bs-border-radius) !important;
-    min-height: 44vh;
+    min-height: 45vh;
     padding: 0.5rem 1rem;
     margin-top: 0.8rem;
 
@@ -82,7 +82,7 @@ section>.panel {
 
 }
 
-/* similarity-container */
+/* Information Panel */
 #info-panel{
     h3 {
         color: var(--bs-btn-primary);
@@ -105,44 +105,7 @@ section>.panel {
     p {
         margin-bottom: 0.8rem;
     }
-    table{
-        margin-top: 0.8rem;
-        :not(caption) > * > * {
-            font-size: 0.9rem;
-                color: var(--bs-body-color);
-        }
 
-        thead{
-            border-top: rgb(222, 226, 230) 1px solid;
-        }
-                
-
-        .att-weight {
-            font-size: smaller;
-            font-weight: 500;
-            height: 2rem;
-        }
-        
-        .att-weight[data-weight=""] {
-            display: none;
-        }
-        
-        .att-weight-bar {
-            font-size: 10px;
-            background-color: #dda8f8;
-            overflow: visible;
-            overflow-wrap: normal;
-            height: 2rem;
-        }
-
-        img {
-            height: 1rem;
-        }
-
-        .sim-function-name span {
-            margin-left: 0.5rem;
-        }
-    }
 }
 
 
@@ -150,33 +113,22 @@ section>.panel {
 
 
 /* plot-container */
-#plot-container {
-
-    #heatmap {
-        max-height: 41vh;
-    
-            #heatmap-content {
-                height: 100%;
-                background-color: aliceblue;
-    
-                #heatmap {
-                    padding: 0;
-                }
-            }  
-    }
-
-    #histogram {
-
-        max-height: 41vh;
+#plot-container { 
+        #heatmap-content {
+            height: 100%;
+            #heatmap {
+                max-height: 41vh;
+                padding: 0;
+            }
+        }  
+        
         #histogram-content {
             height: 100%;
-            background-color: aliceblue;
-
             #histogram {
+                max-height: 41vh;
                 padding: 0;
             }
         }   
-    }
 
     #reset-filter-btn {
         position: absolute;
@@ -190,15 +142,7 @@ section>.panel {
 
 
 /* Case comparison panel */
-
 #case-comparison-panel {
-    #selection-header {
-        display: none;
-        .form-label {
-                font-size: 1.4rem;       
-        }
-    }
-
     table {
         table-layout: fixed;
         word-wrap: break-word;
@@ -212,46 +156,99 @@ section>.panel {
         display: none;
     }
 
-}
-
-.box {
-    width: 25px;
-    height: 25px;
-    display: inline-block;
-    margin-right: 5px;
-    border: 1px solid black;
-}
+    .box {
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        margin-right: 5px;
+        border: 1px solid black;
+    }
 
 
-.box:hover+[role="tooltip"],
-.box:focus+[role="tooltip"] {
-    display: inline-block;
-}
+    .box:hover+[role="tooltip"],
+    .box:focus+[role="tooltip"] {
+        display: inline-block;
+    }
 
-img {
-    max-height: 15vh;
-}
-.att-cell{
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    .att-name,
-    .att-value {
+    img {
+        max-height: 15vh;
+    }
+    #case-comparison-table {
+        font-size: 0.9rem;
+    }
+
+    /* Tabulator */
+
+    .tabulator {
+        .tabulator-col[tabulator-field=value] {
+            .tabulator-col-title span {
+                background-color: var(--bs-body-bg);
+            }
+        }
+        background-color: var(--panel-bg);
+
+        .tabulator-header {
+            background-color: var(--panel-bg);
+
+            .tabulator-col {
+                background-color: var(--panel-bg);
+            }
+        }
+
+        .tabulator-row {
+            background-color: var(--panel-bg);
+        }
+
+        .tabulator-row-odd {
+            filter: brightness(95%);
+        }
+
+        .tabulator-data-tree-control {
+            border-color: var(--bs-btn-primary);
+        }
+
+        .tabulator-data-tree-control-expand {
+            background-color: var(--bs-btn-primary);
+        }
+
+        .tabulator-data-tree-control-expand:after {
+            background-color: var(--bs-btn-primary);
+        }
+
+        .tabulator-data-tree-control-collapse {
+            background-color: var(--bs-btn-primary);
+        }
+
+        .tabulator-data-tree-control-collapse:after {
+            background-color: var(--bs-btn-primary);
+        }
+    }
+
+    .dt-att-name,
+    .dt-att-value {
         font-weight: 700;
-    }   
-    .att-weight{
-        align-self: center;
+    }
+
+    .dt-att-weight {
+        font-size: 11px;
+    }
+    
+    .att-cell {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .att-name,
+        .att-value {
+            font-weight: 700;
+        }
+
+        .att-weight {
+            align-self: center;
+        }
     }
 }
 
-#item-sim-value {
-    display: block;
-    background-color: whitesmoke;
-    color: black;
-    font-size: 1.2rem;
-    margin: 0.6em;
-    padding: 0.1em;
-}
 
 .loading-overlay{
     position: fixed;
@@ -268,96 +265,56 @@ img {
     }
 }
 
-#case-comparison-table {
-    font-size: 0.9rem;
-    .tabulator-col[tabulator-field=value] {
-        .tabulator-col-title span{
-            background-color: var(--bs-body-bg);
-        }
-    }
-}
 
-/* Vis.js Navigation buttons */
+
+/* Taxonomy Viewer */
+#taxonomy-viewer {
 #the-taxonomy,
-#detail-taxonomy {
-    height: 40vh;
+    #detail-taxonomy {
+        height: 40vh;
 
-}
-#detail-taxonomy {
-    border-left: 1px solid var(--bs-btn-primary);
-
-}
-div.vis-network div.vis-navigation div.vis-button.vis-up {
-    top:10px;
-    left:100px;
-}
-div.vis-network div.vis-navigation div.vis-button.vis-down {
-    top:45px;
-    left:100px;
-}
-div.vis-network div.vis-navigation div.vis-button.vis-left {
-    top: 25px;
-    left:150px;
-}
-div.vis-network div.vis-navigation div.vis-button.vis-right {
-    top:25px;
-    left:200px;
-}
-
-div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends {
-    top:45px;
-
-}
-
-div.vis-network div.vis-navigation div.vis-button.vis-zoomOut {
-    top:10px;
-}
-
-div.vis-network div.vis-navigation div.vis-button.vis-zoomIn {
-    top:10px;
-}
-
-
-/* Tabulator */
-
-#case-comparison-table.tabulator {
-        font-size: 0.9rem;
-        background-color: var(--panel-bg);
-        .tabulator-header {
-            background-color: var(--panel-bg);
-            .tabulator-col{
-                background-color: var(--panel-bg);
-            }    
-        }
-        .tabulator-row {
-            background-color: var(--panel-bg);
-            
-        }
-        .tabulator-row-odd {
-            filter: brightness(95%);
-        }
-        .tabulator-data-tree-control {
-            border-color: var(--bs-btn-primary);
-        }
-        .tabulator-data-tree-control-expand {
-            background-color: var(--bs-btn-primary);
-        }
-        .tabulator-data-tree-control-expand:after {
-            background-color: var(--bs-btn-primary);
-        }
-        .tabulator-data-tree-control-collapse {
-            background-color: var(--bs-btn-primary);
-        }
-        .tabulator-data-tree-control-collapse:after {
-            background-color: var(--bs-btn-primary);
-        }
     }
-.dt-att-name,
-.dt-att-value{
-    font-weight: 700;
+
+    #detail-taxonomy {
+        border-left: 1px solid var(--bs-btn-primary);
+
+    }
+
+    div.vis-network div.vis-navigation div.vis-button.vis-up {
+        top: 10px;
+        left: 100px;
+    }
+
+    div.vis-network div.vis-navigation div.vis-button.vis-down {
+        top: 45px;
+        left: 100px;
+    }
+
+    div.vis-network div.vis-navigation div.vis-button.vis-left {
+        top: 25px;
+        left: 150px;
+    }
+
+    div.vis-network div.vis-navigation div.vis-button.vis-right {
+        top: 25px;
+        left: 200px;
+    }
+
+    div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends {
+        top: 45px;
+
+    }
+
+    div.vis-network div.vis-navigation div.vis-button.vis-zoomOut {
+        top: 10px;
+    }
+
+    div.vis-network div.vis-navigation div.vis-button.vis-zoomIn {
+        top: 10px;
+    }
 }
 
-.dt-att-weight{
-    font-size: 11px;
-}
+
+
+
 
