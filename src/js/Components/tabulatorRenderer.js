@@ -4,6 +4,12 @@ import nanoMarkdown from "nano-markdown";
 
 import { Tabulator, FormatModule, DataTreeModule } from "tabulator-tables";
 
+const TABLE_ELEMENT_ID = "case-comparison-table";
+/**
+ * A table renderer to display the case comparator.
+ * It uses {@link http://https://tabulator.info/|Tabulator library},
+ * which supports nested rows and custom renderers for different types of data attributes
+ */
 export class TabulatorRenderer {
   /**
    * Constructor
@@ -16,6 +22,15 @@ export class TabulatorRenderer {
     this.initTable(allAtts, simDescription, attId);
   }
 
+  /**
+   * Initializes the table with attributes data and similarity configuration.
+   * Sets up the data structure for displaying attributes in a tabulator table,
+   * separating attributes used in similarity functions from remaining attributes.
+   *
+   * @param {Object} allAtts - Object containing all attributes with their types
+   * @param {Object} simDescription - Similarity description object
+   * @param {string} attId - The attribute ID to be used as case identifier
+   */
   initTable(allAtts, simDescription, attId) {
     this.remainingAtts = {};
     this.simAtts = {};
@@ -64,6 +79,14 @@ export class TabulatorRenderer {
     this.createTable(this.data);
   }
 
+  /**
+   * Creates a row data structure in the table for a case attribute using a similarity configuration.
+   * If the attribute contains nested data, this function can create several nested rows.
+   * @param {string} attName - The attribute name to create row data for
+   * @param {Object} allAtts - Object containing all attributes and their types
+   * @param {Object} simDescription - Similarity description object
+   * @returns {Object} Row data object with attribute info, cases, value and optional children for nested attributes
+   */
   createRowData(attName, allAtts, simDescription) {
     if (
       simDescription.localSim[attName].nestedSimilarityConfiguration !== null
@@ -165,7 +188,6 @@ export class TabulatorRenderer {
     }
     this.updateLeftCaseHeader(id);
     this.table.setData(this.data);
-    //this.createTable(this.data);
   }
 
   /**
@@ -218,9 +240,14 @@ export class TabulatorRenderer {
     }
     this.updateRightCaseHeader(id);
     this.table.setData(this.data);
-    //this.createTable(this.data);
   }
 
+  /**
+   * Resets the case values for either left or right case in the table.
+   * Clears the specified case data and updates the corresponding header
+   *
+   * @param {boolean} leftCase - If true, resets left case values; if false, resets right case values
+   */
   resetValues(leftCase) {
     if (leftCase) {
       Object.values(this.simAtts).forEach((att) => (att["leftCase"] = null));
@@ -237,23 +264,43 @@ export class TabulatorRenderer {
     }
 
     this.table.setData(this.data);
-    //this.createTable(this.data);
   }
 
+  /**
+   * Updates the header information with case IDs and similarity value. If a value is null,
+   * it resets to empty values.
+   * @param {string|null} [leftCaseId=null] - The ID of the left case to display in the header
+   * @param {string|null} [rightCaseId=null] - The ID of the right case to display in the header
+   * @param {number|null} [similarity=null] - The similarity value between the two cases
+   */
   updateHeader(leftCaseId = null, rightCaseId = null, similarity = null) {
     this.leftCaseId = leftCaseId;
     this.rightCaseId = rightCaseId;
     this.similarity = similarity;
   }
 
+  /**
+   * Updates the left case header with the specified ID.
+   * @param {string|number} id - The ID to set for the left case header
+   */
   updateLeftCaseHeader(id) {
     this.leftCaseId = id;
   }
 
+  /**
+   * Updates the right case header with the specified ID.
+   * @param {string|number} id - The ID to set for the left case header
+   */
   updateRightCaseHeader(id) {
     this.rightCaseId = id;
   }
 
+  /**
+   * Updates the similarity header with a new value and tints the cell background using the
+   * corresponding color.
+   * @param {number|string} value - The similarity value to display in the header
+   * @param {string} color - The color to apply to the similarity header
+   */
   updateSimilarityHeader(value, color) {
     this.similarity = value;
     this.similarityColor = color;
@@ -299,15 +346,25 @@ export class TabulatorRenderer {
     this.table.setData(this.data);
   }
 
+  /**
+   * Creates and initializes a table in the case comparisonpanel.
+   *
+   * This method destroys any existing table, creates a new Tabulator instance with
+   * predefined columns for attribute comparison, and sets up event handlers for
+   * interactive elements like taxonomy links and pin buttons.
+   *
+   * @param {Array} theData - The data array to populate the table with.
+   *
+   */
   createTable(theData) {
-    let root = document.getElementById("case-comparison-table");
+    let root = document.getElementById(TABLE_ELEMENT_ID);
     if (root) {
       root.innerHTML = "";
     }
     if (this.table) {
       this.table.destroy();
     }
-    this.table = new Tabulator("#case-comparison-table", {
+    this.table = new Tabulator(`#${TABLE_ELEMENT_ID}`, {
       data: theData,
       dataTree: true,
       dataTreeBranchElement: false,
@@ -376,6 +433,7 @@ export class TabulatorRenderer {
       );
       if (el) {
         if (that.leftCaseId) {
+          // 1.1 Add pin button on the left case header
           el.innerHTML = `<button class="btn btn-sm btn-primary" data-item-id="${that.leftCaseId}">
           <i class="bi-pin"></i>
           </button>
@@ -390,6 +448,7 @@ export class TabulatorRenderer {
       );
       if (el) {
         if (that.rightCaseId) {
+          // 1.2 Add pin button on the right case header
           el.innerHTML = `<span class="item-id-value">${that.rightCaseId}</span>
           <button class="btn btn-sm btn-primary" data-item-id="${that.rightCaseId}">
           <i class="bi-pin"></i>
@@ -402,6 +461,7 @@ export class TabulatorRenderer {
         ".tabulator-col[role='columnheader'].dt-att-value .tabulator-col-title"
       );
       if (el) {
+        // 1.3 Update similarity header
         if (that.similarityColor) {
           el.parentElement.parentElement.style.backgroundColor =
             that.similarityColor;
@@ -445,6 +505,14 @@ export class TabulatorRenderer {
     });
   }
 
+  /**
+   * Formats cell content based on the attribute type specified in the cell data.
+   *
+   * @param {Object} cell - The Tabulator cell object containing the data to be formatted
+   * @param {Object} formatterParams - Additional parameters for the formatter
+   * @param {Function} onRendered - Callback function to be executed when rendering is complete
+   * @returns {string} The formatted HTML string representation of the cell content
+   */
   formatByType(cell, formatterParams, onRendered) {
     let data = cell.getData();
     if ("type" in data.attribute) {
@@ -478,7 +546,15 @@ export class TabulatorRenderer {
   }
 }
 
+/**
+ * A utility class containing the functions to render specific SimViz datatypes
+ */
 class RenderUtils {
+  /**
+   * Default renderer. It displays an empty badge if the cell is empty
+   * @param {Object} cell - The Tabulator cell object containing the data to be formatted
+   * @returns {string} The formatted HTML string representation of the cell content
+   */
   static renderDefault(cell) {
     if (cell.getValue()) {
       cell.getElement().style.whiteSpace = "pre-wrap";
@@ -488,6 +564,12 @@ class RenderUtils {
     }
   }
 
+  /**
+   * Number renderer. It displays an empty badge if the cell is empty and
+   * it displays a float with a predefined number of decimals (0 by default)
+   * @param {Object} cell - The Tabulator cell object containing the data to be formatted
+   * @returns {string} The formatted HTML string representation of the cell content
+   */
   static renderNumber(cell, formatterParams) {
     if (cell.getValue() !== null) {
       let precision = formatterParams.precision ? formatterParams.precision : 0;
@@ -501,9 +583,11 @@ class RenderUtils {
     }
   }
 
-  static renderWeight(value) {
-    return Number(value).toFixed(2) + "%";
-  }
+  /**
+   * Image renderer. It displays an image that fits inside the cell
+   * @param {Object} cell - The Tabulator cell object containing the data to be formatted
+   * @returns {string} The formatted HTML string representation of the cell content
+   */
   static renderImage(cell, formatterParams, onRendered) {
     let data = cell.getData();
     let template = document.createElement("template");
@@ -516,6 +600,12 @@ class RenderUtils {
     return template.content.firstChild;
   }
 
+  /**
+   * Color renderer. It displays one or several boxes in a specific color. This color
+   * can be provided as a RGB or a X11 string color.
+   * @param {Object} cell - The Tabulator cell object containing the data to be formatted
+   * @returns {string} The formatted HTML string representation of the cell content
+   */
   static renderColor(cell, formatterParams, onRendered) {
     let data = cell.getData();
     let template = document.createElement("template");
@@ -540,6 +630,12 @@ class RenderUtils {
     return template.content.firstChild;
   }
 
+  /**
+   * Taxonomy laber renderer. It displays a label from a taxonomy node. This label is
+   * interactive and clicking on it selects the corresponding node in the taxonomy viewer.
+   * @param {Object} cell - The Tabulator cell object containing the data to be formatted
+   * @returns {string} The formatted HTML string representation of the cell content
+   */
   static renderTaxonomyLabel(cell, formatterParams, onRendered) {
     let data = cell.getData();
     let template = document.createElement("template");
@@ -561,6 +657,12 @@ class RenderUtils {
     return link;
   }
 
+  /**
+   * Similarity function renderer. It displays a function button. When clicked, it
+   * displays a textual description of the similarity function employed in this row.
+   * @param {Object} cell - The Tabulator cell object containing the data to be formatted
+   * @returns {string} The formatted HTML string representation of the cell content
+   */
   static renderSimilarityFunction(cell, formatterParams, onRendered) {
     let data = cell.getValue();
     //return "&nbsp;";
@@ -588,7 +690,12 @@ class RenderUtils {
       return "&nbsp;";
     }
   }
-
+  /**
+   * Number renderer. It displays an empty badge if the cell is empty and
+   * it displays a float with a predefined number of decimals (0 by default)
+   * @param {Object} cell - The Tabulator cell object containing the data to be formatted
+   * @returns {string} The formatted HTML string representation of the cell content
+   */
   static renderWeight(value) {
     if (value == 0) {
       return "";

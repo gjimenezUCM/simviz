@@ -10,7 +10,8 @@ export type AttributeType =
   | "Image"
   | "ColorRGBList"
   | "Color"
-  | "Taxonomy";
+  | "Taxonomy"
+  | "nested";
 
 export type CasebaseMetadata = {
   /**
@@ -66,6 +67,10 @@ export type LocalSimilarityDescription = {
    */
   description: string;
 
+  /**
+   * For nested attributes, the local similarity description contains a {@link similarityConfiguration}
+   * to describe it. It is null for basic attributes.
+   */
   nestedSimilarityConfiguration: SimilarityConfiguration | null;
 };
 
@@ -88,6 +93,9 @@ export type SimilarityConfiguration = {
   };
 };
 
+/**
+ * Datatype for the attributes entries in a {@link SimilarityValue} object
+ */
 export type EntrySimilarityValue = {
   [key: string]: SimilarityValue;
 };
@@ -100,9 +108,12 @@ export type EntrySimilarityValue = {
 export type SimilarityValue = {
   /**
    * The similarity value, represented as the global similarity
-   * and the partial local similarity values
    */
   value: number;
+
+  /**
+   * Local similarity values employed to compute the previous one
+   */
   attributes: {
     [key: string]: number | SimilarityValue;
   };

@@ -3,68 +3,112 @@ import vis, { Network } from "vis-network";
 import "vis-network/styles/vis-network.min.css";
 import { theController } from "../controller";
 
+/**
+ * Taxonomy data employed by vis-network
+ */
 type VisTaxonomyData = {
   nodes: Array<TaxonomyNode>;
   edges: Array<TaxonomyEdge>;
 };
 
-const DEFAULT_VIS_OPTIONS: vis.Options = {
-  edges: {
-    color: {
-      inherit: false,
-    },
-  },
-  nodes: {
-    shape: "dot",
-    font: {
-      multi: "html",
-      size: 14,
-      face: "Roboto",
-      color: "black",
-    },
-    borderWidth: 3,
-    color: "#F5F5F7",
-  },
-  groups: {
-    lca: {
-      shape: "triangleDown",
-      color: "#F95454",
-    },
-    leftItem: {
-      shape: "square",
-      color: "#77CDFF",
-    },
-    rightItem: {
-      shape: "diamond",
-      color: "#FFE700",
-    },
-  },
-  layout: {
-    hierarchical: {
-      direction: "UD",
-      sortMethod: "directed",
-      shakeTowards: "roots",
-    },
-  },
-  interaction: {
-    zoomView: true,
-    navigationButtons: true,
-  },
-};
-
 /**
- * The `TaxonomyViewer` class is responsible for visualizing a taxonomy using the vis-network library.
+ * The TaxonomyViewer class is responsible for visualizing a taxonomy using the It uses  vis-network library {@link https://visjs.org/|from vis.js}.
  * It initializes and manages two taxonomy visualizations: one for the entire taxonomy and one for a detailed view of a subtree.
  */
 export class TaxonomyViewer {
+  /**
+   * Default vis-network options to visualize
+   * the taxonomy
+   */
+  private readonly DEFAULT_VIS_OPTIONS: vis.Options = {
+    edges: {
+      color: {
+        inherit: false,
+      },
+    },
+    nodes: {
+      shape: "dot",
+      font: {
+        multi: "html",
+        size: 14,
+        face: "Roboto",
+        color: "black",
+      },
+      borderWidth: 3,
+      color: "#F5F5F7",
+    },
+    groups: {
+      lca: {
+        shape: "triangleDown",
+        color: "#F95454",
+      },
+      leftItem: {
+        shape: "square",
+        color: "#77CDFF",
+      },
+      rightItem: {
+        shape: "diamond",
+        color: "#FFE700",
+      },
+    },
+    layout: {
+      hierarchical: {
+        direction: "UD",
+        sortMethod: "directed",
+        shakeTowards: "roots",
+      },
+    },
+    interaction: {
+      zoomView: true,
+      navigationButtons: true,
+    },
+  };
+
+  /**
+   * A {@link Taxonomy} object
+   */
   private theTaxonomy: Taxonomy;
+
+  /**
+   * HTML node to display the main taxonomy
+   */
   private taxonomyContainerNode: HTMLElement | null;
+
+  /**
+   * HTML node to display the detailed subtree
+   */
   private detailContainerNode: HTMLElement | null;
+
+  /**
+   * A vis-network object containing the main taxonomy
+   */
   private taxonomyGraph: Network | null;
+
+  /**
+   * A vis-network object containing the detailed subtree
+   */
   private detailGraph: Network | null;
+
+  /**
+   * Taxonomy data in vis-network format
+   */
   private taxonomyVisData: vis.Data | null;
+
+  /**
+   * The taxonomy label of the left case (in the case comparison).
+   * It contains an empty string if there is no case selected.
+   */
   private leftLabelSelected: string;
+
+  /**
+   * The taxonomy label of the right case (in the case comparison).
+   * It contains an empty string if there is no case selected.
+   */
   private rightLabelSelected: string;
+
+  /**
+   * true if taxonomy viewer is initialized with taxonomy information.
+   */
   private initialized: boolean;
 
   /**
@@ -117,12 +161,20 @@ export class TaxonomyViewer {
     }
   }
 
+  /**
+   * Resets the taxonomy viewer and display an empty taxonomy, if
+   * the taxonomy viewer was previously initialized.
+   *
+   * @param data The data needed to visualize the empty taxonomy or
+   * null, if the data was previously uploaded
+   */
   resetTaxonomyGraph(data: vis.Data | null = null) {
+    // Check if the taxonomy was initialized
     if (this.taxonomyContainerNode && this.initialized) {
       this.taxonomyGraph = new vis.Network(
         this.taxonomyContainerNode,
         data ? data : JSON.parse(JSON.stringify(this.taxonomyVisData)),
-        DEFAULT_VIS_OPTIONS
+        this.DEFAULT_VIS_OPTIONS
       );
       this.taxonomyGraph.on("click", (eventData) => {
         let nodeId = eventData.nodes[0];
@@ -182,7 +234,7 @@ export class TaxonomyViewer {
           data.nodes[1]["group"] = "rightItem";
           data.nodes[1]["title"] = rightCaseId;
 
-          let options = JSON.parse(JSON.stringify(DEFAULT_VIS_OPTIONS));
+          let options = JSON.parse(JSON.stringify(this.DEFAULT_VIS_OPTIONS));
           if (leftCaseLabel === rightCaseLabel) {
             // When both cases have the same taxonomical value, then modify the default options
             options.layout.hierarchical.direction = "LR";
@@ -309,7 +361,7 @@ export class TaxonomyViewer {
     visData: VisTaxonomyData
   ): number {
     if (c1Node !== c2Node) {
-      let parentNode = this.theTaxonomy.findNodeById(c1Node.parent);
+      let parentNode = this.theTaxonomy.findNodeById(c1Node.parentId);
       if (parentNode) {
         if (!visData.nodes.find((n) => parentNode.id === n.id)) {
           visData.nodes.push(parentNode);

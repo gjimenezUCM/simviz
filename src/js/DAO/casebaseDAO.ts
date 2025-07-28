@@ -5,10 +5,14 @@ import {
 } from "../types/simvizTypes";
 import { Taxonomy } from "../types/taxonomy";
 import { findTaxonomyAttribute, findValueInCase } from "../utils/caseUtils";
+
 /**
  * Data Access Object that stores a casebase. It contains not only the cases
  * but also the metadata about the case description and the attribute employed
  * as unique case identifier.
+ *
+ * Some case bases also uses a {@link Taxonomy} as additional domain knowledge. This
+ * taxonomy is also stored and accesed using this DAO.
  */
 export class CasebaseDAO {
   /**
@@ -16,6 +20,9 @@ export class CasebaseDAO {
    */
   private metadata: CasebaseMetadata;
 
+  /**
+   * The cases in the case base.
+   */
   private cases: Array<Object>;
 
   /**
@@ -55,6 +62,21 @@ export class CasebaseDAO {
     }
   }
 
+  /**
+   * Returns a taxonnomy associated to the case base.
+   * @returns The taxonomy associated to the case base, or null, if it does not exist.
+   */
+  getTaxonomy(): Taxonomy | null {
+    return this.metadata.taxonomy ? new Taxonomy(this.metadata.taxonomy) : null;
+  }
+
+  /**
+   * Retrieves a random case based on the provided taxonomy label. It looks for
+   * a case with the taxonomy label as value of its taxonomy attribute.
+   *
+   * @param label - The taxonomy label to search for
+   * @returns The case id of a random case if the label exists, null otherwise
+   */
   getRandomCaseByTaxonomyLabel(label: string): string | null {
     if (label in this.taxonomyDict) {
       let size = this.taxonomyDict[label].length;
@@ -112,11 +134,6 @@ export class CasebaseDAO {
     let index = this.ids.indexOf(id);
     return index === -1 ? null : this.cases[index];
   }
-
-  getTaxonomy(): Taxonomy | null {
-    return this.metadata.taxonomy ? new Taxonomy(this.metadata.taxonomy) : null;
-  }
-
   /**
    * Extract the unique list of ids from a list of cases
    * @param data List of cases
