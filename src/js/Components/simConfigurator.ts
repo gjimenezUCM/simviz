@@ -4,10 +4,7 @@ import { SimilarityPanel } from "./similarityPanel";
 import SimilarityData from "../DAO/similarityData";
 import { theSimilarityDAO } from "../DAO/similarityDAO";
 import TemplateManager from "../utils/templateManager";
-import {
-  LocalSimilarityDescription,
-  SimilarityConfiguration,
-} from "../types/simvizTypes";
+import { SimilarityConfiguration } from "../types/simvizTypes";
 import {
   getWeightInSimilarityConfiguration,
   setWeightInSimilarityConfiguration,
@@ -20,7 +17,9 @@ const formAttributeRow = `
 
 /**
  * This class represents the panel employed to configurate a new similarity measure based
- * on a previous one.
+ * on a previous one. The panel displays a slider for each attribute employed in a previous
+ * similarity function. After modifying the weight attributes and closing the panel, it computes
+ * new similarity scores using {@link SimilarityComputing}.
  */
 export class SimConfigurator {
   /**
@@ -106,7 +105,21 @@ export class SimConfigurator {
     }
   }
 
-  createRowsForAtt(
+  /**
+   * Creates form rows for an attribute and its nested attributes. Each row contains
+   * the attribute name, a slider and the current weight value.
+   *
+   * @param theForm - The HTML form element to add rows to
+   * @param attName - The name of the attribute to create rows for
+   * @param similarityDescription - The similarity configuration object containing attribute weights and nested configurations
+   * @param displayedAttName - The display name for the attribute shown in the UI
+   *
+   * @remarks
+   * This method recursively processes nested similarity configurations, creating form rows
+   * for each attribute at every level of nesting. Nested attribute names are concatenated
+   * with dots as separators.
+   */
+  private createRowsForAtt(
     theForm: HTMLElement,
     attName: string,
     similarityDescription: SimilarityConfiguration,
@@ -133,7 +146,15 @@ export class SimConfigurator {
     }
   }
 
-  createRow(theForm: HTMLElement, attName: string, attWeight: number) {
+  /**
+   * Creates a form row with input and range controls for attribute weight configuration.
+   *
+   * @param theForm - The HTML form element to append the row to
+   * @param attName - The name of the attribute to create controls for
+   * @param attWeight - The initial weight value for the attribute (0-1)
+   *
+   */
+  private createRow(theForm: HTMLElement, attName: string, attWeight: number) {
     let aRow = document.createElement("div");
     aRow.classList.add("row", "align-items-center");
     let attRowElement = TemplateManager.generate(formAttributeRow, {
