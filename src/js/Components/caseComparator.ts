@@ -1,8 +1,9 @@
-
-import { SimilarityConfiguration, SimilarityValue, StringStringObject } from "../types/simvizTypes";
-import { VanillaRenderer } from "./vanillaRenderer";
-import {TabulatorRenderer} from "./tabulatorRenderer";
-
+import {
+  SimilarityConfiguration,
+  SimilarityValue,
+  StringStringObject,
+} from "../types/simvizTypes";
+import { TabulatorRenderer } from "./tabulatorRenderer";
 
 /**
  * Max size in pixels of the bar that visually represents a weight
@@ -10,8 +11,9 @@ import {TabulatorRenderer} from "./tabulatorRenderer";
 const MAX_WEIGHTBAR_SIZE_PX = 60;
 
 /**
- * The class that represents the case comparator pane.
- * It delegates the way that the case comparator is rendered to a vanilla renderer.
+ * The class that represents the case comparator pane. In this panel user can inspect global and local similarities
+ * and compare the attributes employed to compute this similarities, to compare and analyze them.
+ * It delegates the way that the case comparator is rendered to a {@linkcode TabulatorRenderer}.
  */
 export class CaseComparator {
   /**

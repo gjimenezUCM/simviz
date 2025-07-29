@@ -100,6 +100,7 @@ const MAX_WEIGHTBAR_SIZE_PX = 60;
  * The table shows all the attributes in a case. When a similarity function is selected,
  * it includes additional information about the cases that are part of the similarity
  * function, adding a bar that represents the weight of this attribute in the similarity function
+ * @ignore
  */
 export class VanillaRenderer {
   /**

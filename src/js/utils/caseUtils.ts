@@ -1,7 +1,7 @@
 /**
  * @module caseUtils
- * A set of utility functions to find attributes in {@link SimilarityConfiguration},
- * {@link SimilarityValue}, or {@link Taxonomy} objects. The attribute can be expressed
+ * A set of utility functions to find attributes in {code SimilarityConfiguration},
+ * {@linkcode SimilarityValue}, or {@linkcode Taxonomy} objects. The attribute can be expressed
  * as a path with dot (.) notation.
  */
 import {
@@ -10,10 +10,10 @@ import {
 } from "../types/simvizTypes";
 
 /**
- * Finds and returns a value from a {@link types:simvizTypes/SimilarityValue} object using a given attribute name.
+ * Finds and returns a value from a {@linkcode types:simvizTypes/SimilarityValue} object using a given attribute name.
  * Supports nested attribute access using dot notation (e.g., "parent.child.value").
  *
- * @param aSimilarityValue The {@link types:simvizTypes/SimilarityValue} object to search within
+ * @param aSimilarityValue The {@linkcode types:simvizTypes/SimilarityValue} object to search within
  * @param attributeName The name of the attribute to find, supports dot notation
  * @returns The numeric value if found, or null if the attribute does not exist
  */
@@ -75,7 +75,7 @@ export function findValueInCase(aCase: Object, attributeName: string): any {
 }
 
 /**
- * Recursively searches through an attributes object to find the attribute whose type is {@link types:simvizTypes/Taxonomy}.
+ * Recursively searches through an attributes object to find the attribute whose type is {@linkcode types:simvizTypes/Taxonomy}.
  *
  * @param attributes Object containing string key-value pairs or nested objects to search through
  * @returns The dot-notation path to the attribute whose type is "Taxonomy", or empty string if not found
@@ -102,7 +102,7 @@ export function findTaxonomyAttribute(attributes: StringStringObject): string {
  * Retrieves the weight value for a given attribute from a similarity configuration.
  * Supports both direct attribute access and nested attribute paths using dot notation.
  *
- * @param aSimilarityConfiguration The {@link SimilarityConfiguration} object to search within
+ * @param aSimilarityConfiguration The {@linkcode SimilarityConfiguration} object to search within
  * @param attributeName The name of the attribute or nested path (e.g., "attr" or "parent.child")
  * @returns The weight value for the specified attribute, or 0 if the attribute is not found
  */
@@ -138,7 +138,7 @@ export function getWeightInSimilarityConfiguration(
  * Updates the weight value for a given attribute from a similarity configuration.
  * Supports both direct attribute access and nested attribute paths using dot notation.
  *
- * @param aSimilarityConfiguration The {@link SimilarityConfiguration} object to search within
+ * @param aSimilarityConfiguration The {@linkcode SimilarityConfiguration} object to search within
  * @param attributeName The name of the attribute or nested path (e.g., "attr" or "parent.child")
  * @param newWeight The new value for the weight attribute
  * @returns true, if the weight value has been updated, or false if the attribute is not found

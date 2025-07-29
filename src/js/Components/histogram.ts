@@ -150,12 +150,14 @@ export class Histogram extends PlotEventNotifier {
         data.points[0].pointIndices[
           Math.floor(Math.random() * data.points[0].pointIndices.length)
         ];
+      let colorPos = Math.trunc(this.simValues[randomValue] * 10);
+      colorPos = colorPos == 10 ? 9 : colorPos;
       // Create the PlotEvent data and notify the handlers
       this.notify({
         id1: this.simValueIndex[randomValue][0],
         id2: this.simValueIndex[randomValue][1],
         similarityValue: this.simValues[randomValue],
-        color: magmaColorscaleValue[~~(this.simValues[randomValue] * 10)],
+        color: magmaColorscaleValue[colorPos], //~~(this.simValues[randomValue] * 10)],
       });
     }
   }

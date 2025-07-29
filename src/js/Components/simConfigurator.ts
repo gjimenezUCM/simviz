@@ -19,7 +19,7 @@ const formAttributeRow = `
  * This class represents the panel employed to configurate a new similarity measure based
  * on a previous one. The panel displays a slider for each attribute employed in a previous
  * similarity function. After modifying the weight attributes and closing the panel, it computes
- * new similarity scores using {@link SimilarityComputing}.
+ * new similarity scores using {@linkcode SimilarityComputing}.
  */
 export class SimConfigurator {
   /**

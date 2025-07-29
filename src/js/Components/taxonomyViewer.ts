@@ -65,7 +65,7 @@ export class TaxonomyViewer {
   };
 
   /**
-   * A {@link Taxonomy} object
+   * A {@linkcode Taxonomy} object
    */
   private theTaxonomy: Taxonomy;
 
