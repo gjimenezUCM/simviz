@@ -78,6 +78,7 @@ export class Histogram extends PlotEventNotifier {
     let containerHeight = this.containerNode.parentNode
       ? (<HTMLElement>this.containerNode.parentNode).offsetHeight
       : 0;
+    console.log(this.simValues);
     let trace: Plotly.Data = {
       y: this.simValues,
       type: "histogram",

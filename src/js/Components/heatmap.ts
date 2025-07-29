@@ -107,6 +107,8 @@ export class Heatmap extends PlotEventNotifier {
       zmax: 1,
     };
 
+    console.log(this.currentMatrix);
+
     let layout: Partial<Plotly.Layout> = {
       paper_bgcolor: "transparent",
       font: {

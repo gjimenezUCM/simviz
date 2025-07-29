@@ -361,7 +361,7 @@ export class TaxonomyViewer {
     visData: VisTaxonomyData
   ): number {
     if (c1Node !== c2Node) {
-      let parentNode = this.theTaxonomy.findNodeById(c1Node.parentId);
+      let parentNode = this.theTaxonomy.findNodeById(c1Node.parent);
       if (parentNode) {
         if (!visData.nodes.find((n) => parentNode.id === n.id)) {
           visData.nodes.push(parentNode);

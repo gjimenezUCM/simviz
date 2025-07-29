@@ -46,13 +46,29 @@ export class SimilarityPanel {
     this.similarityFunctionMenu = document.getElementById(
       "similarity-select"
     ) as HTMLSelectElement;
+
     if (this.similarityFunctionMenu) {
+      // Remove event listeners cloning the node
+      let clonedElement = this.similarityFunctionMenu.cloneNode(
+        true
+      ) as HTMLSelectElement;
+
+      if (this.similarityFunctionMenu.parentNode) {
+        this.similarityFunctionMenu.parentNode.replaceChild(
+          clonedElement,
+          this.similarityFunctionMenu
+        );
+      }
+      this.similarityFunctionMenu = clonedElement;
+
       this.similarityFunctionMenu.innerHTML =
         "<option selected>Choose similarity function...</option>";
       for (let file of simFiles) {
         this.addSimilarityFunctionToDropdown(file);
       }
+
       this.similarityFunctionMenu.addEventListener("change", () => {
+        console.log("change");
         if (
           this.similarityFunctionMenu &&
           this.similarityFunctionMenu.selectedIndex !== 0

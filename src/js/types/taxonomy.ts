@@ -15,7 +15,7 @@ export type TaxonomyData = {
 export interface TaxonomyNode extends Partial<NodeOptions> {
   id: number;
   label: string;
-  parentId: number;
+  parent: number;
   weight: number;
   depth: number;
 }
@@ -92,21 +92,21 @@ export class Taxonomy {
     let node2 = this.findNodeByLabel(c2Label);
     if (node1 && node2) {
       while (node1.id != node2.id) {
-        if (node1.parentId == -1) {
+        if (node1.parent == -1) {
           return node1;
         }
-        if (node2.parentId == -1) {
+        if (node2.parent == -1) {
           return node2;
         }
         if (node1.depth > node2.depth) {
-          let parentNode = this.findNodeById(node1?.parentId);
+          let parentNode = this.findNodeById(node1?.parent);
           if (parentNode) {
             node1 = parentNode;
           } else {
             return null;
           }
         } else {
-          let parentNode = this.findNodeById(node2?.parentId);
+          let parentNode = this.findNodeById(node2?.parent);
           if (parentNode) {
             node2 = parentNode;
           } else {
