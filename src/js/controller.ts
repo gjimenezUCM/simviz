@@ -142,9 +142,20 @@ export class Controller {
     if (this.resetButton) {
       // Suscribe to events when clicking on reset button
       this.resetButton.addEventListener("click", (event) => {
-        if (this.theHeatmap) this.theHeatmap.reset();
+        if (this.theHeatmap) {
+          this.theHeatmap.reset();
+        }
         this.tableComponent.resetTable();
-        if (this.resetButton) this.resetButton.classList.add("visually-hidden");
+        this.tableComponent.repaint();
+
+        if (this.taxonomyViewer) {
+          this.taxonomyViewer.resetTaxonomyGraph();
+          this.taxonomyViewer.removeSubtree();
+        }
+
+        if (this.resetButton) {
+          this.resetButton.classList.add("visually-hidden");
+        }
       });
     }
 
@@ -215,6 +226,8 @@ export class Controller {
       this.tableComponent.resetColItem();
       this.tableComponent.updateSimilarityValue(null, null);
     }
+
+    this.tableComponent.repaint();
 
     // Update taxonomy:
     // 1. Find if the current case base has a taxonomy attribute (choose the first one)
@@ -317,6 +330,7 @@ export class Controller {
         this.casebaseDAO.getCaseById(caseId)
       );
       this.tableComponent.resetColItem();
+      this.tableComponent.repaint();
     }
   }
 

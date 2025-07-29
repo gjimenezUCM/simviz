@@ -190,7 +190,7 @@ export class TabulatorRenderer {
       this.resetValues(true);
     }
     this.updateLeftCaseHeader(id);
-    this.table.setData(this.data);
+    //this.table.setData(this.data);
   }
 
   /**
@@ -206,7 +206,7 @@ export class TabulatorRenderer {
       this.resetValues(false);
     }
     this.updateRightCaseHeader(id);
-    this.table.setData(this.data);
+    //this.table.setData(this.data);
   }
 
   /**
@@ -217,20 +217,24 @@ export class TabulatorRenderer {
    */
   resetValues(leftCase) {
     if (leftCase) {
-      Object.values(this.simAtts).forEach((att) => (att["leftCase"] = null));
-      Object.values(this.remainingAtts).forEach(
-        (att) => (att["leftCase"] = null)
-      );
+      this.resetAttributeValues(this.simAtts, "leftCase");
+      this.resetAttributeValues(this.remainingAtts, "leftCase");
       this.updateLeftCaseHeader(null);
     } else {
-      Object.values(this.simAtts).forEach((att) => (att["rightCase"] = null));
-      Object.values(this.remainingAtts).forEach(
-        (att) => (att["rightCase"] = null)
-      );
+      this.resetAttributeValues(this.simAtts, "rightCase");
+      this.resetAttributeValues(this.remainingAtts, "rightCase");
       this.updateRightCaseHeader(null);
     }
+    //this.table.setData(this.data);
+  }
 
-    this.table.setData(this.data);
+  resetAttributeValues(attList, columnName) {
+    Object.values(attList).forEach((att) => {
+      if ("_children" in att) {
+        this.resetAttributeValues(att._children, columnName);
+      }
+      att[columnName] = null;
+    });
   }
 
   /**
@@ -282,35 +286,41 @@ export class TabulatorRenderer {
   updateSimilarityValue(newSimValue, color) {
     if (newSimValue !== null) {
       this.updateSimilarityHeader(newSimValue.value.toFixed(3), color);
-      for (let [localAtt, localValue] of Object.entries(
-        newSimValue.attributes
-      )) {
-        if (typeof localValue === "number") {
-          this.simAtts[localAtt]["value"] = localValue;
-        } else {
-          if ("value" in localValue) {
-            this.simAtts[localAtt]["value"] = localValue["value"];
-            let subAtts = Object.keys(localValue["attributes"]);
-            let children = this.simAtts[localAtt]._children;
-            for (let subAtt of subAtts) {
-              for (let child of children) {
-                if (child["attribute"]["name"] === subAtt) {
-                  child["value"] = localValue["attributes"][subAtt];
-                }
-              }
-            }
-          } else {
-            this.simAtts[localAtt]["value"] = "";
-          }
-        }
-      }
     } else {
       this.updateSimilarityHeader(null);
-      Object.keys(this.simAtts).forEach(
-        (att) => (this.simAtts[att]["value"] = null)
-      );
     }
-    this.table.setData(this.data);
+    this.updateValue(newSimValue, this.simAtts);
+  }
+
+  /**
+   * Updates similarity values in an attribute list using a {@linkcode SimilarityValue} object. If this object
+   * is null, then it removes similarity values. This function is used recursively
+   * to processes nested attributes.
+   *
+   * @param {Object|null} newSimValue The similarity value (can be null)
+   * @param {Object} attList The list of attributes that will be updated
+   */
+  updateValue(newSimValue, attList) {
+    if (newSimValue) {
+      Object.values(attList).forEach((att) => {
+        if ("_children" in att) {
+          this.updateValue(
+            newSimValue.attributes[att.attribute.name],
+            att._children
+          );
+          att["value"] = newSimValue["value"];
+        } else {
+          att["value"] = newSimValue.attributes[att.attribute.name];
+        }
+      });
+    } else {
+      Object.values(attList).forEach((att) => {
+        if ("_children" in att) {
+          this.updateValue(null, att._children);
+        }
+        att["value"] = null;
+      });
+    }
   }
 
   /**
@@ -341,6 +351,7 @@ export class TabulatorRenderer {
         "<i class='bi bi-caret-down-square tabulator-data-tree-control-collapse'> </i>",
       dataTreeBranchElement: false,
       layout: "fitColumns",
+      height: "100%",
       columns: [
         {
           field: "attribute.name",
@@ -352,13 +363,7 @@ export class TabulatorRenderer {
           title: "",
           field: "attribute.similarityConfiguration.weight",
           width: "10%",
-          formatter: "progress",
-          formatterParams: {
-            color: "#dda8f8",
-            legendColor: "#000000",
-            legendAlign: "justify",
-            legend: RenderUtils.renderWeight,
-          },
+          formatter: RenderUtils.renderWeightAsProgressBar,
           cssClass: "dt-att-weight",
           vertAlign: "bottom",
         },
@@ -372,7 +377,7 @@ export class TabulatorRenderer {
           title: "Case Id",
           field: "leftCase",
           hozAlign: "right",
-          formatter: this.formatByType,
+          formatter: RenderUtils.renderByType,
           cssClass: "dt-left-case",
           headerHozAlign: "right",
           variableHeight: true,
@@ -390,7 +395,7 @@ export class TabulatorRenderer {
         {
           title: "caseId",
           field: "rightCase",
-          formatter: this.formatByType,
+          formatter: RenderUtils.renderByType,
           cssClass: "dt-right-case",
           variableHeight: true,
         },
@@ -437,6 +442,8 @@ export class TabulatorRenderer {
         if (that.similarityColor) {
           el.parentElement.parentElement.style.backgroundColor =
             that.similarityColor;
+        } else {
+          el.parentElement.parentElement.style.backgroundColor = "transparent";
         }
         el.innerHTML = that.similarity
           ? `<span>${that.similarity}</span>`
@@ -478,6 +485,18 @@ export class TabulatorRenderer {
   }
 
   /**
+   * Repaint the table with the current stored data
+   */
+  repaint() {
+    this.table.setData(this.data);
+  }
+}
+
+/**
+ * A utility class containing the functions to render specific SimViz datatypes
+ */
+class RenderUtils {
+  /**
    * Formats cell content based on the attribute type specified in the cell data.
    *
    * @param {Object} cell - The Tabulator cell object containing the data to be formatted
@@ -485,7 +504,7 @@ export class TabulatorRenderer {
    * @param {Function} onRendered - Callback function to be executed when rendering is complete
    * @returns {string} The formatted HTML string representation of the cell content
    */
-  formatByType(cell, formatterParams, onRendered) {
+  static renderByType(cell, formatterParams, onRendered) {
     let data = cell.getData();
     if ("type" in data.attribute) {
       if (typeof data.attribute["type"] === "object") {
@@ -516,12 +535,6 @@ export class TabulatorRenderer {
       return RenderUtils.renderDefault(cell);
     }
   }
-}
-
-/**
- * A utility class containing the functions to render specific SimViz datatypes
- */
-class RenderUtils {
   /**
    * Default renderer. It displays an empty badge if the cell is empty
    * @param {Object} cell - The Tabulator cell object containing the data to be formatted
@@ -566,6 +579,9 @@ class RenderUtils {
     if (data && data[cell.getField()]) {
       let value = data[cell.getField()];
       template.innerHTML = `<img class="img-fluid" height="15vh" src="${value}"/>`;
+      template.content.firstChild.addEventListener("load", function () {
+        cell.getRow().normalizeHeight();
+      });
     } else {
       template.innerHTML = `<span class="badge text-bg-danger">EMPTY</span>`;
     }
@@ -662,17 +678,40 @@ class RenderUtils {
       return "&nbsp;";
     }
   }
+  // /**
+  //  * Weight renderer. It returns the value tahat will be displayed inside the progress bar
+  //  * @returns {string} The formatted HTML string representation of the corresponding weight
+  //  */
+  // static renderWeight(value) {
+  //   if (value == 0) {
+  //     return "";
+  //   } else {
+  //     return Number(value).toFixed(2) + "%";
+  //   }
+  // }
+
   /**
-   * Number renderer. It displays an empty badge if the cell is empty and
-   * it displays a float with a predefined number of decimals (0 by default)
+   * Custom progress bar. It is rendered only if the cell contains a value
    * @param {Object} cell - The Tabulator cell object containing the data to be formatted
    * @returns {string} The formatted HTML string representation of the cell content
    */
-  static renderWeight(value) {
-    if (value == 0) {
-      return "";
+  static renderWeightAsProgressBar(cell, formatterParams, onRendered) {
+    let value = cell.getValue();
+    if (value !== null || value > 0) {
+      formatterParams = {
+        color: "#dda8f8",
+        legendColor: "#000000",
+        legendAlign: "justify",
+        legend: Number(value).toFixed(2) + "%",
+      };
+      return FormatModule.formatters.progress.call(
+        FormatModule.prototype,
+        cell,
+        formatterParams,
+        onRendered
+      );
     } else {
-      return Number(value).toFixed(2) + "%";
+      return "";
     }
   }
 }

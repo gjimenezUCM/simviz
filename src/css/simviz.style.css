@@ -162,8 +162,8 @@ section>.panel {
     }
 
     .box {
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
         display: inline-block;
         margin-right: 5px;
         border: 1px solid black;
@@ -185,12 +185,13 @@ section>.panel {
     /* Tabulator */
 
     .tabulator {
+        background-color: var(--panel-bg);
+
         .tabulator-col[tabulator-field=value] {
             .tabulator-col-title span {
                 background-color: var(--bs-body-bg);
             }
         }
-        background-color: var(--panel-bg);
 
         .tabulator-header {
             background-color: var(--panel-bg);
@@ -200,7 +201,8 @@ section>.panel {
             }
         }
 
-        .tabulator-row {
+        .tabulator-row,
+        .tabulator-row:hover{
             background-color: var(--panel-bg);
         }
 
@@ -214,6 +216,9 @@ section>.panel {
 
         .tabulator-data-tree-control-collapse {
             color: var(--bs-btn-primary);
+        }
+        .tabulator-cell.dt-att-weight>div {
+            border: #333446 solid 1px;
         }
     }
 

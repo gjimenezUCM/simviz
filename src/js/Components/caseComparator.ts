@@ -33,6 +33,11 @@ export class CaseComparator {
     attId: string
   ) {
     this.renderer = new TabulatorRenderer(allAtts, simDescription, attId);
+    // Remove the placeholder table if it exists
+    const placeholder = document.getElementById("case-comparison-placeholder");
+    if (placeholder) {
+      placeholder.remove();
+    }
   }
 
   /**
@@ -109,5 +114,12 @@ export class CaseComparator {
    */
   private updateRightColCase(id: string | null, item: Object | null) {
     this.renderer.updateRightColCase(id, item);
+  }
+
+  /**
+   * Force the renderer to repaint the case comparison panel
+   */
+  repaint() {
+    this.renderer.repaint();
   }
 }
