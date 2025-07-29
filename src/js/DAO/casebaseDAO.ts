@@ -11,7 +11,7 @@ import { findTaxonomyAttribute, findValueInCase } from "../utils/caseUtils";
  * but also the metadata about the case description and the attribute employed
  * as unique case identifier.
  *
- * Some case bases also uses a {@link Taxonomy} as additional domain knowledge. This
+ * Some case bases also uses a {@linkcode Taxonomy} as additional domain knowledge. This
  * taxonomy is also stored and accesed using this DAO.
  */
 export class CasebaseDAO {

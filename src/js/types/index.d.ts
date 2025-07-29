@@ -2,6 +2,7 @@
  * @types/Plotly has an error in ColorBar and it does not contain
  * an orientation property. This is a declaration merging to
  * solve this problem for out heatmap
+ * @ignore
  */
 namespace Plotly {
   export interface ColorBar {

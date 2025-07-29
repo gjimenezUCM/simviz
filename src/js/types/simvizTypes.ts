@@ -68,7 +68,7 @@ export type LocalSimilarityDescription = {
   description: string;
 
   /**
-   * For nested attributes, the local similarity description contains a {@link similarityConfiguration}
+   * For nested attributes, the local similarity description contains a {@linkcode SimilarityConfiguration}
    * to describe it. It is null for basic attributes.
    */
   nestedSimilarityConfiguration: SimilarityConfiguration | null;
@@ -94,7 +94,7 @@ export type SimilarityConfiguration = {
 };
 
 /**
- * Datatype for the attributes entries in a {@link SimilarityValue} object
+ * Datatype for the attributes entries in a {@linkcode SimilarityValue} object
  */
 export type EntrySimilarityValue = {
   [key: string]: SimilarityValue;

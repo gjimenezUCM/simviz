@@ -30,9 +30,11 @@ export default class SimilarityData {
   similarityMatrix?: Array<Array<number>>;
 
   /**
-   * Constructor (as a copy constructor)
-   * @param data Another similarityData object, commonly without the similarity matrix
-   * @param caseIds A list with all the ids in the casebase
+   * Creates a new SimilarityData instance.
+   *
+   * @param description The similarity configuration that defines how similarity is calculated
+   * @param similarityValues Data about similarity values
+   * @param caseIds (Optional) array of case ids
    */
   constructor(
     description: SimilarityConfiguration,

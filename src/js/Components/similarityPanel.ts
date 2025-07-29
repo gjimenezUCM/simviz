@@ -129,20 +129,24 @@ export class SimilarityPanel {
   }
 
   /**
-   * Updates the case base description
-   * @param newTitle The new case base description displayed in the panel
+   * Updates the casebase description panel with dataset information.
+   *
+   * @param casebaseName The name of the casebase to display in the panel title
+   * @param casebaseDescription The description text of the casebase (supports markdown)
+   * @param numCases The total number of cases/instances in the casebase
+   *
    */
   updateCasebaseDescription(
     casebaseName: string,
     casebaseDescription: string,
-    numcCases: number
+    numCases: number
   ) {
     let datasetDescription = document.getElementById("dataset-desc");
     if (datasetDescription) {
       datasetDescription.innerHTML = `<h4>Description</h4>
         ${nanoMarkdown(casebaseDescription)}
         <h4>Number of instances</h4>
-        <p>${numcCases}</p>`;
+        <p>${numCases}</p>`;
     }
     this.updatePanelTitle(casebaseName);
   }

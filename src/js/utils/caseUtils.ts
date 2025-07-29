@@ -1,4 +1,5 @@
 /**
+ * @module caseUtils
  * A set of utility functions to find attributes in {@link SimilarityConfiguration},
  * {@link SimilarityValue}, or {@link Taxonomy} objects. The attribute can be expressed
  * as a path with dot (.) notation.
@@ -9,10 +10,10 @@ import {
 } from "../types/simvizTypes";
 
 /**
- * Finds and returns a value from a {@link SimilarityValue} object using a given attribute name.
+ * Finds and returns a value from a {@link types:simvizTypes/SimilarityValue} object using a given attribute name.
  * Supports nested attribute access using dot notation (e.g., "parent.child.value").
  *
- * @param aSimilarityValue The {@link SimilarityValue} object to search within
+ * @param aSimilarityValue The {@link types:simvizTypes/SimilarityValue} object to search within
  * @param attributeName The name of the attribute to find, supports dot notation
  * @returns The numeric value if found, or null if the attribute does not exist
  */
@@ -74,7 +75,7 @@ export function findValueInCase(aCase: Object, attributeName: string): any {
 }
 
 /**
- * Recursively searches through an attributes object to find the attribute whose type is {@link Taxonomy}.
+ * Recursively searches through an attributes object to find the attribute whose type is {@link types:simvizTypes/Taxonomy}.
  *
  * @param attributes Object containing string key-value pairs or nested objects to search through
  * @returns The dot-notation path to the attribute whose type is "Taxonomy", or empty string if not found

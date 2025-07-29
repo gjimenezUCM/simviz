@@ -75,10 +75,10 @@ export class CBRkitAdapter {
    * Extracts and transforms similarity configuration metadata into SimViz format.
    *
    * This method processes raw metadata containing similarity configuration information
-   * and converts it into a {@link SimilarityConfiguration} object
+   * and converts it into a {@linkcode SimilarityConfiguration} object
    *
    * @param theMetadata The raw metadata object containing similarity configuration data.
-   * @returns A {@link SimilarityConfiguration} object
+   * @returns A {@linkcode SimilarityConfiguration} object
    */
   static extractSimilarityConfig(theMetadata: any): SimilarityConfiguration {
     let adaptedConfig: any = {

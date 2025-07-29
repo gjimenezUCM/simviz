@@ -14,7 +14,7 @@ import {
 /**
  * This class acts as a mediator between different objects and panels in SimViz
  */
-class Controller {
+export class Controller {
   /**
    * Case comparator panel
    */
@@ -348,7 +348,7 @@ class Controller {
 }
 
 /**
- * A singleton-like instance of the Controller
+ * A singleton-like instance of the {@linkcode Controller}
  */
 const theController = new Controller();
 export { theController };
