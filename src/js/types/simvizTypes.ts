@@ -11,7 +11,7 @@ export type AttributeType =
   | "ColorRGBList"
   | "Color"
   | "Taxonomy"
-  | "nested";
+  | "object";
 
 export type CasebaseMetadata = {
   /**

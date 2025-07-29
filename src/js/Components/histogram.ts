@@ -78,22 +78,28 @@ export class Histogram extends PlotEventNotifier {
     let containerHeight = this.containerNode.parentNode
       ? (<HTMLElement>this.containerNode.parentNode).offsetHeight
       : 0;
-    console.log(this.simValues);
     let trace: Plotly.Data = {
       y: this.simValues,
       type: "histogram",
       histnorm: "percent",
       ybins: {
-        start: 0.0,
-        size: 0.10000001, // This way, last bucket contains 1.0 and do not push the other buckets
         end: 1.0,
+        size: 0.10000001, // This way, last bucket contains 1.0 and do not push the other buckets
+        start: 0.0,
       },
       marker: {
         color: magmaColorscaleValue,
+        cmin: 0.0,
+        cmax: 1.0000001,
       },
       hovertemplate: "%{x}%<extra></extra>",
     };
     let layout: Partial<Plotly.Layout> = {
+      font: {
+        color: "#333446",
+        family: `system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial`,
+        size: 14,
+      },
       paper_bgcolor: "transparent",
       plot_bgcolor: "transparent",
       margin: {
@@ -117,10 +123,9 @@ export class Histogram extends PlotEventNotifier {
         tickvals: [],
       },
       hoverlabel: {
-        bgcolor: "aliceblue",
+        bgcolor: "rgb(234, 239, 239)",
         font: {
-          color: "black",
-          size: 16,
+          size: 15,
         },
       },
       height: containerHeight,

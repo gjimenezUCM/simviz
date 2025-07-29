@@ -68,7 +68,6 @@ export class SimilarityPanel {
       }
 
       this.similarityFunctionMenu.addEventListener("change", () => {
-        console.log("change");
         if (
           this.similarityFunctionMenu &&
           this.similarityFunctionMenu.selectedIndex !== 0

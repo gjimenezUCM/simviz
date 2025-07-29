@@ -251,7 +251,6 @@ export class TaxonomyViewer {
             options
           );
           this.detailGraph.on("selectNode", (eventData) => {
-            console.log(eventData);
             this.focusOnNode(eventData.nodes[0]);
           });
           this.highlightNodes(

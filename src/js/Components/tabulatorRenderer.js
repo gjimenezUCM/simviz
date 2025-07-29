@@ -61,16 +61,7 @@ export class TabulatorRenderer {
       if (attName === attId) continue;
       // Ignore attribute because it was previously added to the table
       if (this.simAtts && attName in this.simAtts) continue;
-      this.remainingAtts[attName] = {
-        attribute: {
-          name: attName,
-          type: allAtts[attName],
-          similarityConfiguration: null,
-        },
-        leftCase: null,
-        rightCase: null,
-        value: null,
-      };
+      this.remainingAtts[attName] = this.createRowData(attName, allAtts, null);
     }
 
     this.data = Object.values(this.simAtts);
@@ -84,57 +75,105 @@ export class TabulatorRenderer {
    * If the attribute contains nested data, this function can create several nested rows.
    * @param {string} attName - The attribute name to create row data for
    * @param {Object} allAtts - Object containing all attributes and their types
-   * @param {Object} simDescription - Similarity description object
+   * @param {Object} simDescription - Similarity description object (can be null)
    * @returns {Object} Row data object with attribute info, cases, value and optional children for nested attributes
    */
   createRowData(attName, allAtts, simDescription) {
-    if (
-      simDescription.localSim[attName].nestedSimilarityConfiguration !== null
-    ) {
-      let rowData = {
-        attribute: {
-          name: attName,
-          type: "object",
-          similarityConfiguration: JSON.parse(
-            JSON.stringify(simDescription.localSim[attName])
-          ),
-        },
-        leftCase: null,
-        rightCase: null,
-        value: null,
-        _children: [],
-      };
-      rowData["attribute"]["similarityConfiguration"]["weight"] =
-        rowData["attribute"]["similarityConfiguration"]["weight"] * 100;
-      let listAttsInSim = Object.keys(
-        simDescription.localSim[attName].nestedSimilarityConfiguration.localSim
-      );
-      for (let localAttName of listAttsInSim) {
-        let subRowData = this.createRowData(
-          localAttName,
-          allAtts[attName],
+    // Check if simDescription!=== null (an attribute employed in the similarity fuction)
+    if (simDescription) {
+      //
+      if (
+        simDescription.localSim[attName].nestedSimilarityConfiguration !== null
+      ) {
+        let rowData = {
+          attribute: {
+            name: attName,
+            type: "object",
+            similarityConfiguration: JSON.parse(
+              JSON.stringify(simDescription.localSim[attName])
+            ),
+          },
+          leftCase: null,
+          rightCase: null,
+          value: null,
+          _children: [],
+        };
+        rowData["attribute"]["similarityConfiguration"]["weight"] =
+          rowData["attribute"]["similarityConfiguration"]["weight"] * 100;
+        let listAttsInSim = Object.keys(
           simDescription.localSim[attName].nestedSimilarityConfiguration
+            .localSim
         );
-        rowData._children.push(subRowData);
+        for (let localAttName of listAttsInSim) {
+          let subRowData = this.createRowData(
+            localAttName,
+            allAtts[attName],
+            simDescription.localSim[attName].nestedSimilarityConfiguration
+          );
+          rowData._children.push(subRowData);
+        }
+        return rowData;
+      } else {
+        let rowData = {
+          attribute: {
+            name: attName,
+            type: allAtts[attName],
+            similarityConfiguration: JSON.parse(
+              JSON.stringify(simDescription.localSim[attName])
+            ),
+          },
+          leftCase: null,
+          rightCase: null,
+          value: null,
+        };
+        rowData["attribute"]["similarityConfiguration"]["weight"] =
+          rowData["attribute"]["similarityConfiguration"]["weight"] * 100;
+
+        return rowData;
       }
-      return rowData;
     } else {
-      let rowData = {
+      // A "Remaining attribute": the row does not contain a similarity function
+      return {
         attribute: {
           name: attName,
           type: allAtts[attName],
-          similarityConfiguration: JSON.parse(
-            JSON.stringify(simDescription.localSim[attName])
-          ),
+          similarityConfiguration: null,
         },
         leftCase: null,
         rightCase: null,
         value: null,
       };
-      rowData["attribute"]["similarityConfiguration"]["weight"] =
-        rowData["attribute"]["similarityConfiguration"]["weight"] * 100;
+    }
+  }
 
-      return rowData;
+  /**
+   * Updates rows in the table by setting values for a specific column.
+   * Handles both primitive values and nested objects by recursively updating child attributes.
+   *
+   * @param {Object} item - The source object containing the data to update with
+   * @param {Object} atts - The attributes object mapping keys to their corresponding rows
+   * @param {string} columnName - The name of the column to update in the target rows
+   *
+   */
+  updateRows(item, atts, columnName) {
+    for (const [key, value] of Object.entries(atts)) {
+      if (
+        item[key] &&
+        typeof item[key] === "object" &&
+        !Array.isArray(item[key])
+      ) {
+        let subAtts = Object.keys(item[key]);
+        let children = value._children;
+        for (let subAtt of subAtts) {
+          for (let child of children) {
+            if (child["attribute"]["name"] === subAtt) {
+              child[columnName] = item[key][subAtt];
+            }
+          }
+        }
+      } else {
+        value[columnName] = item[key];
+      }
     }
   }
 
@@ -145,44 +184,8 @@ export class TabulatorRenderer {
    */
   updateLeftColCase(id, item) {
     if (item) {
-      for (const [key, value] of Object.entries(this.simAtts)) {
-        if (
-          item[key] &&
-          typeof item[key] === "object" &&
-          !Array.isArray(item[key])
-        ) {
-          let subAtts = Object.keys(item[key]);
-          let children = value._children;
-          for (let subAtt of subAtts) {
-            for (let child of children) {
-              if (child["attribute"]["name"] === subAtt) {
-                child["leftCase"] = item[key][subAtt];
-              }
-            }
-          }
-        } else {
-          value["leftCase"] = item[key];
-        }
-      }
-      for (const [key, value] of Object.entries(this.remainingAtts)) {
-        if (
-          item[key] &&
-          typeof item[key] === "object" &&
-          !Array.isArray(item[key])
-        ) {
-          let subAtts = Object.keys(item[key]);
-          let children = value._children;
-          for (let subAtt of subAtts) {
-            for (let child of children) {
-              if (child["attribute"]["name"] === subAtt) {
-                child["leftCase"] = item[key][subAtt];
-              }
-            }
-          }
-        } else {
-          value["leftCase"] = item[key];
-        }
-      }
+      this.updateRows(item, this.simAtts, "leftCase");
+      this.updateRows(item, this.remainingAtts, "leftCase");
     } else {
       this.resetValues(true);
     }
@@ -197,44 +200,8 @@ export class TabulatorRenderer {
    */
   updateRightColCase(id, item) {
     if (item) {
-      for (const [key, value] of Object.entries(this.simAtts)) {
-        if (
-          item[key] &&
-          typeof item[key] === "object" &&
-          !Array.isArray(item[key])
-        ) {
-          let subAtts = Object.keys(item[key]);
-          let children = value._children;
-          for (let subAtt of subAtts) {
-            for (let child of children) {
-              if (child["attribute"]["name"] === subAtt) {
-                child["rightCase"] = item[key][subAtt];
-              }
-            }
-          }
-        } else {
-          value["rightCase"] = item[key];
-        }
-      }
-      for (const [key, value] of Object.entries(this.remainingAtts)) {
-        if (
-          item[key] &&
-          typeof item[key] === "object" &&
-          !Array.isArray(item[key])
-        ) {
-          let subAtts = Object.keys(item[key]);
-          let children = value._children;
-          for (let subAtt of subAtts) {
-            for (let child of children) {
-              if (child["attribute"]["name"] === subAtt) {
-                child["rightCase"] = item[key][subAtt];
-              }
-            }
-          }
-        } else {
-          value["rightCase"] = item[key];
-        }
-      }
+      this.updateRows(item, this.simAtts, "rightCase");
+      this.updateRows(item, this.remainingAtts, "rightCase");
     } else {
       this.resetValues(false);
     }
@@ -367,6 +334,11 @@ export class TabulatorRenderer {
     this.table = new Tabulator(`#${TABLE_ELEMENT_ID}`, {
       data: theData,
       dataTree: true,
+      dataTreeStartExpanded: true,
+      dataTreeExpandElement:
+        "<i class='bi bi-caret-right-square tabulator-data-tree-control-expand'> </i>",
+      dataTreeCollapseElement:
+        "<i class='bi bi-caret-down-square tabulator-data-tree-control-collapse'> </i>",
       dataTreeBranchElement: false,
       layout: "fitColumns",
       columns: [

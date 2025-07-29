@@ -107,8 +107,6 @@ export class Heatmap extends PlotEventNotifier {
       zmax: 1,
     };
 
-    console.log(this.currentMatrix);
-
     let layout: Partial<Plotly.Layout> = {
       paper_bgcolor: "transparent",
       font: {
@@ -139,7 +137,7 @@ export class Heatmap extends PlotEventNotifier {
       hoverlabel: {
         bgcolor: "rgb(234, 239, 239)",
         font: {
-          size: 16,
+          size: 15,
         },
       },
       height: containerHeight,
@@ -208,8 +206,6 @@ export class Heatmap extends PlotEventNotifier {
         let colId = String(data.points[0].x);
         let rowId = String(data.points[0].y);
         let colorPos = Math.trunc(data.points[0].z * 10);
-
-        console.log(data.points);
         colorPos = colorPos == 10 ? 9 : colorPos;
         let color = magmaColorscaleValue[colorPos][1];
         this.notify({
