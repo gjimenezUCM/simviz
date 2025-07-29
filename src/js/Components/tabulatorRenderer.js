@@ -293,7 +293,7 @@ export class TabulatorRenderer {
   }
 
   /**
-   * Updates similarity values in an attribute list using a {@linkcode SimilarityValue} object. If this object
+   * Updates similarity values in an attribute list using a {@linkcode types:simvizTypes/SimilarityValue} object. If this object
    * is null, then it removes similarity values. This function is used recursively
    * to processes nested attributes.
    *
