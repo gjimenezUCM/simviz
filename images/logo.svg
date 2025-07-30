@@ -1,0 +1,50 @@
+<svg viewBox="0 0 150 90" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo con gradiente -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="80%" y2="0%">
+      <stop offset="0%" style="stop-color:#6a758f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7F8CAA;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo principal -->
+  <!-- <circle cx="100" cy="100" r="90" fill="#667eea"/> -->
+  <rect x="0" y="0" width="150" height="90" fill="url(#bgGradient)" rx="10"/>
+  
+  <!-- Elementos del histograma -->
+  <g transform="translate(80, 10)">
+    <!-- Barras del histograma horizontales con diferentes longitudes -->
+    <rect x="0" y="0" width="42" height="10" fill="rgb(234, 239, 239)" opacity="1" rx="1"/>
+    <rect x="0" y="15" width="54" height="10" fill="rgb(234, 239, 239)" opacity="0.9" rx="1"/>
+    <rect x="0" y="30" width="36" height="10" fill="rgb(234, 239, 239)" opacity="0.9" rx="1"/>
+    <rect x="0" y="45" width="60" height="10" fill="rgb(234, 239, 239)" opacity="0.9" rx="1"/>
+    <rect x="0" y="59" width="48" height="10" fill="rgb(234, 239, 239)" opacity="0.9" rx="1"/>
+    
+    <!-- Línea base del histograma vertical -->
+    <line x1="0" y1="0" x2="0" y2="69" stroke="rgb(234, 239, 239)" stroke-width="2" opacity="0.9" />
+  </g>
+  
+  <!-- Mapa de calor -->
+  <g transform="translate(10, 10)">
+    <!-- Grid del mapa de calor -->
+    <rect x="0" y="0" width="15" height="15" fill="#fcfdbf" opacity="0.8" rx="1"/>
+    <rect x="18" y="0" width="15" height="15" fill="#feca8d" opacity="0.8" rx="1"/>
+    <rect x="36" y="0" width="15" height="15" fill="#f59e0b" opacity="0.8" rx="1"/>
+    <rect x="54" y="0" width="15" height="15" fill="#ef4444" opacity="0.8" rx="1"/>
+    
+    <rect x="0" y="18" width="15" height="15" fill="#feca8d" opacity="0.8" rx="1"/>
+    <rect x="18" y="18" width="15" height="15" fill="#f59e0b" opacity="0.8" rx="1"/>
+    <rect x="36" y="18" width="15" height="15" fill="#ef4444" opacity="0.8" rx="1"/>
+    <rect x="54" y="18" width="15" height="15" fill="#dc2626" opacity="0.8" rx="1"/>
+    
+    <rect x="0" y="36" width="15" height="15" fill="#f59e0b" opacity="0.8" rx="1"/>
+    <rect x="18" y="36" width="15" height="15" fill="#ef4444" opacity="0.8" rx="1"/>
+    <rect x="36" y="36" width="15" height="15" fill="#dc2626" opacity="0.8" rx="1"/>
+    <rect x="54" y="36" width="15" height="15" fill="#b91c1c" opacity="0.8" rx="1"/>
+    
+    <rect x="0" y="54" width="15" height="15" fill="#ef4444" opacity="0.8" rx="1"/>
+    <rect x="18" y="54" width="15" height="15" fill="#dc2626" opacity="0.8" rx="1"/>
+    <rect x="36" y="54" width="15" height="15" fill="#b91c1c" opacity="0.8" rx="1"/>
+    <rect x="54" y="54" width="15" height="15" fill="#991b1b" opacity="0.8" rx="1"/>
+  </g>
+</svg>

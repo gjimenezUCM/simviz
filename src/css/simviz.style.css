@@ -267,10 +267,9 @@ section>.panel {
 
 /* Taxonomy Viewer */
 #taxonomy-viewer {
-#the-taxonomy,
+    #the-taxonomy,
     #detail-taxonomy {
-        height: 40vh;
-
+        height: 39vh;
     }
 
     #detail-taxonomy {

@@ -6,6 +6,7 @@
     <title>
         <%= htmlWebpackPlugin.options.title %>
     </title>
+    <link rel="icon" type="image/x-icon" href="./images/logo.svg">
 </head>
 <body>
     <div id="loading-overlay" class="loading-overlay d-flex flex-column justify-content-center align-items-center visually-hidden">
@@ -16,7 +17,10 @@
     </div>
     <nav id="menu" class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand">SimViz</a>
+          <a class="navbar-brand">
+            <img src="./images/logo.svg"  height="35" alt="SimViz">
+          </a>
+          
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -53,6 +57,65 @@
     <div class="container-fluid">
 
         <div class="row">
+            <section id="case-comparison-panel" class="col-4">
+                <div class="panel">
+                    <h2 class="panel-header">Case comparison</h2>
+                    <div id="table-panel" class="row">
+                        <table id="case-comparison-table" class="table-sm table-striped align-middle">  
+                        </table>
+                        <table id="case-comparison-placeholder" class="table table-sm table-striped align-middle" style="font-size: 0.9rem;">
+                        <thead>
+                            <tr>
+                                <th class="col-4 item-row-cell">
+                                    <span class="item-id-value">Attribute</span>
+                                </th>
+                                <th id="item-row-id" class="col-4 item-row-cell" style="text-align: right;">
+                                    <button class="btn btn-sm btn-primary" data-item-id="">
+                                        <i class="bi-pin"></i>
+                                    </button>
+                                    <span class="item-id-value ">CaseId</span>
+                                </th>
+                                <th class="col-2" style="text-align: center;">
+                                        <span id="item-sim-value">Similarity</span>
+                                </th>
+                                <th id="item-col-id" class="col-4 item-col-cell">
+                                    <span class="item-id-value">CaseId</span>
+                                    <button class="btn btn-sm btn-primary" data-item-id="">
+                                        <i class="bi-pin"></i>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>                                
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
             <section id="plot-container" class="col-8">
                 <div class="panel">
                 <h2 class="panel-header">Similarity value distribution</h2>
@@ -64,122 +127,15 @@
                         <div id="heatmap"></div>
                     </div>
                     <div id="histogram-content" class="col-5">
-                        <div id="histogram"></div>
+                        <div id="histogram">
+                        </div>
                     </div>
                 </div>
                 </div>
             </section>
-            <section id="case-comparison-panel" class="col-4">
-                <div class="panel">
-                    <h2 class="panel-header">Case comparison</h2>
-                    <!-- <div id="selection-header" class="row">
-                        <div class="col-2">
-                            <label class="form-label" for="heatmap-filter-select">Select Item</label>
-                        </div>
-                        <div class="col-10">
-                            <select id="heatmap-filter-select" class="form-select" aria-label="Item select">
-                                <option selected>*</option>
-                            </select>
-                        </div>
-                    </div> -->
-                    <div id="table-panel" class="row">
-                        <table id="case-comparison-table" class="table-sm table-striped align-middle">  
-                        </table>
-                            <table id="case-comparison-placeholder" class="table table-sm table-striped align-middle">
-                            <thead>
-                                <tr>
-                                    <th class="col-4 item-row-cell">
-                                        <span class="item-id-value">Attribute</span>
-                                    </th>
-                                    <th id="item-row-id" class="col-4 item-row-cell" style="text-align: right;">
-                                        <button class="btn btn-sm btn-primary" data-item-id="">
-                                            <i class="bi-pin"></i>
-                                        </button>
-                                        <span class="item-id-value ">CaseId</span>
-                                    </th>
-                                    <th class="col-2" style="text-align: center;">
-                                            <span id="item-sim-value">Similarity</span>
-                                    </th>
-                                    <th id="item-col-id" class="col-4 item-col-cell">
-                                        <span class="item-id-value">CaseId</span>
-                                        <button class="btn btn-sm btn-primary" data-item-id="">
-                                            <i class="bi-pin"></i>
-                                        </button>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>                                
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            </tbody>
-                            </table>
-                        <!-- <table class="table table-striped align-middle">
-                            <thead>
-                                <tr>
-                                    <th class="col-2 item-row-cell">
-                                        <span class="item-id-value">Attribute</span>
-                                    </th>
-                                    <th id="item-row-id" class="col-4 item-row-cell">
-                                        <button class="btn btn-sm btn-primary" data-item-id="">
-                                            <i class="bi-pin"></i>
-                                        </button>
-                                        <span class="item-id-value">CaseId</span>
-                                    </th>
-                                    <th class="col-2">
-                                        <div class="badge rounded-pill">
-                                            <span id="item-sim-value">Similarity</span>
-                                        </div>
-                                    </th>
-                                    <th id="item-col-id" class="col-4 item-col-cell">
-                                        <span class="item-id-value">CaseId</span>
-                                        <button class="btn btn-sm btn-primary" data-item-id="">
-                                            <i class="bi-pin"></i>
-                                        </button>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table> -->
-                    </div>
-                </div>
-            </section>
+
         </div>
         <div class="row">
-            <section id="taxonomy-viewer" class="col-8">
-                <div class="panel">
-                    <h2 class="panel-header">Taxonomy</h2>
-                    <div class="panel-body container-fluid">
-                        <div class="row">
-                        <div class="col-9" id="the-taxonomy">
-                        </div>
-                        <div class="col-3" id="detail-taxonomy"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
             <section id="info-panel" class="col-4">
                 <div class="panel">
                     <h2 class="panel-header">Info</h2>
@@ -191,6 +147,18 @@
                     </div>
                 </div>
 
+            </section>
+            <section id="taxonomy-viewer" class="col-8">
+                <div class="panel">
+                    <h2 class="panel-header">Taxonomy</h2>
+                    <div class="panel-body container-fluid">
+                        <div class="row">
+                        <div class="col-9" id="the-taxonomy">
+                        </div>
+                        <div class="col-3" id="detail-taxonomy"></div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     </div>

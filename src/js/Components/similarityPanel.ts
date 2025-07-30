@@ -10,7 +10,9 @@ import { SimilarityConfiguration } from "../types/simvizTypes";
 const MAX_WEIGHTBAR_SIZE_PX = 50;
 
 /**
- * Class component in charge of the similarity panel in the UI
+ * Class component in charge of loading similarity data and displaying information about
+ * the current loaded dataset
+ *
  */
 export class SimilarityPanel {
   /**
