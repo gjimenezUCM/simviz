@@ -93,12 +93,11 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-Install the prerrequisites with:
+Install the prerrequisites with npm:
 
-- npm
-  ```sh
-  npm install
-  ```
+```sh
+npm install
+```
 
 ### Installation
 
@@ -119,10 +118,9 @@ Install the prerrequisites with:
    npm run start
    ```
 5. Generate SimViz documentation with:
-
-```sh
-npm run docs
-```
+  ```sh
+  npm run docs
+  ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

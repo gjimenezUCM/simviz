@@ -4,11 +4,11 @@
 This folder contains the data employed by SimViz for the visualizations. To visualize a similarity function you need:
 
 - A dataset in SimViz format.
-- A similarity data file containing the similarity values (and partial similarities) for each pair of items in the dataset. Similarity functions must be symmetric so you can remove redundant similarity values to reduce its size. 
+- A similarity data file containing the similarity values (and partial similarities) for each pair of items in the dataset. Similarity data can be using [CBRkit](https://github.com/wi2trier/cbrkit), a Python framework for building Case-based Reasoning applications.
 
 ## Files and folders
 
-Here we have several datasets (one folder per dataset) and similarity data over each dataset to use SimViz.
+Here we have several case bases (one folder per dataset) and similarity data over each dataset to use SimViz.
 
 Additionally, this folder contains the following files:
 
@@ -29,8 +29,25 @@ Create a virtual environment and install the prerrequisites (in `requirements.tx
 
 ### Similarity data notebooks
 
-Each dataset folder contains a notebook called `createData` with examples for creating similarity data files. These notebooks use some common functions implemented in [utils/utils.py](./utils/utils.py).
+Each dataset folder contains Python scripts with examples for creating similarity data files. 
 
 ## Visualizing new similarity data
 
-If you create new similarity data using the notebooks, you can visualize it modifying the file `datasets.json`. You must add a new entry in the corresponding `similarityDatasets` list, including a name and the URI to similarity datafile created.
+If you create new similarity data using these scripts, you can visualize it modifying the file `datasets.json`:
+1. If it is created for an existing case base, add a new entry in the corresponding `similarityDatasets` list, including a name and the URI to similarity datafile created.
+2. If you are using a new case base, add a new dataset object in 
+
+```json
+{
+    "dataset": {
+      "name": "<YOUR NEW CASE BASE NAME>",
+      "uri": "<URI TO THE DATASET FILE>"
+    },
+    "similarityDatasets": [
+      {
+        "name": "<YOUR NEW SIMILARITY DATA>",
+        "uri": "<URI TO THE SIMILARITY DATA FILE>"
+      }
+    ]
+  }
+```
