@@ -1,12 +1,16 @@
 import cbrkit
 import json
 from cbrkit.typing import SimFunc
+import pandas as pd
 type Number = float | int
 
 from colormath.color_objects import LabColor, sRGBColor
 from colormath.color_conversions import convert_color
 from colormath.color_diff import delta_e_cie2000
 import os
+from casebaseskeleton import casebaseCarSkeleton, casebaseCarOOSkeleton
+
+
 
 def runAndDump(casebase, simFunction, dumpFilename):
     retriever = cbrkit.retrieval.build(
@@ -43,17 +47,18 @@ def paths(casebase):
     runAndDump(casebase, simFunction, "./cbrkit_paths.json")
 
 def yearManufacturerPrice(casebase):
+    taxFunction = cbrkit.sim.taxonomy.build(os.path.join(os.path.dirname(__file__),"cars-taxonomy.yaml"), cbrkit.sim.taxonomy.wu_palmer())
     simFunction = cbrkit.sim.attribute_value(
         attributes={
             "year": cbrkit.sim.numbers.linear_interval(1950,2021),
-            "manufacturer":cbrkit.sim.strings.levenshtein(),
+            "manufacturer":taxFunction,
             "price": cbrkit.sim.numbers.linear(max=200000)
         },
         aggregator=cbrkit.sim.aggregator(
             pooling="mean",
             pooling_weights= dict(year=0.4, price=0.4, manufacturer=0.2)),
     )
-    runAndDump(casebase, simFunction, "./cbrkit_year_manufacturer_price.json")
+    runAndDump(casebase, simFunction, "./cbrkit_year_manufacturer_price_100.json")
 
 class nominal_range_similarity(SimFunc[Number, float]):
     """Similarity function for a range of nominal values
@@ -212,18 +217,57 @@ def colorSimilarity(casebase):
     runAndDump(casebase, simFunction, "./cbrkit_color.json")
 
 
-if __name__ == "__main__":
-    print (os.path.dirname(__file__))
-    # cars-1k.json contains the cases and the metadata about the casebase
-    cbFileName = os.path.join(os.path.dirname(__file__),'cars-10.json' )
-    with open(cbFileName) as f:
-        dataFile = json.load(f)
-    cases = dataFile["cases"]
+def createCarsCaseBase(numInstances=1000, objectOriented=False):
+    # Used cars dataset (https://www.kaggle.com/datasets/austinreese/craigslist-carstrucks-data)
+    df = pd.read_csv('https://gaia.fdi.ucm.es/files/people/guille/simviz/cars/cars-raw.zip', compression='zip')
+    df.drop(['description', 'url', 'region_url', 'image_url','id','cylinders', 'region','lat','long', 'posting_date', 'state','county','VIN','odometer','size'], axis=1, inplace=True)
 
-    """In CBRkit there is no way to explicit which attribute is the 
-    case id so we have to transform the cases into a dictionaty
-    """
-    casebase = { case["id"]: case for case in cases }
+    # Add "c" prefix to index values
+    df = df.reset_index(drop=True)
+    df.index = 'c' + df.index.astype(str)
+    df['id'] = df.index
+
+    # Remove rows with missing values
+    dfClean = df.dropna()
+    # Clean the dataset selecting the rows where:
+    # - year greater than 1950
+    # - price between 500 and 200000
+    dfClean = dfClean[dfClean['year'] >= 1950]
+    dfClean['year'] = dfClean['year'].astype(int)
+    dfClean = dfClean[dfClean['price'] <= 200000]
+    dfClean = dfClean[dfClean['price'] >= 500]
+    # Pick numInstances rows. Using a random_state value this process is reproducible
+    df_sample = dfClean.sample(n=numInstances, random_state=42)
+    thecasebase = {}
+    if objectOriented:
+        casebaseCarOOSkeleton["cases"] = df_sample.to_dict(orient="records")
+        for case in casebaseCarOOSkeleton["cases"]:
+            case["model"] = dict(make=case["model"], manufacturer=case["manufacturer"])
+            del case["manufacturer"]
+        casebase = casebaseCarOOSkeleton
+    else:
+        casebaseCarSkeleton["cases"] = df_sample.to_dict(orient="records")
+        casebase = casebaseCarSkeleton
+    # Store the case base in a file
+    file_path = os.path.join(os.path.dirname(__file__),f"cars-{numInstances}.json")
+    with open(file_path, "w") as file:
+        json.dump(casebase, file)
+
+
+
+
+
+if __name__ == "__main__":
+    # cars-1k.json contains the cases and the metadata about the casebase
+    # cbFileName = os.path.join(os.path.dirname(__file__),'cars-1k.json' )
+    # with open(cbFileName) as f:
+    #     dataFile = json.load(f)
+    # cases = dataFile["cases"]
+
+    # """In CBRkit there is no way to explicit which attribute is the 
+    # case id so we have to transform the cases into a dictionary
+    # """
+    # casebase = { case["id"]: case for case in cases }
 
     # Year manufacturer price
     #yearManufacturerPrice(casebase)
@@ -240,13 +284,19 @@ if __name__ == "__main__":
     # Color
     # colorSimilarity(casebase)
 
-    # simFunction = cbrkit.sim.attribute_value(
-    #     attributes={
-    #         "paint_color": color_similarity()
-    #     },
-    #     aggregator=cbrkit.sim.aggregator(pooling="mean")
-    # )
-    # runAndDump(casebase, simFunction, "./cars/cbrkit_color.json")
+
+
+    createCarsCaseBase(100, True)
+    cbFileName = os.path.join(os.path.dirname(__file__),'cars-100.json' )
+    with open(cbFileName) as f:
+        dataFile = json.load(f)
+    cases = dataFile["cases"]
+
+    """In CBRkit there is no way to explicit which attribute is the 
+    case id so we have to transform the cases into a dictionary
+    """
+    casebase = { case["id"]: case for case in cases }
+
     retriever = cbrkit.retrieval.build(
         cbrkit.sim.attribute_value(
             attributes={
@@ -256,7 +306,7 @@ if __name__ == "__main__":
                         "make": cbrkit.sim.strings.levenshtein(),
                         "manufacturer": cbrkit.sim.taxonomy.build(
                             os.path.join(os.path.dirname(__file__),"cars-taxonomy.yaml"),
-                            cbrkit.sim.taxonomy.wu_palmer(),
+                            cbrkit.sim.taxonomy.paths(),
                         ),
                     }
                 ),
@@ -266,6 +316,6 @@ if __name__ == "__main__":
     )
     result = cbrkit.retrieval.apply_queries(casebase, casebase, retriever)
 
-    cbrkit.dumpers.file(os.path.join(os.path.dirname(__file__),"model-object.json"),result)
+    cbrkit.dumpers.file(os.path.join(os.path.dirname(__file__),"carsOO-yearModel.json"),result)
 
     

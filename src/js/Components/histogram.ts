@@ -4,17 +4,23 @@ import { PlotEventNotifier } from "../plotObserver";
 /**
  * Histogram colors
  */
-const magmaColorscaleValue: Array<string> = [
-  "#000004",
-  "#180f3d",
-  "#440f76",
-  "#721f81",
-  "#9e2f7f",
-  "#cd4071",
-  "#f1605d",
-  "#fd9668",
-  "#feca8d",
-  "#fcfdbf",
+const magmaColorscaleValue: Array<[number, string]> = [
+  [0.0, "#000004"],
+  [0.1111111111111111, "#180f3d"],
+  [0.2222222222222222, "#440f76"],
+  [0.3333333333333333, "#721f81"],
+  [0.4444444444444444, "#9e2f7f"],
+  [0.5555555555555556, "#cd4071"],
+  [0.6666666666666666, "#f1605d"],
+  [0.7777777777777777, "#fd9668"],
+  [0.8888888888888888, "#feca8d"],
+  [1.0, "#fcfdbf"],
+];
+
+const colorValues: Array<number> = [
+  0.0, 0.1111111111111111, 0.2222222222222222, 0.3333333333333333,
+  0.4444444444444444, 0.5555555555555556, 0.6666666666666666,
+  0.7777777777777777, 0.8888888888888888, 1.0,
 ];
 
 /**
@@ -88,9 +94,11 @@ export class Histogram extends PlotEventNotifier {
         start: 0.0,
       },
       marker: {
-        color: magmaColorscaleValue,
+        autocolorscale: false,
+        colorscale: magmaColorscaleValue,
+        color: colorValues,
+        cmax: 1.0,
         cmin: 0.0,
-        cmax: 1.0000001,
       },
       hovertemplate: "%{x}%<extra></extra>",
     };
@@ -121,6 +129,7 @@ export class Histogram extends PlotEventNotifier {
         // No ticks
         tickmode: "array",
         tickvals: [],
+        range: [0, 1.0000001],
       },
       hoverlabel: {
         bgcolor: "rgb(234, 239, 239)",
@@ -157,7 +166,7 @@ export class Histogram extends PlotEventNotifier {
         id1: this.simValueIndex[randomValue][0],
         id2: this.simValueIndex[randomValue][1],
         similarityValue: this.simValues[randomValue],
-        color: magmaColorscaleValue[colorPos], //~~(this.simValues[randomValue] * 10)],
+        color: magmaColorscaleValue[colorPos][1],
       });
     }
   }
