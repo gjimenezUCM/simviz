@@ -1,5 +1,7 @@
 import Plotly, { PlotlyHTMLElement } from "plotly.js-dist-min";
 import { PlotEventNotifier } from "../plotObserver";
+import { clusterSorting } from "../utils/clusters";
+
 
 /**
  * Heatmap colors
@@ -43,6 +45,16 @@ export class Heatmap extends PlotEventNotifier {
   private matrix: Array<Array<number>>;
 
   /**
+   * Unique ids of the cases represented in this heatmap
+   */
+  private clustSortCaseIds: Array<string>;
+
+  /**
+   * Similarity matrix
+   */
+  private clustSortmatrix: Array<Array<number>>;
+
+  /**
    * The current state of the similarity matrix (the original one
    * can be modified due to user interactions)
    */
@@ -76,13 +88,16 @@ export class Heatmap extends PlotEventNotifier {
   ) {
     super();
     if (containerNode) {
-      this.caseIds = ids;
-      this.matrix = matrix;
+      //this.caseIds = ids;
+      //this.matrix = matrix;
+      [this.matrix, this.caseIds] = clusterSorting(matrix, ids);
       this.currentMatrix = JSON.parse(JSON.stringify(this.matrix));
-      this.currentX = [...ids];
-      this.currentY = [...ids];
+      this.currentX = [...this.caseIds];
+      this.currentY = [...this.caseIds];
       this.containerNode = containerNode;
       this._init();
+      console.log(this.caseIds);
+      console.log(this.matrix);
     }
   }
 
