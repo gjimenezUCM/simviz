@@ -99,7 +99,7 @@ Install the prerrequisites with npm:
 npm install
 ```
 
-### Installation
+### Installation for development
 
 1. Clone the repo
    ```sh
@@ -123,6 +123,14 @@ npm install
   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Running in Docker
+
+You can run SimViz locally in a Docker container. To do that:
+- [Install Docker](https://docs.docker.com/engine/install/)
+- Build the docker image: `docker build . -t simviz:latest`
+- Create the SimViz container: `docker container create -i -t simviz`
+- `data` folder files are not copied to the container so use a volume to share data between the host and the container. Moreover, SimViz will run as a web server on port 8000 so expose the correspondin port on the host machine. For example, to run SimViz on `http://localbost:8000` use `docker run -i -t -v ./data/:/app/data/ -w /app -p 8000:8000 simviz`
 
 <!-- USAGE EXAMPLES -->
 
@@ -152,6 +160,27 @@ Watch the tutorial videos in [Help section](https://gjimenezucm.github.io/simviz
 Similarity data is computed offline using a weighted average as global similarity function, and predefined local similarity functions over the attributes of the cases contained in a case base. The case base and the similarity data are enriched with information about attribute datatypes, local similarity functions, weights for global similarity functions and user explanations.
 
 The [`data`](/data/) folder in this repository contains a folder for each case base and scripts in Python about how the examples were created. Similarity data is generated using [CBRkit](https://github.com/wi2trier/cbrkit), a Python framework for building Case-based Reasoning applications.
+
+To use your own generated similarity data files on a new dataset:
+- Follow the instructions in the `data` folder about the dataset and similarity data file formats.
+- Add a new entry in the `data/datasets.json` file:
+
+```
+{
+    "dataset": {
+      "name": "<your_dataset_name>",
+      "uri": "./data/<your_dataset_folder>/<your_dataset_filename>.json"
+    },
+    "similarityDatasets": [
+      {
+        "name": "Your_similarity_data_name1",
+        "uri": "./data/<your_dataset_folder>/<your_similarity_data_filename>.<zip_or_json>"
+      }
+    ]
+}
+
+```
+  You can add more similarity data files in the `similarityDatasets` entry of your dataset.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
