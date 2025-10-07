@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --config webpack.dev.js",
     "start": "webpack-dev-server --config webpack.dev.js",
-    "docs": "typedoc --tsconfig tsconfig.json"
+    "docs": "typedoc --tsconfig tsconfig.json",
+    "build-deploy": "webpack --config webpack.prod.js"
   },
   "author": "Guillermo Jimenez-Diaz",
   "license": "ISC",

@@ -23,9 +23,6 @@ const path = require('path');
 //  - DefinePlugin : permite definir constantes en tiempo de compilación.
 const webpack = require('webpack');
 
-// Plugin para copiar ficheros estáticos de ./src a ./dist en cada
-// build.
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 // Exportamos la configuración usando la función merge importada,
 // y mezclando la configuración que añadimos con la común, también
@@ -41,47 +38,6 @@ module.exports = merge(common, {
     // e incluye mensajes de error ricos en tiempo de ejecución.
     mode: 'development',
 
-    // Se crean los "source map's" para que los errores de JS digan
-    // estar en el punto del código original, no del bundle. Se generan
-    // inline, directamente en los .js de los bundle's generados, lo que
-    // los hace más grandes pero más cómodos de usar al no tener que
-    // preocuparnos de los ficheros independientes.
-    devtool: 'inline-source-map',
-
-    // Configuración de webpack-dev-server que lanzamos durante el
-    // desarrollo. Requiere haberlo instalado previamente con
-    // npm install --save-dev webpack-dev-server
-    devServer: {
-        // Configuramos la ruta de los ficheros. Si no, se usará la ruta
-        // actual.
-        // Basta poner una ruta relativa pero recomiendan poner la ruta
-        // entera.
-        // Se podrían pasar varias opciones en un array.
-        static: { 
-            directory: path.join(__dirname, './dist'),
-        },
-
-        // Por defecto escucha en el 8080, pero colisiona con Tomcat, así es que
-        // se mueve a 8081... para evitarlo (y que se enganche en 8080 si no tienes
-        // aún tomcat lanzado) lo pongo en el 3000 (que es donde escuchan otros
-        // servidores de desarrollo con Node)
-        port: 8080,
-
-        // Por defecto, el servidor de Webpack escucha en loopback.
-        // Si lanzas node desde un contenedor, necesitas que escuche en
-        // la IP "pública" del contenedor para que Docker se pueda conectar
-        // y engancharlo con el puerto correspondiente en el anfitrión.
-        // Para eso, hay que pedírselo explícitamente.
-        // Ten en cuenta que esto solo lo querrás si efectivamente lo lanzas
-        // desde un contenedor...
-        host: '0.0.0.0',
-
-        // Proxy realizado por el servidor para unirnos con el backend.
-        proxy: {
-            '/api': 'http://localhost:8080/',
-        },
-        // Hay más posibilidades, como https, especificar el index, ...
-    }, // devServer
 
     module: {
         // Enseñamos a Webpack a cargar ficheros diferentes a .js que
@@ -137,12 +93,6 @@ module.exports = merge(common, {
             'process.env.NODE_ENV': JSON.stringify('development')
         })
         */
-           new CopyWebpackPlugin({
-             patterns: [
-               { from: "data", to: "data" },
-               { from: "docs", to: "docs" },
-             ],
-           }),
     ],
 
 }); // module.exports
