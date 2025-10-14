@@ -1,0 +1,56 @@
+{
+    "similarityConfiguration":{
+        "globalSim": {
+            "simFunction": "Weighted average"
+        },
+    
+        "localSim": {
+            "att1": {
+                "simFunction": "equals",
+                "weight": 0.5,
+                "description": "A textual description aboout this local similarity function in markdown"
+            },
+            "att2": {
+              "simFunction": "equals",
+              "weight": 0.5,
+              "description": "A textual description aboout this local similarity function  in markdown"
+            }
+        }
+    },
+    "similarityScores": {
+        "id1": {
+          "id1": {
+            "value": 1.0,
+            "attributes": {
+              "att1": 1.0,
+              "att2": 1.0
+            }
+          },
+          "id2": {
+            "value": 0.5,
+            "attributes": {
+              "att1": 1.0,
+              "att2": 0.0
+            }
+          }
+          /* ... */
+        },
+        "id2":{
+          "id2": {
+            "value": 1.0,
+            "attributes": {
+              "att1": 1.0,
+              "att2": 1.0
+            }
+          },
+          "id3": {
+            "value": 0.75,
+            "attributes": {
+              "att1": 1.0,
+              "att2": 0.5
+            }
+          }
+          /* ... */
+        }
+    }
+}

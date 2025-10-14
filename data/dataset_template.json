@@ -1,0 +1,70 @@
+{
+  "metadata": {
+    "description": "A textual description aobut this dataset in Markdown",
+    "attributes": {
+      "att1": "Attribute type. The following types are supported: string | number | Image | ColorRGB | ColorRGBList | Taxonomy",
+      "att2": {
+        "att21": "Attribute can also be an Object-oriented or nested attributes. Children can be again nested or one of the attribute types described above",
+        "att22": "Attribute can also be an Object-oriented or nested attributes. Children can be again nested or one of the attribute types described above"
+      },
+      /* ... */,
+      "attN": "Attribute type. The following types are supported: string | number | Image | ColorRGB | ColorRGBList | Taxonomy"
+    },
+    "id": "Name of the attribute that represents the case id",
+    "taxonomy": { /* Optional: Only if an attribute uses taxonomy values*/
+      "on_attribute": "Name of the attribute that uses taxonomy values",
+      "nodes":[
+        {
+            "id": 0,
+            "label": "Root node",
+            "parent": -1, /* Root node parent is always -1 */
+            "weight": 0.0,
+            "depth": 0
+        },
+        {
+            "id": 1,
+            "label": "Child node",
+            "parent": 0, 
+            "weight": 1.0,
+            "depth": 1
+        },
+        /* ...*/
+      ],
+       "edges":[
+        {
+            "id": 0,
+            "from": 0,
+            "to": 1
+        },
+        {
+            "id": 1,
+            "from": 1,
+            "to": 2
+        },
+        /* ... */
+      ]
+
+    }
+  },
+  "cases": [
+    {
+      "att1": "att1 value for the first case",
+      "att2": {
+        "att21": "att21 value for the first case",
+        "att22": "att22 value for the first case"
+      }
+      /* ... */,
+      "attN": "attN value for the first case"
+    },
+    {
+      "att1": "att1 value for the second case",
+      "att2":{
+        "att21": "att21 value for the second case",
+        "att22": "att22 value for the second case"
+      }
+      /* ... */,
+      "attN": "attN value for the second case"
+    },
+    /* ... */
+  ]
+}
