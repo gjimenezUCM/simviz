@@ -1,21 +1,27 @@
 <!-- GETTING STARTED -->
 # SimViz Data
 
-The [`data`](/data/)  folder contains the data employed by SimViz for the visualizations. To visualize a similarity function you need:
+The [`data`](/data/)  folder contains the data employed by SimViz for visualizing similarity data in case bases. To visualize a similarity function you need:
 
-- A dataset in SimViz format.
+- A dataset in SimViz format, containing the case base or dataset.
 - A similarity data file in SimViz format, containing the similarity values (and partial similarities) for each pair of items in the dataset.
 
 Next subsections describe the content of this folder and how to create the data to visualize your own dataset.
 
 ## Files and folders
 
-Here we have several case bases (one folder per dataset) and similarity data over each dataset to use SimViz.
+Here we have several case bases (one folder per case base) and similarity data over each dataset to use SimViz.
+
+- [blood-alcohol](/data/blood-alcohol/): contains the [Blood Alcohol Domain](https://github.com/gateslm/Blood-Alcohol-Domain) case base.
+- [BCWD](/data/BCWD/): contains the [Breast Cancer Wisconsin](https://doi.org/10.1016/j.artmed.2019.01.001) case base.
+- [travel](/data/travel/): contains the [Travel Agent](https://ai-cbr.cs.auckland.ac.nz/cases.html) case base.
+- [cars](/data/cars/): contains the case bases about [Used Cars](https://zenodo.org/records/15006920) (simple attribute-value structure and a taxonomic attribute, and with object-oriented attributes)
+- [DMH](/data/DMH/): contains the DMH case base.
 
 Additionally, this folder contains the following files:
 
 - `datasets.json`: It mainly contains URIs to the datasets and similarity functions visualized in SimViz. 
-- [dataset_template.json](/dataset_template.json) and [similarityData_template.json](/similarityData_template.json): Contains templates of the format expected by SimViz for datasets and similarity data, respectively. 
+- [dataset_template.json](/data/dataset_template.json) and [similarityData_template.json](/data/similarityData_template.json): Contains templates of the format expected by SimViz for datasets and similarity data, respectively. 
 
 
 ## Generating similarity data files
@@ -32,10 +38,10 @@ Create a virtual environment (`.venv`) and install CBRkit prerrequisites (in `re
 
 ### Generating Similarity data using predefined scripts.
 
-Every dataset folder contains a `createDataUsingCBRkit.py` script to regenerate the similarity data for each dataset. These scripts can be used as examples to use CBRkit to generate new similarity data files. To run these scripts:
+Every dataset folder contains a `createDataUsingCBRkit.py` script to regenerate the similarity data for each dataset. These scripts can be used as examples to use CBRkit to generate new similarity data files. To run these scripts (for example, for the DMH case base):
 
   ```sh
-  source .venv/bin/activate # or .venv\Scripts\activate (in Windows)
+  source .venv/bin/activate # .venv\Scripts\activate (in Windows)
   python DMH/createDataUsingCBRkit.py
   ```
 
@@ -43,7 +49,7 @@ Every dataset folder contains a `createDataUsingCBRkit.py` script to regenerate 
 
 If you generated new similarity data using these scripts, you can visualize it modifying the file `datasets.json`:
 1. If it is created for an existing case base, add a new entry in the corresponding `similarityDatasets` list, including a name and the URI to similarity datafile created.
-2. If you are using a new case base, add a new dataset object in `data/datasets.json` file:
+2. If you are using a new case base, add a new dataset object in `datasets.json` file:
 
 ```json
 {

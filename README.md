@@ -66,9 +66,9 @@
 
 ## About The Project
 
-[![SimViz ScreenShot](/images/mainUI.png)](https://github.com/gjimenezUCM/simviz)
-
 SimViz (**Sim**ilarity **Vi**suali**Z**ation) is a tool focused on the interactive visualization of similarity functions and how they are computed over different case bases.
+
+[![SimViz ScreenShot](/images/simviz.png)](https://github.com/gjimenezUCM/simviz)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -133,18 +133,20 @@ You can run SimViz locally in a Docker container. To do that:
 
 ## Usage
 
-SimViz interface displays a menu bar to select the case base and the similarity measure to analyze. Then, it is organized in four panels:
+[![SimViz Interface](/images/mainUI.png)](https://github.com/gjimenezUCM/simviz)
 
-- _Case comparison panel_, to compare similarity values between cases.
-- _Similarity value distribution panel_, to explore the similarity scores.
-- _Information panel_, to display information about the loaded case base and the selected similarity measure.
-- _Taxonomy viewer panel_, to display taxonomy values if a case attribute supports this data type.
+SimViz interface displays a menu bar (1) to select the case base and the similarity measure to analyze. Then, it is organized in four panels:
+
+- _Case comparison panel_ (2), to compare similarity values between cases.
+- _Similarity value distribution panel_ (3), to explore the similarity scores.
+- _Information panel_ (4), to display information about the loaded case base and the selected similarity measure.
+- _Taxonomy viewer panel_ (5), to display taxonomy values if a case attribute supports this data type.
 
 Watch the tutorial videos in [Help section](https://gjimenezucm.github.io/simviz/help.html) for more details about SimViz features.
 
 ### Datasets/Case bases
 
-Right now, with SimViz we can explore four different case bases:
+Right now, with SimViz we can explore the following case bases:
 
 - [Blood Alcohol Domain](https://github.com/gateslm/Blood-Alcohol-Domain)
 - [Breast Cancer Wisconsin](https://doi.org/10.1016/j.artmed.2019.01.001)
@@ -156,7 +158,7 @@ Right now, with SimViz we can explore four different case bases:
 
 Similarity data is computed offline using a weighted average as global similarity function, and predefined local similarity functions over the attributes of the cases contained in a case base. The case base and the similarity data are enriched with information about attribute datatypes, local similarity functions, weights for global similarity functions and user explanations.
 
-Read the instructions in the [`data`](/data/) folder to generate and visualize your own case base and similarity functions.
+Read the instructions in the [`data`](/data/) folder to learn more about the similarity data and how to generate and visualize your own case base and similarity functions.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
