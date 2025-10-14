@@ -140,6 +140,8 @@ SimViz interface displays a menu bar to select the case base and the similarity 
 - _Information panel_, to display information about the loaded case base and the selected similarity measure.
 - _Taxonomy viewer panel_, to display taxonomy values if a case attribute supports this data type.
 
+Watch the tutorial videos in [Help section](https://gjimenezucm.github.io/simviz/help.html) for more details about SimViz features.
+
 ### Datasets/Case bases
 
 Right now, with SimViz we can explore four different case bases:
@@ -149,8 +151,6 @@ Right now, with SimViz we can explore four different case bases:
 - [Travel Agent](https://ai-cbr.cs.auckland.ac.nz/cases.html)
 - [Used Cars](https://zenodo.org/records/15006920). This case base is provided in two flavors: one with a simple attribute-value structure and a taxonomic attribute, and another to exemplify the use of SimViz in cases with object-oriented attributes
 - DMH Dataset: It contains 64 artwork descriptions from the Design Museum Helsinki, which imposed the definition of new similarity functions [for color perception and emotions](https://doi.org/10.1007/978-3-030-86957-1_4).
-
-Watch the tutorial videos in [Help section](https://gjimenezucm.github.io/simviz/help.html) for more details about SimViz features.
 
 ### Similarity data
 
